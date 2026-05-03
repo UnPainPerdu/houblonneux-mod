@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "hop=middle_flowered": {
+      "model": "houblonneux:block/hop_middle_flowered"
+    },
+    "hop=middle_grow": {
+      "model": "houblonneux:block/hop_middle_grow"
+    },
+    "hop=seed": {
+      "model": "houblonneux:block/hop_seed"
+    },
+    "hop=top_grow": {
+      "model": "houblonneux:block/hop_top_grow"
+    }
+  }
+}

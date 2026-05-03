@@ -17,7 +17,7 @@ public class CommonSetupEvent
                 
                 -----------------------------------------------------
                 ---------------------Houblonneux---------------------
-                -------A beer mod for Belgian and other human!-------
+                ---A beer mod for Premier Pain and other villager!---
                 -----------------------------------------------------""");
     }
 }

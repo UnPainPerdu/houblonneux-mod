@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "houblonneux:item/hop_lupulin"
+  }
+}

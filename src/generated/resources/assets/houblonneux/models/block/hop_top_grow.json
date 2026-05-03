@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "houblonneux:block/hop_top_grow"
+  }
+}

@@ -1,0 +1,50 @@
+package com.unpainperdu.houblonneux.datagen.data.tag;
+
+import com.unpainperdu.houblonneux.Houblonneux;
+import com.unpainperdu.houblonneux.register.item.ModItemRegister;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.BlockTagCopyingItemTagProvider;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
+
+public class ModItemTagProvider extends BlockTagCopyingItemTagProvider
+{
+    public ModItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTags)
+    {
+        super(output, lookupProvider, blockTags, Houblonneux.MOD_ID);
+    }
+
+    @Override
+    protected void addTags(HolderLookup.Provider registries)
+    {
+        this.addToTag(Tags.Items.CROPS,
+                Stream.of(
+                        ModItemRegister.HOP_FLOWER
+                )
+        );
+        this.addToTag(Tags.Items.FOODS,
+                Stream.of(
+                        ModItemRegister.HOP_FLOWER
+                )
+        );
+    }
+
+    @SafeVarargs
+    private void addToTag(TagKey<Item> itemTag, Stream<Supplier<? extends Item>>... itemStreams)
+    {
+        this.tag(itemTag).add(
+                Stream.of(itemStreams)
+                        .flatMap(s -> s)
+                        .map(Supplier::get)
+                        .toArray(Item[]::new)
+        );
+    }
+}

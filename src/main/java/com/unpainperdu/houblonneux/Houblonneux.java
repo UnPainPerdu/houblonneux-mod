@@ -1,6 +1,7 @@
 package com.unpainperdu.houblonneux;
 
 import com.mojang.logging.LogUtils;
+import com.unpainperdu.houblonneux.datagen.DataGatherer;
 import com.unpainperdu.houblonneux.neoevent.CommonSetupEvent;
 import com.unpainperdu.houblonneux.register.RegisterHandler;
 import net.neoforged.bus.api.IEventBus;
@@ -18,5 +19,6 @@ public class Houblonneux
     {
         RegisterHandler.register(modEventBus);
         modEventBus.addListener(CommonSetupEvent::event);
+        modEventBus.addListener(DataGatherer::gatherData);
     }
 }

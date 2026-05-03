@@ -1,0 +1,25 @@
+package com.unpainperdu.houblonneux.datagen.asset.language;
+
+import com.unpainperdu.houblonneux.Houblonneux;
+import com.unpainperdu.houblonneux.register.ModCreativeTabRegister;
+import com.unpainperdu.houblonneux.register.item.ModItemRegister;
+import net.minecraft.data.PackOutput;
+import net.neoforged.neoforge.common.data.LanguageProvider;
+
+public class EnglishLanguageProvider extends LanguageProvider
+{
+    public EnglishLanguageProvider(PackOutput output)
+    {
+        super(output, Houblonneux.MOD_ID, "en_us");
+    }
+
+    @Override
+    protected void addTranslations()
+    {
+        //creative tabs
+        this.add(ModCreativeTabRegister.MAIN_TAB_TRANSLATION_KEY, "Houblonneux");
+        //items
+        this.add(ModItemRegister.HOP_FLOWER.get(), "Hop Flower");
+        this.add(ModItemRegister.HOP_LUPULIN.get(), "Hop Lupulin");
+    }
+}
