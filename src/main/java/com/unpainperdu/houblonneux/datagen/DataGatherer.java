@@ -3,12 +3,18 @@ package com.unpainperdu.houblonneux.datagen;
 import com.unpainperdu.houblonneux.datagen.asset.language.EnglishLanguageProvider;
 import com.unpainperdu.houblonneux.datagen.asset.language.FrenchLanguageProvider;
 import com.unpainperdu.houblonneux.datagen.asset.model.ModelProviderDispatcher;
+import com.unpainperdu.houblonneux.datagen.data.loot_table.ModGlobalLootModifierProvider;
 import com.unpainperdu.houblonneux.datagen.data.loot_table.ModLootTableProvider;
 import com.unpainperdu.houblonneux.datagen.data.recipe.RecipeProviderDispatcher;
 import com.unpainperdu.houblonneux.datagen.data.tag.ModBlockTagProvider;
 import com.unpainperdu.houblonneux.datagen.data.tag.ModItemTagProvider;
+import com.unpainperdu.houblonneux.datagen.data.worldgen.feature.ModBiomeModifierProvider;
+import com.unpainperdu.houblonneux.datagen.data.worldgen.feature.ModFeatureProvider;
+import com.unpainperdu.houblonneux.datagen.data.worldgen.feature.ModPlacementProvider;
 import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.registries.Registries;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public class DataGatherer
 {
@@ -16,11 +22,15 @@ public class DataGatherer
     {
         event.createDatapackRegistryObjects(
                 new RegistrySetBuilder()
+                        .add(Registries.CONFIGURED_FEATURE, ModFeatureProvider::bootstrap)
+                        .add(Registries.PLACED_FEATURE, ModPlacementProvider::bootstrap)
+                        .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifierProvider::bootstrap)
         );
         event.createProvider(ModelProviderDispatcher::new);
         event.createProvider(EnglishLanguageProvider::new);
         event.createProvider(FrenchLanguageProvider::new);
         event.createProvider(ModLootTableProvider::new);
+        event.createProvider(ModGlobalLootModifierProvider::new);
         event.createBlockAndItemTags(ModBlockTagProvider::new, ModItemTagProvider::new);
         event.createProvider(RecipeProviderDispatcher.Runner::new);
     }

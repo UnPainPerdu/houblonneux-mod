@@ -35,8 +35,8 @@ import java.util.Optional;
 public class HopBlock extends VegetationBlock implements BonemealableBlock
 {
     public static final MapCodec<HopBlock> CODEC = simpleCodec(HopBlock::new);
-    private static final int MIN_HEIGHT = 4;
-    private static final int MAX_HEIGHT = 10;
+    public static final int MIN_HEIGHT = 4;
+    public static final int MAX_HEIGHT = 10;
     public static final BooleanProperty CAN_GROW = ModBlockStateProperties.CAN_GROW;
     public static final EnumProperty<HopBlockstate> HOP_BLOCKSTATE = ModBlockStateProperties.HOP;
     private static final VoxelShape SEED = Block.column(16, 16, 0, 2);
@@ -131,13 +131,12 @@ public class HopBlock extends VegetationBlock implements BonemealableBlock
                 default -> true;
             };
         }
-        return this.mayPlaceOn(belowBlockState, level, belowPos);
+        return this.mayPlaceOn(state, belowBlockState);
     }
 
-    @Override
-    protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos)
+    protected boolean mayPlaceOn(BlockState stateToPlace, BlockState stateBelow)
     {
-        return state.is(BlockTags.SUPPORTS_CROPS);
+        return stateToPlace.getValue(HOP_BLOCKSTATE) == HopBlockstate.SEED ? stateBelow.is(BlockTags.SUPPORTS_CROPS) : stateBelow.is(BlockTags.SUPPORTS_CROPS) || stateBelow.is(BlockTags.SUPPORTS_VEGETATION);
     }
 
     public void grow(Level level, RandomSource random, BlockPos pos, BlockState state)

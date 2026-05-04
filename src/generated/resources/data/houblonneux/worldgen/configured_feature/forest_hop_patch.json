@@ -1,0 +1,12 @@
+{
+  "type": "houblonneux:hop_patch",
+  "config": {
+    "ground_allowed": [
+      "minecraft:supports_vegetation"
+    ],
+    "max_flower_number": 6,
+    "min_flower_number": 1,
+    "spread": 3,
+    "states": []
+  }
+}
