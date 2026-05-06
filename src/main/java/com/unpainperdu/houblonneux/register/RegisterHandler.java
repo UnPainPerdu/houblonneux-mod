@@ -2,6 +2,7 @@ package com.unpainperdu.houblonneux.register;
 
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.codec.ModGLMCodecRegister;
+import com.unpainperdu.houblonneux.register.item.ModBeerEventRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import com.unpainperdu.houblonneux.register.worldgen.ModFeatureRegister;
 import net.neoforged.bus.api.IEventBus;
@@ -12,6 +13,7 @@ public class RegisterHandler
     {
         ModBlockRegister.register(event);
         ModItemRegister.register(event);
+        ModBeerEventRegister.register(event);
         ModCreativeTabRegister.register(event);
         ModGLMCodecRegister.register(event);
         ModFeatureRegister.register(event);

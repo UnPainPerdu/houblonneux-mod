@@ -1,17 +1,28 @@
 package com.unpainperdu.houblonneux.level.menu.creative_tab;
 
-import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.ItemLike;
 
 import java.util.Arrays;
 import java.util.function.Supplier;
 
+import static com.unpainperdu.houblonneux.register.item.ModItemRegister.*;
+
 public class CreativeTabDisplayGenerator
 {
     public static final CreativeModeTab.DisplayItemsGenerator MAIN_TAB = generateBasicGenerator(
-            ModItemRegister.HOP_FLOWER,
-            ModItemRegister.HOP_LUPULIN
+            //beer
+            //  empty
+            BOTTLE,
+            GLASS,
+            MUG,
+            //  emerald_call
+            EMERALD_CALL_BOTTLE,
+            EMERALD_CALL_GLASS,
+            EMERALD_CALL_MUG,
+            //other
+            HOP_FLOWER,
+            HOP_LUPULIN
     );
 
     @SafeVarargs
