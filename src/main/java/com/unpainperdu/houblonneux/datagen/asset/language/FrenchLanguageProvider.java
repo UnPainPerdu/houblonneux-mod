@@ -21,5 +21,14 @@ public class FrenchLanguageProvider extends LanguageProvider
         //items
         this.add(ModItemRegister.HOP_FLOWER.get(), "Fleur de Houblon");
         this.add(ModItemRegister.HOP_LUPULIN.get(), "Lupuline de Houblon");
+        //beer
+        //  empty
+        this.add(ModItemRegister.EMPTY_BOTTLE.get(), "Bouteille vide");
+        this.add(ModItemRegister.EMPTY_GLASS.get(), "Verre vide");
+        this.add(ModItemRegister.EMPTY_MUG.get(), "Chope vide");
+        //  emerald_call
+        this.add(ModItemRegister.EMERALD_CALL_BOTTLE.get(), "Bouteille d'Emerald Call");
+        this.add(ModItemRegister.EMERALD_CALL_GLASS.get(), "Verre d'Emerald Call");
+        this.add(ModItemRegister.EMERALD_CALL_MUG.get(), "Chope d'Emerald Call");
     }
 }

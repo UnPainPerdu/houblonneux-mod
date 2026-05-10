@@ -17,8 +17,18 @@ public class ItemModelProvider
         generateModel();
     }
 
-    public void generateModel(){
+    public void generateModel()
+    {
         this.itemModelsGenerator.generateFlatItem(ModItemRegister.HOP_FLOWER.get(), ModelTemplates.FLAT_ITEM);
         this.itemModelsGenerator.generateFlatItem(ModItemRegister.HOP_LUPULIN.get(), ModelTemplates.FLAT_ITEM);
+        //beer
+        //  empty
+        this.itemModelsGenerator.generateFlatItem(ModItemRegister.EMPTY_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
+        this.itemModelsGenerator.generateFlatItem(ModItemRegister.EMPTY_GLASS.get(), ModelTemplates.FLAT_ITEM);
+        this.itemModelsGenerator.generateFlatItem(ModItemRegister.EMPTY_MUG.get(), ModelTemplates.FLAT_ITEM);
+        //  emerald_call
+        this.itemModelsGenerator.generateFlatItem(ModItemRegister.EMERALD_CALL_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
+        this.itemModelsGenerator.generateFlatItem(ModItemRegister.EMERALD_CALL_GLASS.get(), ModelTemplates.FLAT_ITEM);
+        this.itemModelsGenerator.generateFlatItem(ModItemRegister.EMERALD_CALL_MUG.get(), ModelTemplates.FLAT_ITEM);
     }
 }
