@@ -8,5 +8,6 @@ public class EventDispatcher
     {
         modEventBus.addListener(CommonSetupEvent::event);
         modEventBus.addListener(RegistriesRegister::registerRegistries);
+        modEventBus.addListener(ModRegisterClientExtensionsEvent::registerClientExtensions);
     }
 }

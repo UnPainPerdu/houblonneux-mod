@@ -1,0 +1,10 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/world/item/ItemUseAnimation",
+      "name": "HOUBLONNEUX_BEER_DRINK",
+      "constructor": "(ILjava/lang/String;)V",
+      "parameters": [ -1, "houblonneux:beer_drink" ]
+    }
+  ]
+}
