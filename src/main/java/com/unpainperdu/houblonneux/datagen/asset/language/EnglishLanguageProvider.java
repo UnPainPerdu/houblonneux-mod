@@ -23,9 +23,9 @@ public class EnglishLanguageProvider extends LanguageProvider
         this.add(ModItemRegister.HOP_LUPULIN.get(), "Hop Lupulin");
         //beer
         //  empty
-        this.add(ModItemRegister.EMPTY_BOTTLE.get(), "Empty Bottle");
-        this.add(ModItemRegister.EMPTY_GLASS.get(), "Empty Glass");
-        this.add(ModItemRegister.EMPTY_MUG.get(), "Empty Mug");
+        this.add(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE.get(), "Empty Polymorphic Bottle");
+        this.add(ModItemRegister.EMPTY_POLYMORPHIC_GLASS.get(), "Empty Polymorphic Glass");
+        this.add(ModItemRegister.EMPTY_POLYMORPHIC_MUG.get(), "Empty Polymorphic Mug");
         //  emerald_call
         this.add(ModItemRegister.EMERALD_CALL_BOTTLE.get(), "Emerald Call Bottle");
         this.add(ModItemRegister.EMERALD_CALL_GLASS.get(), "Emerald Call Glass");

@@ -26,15 +26,15 @@ public class ModItemProperties
 
     public static final Item.Properties BOTTLE_BEER_PROPERTIES = new Item.Properties()
             .food(new FoodProperties(5, 0.6F, true))
-            .craftRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_BOTTLE))
-            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_BOTTLE)))
+            .craftRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE))
+            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE)))
             .component(DataComponents.CONSUMABLE, BEER_CONSUMABLE);
     public static final Item.Properties GLASS_BEER_PROPERTIES = new Item.Properties()
             .food(new FoodProperties(5, 0.75F, true))
-            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_GLASS)))
+            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_GLASS)))
             .component(DataComponents.CONSUMABLE, BEER_CONSUMABLE);
     public static final Item.Properties MUG_BEER_PROPERTIES = new Item.Properties()
             .food(new FoodProperties(5, 0.9F, true))
-            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_MUG)))
+            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_MUG)))
             .component(DataComponents.CONSUMABLE, BEER_CONSUMABLE);
 }

@@ -1,5 +1,11 @@
 {
   "block.houblonneux.hop_flower": "Fleur de Houblon",
+  "item.houblonneux.emerald_call_bottle": "Bouteille d'Emerald Call",
+  "item.houblonneux.emerald_call_glass": "Verre d'Emerald Call",
+  "item.houblonneux.emerald_call_mug": "Chope d'Emerald Call",
+  "item.houblonneux.empty_polymorphic_bottle": "Bouteille polymorphe vide",
+  "item.houblonneux.empty_polymorphic_glass": "Verre polymorphe vide",
+  "item.houblonneux.empty_polymorphic_mug": "Chope polymorphe vide",
   "item.houblonneux.hop_lupulin": "Lupuline de Houblon",
   "itemGroup.houblonneux.mainTab": "Houblonneux"
 }

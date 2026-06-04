@@ -1,5 +1,11 @@
 {
   "block.houblonneux.hop_flower": "Hop Flower",
+  "item.houblonneux.emerald_call_bottle": "Emerald Call Bottle",
+  "item.houblonneux.emerald_call_glass": "Emerald Call Glass",
+  "item.houblonneux.emerald_call_mug": "Emerald Call Mug",
+  "item.houblonneux.empty_polymorphic_bottle": "Empty Polymorphic Bottle",
+  "item.houblonneux.empty_polymorphic_glass": "Empty Polymorphic Glass",
+  "item.houblonneux.empty_polymorphic_mug": "Empty Polymorphic Mug",
   "item.houblonneux.hop_lupulin": "Hop Lupulin",
   "itemGroup.houblonneux.mainTab": "Houblonneux"
 }

@@ -13,9 +13,9 @@ public class CreativeTabDisplayGenerator
     public static final CreativeModeTab.DisplayItemsGenerator MAIN_TAB = generateBasicGenerator(
             //beer
             //  empty
-            EMPTY_BOTTLE,
-            EMPTY_GLASS,
-            EMPTY_MUG,
+            EMPTY_POLYMORPHIC_BOTTLE,
+            EMPTY_POLYMORPHIC_GLASS,
+            EMPTY_POLYMORPHIC_MUG,
             //  emerald_call
             EMERALD_CALL_BOTTLE,
             EMERALD_CALL_GLASS,
