@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "x": "#c:glass_blocks",
+    "y": "#c:gems/lapis"
+  },
+  "pattern": [
+    "x x",
+    "xyx",
+    "xxx"
+  ],
+  "result": {
+    "count": 6,
+    "id": "houblonneux:empty_polymorphic_glass"
+  }
+}

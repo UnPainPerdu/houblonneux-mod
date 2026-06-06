@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "x": "#minecraft:planks",
+    "y": "#c:gems/lapis",
+    "z": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "x x",
+    "zyz",
+    "xxx"
+  ],
+  "result": {
+    "count": 5,
+    "id": "houblonneux:empty_polymorphic_mug"
+  }
+}
