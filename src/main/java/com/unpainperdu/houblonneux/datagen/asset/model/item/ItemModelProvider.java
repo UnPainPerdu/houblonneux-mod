@@ -33,9 +33,9 @@ public class ItemModelProvider
         this.generateItemWithCustomModel(ModItemRegister.EMPTY_POLYMORPHIC_GLASS.get(), "empty_polymorphic_glass");
         this.generateItemWithCustomModel(ModItemRegister.EMPTY_POLYMORPHIC_MUG.get(), "empty_polymorphic_mug");
         //  emerald_call
-        this.itemModelsGenerator.generateFlatItem(ModItemRegister.EMERALD_CALL_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
-        this.itemModelsGenerator.generateFlatItem(ModItemRegister.EMERALD_CALL_GLASS.get(), ModelTemplates.FLAT_ITEM);
-        this.itemModelsGenerator.generateFlatItem(ModItemRegister.EMERALD_CALL_MUG.get(), ModelTemplates.FLAT_ITEM);
+        this.generateItemWithCustomModel(ModItemRegister.EMERALD_CALL_BOTTLE.get(), "emerald_call_bottle");
+        this.generateItemWithCustomModel(ModItemRegister.EMERALD_CALL_GLASS.get(), "emerald_call_glass");
+        this.generateItemWithCustomModel(ModItemRegister.EMERALD_CALL_MUG.get(), "emerald_call_mug");
     }
 
     private void generateItemWithCustomModel(Item item, String modelLocation)

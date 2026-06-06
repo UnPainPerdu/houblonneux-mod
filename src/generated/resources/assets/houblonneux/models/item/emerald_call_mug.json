@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "houblonneux:item/emerald_call_mug"
-  }
-}

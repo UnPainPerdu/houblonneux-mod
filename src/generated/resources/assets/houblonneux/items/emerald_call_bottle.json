@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "houblonneux:item/emerald_call_bottle"
+    "model": "houblonneux:item/emerald_call_bottle_generated"
   }
 }
