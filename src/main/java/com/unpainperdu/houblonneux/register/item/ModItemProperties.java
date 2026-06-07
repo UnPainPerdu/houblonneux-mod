@@ -20,8 +20,9 @@ public class ModItemProperties
     private static final Consumable BEER_CONSUMABLE = Consumable.builder()
             .consumeSeconds(2.0F)
             .animation(ModItemUseAnimation.BEER_DRINK.get())
-            .sound(SoundEvents.GENERIC_DRINK)
+            .sound(SoundEvents.HONEY_DRINK)
             .soundAfterConsume(SoundEvents.HONEY_DRINK)
+            .hasConsumeParticles(false)
             .build();
 
     public static final Item.Properties BOTTLE_BEER_PROPERTIES = new Item.Properties()
