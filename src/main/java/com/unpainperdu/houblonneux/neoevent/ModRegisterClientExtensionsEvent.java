@@ -1,9 +1,11 @@
 package com.unpainperdu.houblonneux.neoevent;
 
 import com.unpainperdu.houblonneux.client.consumable_client_item.ConsumableBeerDrinkExtensions;
-import com.unpainperdu.houblonneux.register.item.ModItemRegister;
+import com.unpainperdu.houblonneux.register.item.list.ItemList;
+import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 public class ModRegisterClientExtensionsEvent
 {
@@ -12,9 +14,7 @@ public class ModRegisterClientExtensionsEvent
     {
         event.registerItem(
                 new ConsumableBeerDrinkExtensions(),
-                ModItemRegister.EMERALD_CALL_BOTTLE,
-                ModItemRegister.EMERALD_CALL_GLASS,
-                ModItemRegister.EMERALD_CALL_MUG
+                ItemList.BEER_ITEM.stream().map(DeferredItem::asItem).toList().toArray(new Item[0])
         );
     }
 }

@@ -5,6 +5,7 @@ import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.Abstract
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.BeerType;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
+import com.unpainperdu.houblonneux.register.item.list.ItemList;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.consume_effects.ConsumeEffect;
@@ -37,6 +38,8 @@ public class ModItemRegister
 
     public static DeferredItem<Item> registerBeerItem(String name, Function<Function<BeerType, ConsumeEffect>, Item.Properties> properties, Function<BeerType, AbstractBeerConsumeEffect> consumeEffect)
     {
-        return ITEMS.registerItem(name, Item::new, () -> properties.apply(consumeEffect::apply));
+        DeferredItem<Item> deferredHolder = ITEMS.registerItem(name, Item::new, () -> properties.apply(consumeEffect::apply));
+        ItemList.BEER_ITEM.add(deferredHolder);
+        return deferredHolder;
     }
 }
