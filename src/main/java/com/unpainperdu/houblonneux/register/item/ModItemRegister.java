@@ -1,14 +1,18 @@
 package com.unpainperdu.houblonneux.register.item;
 
 import com.unpainperdu.houblonneux.Houblonneux;
-import com.unpainperdu.houblonneux.level.world.item.beer.BeerItem;
-import com.unpainperdu.houblonneux.level.world.item.beer.BeerType;
+import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.AbstractBeerConsumeEffect;
+import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.BeerType;
+import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.consume_effects.ConsumeEffect;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Function;
 
 public class ModItemRegister
 {
@@ -22,13 +26,17 @@ public class ModItemRegister
     public static final DeferredItem<Item> EMPTY_POLYMORPHIC_GLASS = ITEMS.registerItem("empty_polymorphic_glass", Item::new);
     public static final DeferredItem<Item> EMPTY_POLYMORPHIC_MUG = ITEMS.registerItem("empty_polymorphic_mug", Item::new);
     //  emerald_call
-    // TODO remake to use vanilla consumable instead of BeerEvent
-    public static final DeferredItem<BeerItem> EMERALD_CALL_BOTTLE = ITEMS.registerItem("emerald_call_bottle", p -> new BeerItem(p, BeerType.BOTTLE, ModBeerEventRegister.EMERALD_CALL), () -> ModItemProperties.BOTTLE_BEER_PROPERTIES);
-    public static final DeferredItem<BeerItem> EMERALD_CALL_GLASS = ITEMS.registerItem("emerald_call_glass", p -> new BeerItem(p, BeerType.GLASS, ModBeerEventRegister.EMERALD_CALL), () -> ModItemProperties.GLASS_BEER_PROPERTIES);
-    public static final DeferredItem<BeerItem> EMERALD_CALL_MUG = ITEMS.registerItem("emerald_call_mug", p -> new BeerItem(p, BeerType.MUG, ModBeerEventRegister.EMERALD_CALL), () -> ModItemProperties.MUG_BEER_PROPERTIES);
+    public static final DeferredItem<Item> EMERALD_CALL_BOTTLE = registerBeerItem("emerald_call_bottle", ModItemProperties.BOTTLE_BEER_PROPERTIES, EmeraldCallBeerConsumeEffect::new);
+    public static final DeferredItem<Item> EMERALD_CALL_GLASS = registerBeerItem("emerald_call_glass", ModItemProperties.GLASS_BEER_PROPERTIES, EmeraldCallBeerConsumeEffect::new);
+    public static final DeferredItem<Item> EMERALD_CALL_MUG = registerBeerItem("emerald_call_mug", ModItemProperties.MUG_BEER_PROPERTIES, EmeraldCallBeerConsumeEffect::new);
 
     public static void register(IEventBus event)
     {
         ITEMS.register(event);
+    }
+
+    public static DeferredItem<Item> registerBeerItem(String name, Function<Function<BeerType, ConsumeEffect>, Item.Properties> properties, Function<BeerType, AbstractBeerConsumeEffect> consumeEffect)
+    {
+        return ITEMS.registerItem(name, Item::new, () -> properties.apply(consumeEffect::apply));
     }
 }
