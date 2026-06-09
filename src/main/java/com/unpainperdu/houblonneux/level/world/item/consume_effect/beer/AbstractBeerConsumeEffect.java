@@ -16,14 +16,4 @@ public abstract class AbstractBeerConsumeEffect implements ConsumeEffect
     }
 
     public abstract boolean apply(Level level, ItemStack stack, LivingEntity user, BeerType beerType);
-
-    public static String getBeerDrinkSubtitle()
-    {
-        return "sound.houblonneux.item.beer_drink";
-    }
-
-    public static String getBeerDrinkBurpSubtitle()
-    {
-        return "sound.houblonneux.item.beer_drink_burp";
-    }
 }

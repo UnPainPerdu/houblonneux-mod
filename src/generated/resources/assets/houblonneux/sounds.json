@@ -1,4 +1,28 @@
 {
+  "burp": {
+    "replace": true,
+    "sounds": [
+      {
+        "attenuation_distance": 8,
+        "name": "houblonneux:burp_01",
+        "pitch": 1.2,
+        "volume": 0.8
+      },
+      {
+        "attenuation_distance": 8,
+        "name": "houblonneux:burp_02",
+        "pitch": 1.2,
+        "volume": 0.8
+      },
+      {
+        "attenuation_distance": 8,
+        "name": "houblonneux:burp_03",
+        "pitch": 1.2,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "sound.houblonneux.burp"
+  },
   "item.beer_drink": {
     "replace": true,
     "sounds": [
@@ -10,17 +34,5 @@
       }
     ],
     "subtitle": "sound.houblonneux.item.beer_drink"
-  },
-  "item.beer_drink_burp": {
-    "replace": true,
-    "sounds": [
-      {
-        "attenuation_distance": 8,
-        "name": "houblonneux:beer_drink_burp",
-        "pitch": 1.2,
-        "volume": 0.8
-      }
-    ],
-    "subtitle": "sound.houblonneux.item.beer_drink_burp"
   }
 }

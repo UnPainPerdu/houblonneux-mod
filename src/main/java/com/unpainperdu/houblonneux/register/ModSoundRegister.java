@@ -15,7 +15,10 @@ public class ModSoundRegister
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, Houblonneux.MOD_ID);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> BEER_DRINK = register("item.beer_drink");
-    public static final DeferredHolder<SoundEvent, SoundEvent> BEER_DRINK_BURP = register("item.beer_drink_burp");
+    public static final String BEER_DRINK_SUBTITLE = "sound.houblonneux.item.beer_drink";
+    public static final DeferredHolder<SoundEvent, SoundEvent> BURP = register("burp");
+    public static final String BURP_SUBTITLE = "sound.houblonneux.burp";
+
 
     private static DeferredHolder<SoundEvent, SoundEvent> register(String name)
     {

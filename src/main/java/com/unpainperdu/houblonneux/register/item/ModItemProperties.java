@@ -25,7 +25,7 @@ public class ModItemProperties
             .consumeSeconds(2.0F)
             .animation(ModItemUseAnimation.BEER_DRINK.get())
             .sound(ModSoundRegister.BEER_DRINK)
-            .soundAfterConsume(ModSoundRegister.BEER_DRINK_BURP)
+            .soundAfterConsume(ModSoundRegister.BURP)
             .hasConsumeParticles(false)
             .onConsume(consumeEffect)
             .build();
