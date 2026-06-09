@@ -17,5 +17,6 @@ public class RegisterHandler
         ModGLMCodecRegister.register(event);
         ModFeatureRegister.register(event);
         ModConsumeEffectRegister.register(event);
+        ModSoundRegister.register(event);
     }
 }

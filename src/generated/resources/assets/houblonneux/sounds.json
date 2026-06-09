@@ -1,0 +1,26 @@
+{
+  "item.beer_drink": {
+    "replace": true,
+    "sounds": [
+      {
+        "attenuation_distance": 8,
+        "name": "houblonneux:beer_drink",
+        "pitch": 1.2,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "sound.houblonneux.item.beer_drink"
+  },
+  "item.beer_drink_burp": {
+    "replace": true,
+    "sounds": [
+      {
+        "attenuation_distance": 8,
+        "name": "houblonneux:beer_drink_burp",
+        "pitch": 1.2,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "sound.houblonneux.item.beer_drink_burp"
+  }
+}
