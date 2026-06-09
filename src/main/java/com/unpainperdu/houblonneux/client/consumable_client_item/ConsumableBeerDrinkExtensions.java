@@ -49,7 +49,6 @@ public class ConsumableBeerDrinkExtensions implements IClientItemExtensions
 
             //magic I add at the end that enhance everything
             float eatJiggle = 1.0F - (float) Math.pow(scaledUsageTime, 27.0);
-            System.out.println(eatJiggle);
             int invert = arm == HumanoidArm.RIGHT ? 1 : -1;
             poseStack.mulPose(Axis.YP.rotationDegrees(invert * eatJiggle * 90.0F));
             poseStack.mulPose(Axis.XP.rotationDegrees(eatJiggle * 10.0F));
