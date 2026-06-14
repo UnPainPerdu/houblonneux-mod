@@ -1,6 +1,8 @@
 package com.unpainperdu.houblonneux.datagen.asset.language;
 
 import com.unpainperdu.houblonneux.Houblonneux;
+import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.BeerType;
+import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
 import com.unpainperdu.houblonneux.register.ModCreativeTabRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import net.minecraft.data.PackOutput;
@@ -16,6 +18,8 @@ public class EnglishLanguageProvider extends LanguageProvider
     @Override
     protected void addTranslations()
     {
+        CommonLanguageHelper clp = new CommonLanguageHelper(this);
+
         //creative tabs
         this.add(ModCreativeTabRegister.MAIN_TAB_TRANSLATION_KEY, "Houblonneux");
         //items
@@ -30,5 +34,9 @@ public class EnglishLanguageProvider extends LanguageProvider
         this.add(ModItemRegister.EMERALD_CALL_BOTTLE.get(), "Emerald Call Bottle");
         this.add(ModItemRegister.EMERALD_CALL_GLASS.get(), "Emerald Call Glass");
         this.add(ModItemRegister.EMERALD_CALL_MUG.get(), "Emerald Call Mug");
+        //      tool_tip
+        clp.beerToolTipTranslation(new EmeraldCallBeerConsumeEffect(BeerType.BOTTLE), "Green Bottle and Green Beer!");
+        clp.beerToolTipTranslation(new EmeraldCallBeerConsumeEffect(BeerType.GLASS), "I smell... Money");
+        clp.beerToolTipTranslation(new EmeraldCallBeerConsumeEffect(BeerType.MUG), "Good Deals in sight");
     }
 }

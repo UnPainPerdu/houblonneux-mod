@@ -1,13 +1,16 @@
 package com.unpainperdu.houblonneux.datagen.data.recipe;
 
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
+import com.unpainperdu.houblonneux.util.StringHelper;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 
 import java.util.concurrent.CompletableFuture;
@@ -63,6 +66,26 @@ public class RecipeProviderDispatcher extends RecipeProvider
                 .pattern("xxx")
                 .unlockedBy("has_iron", this.has(Items.IRON_INGOT))
                 .save(this.output);
+        //  beer glass
+        shapelessRecipe(ModItemRegister.EMERALD_CALL_GLASS, ModItemRegister.EMERALD_CALL_BOTTLE, ModItemRegister.EMPTY_POLYMORPHIC_GLASS);
+    }
+
+    /**
+     *
+      * @param ingredient first one used as unlock condition
+     */
+    private void shapelessRecipe(ItemLike result, ItemLike... ingredient)
+    {
+        ShapelessRecipeBuilder recipeBuilder = this.shapeless(RecipeCategory.MISC, result);
+        for (ItemLike item : ingredient)
+        {
+            recipeBuilder.requires(item);
+        }
+        ItemLike firstIngredient =  ingredient[0];
+        System.out.println("getDescriptionId : " + firstIngredient.asItem().getDescriptionId());
+        System.out.println("toString : " + firstIngredient.asItem());
+        recipeBuilder.unlockedBy("has_" + StringHelper.getSimpleName(firstIngredient.asItem()), this.has(firstIngredient))
+            .save(this.output);
     }
 
     public static class Runner extends RecipeProvider.Runner

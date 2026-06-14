@@ -1,6 +1,8 @@
 package com.unpainperdu.houblonneux.datagen.asset.language;
 
 import com.unpainperdu.houblonneux.Houblonneux;
+import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.BeerType;
+import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
 import com.unpainperdu.houblonneux.register.ModCreativeTabRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import net.minecraft.data.PackOutput;
@@ -16,6 +18,8 @@ public class FrenchLanguageProvider extends LanguageProvider
     @Override
     protected void addTranslations()
     {
+        CommonLanguageHelper clp = new CommonLanguageHelper(this);
+
         //creative tabs
         this.add(ModCreativeTabRegister.MAIN_TAB_TRANSLATION_KEY, "Houblonneux");
         //items
@@ -30,5 +34,9 @@ public class FrenchLanguageProvider extends LanguageProvider
         this.add(ModItemRegister.EMERALD_CALL_BOTTLE.get(), "Bouteille d'Emerald Call");
         this.add(ModItemRegister.EMERALD_CALL_GLASS.get(), "Verre d'Emerald Call");
         this.add(ModItemRegister.EMERALD_CALL_MUG.get(), "Chope d'Emerald Call");
+        //      tool_tip
+        clp.beerToolTipTranslation(new EmeraldCallBeerConsumeEffect(BeerType.BOTTLE), "Bouteille et bière verte!");
+        clp.beerToolTipTranslation(new EmeraldCallBeerConsumeEffect(BeerType.GLASS), "Ca sent... le commerce.");
+        clp.beerToolTipTranslation(new EmeraldCallBeerConsumeEffect(BeerType.MUG), "De bonnes affaires en perspectives.");
     }
 }

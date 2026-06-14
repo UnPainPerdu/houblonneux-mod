@@ -2,7 +2,7 @@ package com.unpainperdu.houblonneux.level.world.item.consume_effect.beer;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.unpainperdu.houblonneux.register.item.ModConsumeEffectRegister;
+import com.unpainperdu.houblonneux.register.item.ModConsumeEffectTypeRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -48,6 +48,12 @@ public class EmeraldCallBeerConsumeEffect extends AbstractBeerConsumeEffect
     }
 
     @Override
+    public String getName()
+    {
+        return "emerald_call";
+    }
+
+    @Override
     public boolean apply(Level level, ItemStack stack, LivingEntity user, BeerType beerType)
     {
         BlockPos spawnPos = user.blockPosition().above(1);
@@ -69,6 +75,6 @@ public class EmeraldCallBeerConsumeEffect extends AbstractBeerConsumeEffect
     @Override
     public Type<? extends ConsumeEffect> getType()
     {
-        return ModConsumeEffectRegister.EMERALD_CALL_BEER.get();
+        return ModConsumeEffectTypeRegister.EMERALD_CALL_BEER.get();
     }
 }

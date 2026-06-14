@@ -22,17 +22,5 @@
       }
     ],
     "subtitle": "sound.houblonneux.burp"
-  },
-  "item.beer_drink": {
-    "replace": true,
-    "sounds": [
-      {
-        "attenuation_distance": 8,
-        "name": "houblonneux:beer_drink",
-        "pitch": 1.2,
-        "volume": 0.8
-      }
-    ],
-    "subtitle": "sound.houblonneux.item.beer_drink"
   }
 }

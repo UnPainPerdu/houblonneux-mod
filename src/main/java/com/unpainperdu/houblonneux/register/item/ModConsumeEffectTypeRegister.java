@@ -8,7 +8,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class ModConsumeEffectRegister
+public class ModConsumeEffectTypeRegister
 {
     public static final DeferredRegister<ConsumeEffect.Type<?>> CONSUME_EFFECT = DeferredRegister.create(Registries.CONSUME_EFFECT_TYPE, Houblonneux.MOD_ID);
 

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "houblonneux:emerald_call_bottle",
+    "houblonneux:empty_polymorphic_glass"
+  ],
+  "result": {
+    "id": "houblonneux:emerald_call_glass"
+  }
+}
