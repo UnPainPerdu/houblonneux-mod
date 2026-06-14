@@ -173,26 +173,25 @@ public class PosHelper
      */
     public static ArrayList<BlockPos> getRandomPosWithSameY(BlockPos pos, int minNumberOfPos, int maxNumberOfPos, int spread, RandomSource rand)
     {
-        int random = rand.nextInt(minNumberOfPos , maxNumberOfPos);
+        int random = rand.nextInt(minNumberOfPos, maxNumberOfPos);
+        return getRandomPosWithSameY(pos, random, spread, rand);
+    }
+
+    public static ArrayList<BlockPos> getRandomPosWithSameY(BlockPos basePos, int numberOfPos, int spread, RandomSource rand)
+    {
         ArrayList<BlockPos> list = new ArrayList<>();
-        list.add(pos);
+        list.add(basePos);
 
-        for (int i = 0; i < random; i++)
+        for (int i = 0; i < numberOfPos; i++)
         {
-            int previousPosX = pos.getX();
-            int previousPosY = pos.getY();
-            int previousPosZ = pos.getZ();
+            int newPosX = basePos.getX() + (rand.nextInt(spread) * (rand.nextBoolean() ? 1 : -1));
+            int newPosZ = basePos.getZ() + (rand.nextInt(spread) * (rand.nextBoolean() ? 1 : -1));
 
-            int newPosX = previousPosX + rand.nextInt(spread);
-            int newPosZ = previousPosZ + rand.nextInt(spread);
-
-            BlockPos tempPos = new BlockPos(newPosX, previousPosY, newPosZ);
+            BlockPos tempPos = new BlockPos(newPosX, basePos.getY(), newPosZ);
 
             if (!(isPosInList(tempPos, list)))
             {
                 list.add(tempPos);
-
-                pos = tempPos;
             }
         }
         return list;

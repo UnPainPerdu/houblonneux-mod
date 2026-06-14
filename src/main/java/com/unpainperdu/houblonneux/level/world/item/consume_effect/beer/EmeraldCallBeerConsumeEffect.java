@@ -3,6 +3,7 @@ package com.unpainperdu.houblonneux.level.world.item.consume_effect.beer;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.unpainperdu.houblonneux.register.item.ModConsumeEffectTypeRegister;
+import com.unpainperdu.houblonneux.util.PosHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -15,7 +16,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.wanderingtrader.WanderingTrader;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.consume_effects.ConsumeEffect;
-import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.codec.NeoForgeStreamCodecs;
 
 import java.util.ArrayList;
@@ -54,13 +54,16 @@ public class EmeraldCallBeerConsumeEffect extends AbstractBeerConsumeEffect
     }
 
     @Override
-    public boolean apply(Level level, ItemStack stack, LivingEntity user, BeerType beerType)
+    public boolean apply(ServerLevel level, ItemStack stack, LivingEntity user, BeerType beerType)
     {
-        BlockPos spawnPos = user.blockPosition().above(1);
+        BlockPos spawnPos = user.blockPosition().above(3);
+        int wanderingNumber = beerType.getPowerLevel();
         List<WanderingTrader> wanderingTraders = new ArrayList<>();
-        for (int i = 0; i < beerType.getPowerLevel(); i++)
+        List<BlockPos> poss = PosHelper.getRandomPosWithSameY(spawnPos, wanderingNumber + 1, 3, level.getRandom());
+        poss = PosHelper.setAllPosToTheGround(poss, level);
+        for (int i = 0; i < wanderingNumber; i++)
         {
-            WanderingTrader trader = EntityType.WANDERING_TRADER.spawn((ServerLevel) level, spawnPos, EntitySpawnReason.EVENT);
+            WanderingTrader trader = EntityType.WANDERING_TRADER.spawn(level, poss.get(i + 1), EntitySpawnReason.EVENT);
             if (trader != null)
             {
                 trader.setDespawnDelay((level.getRandom().nextInt(10, 21)) * 20);
