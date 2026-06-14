@@ -16,17 +16,6 @@ public class ModSoundDefinitionsProvider extends SoundDefinitionsProvider
     @Override
     public void registerSounds()
     {
-        add(ModSoundRegister.BEER_DRINK, SoundDefinition.definition()
-                .with(
-                        sound("houblonneux:beer_drink", SoundDefinition.SoundType.SOUND)
-                                .volume(0.8f)
-                                .pitch(1.2f)
-                                .attenuationDistance(8)
-                )
-                .subtitle(ModSoundRegister.BEER_DRINK_SUBTITLE)
-                .replace(true)
-        );
-
         add(ModSoundRegister.BURP, SoundDefinition.definition()
                 .with(
                         sound("houblonneux:burp_01", SoundDefinition.SoundType.SOUND)

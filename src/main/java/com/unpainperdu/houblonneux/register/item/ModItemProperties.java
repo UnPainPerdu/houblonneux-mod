@@ -4,6 +4,7 @@ import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.BeerType
 import com.unpainperdu.houblonneux.register.ModSoundRegister;
 import com.unpainperdu.houblonneux.register.extensible_enum.ModItemUseAnimation;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
@@ -24,7 +25,7 @@ public class ModItemProperties
     private static final Function<ConsumeEffect, Consumable> BEER_CONSUMABLE = consumeEffect -> Consumable.builder()
             .consumeSeconds(2.0F)
             .animation(ModItemUseAnimation.BEER_DRINK.get())
-            .sound(ModSoundRegister.BEER_DRINK)
+            .sound(SoundEvents.HONEY_DRINK)
             .soundAfterConsume(ModSoundRegister.BURP)
             .hasConsumeParticles(false)
             .onConsume(consumeEffect)
