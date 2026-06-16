@@ -59,7 +59,7 @@ public class EmeraldCallBeerConsumeEffect extends AbstractBeerConsumeEffect
         BlockPos spawnPos = user.blockPosition().above(3);
         int wanderingNumber = beerType.getPowerLevel();
         List<WanderingTrader> wanderingTraders = new ArrayList<>();
-        List<BlockPos> poss = PosHelper.getRandomPosWithSameY(spawnPos, wanderingNumber + 1, 3, level.getRandom());
+        List<BlockPos> poss = PosHelper.getRandomPosWithSameY(spawnPos, wanderingNumber + 1, 3, level.getRandom(), true);
         poss = PosHelper.setAllPosToTheGround(poss, level);
         for (int i = 0; i < wanderingNumber; i++)
         {

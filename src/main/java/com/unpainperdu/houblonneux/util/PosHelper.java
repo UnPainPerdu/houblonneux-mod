@@ -174,10 +174,13 @@ public class PosHelper
     public static ArrayList<BlockPos> getRandomPosWithSameY(BlockPos pos, int minNumberOfPos, int maxNumberOfPos, int spread, RandomSource rand)
     {
         int random = rand.nextInt(minNumberOfPos, maxNumberOfPos);
-        return getRandomPosWithSameY(pos, random, spread, rand);
+        return getRandomPosWithSameY(pos, random, spread, rand, false);
     }
 
-    public static ArrayList<BlockPos> getRandomPosWithSameY(BlockPos basePos, int numberOfPos, int spread, RandomSource rand)
+    /**
+     * @param canHaveSamePos if yes output list length = numberOfPos;
+     */
+    public static ArrayList<BlockPos> getRandomPosWithSameY(BlockPos basePos, int numberOfPos, int spread, RandomSource rand, boolean canHaveSamePos)
     {
         ArrayList<BlockPos> list = new ArrayList<>();
         list.add(basePos);
@@ -189,7 +192,7 @@ public class PosHelper
 
             BlockPos tempPos = new BlockPos(newPosX, basePos.getY(), newPosZ);
 
-            if (!(isPosInList(tempPos, list)))
+            if (!(isPosInList(tempPos, list)) || canHaveSamePos)
             {
                 list.add(tempPos);
             }
