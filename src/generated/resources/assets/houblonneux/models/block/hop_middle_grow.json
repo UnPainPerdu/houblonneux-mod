@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/crop",
+  "parent": "minecraft:block/cross",
   "textures": {
-    "crop": "houblonneux:block/hop_middle_grow"
+    "cross": "houblonneux:block/hop_middle_grow"
   }
 }

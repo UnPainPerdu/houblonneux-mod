@@ -37,10 +37,10 @@ public class BlockModelProvider
     public void createHopBlock()
     {
         Block hopBlock = ModBlockRegister.HOP.get();
-        MultiVariant seed = plainVariant(this.blockModelsGenerator.createSuffixedVariant(hopBlock, "_seed", ModelTemplates.CROP, TextureMapping::crop));
-        MultiVariant top_grow = plainVariant(this.blockModelsGenerator.createSuffixedVariant(hopBlock, "_top_grow", ModelTemplates.CROP, TextureMapping::crop));
-        MultiVariant middle_grow = plainVariant(this.blockModelsGenerator.createSuffixedVariant(hopBlock, "_middle_grow", ModelTemplates.CROP, TextureMapping::crop));
-        MultiVariant middle_flowered = plainVariant(this.blockModelsGenerator.createSuffixedVariant(hopBlock, "_middle_flowered", ModelTemplates.CROP, TextureMapping::crop));
+        MultiVariant seed = plainVariant(this.blockModelsGenerator.createSuffixedVariant(hopBlock, "_seed", ModelTemplates.CROSS, TextureMapping::cross));
+        MultiVariant top_grow = plainVariant(this.blockModelsGenerator.createSuffixedVariant(hopBlock, "_top_grow", ModelTemplates.CROSS, TextureMapping::cross));
+        MultiVariant middle_grow = plainVariant(this.blockModelsGenerator.createSuffixedVariant(hopBlock, "_middle_grow", ModelTemplates.CROSS, TextureMapping::cross));
+        MultiVariant middle_flowered = plainVariant(this.blockModelsGenerator.createSuffixedVariant(hopBlock, "_middle_flowered", ModelTemplates.CROSS, TextureMapping::cross));
 
         this.blockModelsGenerator.blockStateOutput
                 .accept(
