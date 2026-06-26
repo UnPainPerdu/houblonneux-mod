@@ -39,6 +39,7 @@ public class ModBlockLootTableSubProvider extends BlockLootSubProvider
     protected void generate()
     {
         hopDrop();
+        this.add(ModBlockRegister.BEER_DISPENSER.get(), this::createDoorTable);
     }
 
     private void hopDrop()

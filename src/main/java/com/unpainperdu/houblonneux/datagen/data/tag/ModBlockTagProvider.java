@@ -34,6 +34,16 @@ public class ModBlockTagProvider extends BlockTagsProvider
                         ModBlockRegister.HOP
                 )
         );
+
+        this.addToTag(BlockTags.MINEABLE_WITH_PICKAXE,
+                Stream.of(
+                        ModBlockRegister.BEER_DISPENSER
+                ));
+
+        this.addToTag(BlockTags.NEEDS_IRON_TOOL,
+                Stream.of(
+                        ModBlockRegister.BEER_DISPENSER
+                ));
     }
 
     @SafeVarargs

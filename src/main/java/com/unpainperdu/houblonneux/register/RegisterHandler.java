@@ -1,5 +1,6 @@
 package com.unpainperdu.houblonneux.register;
 
+import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.codec.ModGLMCodecRegister;
 import com.unpainperdu.houblonneux.register.item.ModConsumeEffectTypeRegister;
@@ -18,5 +19,7 @@ public class RegisterHandler
         ModFeatureRegister.register(event);
         ModConsumeEffectTypeRegister.register(event);
         ModSoundRegister.register(event);
+        ModBlockEntityRegister.register(event);
+        ModMenuTypeRegister.register(event);
     }
 }

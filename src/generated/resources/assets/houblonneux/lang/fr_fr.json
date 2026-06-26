@@ -1,4 +1,6 @@
 {
+  "block.container.houblonneux.beer_dispenser": "Stockage de disque",
+  "block.houblonneux.beer_dispenser": "Distributeur de bière",
   "block.houblonneux.hop_flower": "Fleur de Houblon",
   "item.emerald_call.bottle.tooltip": "Bouteille et bière verte!",
   "item.emerald_call.glass.tooltip": "Ca sent... le commerce.",

@@ -6,11 +6,13 @@ import net.minecraft.world.level.ItemLike;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
+import static com.unpainperdu.houblonneux.register.block.ModBlockRegister.BEER_DISPENSER;
 import static com.unpainperdu.houblonneux.register.item.ModItemRegister.*;
 
 public class CreativeTabDisplayGenerator
 {
     public static final CreativeModeTab.DisplayItemsGenerator MAIN_TAB = generateBasicGenerator(
+            BEER_DISPENSER,
             //beer
             //  empty
             EMPTY_POLYMORPHIC_BOTTLE,

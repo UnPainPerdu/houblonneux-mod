@@ -1,4 +1,6 @@
 {
+  "block.container.houblonneux.beer_dispenser": "Disk Storage",
+  "block.houblonneux.beer_dispenser": "Beer Dispenser",
   "block.houblonneux.hop_flower": "Hop Flower",
   "item.emerald_call.bottle.tooltip": "Green Bottle and Green Beer!",
   "item.emerald_call.glass.tooltip": "I smell... Money",

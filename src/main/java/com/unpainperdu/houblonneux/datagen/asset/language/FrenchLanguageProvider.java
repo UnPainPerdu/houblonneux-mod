@@ -1,9 +1,11 @@
 package com.unpainperdu.houblonneux.datagen.asset.language;
 
 import com.unpainperdu.houblonneux.Houblonneux;
+import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.BeerType;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
 import com.unpainperdu.houblonneux.register.ModCreativeTabRegister;
+import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -19,9 +21,12 @@ public class FrenchLanguageProvider extends LanguageProvider
     protected void addTranslations()
     {
         CommonLanguageHelper clp = new CommonLanguageHelper(this);
-
+        //menu
+        this.add(BeerDispenserBlockEntity.TITLE_KEY, "Stockage de disque");
         //creative tabs
         this.add(ModCreativeTabRegister.MAIN_TAB_TRANSLATION_KEY, "Houblonneux");
+        // block
+        this.add(ModBlockRegister.BEER_DISPENSER.get(), "Distributeur de bière");
         //items
         this.add(ModItemRegister.HOP_FLOWER.get(), "Fleur de Houblon");
         this.add(ModItemRegister.HOP_LUPULIN.get(), "Lupuline de Houblon");
