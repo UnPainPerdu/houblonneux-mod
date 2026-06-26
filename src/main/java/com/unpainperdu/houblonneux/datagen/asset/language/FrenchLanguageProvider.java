@@ -30,6 +30,7 @@ public class FrenchLanguageProvider extends LanguageProvider
         //items
         this.add(ModItemRegister.HOP_FLOWER.get(), "Fleur de Houblon");
         this.add(ModItemRegister.HOP_LUPULIN.get(), "Lupuline de Houblon");
+        this.add(ModItemRegister.LOCKER.get(), "Verrouilleur");
         //beer
         //  empty
         this.add(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE.get(), "Bouteille polymorphe vide");

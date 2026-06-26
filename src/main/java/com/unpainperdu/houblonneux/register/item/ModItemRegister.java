@@ -1,6 +1,7 @@
 package com.unpainperdu.houblonneux.register.item;
 
 import com.unpainperdu.houblonneux.Houblonneux;
+import com.unpainperdu.houblonneux.level.world.item.LockerItem;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.BeerType;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
@@ -17,6 +18,7 @@ public class ModItemRegister
 
     public static final DeferredItem<BlockItem> HOP_FLOWER = ITEMS.registerSimpleBlockItem("hop_flower", ModBlockRegister.HOP, () -> ModItemProperties.HOP_FLOWER_PROPERTIES);
     public static final DeferredItem<Item> HOP_LUPULIN = ITEMS.registerItem("hop_lupulin", Item::new);
+    public static final DeferredItem<Item> LOCKER = ITEMS.registerItem("locker", LockerItem::new);
     //beer
     //  empty
     public static final DeferredItem<Item> EMPTY_POLYMORPHIC_BOTTLE = ITEMS.registerItem("empty_polymorphic_bottle", Item::new);

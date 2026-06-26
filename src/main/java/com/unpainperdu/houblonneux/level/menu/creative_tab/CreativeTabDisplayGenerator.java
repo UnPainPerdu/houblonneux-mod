@@ -13,6 +13,7 @@ public class CreativeTabDisplayGenerator
 {
     public static final CreativeModeTab.DisplayItemsGenerator MAIN_TAB = generateBasicGenerator(
             BEER_DISPENSER,
+            LOCKER,
             //beer
             //  empty
             EMPTY_POLYMORPHIC_BOTTLE,

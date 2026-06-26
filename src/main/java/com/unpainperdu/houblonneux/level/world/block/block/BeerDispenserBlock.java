@@ -1,14 +1,19 @@
 package com.unpainperdu.houblonneux.level.world.block.block;
 
 import com.mojang.serialization.MapCodec;
+import com.unpainperdu.houblonneux.level.world.block.ModBlockStateProperties;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
+import com.unpainperdu.houblonneux.level.world.item.LockerItem;
+import com.unpainperdu.houblonneux.level.world.item.trading.DispenserTrade;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -38,6 +43,7 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final BooleanProperty LOCKED = ModBlockStateProperties.LOCKED;
 
     private static final VoxelShape SHAPE = Block.box(1F, 0F, 1F, 15F, 16F, 15F);
 
@@ -50,13 +56,14 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
                         .setValue(FACING, Direction.NORTH)
                         .setValue(HALF, DoubleBlockHalf.LOWER)
                         .setValue(WATERLOGGED, false)
+                        .setValue(LOCKED, false)
         );
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        builder.add(HALF, FACING, WATERLOGGED);
+        builder.add(HALF, FACING, WATERLOGGED, LOCKED);
     }
 
     @Nullable
@@ -164,6 +171,53 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
         return InteractionResult.SUCCESS;
     }
 
+    @Override
+    protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult)
+    {
+        if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer)
+        {
+            BlockEntity blockEntity = this.getBlockEntity(level, pos, state);
+            if (blockEntity instanceof BeerDispenserBlockEntity beerDispenserBE)
+            {
+                boolean isLocked = state.getValue(LOCKED);
+                if (itemStack.getItem() instanceof LockerItem)
+                {
+                    lockBLock(state, level, pos, !isLocked);
+                    return InteractionResult.SUCCESS;
+                }
+                else
+                {
+                    if (!isLocked)
+                    {
+                        DispenserTrade dispenserTrade = DispenserTrade.getTradeFromCost(level, itemStack);
+                        if (dispenserTrade != null)
+                        {
+                            beerDispenserBE.setTrade(dispenserTrade);
+                            lockBLock(state, level, pos, true);
+                            return InteractionResult.SUCCESS;
+                        }
+                    }
+                    DispenserTrade dispenserTrade = beerDispenserBE.getTrade();
+                    if (dispenserTrade != null)
+                    {
+                        if (dispenserTrade.buy(itemStack, !player.isCreative()))
+                        {
+                            ItemStack result = dispenserTrade.result().create();
+                            if (!serverPlayer.addItem(result))
+                            {
+                                BlockPos playerPos = player.getOnPos().above();
+                                level.addFreshEntity(new ItemEntity(level, playerPos.getX(), playerPos.getY(), playerPos.getZ(), result));
+                            }
+                            return InteractionResult.SUCCESS;
+                        }
+                    }
+                    return InteractionResult.SUCCESS;
+                }
+            }
+        }
+        return super.useItemOn(itemStack, state, level, pos, player, hand, hitResult);
+    }
+
     private BlockEntity getBlockEntity(Level level, BlockPos pos, BlockState state)
     {
         if (state.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.LOWER)
@@ -196,5 +250,20 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
     protected BlockState rotate(BlockState state, Rotation rot)
     {
         return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+    }
+
+    public void lockBLock(BlockState state, Level level, BlockPos pos, boolean isLocked)
+    {
+        level.setBlockAndUpdate(pos, state.setValue(LOCKED, isLocked));
+        if (state.getValue(HALF) == DoubleBlockHalf.UPPER)
+        {
+            BlockState belowState = level.getBlockState(pos.below());
+            level.setBlockAndUpdate(pos.below(), belowState.setValue(LOCKED, isLocked));
+        }
+        else
+        {
+            BlockState upperState = level.getBlockState(pos.above());
+            level.setBlockAndUpdate(pos.above(), upperState.setValue(LOCKED, isLocked));
+        }
     }
 }

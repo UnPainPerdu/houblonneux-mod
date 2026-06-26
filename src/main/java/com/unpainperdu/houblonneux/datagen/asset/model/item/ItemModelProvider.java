@@ -27,6 +27,7 @@ public class ItemModelProvider
     {
         this.itemModelsGenerator.generateFlatItem(ModItemRegister.HOP_FLOWER.get(), ModelTemplates.FLAT_ITEM);
         this.itemModelsGenerator.generateFlatItem(ModItemRegister.HOP_LUPULIN.get(), ModelTemplates.FLAT_ITEM);
+        this.itemModelsGenerator.generateFlatItem(ModItemRegister.LOCKER.get(), ModelTemplates.FLAT_ITEM);
         //beer
         //  empty
         this.generateItemWithCustomModel(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE.get(), "empty_polymorphic_bottle");

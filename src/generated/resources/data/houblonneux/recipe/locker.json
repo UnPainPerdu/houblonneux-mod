@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "x": "#c:nuggets/gold",
+    "y": "#c:nuggets/iron"
+  },
+  "pattern": [
+    " y ",
+    "xxx",
+    "xxx"
+  ],
+  "result": {
+    "id": "houblonneux:locker"
+  }
+}

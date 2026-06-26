@@ -30,6 +30,7 @@ public class EnglishLanguageProvider extends LanguageProvider
         //items
         this.add(ModItemRegister.HOP_FLOWER.get(), "Hop Flower");
         this.add(ModItemRegister.HOP_LUPULIN.get(), "Hop Lupulin");
+        this.add(ModItemRegister.LOCKER.get(), "Locker");
         //beer
         //  empty
         this.add(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE.get(), "Empty Polymorphic Bottle");

@@ -35,6 +35,14 @@ public class RecipeProviderDispatcher extends RecipeProvider
                 .requires(ModItemRegister.HOP_FLOWER)
                 .unlockedBy("has_houblon_flower", this.has(ModItemRegister.HOP_FLOWER))
                 .save(this.output);
+        this.shaped(RecipeCategory.MISC, ModItemRegister.LOCKER, 1)
+                .define('y', Tags.Items.NUGGETS_IRON)
+                .define('x', Tags.Items.NUGGETS_GOLD)
+                .pattern(" y ")
+                .pattern("xxx")
+                .pattern("xxx")
+                .unlockedBy("has_iron", this.has(Items.IRON_INGOT))
+                .save(this.output);
         //  dye
         this.shapeless(RecipeCategory.MISC, Items.YELLOW_DYE)
                 .requires(ModItemRegister.HOP_LUPULIN)

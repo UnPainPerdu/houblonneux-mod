@@ -1,6 +1,7 @@
 package com.unpainperdu.houblonneux.level.world.block.entity;
 
 import com.unpainperdu.houblonneux.level.menu.block.entity.BeerDispenserMenu;
+import com.unpainperdu.houblonneux.level.world.item.trading.DispenserTrade;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -19,6 +20,7 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
     private NonNullList<ItemStack> items;
     public static final int CONTAINER_SIZE = 10;
     public static final String TITLE_KEY = "block.container.houblonneux.beer_dispenser";
+    private DispenserTrade trade;
 
     public BeerDispenserBlockEntity(BlockPos worldPosition, BlockState blockState)
     {
@@ -43,7 +45,8 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
     {
         super.loadAdditional(input);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        if (!this.tryLoadLootTable(input)) {
+        if (!this.tryLoadLootTable(input))
+        {
             ContainerHelper.loadAllItems(input, this.items);
         }
     }
@@ -52,7 +55,8 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
     protected void saveAdditional(ValueOutput output)
     {
         super.saveAdditional(output);
-        if (!this.trySaveLootTable(output)) {
+        if (!this.trySaveLootTable(output))
+        {
             ContainerHelper.saveAllItems(output, this.items);
         }
     }
@@ -73,5 +77,15 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
     public int getContainerSize()
     {
         return CONTAINER_SIZE;
+    }
+
+    public void setTrade(DispenserTrade trade)
+    {
+        this.trade = trade;
+    }
+
+    public DispenserTrade getTrade()
+    {
+        return this.trade;
     }
 }
