@@ -5,8 +5,10 @@ import com.unpainperdu.houblonneux.level.world.block.ModBlockStateProperties;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
 import com.unpainperdu.houblonneux.level.world.item.LockerItem;
 import com.unpainperdu.houblonneux.level.world.item.trading.DispenserTrade;
+import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -23,6 +25,8 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -208,10 +212,14 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
                                 BlockPos playerPos = player.getOnPos().above();
                                 level.addFreshEntity(new ItemEntity(level, playerPos.getX(), playerPos.getY(), playerPos.getZ(), result));
                             }
+                            if (beerDispenserBE.getMusicCooldown() >= BeerDispenserBlockEntity.BASIC_MAX_CD_ON_TRADE)
+                            {
+                                beerDispenserBE.playDisc();
+                            }
                             return InteractionResult.SUCCESS;
                         }
                     }
-                    return InteractionResult.SUCCESS;
+                    return InteractionResult.TRY_WITH_EMPTY_HAND;
                 }
             }
         }
@@ -265,5 +273,15 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
             BlockState upperState = level.getBlockState(pos.above());
             level.setBlockAndUpdate(pos.above(), upperState.setValue(LOCKED, isLocked));
         }
+    }
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> type)
+    {
+        if (!level.isClientSide())
+        {
+            return createTickerHelper(type, ModBlockEntityRegister.BEER_DISPENSER.get(), (serverLevel, pos, state, blockEntity) -> BeerDispenserBlockEntity.tick((ServerLevel) serverLevel, pos, state, (BeerDispenserBlockEntity) blockEntity));
+        }
+        return super.getTicker(level, blockState, type);
     }
 }

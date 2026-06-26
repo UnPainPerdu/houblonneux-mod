@@ -48,18 +48,21 @@ public class BeerDispenserMenu extends AbstractContainerMenu
         {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
-            if (index < BeerDispenserBlockEntity.CONTAINER_SIZE)
+            if (index < BeerDispenserBlockEntity.CONTAINER_SIZE) // in container
             {
                 if (!this.moveItemStackTo(itemstack1, BeerDispenserBlockEntity.CONTAINER_SIZE, this.slots.size(), true))
                 {
                     return ItemStack.EMPTY;
                 }
             }
-            else if (index < 37) // 37 last inventory slot after it's hotbar
+            else if (index < 37) // 37 = last inventory slot after it's hotbar
             {
-                if (!this.moveItemStackTo(itemstack1, 37, this.slots.size(), false))
+                if (!this.moveItemStackTo(itemstack1, 0, BeerDispenserBlockEntity.CONTAINER_SIZE, false))
                 {
-                    return ItemStack.EMPTY;
+                    if (!this.moveItemStackTo(itemstack1, 37, this.slots.size(), false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
                 }
             }
             else
