@@ -63,7 +63,9 @@ public class EmeraldCallBeerConsumeEffect extends AbstractBeerConsumeEffect
         poss = PosHelper.setAllPosToTheGround(poss, level);
         for (int i = 0; i < wanderingNumber; i++)
         {
-            WanderingTrader trader = EntityType.WANDERING_TRADER.spawn(level, poss.get(i + 1), EntitySpawnReason.EVENT);
+            WanderingTrader trader = new WanderingTrader(EntityType.WANDERING_TRADER, level);
+            BlockPos wantedPos = poss.get(i + 1);
+            trader.setPos(wantedPos.getX(), wantedPos.getY(), wantedPos.getZ());
             if (trader != null)
             {
                 trader.setDespawnDelay((level.getRandom().nextInt(10, 21)) * 20);
