@@ -22,6 +22,7 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
     public static final String TITLE_KEY = "block.container.houblonneux.beer_dispenser";
     private DispenserTrade trade;
 
+
     public BeerDispenserBlockEntity(BlockPos worldPosition, BlockState blockState)
     {
         super(ModBlockEntityRegister.BEER_DISPENSER.get(), worldPosition, blockState);
@@ -49,6 +50,7 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
         {
             ContainerHelper.loadAllItems(input, this.items);
         }
+        input.read("trade", DispenserTrade.CODEC).ifPresent(this::setTrade);
     }
 
     @Override
@@ -59,6 +61,7 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
         {
             ContainerHelper.saveAllItems(output, this.items);
         }
+        output.storeNullable("trade", DispenserTrade.CODEC, this.getTrade());
     }
 
     @Override
