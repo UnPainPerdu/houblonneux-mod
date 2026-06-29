@@ -1,8 +1,6 @@
 package com.unpainperdu.houblonneux.datagen.asset.model;
 
 import com.unpainperdu.houblonneux.Houblonneux;
-import com.unpainperdu.houblonneux.datagen.asset.model.block.BlockModelProvider;
-import com.unpainperdu.houblonneux.datagen.asset.model.item.ItemModelProvider;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
@@ -10,7 +8,6 @@ import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 
 import java.util.stream.Stream;
 
@@ -28,11 +25,13 @@ public class ModelProviderDispatcher extends ModelProvider
         new BlockModelProvider(blockModels, itemModels, this);
     }
 
+    /*
     @Override
     protected Stream<? extends Holder<Block>> getKnownBlocks()
     {
         return super.getKnownBlocks().filter(holder -> !holder.is(ModBlockRegister.BEER_DISPENSER.getId()));
     }
+    */
 
     @Override
     protected Stream<? extends Holder<Item>> getKnownItems()

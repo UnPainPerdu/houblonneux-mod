@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,half=lower": {
+      "model": "houblonneux:block/beer_dispenser_lower",
+      "y": 90
+    },
+    "facing=east,half=upper": {
+      "model": "houblonneux:block/beer_dispenser_upper",
+      "y": 90
+    },
+    "facing=north,half=lower": {
+      "model": "houblonneux:block/beer_dispenser_lower"
+    },
+    "facing=north,half=upper": {
+      "model": "houblonneux:block/beer_dispenser_upper"
+    },
+    "facing=south,half=lower": {
+      "model": "houblonneux:block/beer_dispenser_lower",
+      "y": 180
+    },
+    "facing=south,half=upper": {
+      "model": "houblonneux:block/beer_dispenser_upper",
+      "y": 180
+    },
+    "facing=west,half=lower": {
+      "model": "houblonneux:block/beer_dispenser_lower",
+      "y": 270
+    },
+    "facing=west,half=upper": {
+      "model": "houblonneux:block/beer_dispenser_upper",
+      "y": 270
+    }
+  }
+}

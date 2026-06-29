@@ -1,4 +1,4 @@
-package com.unpainperdu.houblonneux.datagen.asset.model.item;
+package com.unpainperdu.houblonneux.datagen.asset.model;
 
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import net.minecraft.client.data.models.ItemModelGenerators;
