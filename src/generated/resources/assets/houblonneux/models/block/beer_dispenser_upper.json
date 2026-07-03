@@ -1,3 +1,6 @@
 {
-  "parent": "houblonneux:block/beer_dispenser"
+  "parent": "houblonneux:block/empty_with_particle",
+  "textures": {
+    "particle": "minecraft:block/iron_block"
+  }
 }

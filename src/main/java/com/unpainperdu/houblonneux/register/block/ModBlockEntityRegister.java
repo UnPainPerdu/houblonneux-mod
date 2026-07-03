@@ -15,7 +15,7 @@ public class ModBlockEntityRegister
 {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, Houblonneux.MOD_ID);
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> BEER_DISPENSER = BLOCK_ENTITY_TYPES.register(
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BeerDispenserBlockEntity>> BEER_DISPENSER = BLOCK_ENTITY_TYPES.register(
             "beer_dispenser",
             () -> new BlockEntityType<>(
                     BeerDispenserBlockEntity::new,

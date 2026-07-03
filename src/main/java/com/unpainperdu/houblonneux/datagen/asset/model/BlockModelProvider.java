@@ -12,8 +12,11 @@ import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
+import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -38,8 +41,8 @@ public class BlockModelProvider
     {
         createHopBlock();
         Block dispenserBlock = ModBlockRegister.BEER_DISPENSER.get();
-        MultiVariant beerDispenserLower = plainVariant(this.blockModelsGenerator.createSuffixedVariant(dispenserBlock, "_lower", ModModelTemplate.BEER_DISPENSER_LOWER, _ -> new TextureMapping()));
-        MultiVariant beerDispenserUpper = plainVariant(this.blockModelsGenerator.createSuffixedVariant(dispenserBlock, "_upper", ModModelTemplate.BEER_DISPENSER_UPPER, _ -> new TextureMapping()));
+        MultiVariant beerDispenserLower = plainVariant(this.blockModelsGenerator.createSuffixedVariant(dispenserBlock, "_lower", ModModelTemplate.EMPTY_WITH_PARTICLE, _ -> new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.IRON_BLOCK))));
+        MultiVariant beerDispenserUpper = plainVariant(this.blockModelsGenerator.createSuffixedVariant(dispenserBlock, "_upper", ModModelTemplate.EMPTY_WITH_PARTICLE, _ -> new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.IRON_BLOCK))));
         createDoubleHeightBlockWithFacing(dispenserBlock, beerDispenserLower, beerDispenserUpper);
     }
 

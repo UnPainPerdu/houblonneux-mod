@@ -10,8 +10,8 @@ import java.util.Optional;
 public class ModModelTemplate
 {
     // id = json model name
-    public static final ModelTemplate BEER_DISPENSER_LOWER = create("beer_dispenser");
-    public static final ModelTemplate BEER_DISPENSER_UPPER = create("beer_dispenser");
+    public static final ModelTemplate EMPTY = create("empty");
+    public static final ModelTemplate EMPTY_WITH_PARTICLE = create("empty_with_particle", TextureSlot.PARTICLE);
 
     public static ModelTemplate create(TextureSlot... slots)
     {

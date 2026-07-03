@@ -149,7 +149,11 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState)
     {
-        return new BeerDispenserBlockEntity(blockPos, blockState);
+        if (blockState.getValue(HALF) == DoubleBlockHalf.LOWER)
+        {
+            return new BeerDispenserBlockEntity(blockPos, blockState);
+        }
+        return null;
     }
 
     @Override
@@ -175,6 +179,7 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
         return InteractionResult.SUCCESS;
     }
 
+    //TODO move BE logic to BE
     @Override
     protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult)
     {
@@ -198,6 +203,7 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
                         {
                             beerDispenserBE.setTrade(dispenserTrade);
                             lockBLock(state, level, pos, true);
+                            level.sendBlockUpdated(pos, state, state, 3);
                             return InteractionResult.SUCCESS;
                         }
                     }

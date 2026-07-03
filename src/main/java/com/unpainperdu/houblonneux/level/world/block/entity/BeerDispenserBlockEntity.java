@@ -4,9 +4,14 @@ import com.unpainperdu.houblonneux.level.menu.block.entity.BeerDispenserMenu;
 import com.unpainperdu.houblonneux.level.world.item.trading.DispenserTrade;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
@@ -73,6 +78,18 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
         }
         output.storeNullable("trade", DispenserTrade.CODEC, this.getTrade());
         output.putInt("music_cooldown", this.musicCooldown);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries)
+    {
+        return this.saveWithoutMetadata(registries);
+    }
+
+    @Override
+    public Packet<ClientGamePacketListener> getUpdatePacket()
+    {
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
