@@ -179,7 +179,6 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
         return InteractionResult.SUCCESS;
     }
 
-    //TODO move BE logic to BE
     @Override
     protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult)
     {
@@ -212,16 +211,7 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
                     {
                         if (dispenserTrade.buy(itemStack, !player.isCreative()))
                         {
-                            ItemStack result = dispenserTrade.result().create();
-                            if (!serverPlayer.addItem(result))
-                            {
-                                BlockPos playerPos = player.getOnPos().above();
-                                level.addFreshEntity(new ItemEntity(level, playerPos.getX(), playerPos.getY(), playerPos.getZ(), result));
-                            }
-                            if (beerDispenserBE.getMusicCooldown() >= BeerDispenserBlockEntity.BASIC_MAX_CD_ON_TRADE)
-                            {
-                                beerDispenserBE.playDisc();
-                            }
+                            beerDispenserBE.trade(serverPlayer, level);
                             return InteractionResult.SUCCESS;
                         }
                     }
@@ -286,7 +276,7 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
     {
         if (!level.isClientSide())
         {
-            return createTickerHelper(type, ModBlockEntityRegister.BEER_DISPENSER.get(), (serverLevel, pos, state, blockEntity) -> BeerDispenserBlockEntity.tick((ServerLevel) serverLevel, pos, state, (BeerDispenserBlockEntity) blockEntity));
+            return createTickerHelper(type, ModBlockEntityRegister.BEER_DISPENSER.get(), (serverLevel, pos, state, blockEntity) -> BeerDispenserBlockEntity.tick((ServerLevel) serverLevel, pos, state, blockEntity));
         }
         return super.getTicker(level, blockState, type);
     }

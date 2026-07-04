@@ -13,12 +13,15 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.JukeboxSong;
 import net.minecraft.world.item.JukeboxSongPlayer;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
@@ -169,6 +172,20 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
                     this.musicCooldown = 0;
                 });
             }
+        }
+    }
+
+    public void trade(ServerPlayer serverPlayer, Level level)
+    {
+        ItemStack result = this.trade.result().create();
+        if (!serverPlayer.addItem(result))
+        {
+            BlockPos playerPos = serverPlayer.getOnPos().above();
+            level.addFreshEntity(new ItemEntity(level, playerPos.getX(), playerPos.getY(), playerPos.getZ(), result));
+        }
+        if (this.getMusicCooldown() >= BASIC_MAX_CD_ON_TRADE)
+        {
+            this.playDisc();
         }
     }
 
