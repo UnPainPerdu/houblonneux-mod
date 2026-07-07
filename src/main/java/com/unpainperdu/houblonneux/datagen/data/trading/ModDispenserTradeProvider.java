@@ -9,11 +9,11 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.trading.TradeCost;
 import net.minecraft.world.level.ItemLike;
 
 public class ModDispenserTradeProvider
 {
+    //for custom dispenser model, must be register in ModStandaloneModelRegister and mapped in BeerDispenserBlockEntityRenderer
     public static final ResourceKey<DispenserTrade> EMERALD_CALL = createKey("emerald_call");
 
     public static void bootstrap(BootstrapContext<DispenserTrade> context)
