@@ -7,19 +7,23 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.MultiVariant;
-import net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
-import net.minecraft.client.resources.model.sprite.Material;
+import net.minecraft.client.renderer.item.CuboidItemModelWrapper;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+
+import java.util.Collections;
+import java.util.Optional;
 
 import static net.minecraft.client.data.models.BlockModelGenerators.*;
 
@@ -40,10 +44,19 @@ public class BlockModelProvider
     public void generateModel()
     {
         createHopBlock();
+        //beer dispenser
         Block dispenserBlock = ModBlockRegister.BEER_DISPENSER.get();
         MultiVariant beerDispenserLower = plainVariant(this.blockModelsGenerator.createSuffixedVariant(dispenserBlock, "_lower", ModModelTemplate.EMPTY_WITH_PARTICLE, _ -> new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.IRON_BLOCK))));
         MultiVariant beerDispenserUpper = plainVariant(this.blockModelsGenerator.createSuffixedVariant(dispenserBlock, "_upper", ModModelTemplate.EMPTY_WITH_PARTICLE, _ -> new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.IRON_BLOCK))));
         createDoubleHeightBlockWithFacing(dispenserBlock, beerDispenserLower, beerDispenserUpper);
+        itemModelsGenerator.itemModelOutput.accept(
+                dispenserBlock.asItem(),
+                new CuboidItemModelWrapper.Unbaked(
+                        getModelLocationWithCustomPrefix(dispenserBlock, "block_entity/default_"),
+                        Optional.empty(),
+                        Collections.emptyList()
+                )
+        );
     }
 
     public void createHopBlock()
@@ -83,5 +96,11 @@ public class BlockModelProvider
                                         .select(Direction.SOUTH, DoubleBlockHalf.UPPER, upper.with(Y_ROT_180))
                                         .select(Direction.WEST, DoubleBlockHalf.UPPER, upper.with(Y_ROT_270))
                         ));
+    }
+
+    public static Identifier getModelLocationWithCustomPrefix(Block block, String prefix)
+    {
+        Identifier key = BuiltInRegistries.BLOCK.getKey(block);
+        return key.withPrefix(prefix);
     }
 }

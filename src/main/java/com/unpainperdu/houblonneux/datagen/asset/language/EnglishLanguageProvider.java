@@ -26,7 +26,7 @@ public class EnglishLanguageProvider extends LanguageProvider
         //creative tabs
         this.add(ModCreativeTabRegister.MAIN_TAB_TRANSLATION_KEY, "Houblonneux");
         // block
-        this.add(ModBlockRegister.BEER_DISPENSER.get(), "Beer Dispenser");
+        this.add(ModBlockRegister.BEER_DISPENSER.get().asItem(), "Beer Dispenser");
         //items
         this.add(ModItemRegister.HOP_FLOWER.get(), "Hop Flower");
         this.add(ModItemRegister.HOP_LUPULIN.get(), "Hop Lupulin");

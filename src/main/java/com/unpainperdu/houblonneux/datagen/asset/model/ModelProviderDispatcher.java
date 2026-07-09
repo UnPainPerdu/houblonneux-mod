@@ -24,18 +24,4 @@ public class ModelProviderDispatcher extends ModelProvider
         new ItemModelProvider(itemModels, this);
         new BlockModelProvider(blockModels, itemModels, this);
     }
-
-    /*
-    @Override
-    protected Stream<? extends Holder<Block>> getKnownBlocks()
-    {
-        return super.getKnownBlocks().filter(holder -> !holder.is(ModBlockRegister.BEER_DISPENSER.getId()));
-    }
-    */
-
-    @Override
-    protected Stream<? extends Holder<Item>> getKnownItems()
-    {
-        return super.getKnownItems().filter(holder -> !holder.is(ModBlockRegister.BEER_DISPENSER.getId()));
-    }
 }

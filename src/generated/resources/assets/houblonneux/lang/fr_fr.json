@@ -1,10 +1,10 @@
 {
   "block.container.houblonneux.beer_dispenser": "Stockage de disque",
-  "block.houblonneux.beer_dispenser": "Distributeur de bière",
   "block.houblonneux.hop_flower": "Fleur de Houblon",
   "item.emerald_call.bottle.tooltip": "Bouteille et bière verte!",
   "item.emerald_call.glass.tooltip": "Ca sent... le commerce.",
   "item.emerald_call.mug.tooltip": "De bonnes affaires en perspectives.",
+  "item.houblonneux.beer_dispenser": "Distributeur de bière",
   "item.houblonneux.emerald_call_bottle": "Bouteille d'Emerald Call",
   "item.houblonneux.emerald_call_glass": "Verre d'Emerald Call",
   "item.houblonneux.emerald_call_mug": "Chope d'Emerald Call",
