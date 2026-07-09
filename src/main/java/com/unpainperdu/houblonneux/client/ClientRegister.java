@@ -15,7 +15,7 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 public class ClientRegister
 {
     @SubscribeEvent
-    private static void registerScreens(RegisterMenuScreensEvent event)
+    private static void registerMenuScreens(RegisterMenuScreensEvent event)
     {
         event.register(ModMenuTypeRegister.BEER_DISPENSER.get(), BeerDispenserScreen::new);
     }

@@ -42,6 +42,12 @@ import org.jspecify.annotations.Nullable;
 
 public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 {
+    @Override
+    protected RenderShape getRenderShape(BlockState state)
+    {
+        return RenderShape.INVISIBLE;
+    }
+
     public static final MapCodec<BeerDispenserBlock> CODEC = simpleCodec(BeerDispenserBlock::new);
 
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
@@ -222,7 +228,7 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
         return super.useItemOn(itemStack, state, level, pos, player, hand, hitResult);
     }
 
-    private BlockEntity getBlockEntity(Level level, BlockPos pos, BlockState state)
+    public BlockEntity getBlockEntity(Level level, BlockPos pos, BlockState state)
     {
         if (state.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.LOWER)
         {
@@ -280,4 +286,6 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
         }
         return super.getTicker(level, blockState, type);
     }
+
+
 }
