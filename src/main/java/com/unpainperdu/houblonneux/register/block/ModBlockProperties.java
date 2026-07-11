@@ -20,5 +20,13 @@ public class ModBlockProperties
             .sound(SoundType.METAL)
             .mapColor(MapColor.METAL)
             .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
-            .requiresCorrectToolForDrops().strength(5.0F, 6.0F);
+            .requiresCorrectToolForDrops()
+            .strength(5.0F, 6.0F);
+
+    public static final BlockBehaviour.Properties COASTER_PROPERTIES = BlockBehaviour.Properties.of()
+            .sound(SoundType.WOOD)
+            .mapColor(MapColor.COLOR_BROWN)
+            .instabreak()
+            .noOcclusion()
+            .pushReaction(PushReaction.DESTROY);
 }

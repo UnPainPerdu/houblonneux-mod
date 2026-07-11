@@ -1,5 +1,6 @@
 package com.unpainperdu.houblonneux.datagen.data.recipe;
 
+import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import com.unpainperdu.houblonneux.util.StringHelper;
 import net.minecraft.core.HolderLookup;
@@ -30,6 +31,11 @@ public class RecipeProviderDispatcher extends RecipeProvider
 
     public void craftingTableRecipes()
     {
+        //block
+        this.shapeless(RecipeCategory.MISC, ModBlockRegister.COASTER)
+                .requires(ItemTags.WOODEN_BUTTONS)
+                .unlockedBy("has_button", this.has(ItemTags.WOODEN_BUTTONS))
+                .save(this.output);
         //item
         this.shapeless(RecipeCategory.MISC, ModItemRegister.HOP_LUPULIN)
                 .requires(ModItemRegister.HOP_FLOWER)

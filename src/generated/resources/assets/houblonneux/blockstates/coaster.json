@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "coaster_number=1,facing=east": {
+      "model": "houblonneux:block/coaster_01",
+      "y": 90
+    },
+    "coaster_number=1,facing=north": {
+      "model": "houblonneux:block/coaster_01"
+    },
+    "coaster_number=1,facing=south": {
+      "model": "houblonneux:block/coaster_01",
+      "y": 180
+    },
+    "coaster_number=1,facing=west": {
+      "model": "houblonneux:block/coaster_01",
+      "y": 270
+    },
+    "coaster_number=2,facing=east": {
+      "model": "houblonneux:block/coaster_02",
+      "y": 90
+    },
+    "coaster_number=2,facing=north": {
+      "model": "houblonneux:block/coaster_02"
+    },
+    "coaster_number=2,facing=south": {
+      "model": "houblonneux:block/coaster_02",
+      "y": 180
+    },
+    "coaster_number=2,facing=west": {
+      "model": "houblonneux:block/coaster_02",
+      "y": 270
+    },
+    "coaster_number=3,facing=east": {
+      "model": "houblonneux:block/coaster_03",
+      "y": 90
+    },
+    "coaster_number=3,facing=north": {
+      "model": "houblonneux:block/coaster_03"
+    },
+    "coaster_number=3,facing=south": {
+      "model": "houblonneux:block/coaster_03",
+      "y": 180
+    },
+    "coaster_number=3,facing=west": {
+      "model": "houblonneux:block/coaster_03",
+      "y": 270
+    },
+    "coaster_number=4,facing=east": {
+      "model": "houblonneux:block/coaster_04",
+      "y": 90
+    },
+    "coaster_number=4,facing=north": {
+      "model": "houblonneux:block/coaster_04"
+    },
+    "coaster_number=4,facing=south": {
+      "model": "houblonneux:block/coaster_04",
+      "y": 180
+    },
+    "coaster_number=4,facing=west": {
+      "model": "houblonneux:block/coaster_04",
+      "y": 270
+    }
+  }
+}

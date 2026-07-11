@@ -7,13 +7,19 @@ import java.util.Arrays;
 import java.util.function.Supplier;
 
 import static com.unpainperdu.houblonneux.register.block.ModBlockRegister.BEER_DISPENSER;
+import static com.unpainperdu.houblonneux.register.block.ModBlockRegister.COASTER;
 import static com.unpainperdu.houblonneux.register.item.ModItemRegister.*;
 
 public class CreativeTabDisplayGenerator
 {
-    public static final CreativeModeTab.DisplayItemsGenerator MAIN_TAB = generateBasicGenerator(
+    public static final CreativeModeTab.DisplayItemsGenerator MAIN_TAB= generateBasicGenerator(
+            //hop basis
+            HOP_FLOWER,
+            HOP_LUPULIN,
+            //utility
             BEER_DISPENSER,
             LOCKER,
+            COASTER,
             //beer
             //  empty
             EMPTY_POLYMORPHIC_BOTTLE,
@@ -22,10 +28,8 @@ public class CreativeTabDisplayGenerator
             //  emerald_call
             EMERALD_CALL_BOTTLE,
             EMERALD_CALL_GLASS,
-            EMERALD_CALL_MUG,
+            EMERALD_CALL_MUG
             //other
-            HOP_FLOWER,
-            HOP_LUPULIN
     );
 
     @SafeVarargs
