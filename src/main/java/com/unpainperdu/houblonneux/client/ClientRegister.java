@@ -2,6 +2,7 @@ package com.unpainperdu.houblonneux.client;
 
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.client.render.BeerDispenserBlockEntityRenderer;
+import com.unpainperdu.houblonneux.client.render.CoasterBlockEntityRenderer;
 import com.unpainperdu.houblonneux.client.screen.BeerDispenserScreen;
 import com.unpainperdu.houblonneux.register.ModMenuTypeRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
@@ -26,6 +27,10 @@ public class ClientRegister
         event.registerBlockEntityRenderer(
                 ModBlockEntityRegister.BEER_DISPENSER.get(),
                 BeerDispenserBlockEntityRenderer::new
+        );
+        event.registerBlockEntityRenderer(
+                ModBlockEntityRegister.COASTER.get(),
+                CoasterBlockEntityRenderer::new
         );
     }
 }

@@ -3,6 +3,7 @@ package com.unpainperdu.houblonneux.register.block;
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.world.block.block.BeerDispenserBlock;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
+import com.unpainperdu.houblonneux.level.world.block.entity.CoasterBlockEntity;
 import com.unpainperdu.houblonneux.register.block.list.BlockList;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
@@ -20,6 +21,14 @@ public class ModBlockEntityRegister
             () -> new BlockEntityType<>(
                     BeerDispenserBlockEntity::new,
                     BlockList.getAllBlocksFromClass(true, BeerDispenserBlock.class).toArray(new Block[0])
+            )
+    );
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CoasterBlockEntity>> COASTER = BLOCK_ENTITY_TYPES.register(
+            "coaster",
+            () -> new BlockEntityType<>(
+                    CoasterBlockEntity::new,
+                    ModBlockRegister.COASTER.get()
             )
     );
 

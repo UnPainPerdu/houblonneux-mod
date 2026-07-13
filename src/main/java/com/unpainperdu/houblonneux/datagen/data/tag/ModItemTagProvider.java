@@ -34,6 +34,18 @@ public class ModItemTagProvider extends BlockTagCopyingItemTagProvider
                         ModItemRegister.HOP_FLOWER
                 )
         );
+
+        this.addToTag(ModItemTags.COASTER_POSABLE,
+                Stream.of(
+                        ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE,
+                        ModItemRegister.EMPTY_POLYMORPHIC_MUG,
+                        ModItemRegister.EMPTY_POLYMORPHIC_GLASS,
+                        //emerald_call
+                        ModItemRegister.EMERALD_CALL_BOTTLE,
+                        ModItemRegister.EMERALD_CALL_MUG,
+                        ModItemRegister.EMERALD_CALL_GLASS
+                )
+        );
     }
 
     @SafeVarargs
@@ -46,4 +58,6 @@ public class ModItemTagProvider extends BlockTagCopyingItemTagProvider
                         .toArray(Item[]::new)
         );
     }
+
+
 }
