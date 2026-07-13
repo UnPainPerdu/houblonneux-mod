@@ -16,7 +16,8 @@ public class ModLootTableProvider extends LootTableProvider
         super(output,
                 Set.of(),
                 List.of(
-                        new LootTableProvider.SubProviderEntry(ModBlockLootTableSubProvider::new, LootContextParamSets.BLOCK)
+                        new LootTableProvider.SubProviderEntry(ModBlockLootTableSubProvider::new, LootContextParamSets.BLOCK),
+                        new LootTableProvider.SubProviderEntry(ModBeerDispenserLootTable::new, LootContextParamSets.EMPTY)
                 ),
                 registries);
     }
