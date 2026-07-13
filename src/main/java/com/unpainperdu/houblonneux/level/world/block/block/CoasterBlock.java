@@ -249,7 +249,10 @@ public class CoasterBlock extends BaseEntityBlock
             CoasterBlockEntity coasterBlockEntity = getBlockEntity(pos, level);
             if (coasterBlockEntity != null)
             {
-                addItemStackToPlayer((ServerLevel) level, player, new ItemStack(ModBlockRegister.COASTER));
+                if (!player.isCreative())
+                {
+                    addItemStackToPlayer((ServerLevel) level, player, new ItemStack(ModBlockRegister.COASTER));
+                }
                 if (coasterNumber == 1)
                 {
                     level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
@@ -261,6 +264,10 @@ public class CoasterBlock extends BaseEntityBlock
                 coasterBlockEntity.tryTakeItem(level, player, coasterNumber - 1);
             }
         }
+        SoundType soundType = state.getSoundType(level, pos, player);
+        level.playSound(
+                player, pos, soundType.getBreakSound(), SoundSource.BLOCKS, (soundType.getVolume() + 1.0F) / 2.0F, soundType.getPitch() * 0.8F
+        );
     }
 
     private void addItemStackToPlayer(ServerLevel level, Player player, ItemStack itemStack)
