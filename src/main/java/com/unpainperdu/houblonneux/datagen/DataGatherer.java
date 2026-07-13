@@ -8,6 +8,7 @@ import com.unpainperdu.houblonneux.datagen.data.loot_table.ModGlobalLootModifier
 import com.unpainperdu.houblonneux.datagen.data.loot_table.ModLootTableProvider;
 import com.unpainperdu.houblonneux.datagen.data.recipe.RecipeProviderDispatcher;
 import com.unpainperdu.houblonneux.datagen.data.tag.ModBlockTagProvider;
+import com.unpainperdu.houblonneux.datagen.data.tag.ModDispenserTradeTagProvider;
 import com.unpainperdu.houblonneux.datagen.data.tag.ModItemTagProvider;
 import com.unpainperdu.houblonneux.datagen.data.trading.ModDispenserTradeProvider;
 import com.unpainperdu.houblonneux.datagen.data.worldgen.feature.ModBiomeModifierProvider;
@@ -36,6 +37,7 @@ public class DataGatherer
         event.createProvider(ModLootTableProvider::new);
         event.createProvider(ModGlobalLootModifierProvider::new);
         event.createBlockAndItemTags(ModBlockTagProvider::new, ModItemTagProvider::new);
+        event.createProvider(ModDispenserTradeTagProvider::new);
         event.createProvider(RecipeProviderDispatcher.Runner::new);
         event.createProvider(ModSoundDefinitionsProvider::new);
     }
