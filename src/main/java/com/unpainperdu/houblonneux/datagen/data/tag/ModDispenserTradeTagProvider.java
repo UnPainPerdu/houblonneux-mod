@@ -6,13 +6,12 @@ import com.unpainperdu.houblonneux.level.world.item.trading.DispenserTrade;
 import com.unpainperdu.houblonneux.register.registry.ModDataPackRegistriesRegister;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.data.tags.KeyTagProvider;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModDispenserTradeTagProvider extends TagsProvider<DispenserTrade>
+public class ModDispenserTradeTagProvider extends KeyTagProvider<DispenserTrade>
 {
-
     public ModDispenserTradeTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider)
     {
         super(output, ModDataPackRegistriesRegister.DISPENSER_TRADE, lookupProvider, Houblonneux.MOD_ID);
@@ -21,7 +20,7 @@ public class ModDispenserTradeTagProvider extends TagsProvider<DispenserTrade>
     @Override
     protected void addTags(HolderLookup.Provider registries)
     {
-        this.getOrCreateRawBuilder(ModDispenserTradeTags.BEER_TRADE)
-                .addElement(ModDispenserTradeProvider.EMERALD_CALL.identifier());
+        this.tag(ModDispenserTradeTags.BEER_TRADE)
+                .add(ModDispenserTradeProvider.EMERALD_CALL);
     }
 }
