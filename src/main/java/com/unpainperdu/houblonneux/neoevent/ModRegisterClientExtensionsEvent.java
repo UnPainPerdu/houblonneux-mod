@@ -9,7 +9,6 @@ import net.neoforged.neoforge.registries.DeferredItem;
 
 public class ModRegisterClientExtensionsEvent
 {
-    @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event)
     {
         event.registerItem(

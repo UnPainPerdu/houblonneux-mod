@@ -1,17 +1,23 @@
 package com.unpainperdu.houblonneux.level.world.block.entity;
 
 import com.unpainperdu.houblonneux.level.menu.block.entity.BeerDispenserMenu;
+import com.unpainperdu.houblonneux.level.world.component.WrappedDispenserTradeTableKey;
 import com.unpainperdu.houblonneux.level.world.item.trading.DispenserTrade;
+import com.unpainperdu.houblonneux.register.ModDataComponentRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
+import com.unpainperdu.houblonneux.server.packs.ressources.trade.dispenser.DispenserTradeTable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.ContainerHelper;
@@ -26,10 +32,11 @@ import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
-public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
+public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity implements RandomizableDispenserTrade
 {
     private NonNullList<ItemStack> items;
     public static final int CONTAINER_SIZE = 10;
@@ -39,6 +46,7 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
     public static final int BASIC_MAX_CD_ON_TRADE = 6000;
     private int musicCooldown;
     private final JukeboxSongPlayer jukeboxSongPlayer = new JukeboxSongPlayer(this::onSongChanged, this.getBlockPos());
+    protected @Nullable ResourceKey<DispenserTradeTable> dispenserTradeTable;
 
     public BeerDispenserBlockEntity(BlockPos worldPosition, BlockState blockState)
     {
@@ -50,6 +58,19 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
     protected NonNullList<ItemStack> getItems()
     {
         return this.items;
+    }
+
+    @Override
+    public void onLoad()
+    {
+        super.onLoad();
+        this.unpackLootTable(null);
+        this.unpackDispenserTradeTable(this.level);
+        this.setChanged();
+        if (level != null && !level.isClientSide())
+        {
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+        }
     }
 
     @Override
@@ -68,7 +89,10 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
             ContainerHelper.loadAllItems(input, this.items);
         }
         this.musicCooldown = input.getIntOr("music_cooldown", 0);
-        input.read("trade", DispenserTrade.CODEC).ifPresent(this::setTrade);
+        if (!this.tryLoadDispenserTradeTable(input))
+        {
+            input.read("trade", DispenserTrade.CODEC).ifPresent(this::setDispenserTrade);
+        }
     }
 
     @Override
@@ -79,8 +103,39 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
         {
             ContainerHelper.saveAllItems(output, this.items);
         }
-        output.storeNullable("trade", DispenserTrade.CODEC, this.getTrade());
+        if (!this.trySaveDispenserTradeTable(output))
+        {
+            output.storeNullable("trade", DispenserTrade.CODEC, this.getTrade());
+        }
         output.putInt("music_cooldown", this.musicCooldown);
+    }
+
+    @Override
+    protected void applyImplicitComponents(DataComponentGetter components)
+    {
+        super.applyImplicitComponents(components);
+        WrappedDispenserTradeTableKey wrappedDispenserTradeTableKey = components.get(ModDataComponentRegister.WRAPPED_DISPENSER_TRADE_TABLE_KEY);
+        if (wrappedDispenserTradeTableKey != null)
+        {
+            this.setDispenserTradeTable(wrappedDispenserTradeTableKey.dispenserTradeTable());
+        }
+    }
+
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.Builder components)
+    {
+        super.collectImplicitComponents(components);
+        if (this.dispenserTradeTable != null)
+        {
+            components.set(ModDataComponentRegister.WRAPPED_DISPENSER_TRADE_TABLE_KEY, new WrappedDispenserTradeTableKey(this.getDispenserTradeTable()));
+        }
+    }
+
+    @Override
+    public void removeComponentsFromTag(ValueOutput output)
+    {
+        super.removeComponentsFromTag(output);
+        output.discard("DispenserTradeTable");
     }
 
     @Override
@@ -113,7 +168,8 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
         return CONTAINER_SIZE;
     }
 
-    public void setTrade(DispenserTrade trade)
+    @Override
+    public void setDispenserTrade(DispenserTrade trade)
     {
         this.trade = trade;
     }
@@ -121,6 +177,18 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity
     public DispenserTrade getTrade()
     {
         return this.trade;
+    }
+
+    @Override
+    public @Nullable ResourceKey<DispenserTradeTable> getDispenserTradeTable()
+    {
+        return this.dispenserTradeTable;
+    }
+
+    @Override
+    public void setDispenserTradeTable(@Nullable ResourceKey<DispenserTradeTable> dispenserTradeTable)
+    {
+        this.dispenserTradeTable = dispenserTradeTable;
     }
 
     public int getMusicCooldown()

@@ -18,12 +18,12 @@ public class ModDispenserTradeProvider
 
     public static void bootstrap(BootstrapContext<DispenserTrade> context)
     {
-        registerTrade(context, Items.EMERALD, 5, ModItemRegister.EMERALD_CALL_BOTTLE, 1);
+        registerTrade(context, EMERALD_CALL, Items.EMERALD, 5, ModItemRegister.EMERALD_CALL_BOTTLE, 1);
     }
 
-    private static void registerTrade(BootstrapContext<DispenserTrade> context, ItemLike costItem, int costNumber, ItemLike resultItem, int resultNumber)
+    private static void registerTrade(BootstrapContext<DispenserTrade> context, ResourceKey<DispenserTrade> resourceKey, ItemLike costItem, int costNumber, ItemLike resultItem, int resultNumber)
     {
-        context.register(EMERALD_CALL, new DispenserTrade(new ItemStackTemplate(costItem.asItem(), costNumber), new ItemStackTemplate(resultItem.asItem(), resultNumber)));
+        context.register(resourceKey, new DispenserTrade(new ItemStackTemplate(costItem.asItem(), costNumber), new ItemStackTemplate(resultItem.asItem(), resultNumber)));
     }
 
     public static ResourceKey<DispenserTrade> createKey(String name)

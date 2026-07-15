@@ -21,5 +21,6 @@ public class RegisterHandler
         ModSoundRegister.register(event);
         ModBlockEntityRegister.register(event);
         ModMenuTypeRegister.register(event);
+        ModDataComponentRegister.register(event);
     }
 }

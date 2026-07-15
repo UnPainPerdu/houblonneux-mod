@@ -11,6 +11,7 @@ import com.unpainperdu.houblonneux.datagen.data.tag.ModBlockTagProvider;
 import com.unpainperdu.houblonneux.datagen.data.tag.ModDispenserTradeTagProvider;
 import com.unpainperdu.houblonneux.datagen.data.tag.ModItemTagProvider;
 import com.unpainperdu.houblonneux.datagen.data.trading.ModDispenserTradeProvider;
+import com.unpainperdu.houblonneux.datagen.data.trading.ModDispenserTradeTableProvider;
 import com.unpainperdu.houblonneux.datagen.data.worldgen.feature.ModBiomeModifierProvider;
 import com.unpainperdu.houblonneux.datagen.data.worldgen.feature.ModFeatureProvider;
 import com.unpainperdu.houblonneux.datagen.data.worldgen.feature.ModPlacementProvider;
@@ -30,6 +31,7 @@ public class DataGatherer
                         .add(Registries.PLACED_FEATURE, ModPlacementProvider::bootstrap)
                         .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifierProvider::bootstrap)
                         .add(ModDataPackRegistriesRegister.DISPENSER_TRADE, ModDispenserTradeProvider::bootstrap)
+                        .add(ModDataPackRegistriesRegister.DISPENSER_TRADE_TABLE, ModDispenserTradeTableProvider::bootstrap)
         );
         event.createProvider(ModelProviderDispatcher::new);
         event.createProvider(EnglishLanguageProvider::new);

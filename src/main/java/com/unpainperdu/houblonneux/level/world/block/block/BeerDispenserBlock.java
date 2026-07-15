@@ -205,7 +205,7 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
                         DispenserTrade dispenserTrade = DispenserTrade.getTradeFromCost(level, itemStack);
                         if (dispenserTrade != null)
                         {
-                            beerDispenserBE.setTrade(dispenserTrade);
+                            beerDispenserBE.setDispenserTrade(dispenserTrade);
                             lockBLock(state, level, pos, true);
                             level.sendBlockUpdated(pos, state, state, 3);
                             return InteractionResult.SUCCESS;
