@@ -1,0 +1,7 @@
+{
+  "processors": [
+    {
+      "processor_type": "houblonneux:turn_on_immediate_roll_table_data_comp_processor"
+    }
+  ]
+}

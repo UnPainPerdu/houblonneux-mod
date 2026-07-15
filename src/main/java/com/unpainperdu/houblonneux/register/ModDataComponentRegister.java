@@ -1,6 +1,7 @@
 package com.unpainperdu.houblonneux.register;
 
 import com.unpainperdu.houblonneux.Houblonneux;
+import com.unpainperdu.houblonneux.level.world.component.ImmediateRollTable;
 import com.unpainperdu.houblonneux.level.world.component.WrappedDispenserTradeTableKey;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -17,6 +18,11 @@ public class ModDataComponentRegister
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<WrappedDispenserTradeTableKey>> WRAPPED_DISPENSER_TRADE_TABLE_KEY = register(
             "wrapped_dispenser_trade_table_key",
             b -> b.persistent(WrappedDispenserTradeTableKey.CODEC)
+    );
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<ImmediateRollTable>> IMMEDIATE_ROLL_TABLE = register(
+            "immediate_roll_table",
+            b -> b.persistent(ImmediateRollTable.CODEC)
     );
 
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String id, UnaryOperator<DataComponentType.Builder<T>> builder)

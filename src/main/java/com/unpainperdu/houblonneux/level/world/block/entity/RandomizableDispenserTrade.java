@@ -16,6 +16,8 @@ import java.util.Optional;
 
 public interface RandomizableDispenserTrade
 {
+    String DEFAULT_NBT_NAME = "IsImmediatelyRollingTable";
+
     @Nullable ResourceKey<DispenserTradeTable> getDispenserTradeTable();
 
     void setDispenserTradeTable(final @Nullable ResourceKey<DispenserTradeTable> dispenserTradeTable);

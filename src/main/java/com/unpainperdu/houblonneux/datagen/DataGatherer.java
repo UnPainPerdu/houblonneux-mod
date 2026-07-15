@@ -15,6 +15,8 @@ import com.unpainperdu.houblonneux.datagen.data.trading.ModDispenserTradeTablePr
 import com.unpainperdu.houblonneux.datagen.data.worldgen.feature.ModBiomeModifierProvider;
 import com.unpainperdu.houblonneux.datagen.data.worldgen.feature.ModFeatureProvider;
 import com.unpainperdu.houblonneux.datagen.data.worldgen.feature.ModPlacementProvider;
+import com.unpainperdu.houblonneux.datagen.data.worldgen.structure.ModProcessorListRegister;
+import com.unpainperdu.houblonneux.datagen.data.worldgen.structure.ModStructureTemplatePoolRegister;
 import com.unpainperdu.houblonneux.register.registry.ModDataPackRegistriesRegister;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -32,6 +34,8 @@ public class DataGatherer
                         .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifierProvider::bootstrap)
                         .add(ModDataPackRegistriesRegister.DISPENSER_TRADE, ModDispenserTradeProvider::bootstrap)
                         .add(ModDataPackRegistriesRegister.DISPENSER_TRADE_TABLE, ModDispenserTradeTableProvider::bootstrap)
+                        .add(Registries.PROCESSOR_LIST, ModProcessorListRegister::boostrap)
+                        .add(Registries.TEMPLATE_POOL, ModStructureTemplatePoolRegister::boostrap)
         );
         event.createProvider(ModelProviderDispatcher::new);
         event.createProvider(EnglishLanguageProvider::new);

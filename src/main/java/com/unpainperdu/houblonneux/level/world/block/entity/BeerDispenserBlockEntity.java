@@ -1,6 +1,7 @@
 package com.unpainperdu.houblonneux.level.world.block.entity;
 
 import com.unpainperdu.houblonneux.level.menu.block.entity.BeerDispenserMenu;
+import com.unpainperdu.houblonneux.level.world.component.ImmediateRollTable;
 import com.unpainperdu.houblonneux.level.world.component.WrappedDispenserTradeTableKey;
 import com.unpainperdu.houblonneux.level.world.item.trading.DispenserTrade;
 import com.unpainperdu.houblonneux.register.ModDataComponentRegister;
@@ -23,11 +24,13 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.JukeboxSong;
 import net.minecraft.world.item.JukeboxSongPlayer;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
@@ -47,6 +50,7 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity i
     private int musicCooldown;
     private final JukeboxSongPlayer jukeboxSongPlayer = new JukeboxSongPlayer(this::onSongChanged, this.getBlockPos());
     protected @Nullable ResourceKey<DispenserTradeTable> dispenserTradeTable;
+    private boolean isImmediatelyRollingTable;
 
     public BeerDispenserBlockEntity(BlockPos worldPosition, BlockState blockState)
     {
@@ -64,12 +68,72 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity i
     public void onLoad()
     {
         super.onLoad();
-        this.unpackLootTable(null);
-        this.unpackDispenserTradeTable(this.level);
-        this.setChanged();
-        if (level != null && !level.isClientSide())
+        if (this.isImmediatelyRollingTable())
         {
-            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+            this.unpackLootTable(null);
+            this.unpackDispenserTradeTable(this.level);
+            this.updateBeAndBlock();
+        }
+    }
+
+    @Override
+    public boolean isEmpty()
+    {
+        this.unpackDispenserTradeTable(this.level);
+        this.updateBeAndBlock();
+        return super.isEmpty();
+    }
+
+    @Override
+    public ItemStack getItem(int slot)
+    {
+        this.unpackDispenserTradeTable(this.level);
+        this.updateBeAndBlock();
+        return super.getItem(slot);
+    }
+
+    @Override
+    public ItemStack removeItem(int slot, int count)
+    {
+        this.unpackDispenserTradeTable(this.level);
+        this.updateBeAndBlock();
+        return super.removeItem(slot, count);
+    }
+
+    @Override
+    public ItemStack removeItemNoUpdate(int slot)
+    {
+        this.unpackDispenserTradeTable(this.level);
+        this.updateBeAndBlock();
+        return super.removeItemNoUpdate(slot);
+    }
+
+    @Override
+    public void setItem(int slot, ItemStack itemStack)
+    {
+        this.unpackDispenserTradeTable(this.level);
+        this.updateBeAndBlock();
+        super.setItem(slot, itemStack);
+    }
+
+    @Override
+    public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player player)
+    {
+        if (this.canOpen(player))
+        {
+            this.unpackLootTable(inventory.player);
+            this.unpackDispenserTradeTable(this.level);
+            this.updateBeAndBlock();
+            return this.createMenu(containerId, inventory);
+        }
+        else
+        {
+            if (!player.isSpectator())
+            {
+                BaseContainerBlockEntity.sendChestLockedNotifications(this.getBlockPos().getCenter(), player, this.getDisplayName());
+            }
+
+            return null;
         }
     }
 
@@ -93,6 +157,7 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity i
         {
             input.read("trade", DispenserTrade.CODEC).ifPresent(this::setDispenserTrade);
         }
+        this.isImmediatelyRollingTable = input.getBooleanOr(DEFAULT_NBT_NAME, true);
     }
 
     @Override
@@ -108,6 +173,7 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity i
             output.storeNullable("trade", DispenserTrade.CODEC, this.getTrade());
         }
         output.putInt("music_cooldown", this.musicCooldown);
+        output.putBoolean(DEFAULT_NBT_NAME, this.isImmediatelyRollingTable);
     }
 
     @Override
@@ -119,6 +185,11 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity i
         {
             this.setDispenserTradeTable(wrappedDispenserTradeTableKey.dispenserTradeTable());
         }
+        ImmediateRollTable immediateRollTable = components.get(ModDataComponentRegister.IMMEDIATE_ROLL_TABLE);
+        if (immediateRollTable != null)
+        {
+            this.setImmediatelyRollingTable(immediateRollTable.isImmediatelyRollingTable());
+        }
     }
 
     @Override
@@ -129,6 +200,7 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity i
         {
             components.set(ModDataComponentRegister.WRAPPED_DISPENSER_TRADE_TABLE_KEY, new WrappedDispenserTradeTableKey(this.getDispenserTradeTable()));
         }
+        components.set(ModDataComponentRegister.IMMEDIATE_ROLL_TABLE, new ImmediateRollTable(this.isImmediatelyRollingTable()));
     }
 
     @Override
@@ -160,6 +232,16 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity i
     protected AbstractContainerMenu createMenu(int i, Inventory inventory)
     {
         return new BeerDispenserMenu(i, inventory, this);
+    }
+
+    public boolean isImmediatelyRollingTable()
+    {
+        return this.isImmediatelyRollingTable;
+    }
+
+    public void setImmediatelyRollingTable(boolean isImmediatelyRollingTable)
+    {
+        this.isImmediatelyRollingTable = isImmediatelyRollingTable;
     }
 
     @Override
@@ -260,5 +342,14 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity i
     private List<ItemStack> getAvailableDiscs()
     {
         return this.getItems().stream().filter(itemStack -> itemStack.getItem().components().has(DataComponents.JUKEBOX_PLAYABLE)).toList();
+    }
+
+    private void updateBeAndBlock()
+    {
+        this.setChanged();
+        if (level != null && !level.isClientSide())
+        {
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+        }
     }
 }
