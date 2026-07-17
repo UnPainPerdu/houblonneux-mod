@@ -2,6 +2,8 @@ package com.unpainperdu.houblonneux.register.item;
 
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
+import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.GrosGueuletonBeerConsumeEffect;
+import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.WormHoleBeerConsumeEffect;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.consume_effects.ConsumeEffect;
 import net.neoforged.bus.api.IEventBus;
@@ -14,7 +16,17 @@ public class ModConsumeEffectTypeRegister
 
     public static final DeferredHolder<ConsumeEffect.Type<?>, ConsumeEffect.Type<EmeraldCallBeerConsumeEffect>> EMERALD_CALL_BEER = CONSUME_EFFECT.register(
             "emerald_call_beer",
-            () -> new ConsumeEffect.Type<>(EmeraldCallBeerConsumeEffect.CODEC,EmeraldCallBeerConsumeEffect.STREAM_CODEC));
+            () -> new ConsumeEffect.Type<>(EmeraldCallBeerConsumeEffect.CODEC, EmeraldCallBeerConsumeEffect.STREAM_CODEC)
+    );
+    public static final DeferredHolder<ConsumeEffect.Type<?>, ConsumeEffect.Type<GrosGueuletonBeerConsumeEffect>> GROS_GUEULETON_BEER = CONSUME_EFFECT.register(
+            "gros_geuleton_beer",
+            () -> new ConsumeEffect.Type<>(GrosGueuletonBeerConsumeEffect.CODEC, GrosGueuletonBeerConsumeEffect.STREAM_CODEC)
+    );
+
+    public static final DeferredHolder<ConsumeEffect.Type<?>, ConsumeEffect.Type<WormHoleBeerConsumeEffect>> WORM_HOLE_BEER = CONSUME_EFFECT.register(
+            "worm_hole_beer",
+            () -> new ConsumeEffect.Type<>(WormHoleBeerConsumeEffect.CODEC, WormHoleBeerConsumeEffect.STREAM_CODEC)
+    );
 
     public static void register(IEventBus event)
     {
