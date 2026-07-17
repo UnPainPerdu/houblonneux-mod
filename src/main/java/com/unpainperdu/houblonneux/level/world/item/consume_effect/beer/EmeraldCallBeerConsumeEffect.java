@@ -5,12 +5,13 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.unpainperdu.houblonneux.register.item.ModConsumeEffectTypeRegister;
 import com.unpainperdu.houblonneux.util.PosHelper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.wanderingtrader.WanderingTrader;
@@ -66,15 +67,28 @@ public class EmeraldCallBeerConsumeEffect extends AbstractBeerConsumeEffect
             WanderingTrader trader = new WanderingTrader(EntityType.WANDERING_TRADER, level);
             BlockPos wantedPos = poss.get(i + 1);
             trader.setPos(wantedPos.getX(), wantedPos.getY(), wantedPos.getZ());
-            if (trader != null)
-            {
-                trader.setDespawnDelay((level.getRandom().nextInt(10, 21)) * 20);
-                wanderingTraders.add(trader);
-            }
+            trader.setDespawnDelay((level.getRandom().nextInt(10, 21)) * 20);
+            wanderingTraders.add(trader);
         }
-        wanderingTraders.forEach(level::addFreshEntity);
+        wanderingTraders.forEach(wanderingTrader ->
+        {
+            level.addFreshEntity(wanderingTrader);
+            spawnParticles(level, wanderingTrader);
+        });
         level.playSound(null, spawnPos, SoundEvents.VILLAGER_CELEBRATE, SoundSource.NEUTRAL, 16F, 1.0F);
         return true;
+    }
+
+    private void spawnParticles(ServerLevel level, WanderingTrader trader)
+    {
+        RandomSource rand = level.getRandom();
+        for (int i = 0; i < rand.nextInt(5, 11); i++)
+        {
+            double xa = rand.nextGaussian() * 0.02;
+            double ya = rand.nextGaussian() * 0.02;
+            double za = rand.nextGaussian() * 0.02;
+            level.sendParticles(ParticleTypes.HAPPY_VILLAGER, trader.getRandomX(1.5), trader.getRandomY(0.5) + 1.0, trader.getRandomZ(1.5), rand.nextInt(1, 5), xa, ya, za, 0.1);
+        }
     }
 
     @Override
