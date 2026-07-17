@@ -36,6 +36,14 @@ public class RecipeProviderDispatcher extends RecipeProvider
                 .requires(ItemTags.WOODEN_BUTTONS)
                 .unlockedBy("has_button", this.has(ItemTags.WOODEN_BUTTONS))
                 .save(this.output);
+        this.shaped(RecipeCategory.MISC, ModBlockRegister.BEER_DISPENSER, 1)
+                .define('y', Tags.Items.INGOTS_IRON)
+                .define('x', Tags.Items.GEMS_EMERALD)
+                .pattern("xxx")
+                .pattern("xyx")
+                .pattern("xxx")
+                .unlockedBy("has_iron", this.has(Tags.Items.INGOTS_IRON))
+                .save(this.output);
         //item
         this.shapeless(RecipeCategory.MISC, ModItemRegister.HOP_LUPULIN)
                 .requires(ModItemRegister.HOP_FLOWER)

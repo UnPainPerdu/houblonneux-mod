@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "x": "#c:gems/emerald",
+    "y": "#c:ingots/iron"
+  },
+  "pattern": [
+    "xxx",
+    "xyx",
+    "xxx"
+  ],
+  "result": {
+    "id": "houblonneux:beer_dispenser"
+  }
+}
