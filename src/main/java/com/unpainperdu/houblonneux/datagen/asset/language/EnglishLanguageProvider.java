@@ -6,6 +6,7 @@ import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.BeerType
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
 import com.unpainperdu.houblonneux.register.ModCreativeTabRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
+import com.unpainperdu.houblonneux.register.entity.effect.ModMobEffectRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -25,6 +26,8 @@ public class EnglishLanguageProvider extends LanguageProvider
         this.add(BeerDispenserBlockEntity.TITLE_KEY, "Disk Storage");
         //creative tabs
         this.add(ModCreativeTabRegister.MAIN_TAB_TRANSLATION_KEY, "Houblonneux");
+        // mob effect
+        this.addEffect(ModMobEffectRegister.WORM_HOLE, "Worm Hole");
         // block
         this.add(ModBlockRegister.BEER_DISPENSER.get().asItem(), "Beer Dispenser");
         this.add(ModBlockRegister.COASTER.get().asItem(), "Coaster");

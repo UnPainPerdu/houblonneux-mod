@@ -5,6 +5,8 @@ import com.unpainperdu.houblonneux.register.entity.effect.ModMobEffectRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,8 +28,10 @@ public class CommonEffect
                 double originalMobX = originalMobPos.getX() + 0.5;
                 double originalMobY = originalMobPos.getY();
                 double originalMobZ = originalMobPos.getZ() + 0.5;
-                //TODO sound + particle
+                //TODO particle
+                entity.level().playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F, 1.5F);
                 entity.teleportTo(originalMobX, originalMobY, originalMobZ);
+                entity.level().playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F, 1.5F);
             }
         }
     }

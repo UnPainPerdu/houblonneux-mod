@@ -1,6 +1,7 @@
 {
   "block.container.houblonneux.beer_dispenser": "Stockage de disque",
   "block.houblonneux.hop_flower": "Fleur de Houblon",
+  "effect.houblonneux.worm_hole": "Worm Hole",
   "item.emerald_call.bottle.tooltip": "Bouteille et bière verte!",
   "item.emerald_call.glass.tooltip": "Ca sent... le commerce.",
   "item.emerald_call.mug.tooltip": "De bonnes affaires en perspectives.",

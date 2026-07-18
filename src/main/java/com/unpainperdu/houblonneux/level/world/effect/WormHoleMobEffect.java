@@ -5,6 +5,8 @@ import com.unpainperdu.houblonneux.register.ModDataAttachmentRegister;
 import com.unpainperdu.houblonneux.util.PosHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,18 +16,17 @@ import net.minecraft.world.level.block.Blocks;
 public class WormHoleMobEffect extends MobEffect
 {
     private BlockPos originalUserPos;
-
     public WormHoleMobEffect(MobEffectCategory category, int color)
     {
         super(category, color);
     }
 
     @Override
-    public void onEffectAdded(LivingEntity mob, int amplifier)
+    public void onEffectAdded(LivingEntity entity, int amplifier)
     {
-        super.onEffectAdded(mob, amplifier);
-        storeAndSaveOriginalBlockPos(mob);
-        float r = mob.level().getRandom().nextFloat();
+        super.onEffectAdded(entity, amplifier);
+        storeAndSaveOriginalBlockPos(entity);
+        float r = entity.level().getRandom().nextFloat();
         BlockPos destinationPos;
         if (r < 0.15F) // sky
         {
@@ -37,14 +38,16 @@ public class WormHoleMobEffect extends MobEffect
         }
         else // not so far
         {
-            destinationPos = getNotSoFarSafePos(mob.level(), originalUserPos);
+            destinationPos = getNotSoFarSafePos(entity.level(), originalUserPos);
             if (destinationPos.equals(originalUserPos)) //fall back sky
             {
                 destinationPos = new BlockPos(originalUserPos.getX(), 1000, originalUserPos.getZ());
             }
         }
-        //TODO sound + particle
-        mob.teleportTo(destinationPos.getX(), destinationPos.getY(), destinationPos.getZ());
+        //TODO particle
+        entity.level().playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F , 0.2F);
+        entity.teleportTo(destinationPos.getX(), destinationPos.getY(), destinationPos.getZ());
+        entity.level().playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F , 0.2F);
     }
 
     private void storeAndSaveOriginalBlockPos(LivingEntity mob)
