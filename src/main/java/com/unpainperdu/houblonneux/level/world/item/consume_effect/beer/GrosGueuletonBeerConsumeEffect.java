@@ -52,8 +52,10 @@ public class GrosGueuletonBeerConsumeEffect extends AbstractBeerConsumeEffect
     public boolean apply(ServerLevel level, ItemStack stack, LivingEntity user, BeerType beerType)
     {
         BlockPos pos = user.blockPosition();
-        user.addEffect(new MobEffectInstance(MobEffects.SATURATION, 600, 0)); //TODO use beer type tier
-        level.playSound(null, pos, ModSoundRegister.BURP.get(), SoundSource.NEUTRAL, 20F, 0.1F);
+        int power = this.beerType.getPowerLevel();
+        int duration = 20 * (2 * power - 1);
+        user.addEffect(new MobEffectInstance(MobEffects.SATURATION, duration, 0));
+        level.playSound(null, pos, ModSoundRegister.BURP.get(), SoundSource.NEUTRAL, 20F, 0.05F);
         return true;
     }
 
