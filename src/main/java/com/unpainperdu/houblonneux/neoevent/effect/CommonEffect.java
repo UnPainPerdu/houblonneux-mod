@@ -1,9 +1,11 @@
 package com.unpainperdu.houblonneux.neoevent.effect;
 
 import com.unpainperdu.houblonneux.register.ModDataAttachmentRegister;
+import com.unpainperdu.houblonneux.register.ModParticleTypeRegister;
 import com.unpainperdu.houblonneux.register.entity.effect.ModMobEffectRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -28,10 +30,13 @@ public class CommonEffect
                 double originalMobX = originalMobPos.getX() + 0.5;
                 double originalMobY = originalMobPos.getY();
                 double originalMobZ = originalMobPos.getZ() + 0.5;
-                //TODO particle
-                entity.level().playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F, 1.5F);
+                ServerLevel level = (ServerLevel) entity.level();
+
+                level.sendParticles(ModParticleTypeRegister.WORM_HOLE_PORTAL.get(), entity.getX(), entity.getY() + 1.0, entity.getZ(), 1, 0, 0, 0, 0.0);
+                level.playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F, 1.5F);
                 entity.teleportTo(originalMobX, originalMobY, originalMobZ);
-                entity.level().playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F, 1.5F);
+                level.playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F, 1.5F);
+                level.sendParticles(ModParticleTypeRegister.WORM_HOLE_PORTAL.get(), entity.getX(), entity.getY() + 1.0, entity.getZ(), 1, 0, 0, 0, 0.0);
             }
         }
     }

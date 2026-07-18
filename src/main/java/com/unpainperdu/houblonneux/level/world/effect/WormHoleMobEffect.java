@@ -2,8 +2,10 @@ package com.unpainperdu.houblonneux.level.world.effect;
 
 import com.unpainperdu.houblonneux.level.world.attachments.OriginalBlockPosAttach;
 import com.unpainperdu.houblonneux.register.ModDataAttachmentRegister;
+import com.unpainperdu.houblonneux.register.ModParticleTypeRegister;
 import com.unpainperdu.houblonneux.util.PosHelper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -45,9 +47,12 @@ public class WormHoleMobEffect extends MobEffect
             }
         }
         //TODO particle
-        entity.level().playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F , 0.2F);
+        ServerLevel level = (ServerLevel) entity.level();
+        level.playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F , 0.2F);
+        level.sendParticles(ModParticleTypeRegister.WORM_HOLE_PORTAL.get(), entity.getX(), entity.getY() + 1.0, entity.getZ(), 1, 0, 0, 0, 0.0);
         entity.teleportTo(destinationPos.getX(), destinationPos.getY(), destinationPos.getZ());
-        entity.level().playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F , 0.2F);
+        level.playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F , 0.2F);
+        level.sendParticles(ModParticleTypeRegister.WORM_HOLE_PORTAL.get(), entity.getX(), entity.getY() + 1.0, entity.getZ(), 1, 0, 0, 0, 0.0);
     }
 
     private void storeAndSaveOriginalBlockPos(LivingEntity mob)

@@ -27,5 +27,6 @@ public class RegisterHandler
         ModStructureProcessorRegister.register(event);
         ModMobEffectRegister.register(event);
         ModDataAttachmentRegister.register(event);
+        ModParticleTypeRegister.register(event);
     }
 }

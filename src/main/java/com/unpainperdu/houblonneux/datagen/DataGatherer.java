@@ -1,5 +1,6 @@
 package com.unpainperdu.houblonneux.datagen;
 
+import com.unpainperdu.houblonneux.datagen.asset.ModParticleDescriptionProvider;
 import com.unpainperdu.houblonneux.datagen.asset.ModSoundDefinitionsProvider;
 import com.unpainperdu.houblonneux.datagen.asset.language.EnglishLanguageProvider;
 import com.unpainperdu.houblonneux.datagen.asset.language.FrenchLanguageProvider;
@@ -46,5 +47,6 @@ public class DataGatherer
         event.createProvider(ModDispenserTradeTagProvider::new);
         event.createProvider(RecipeProviderDispatcher.Runner::new);
         event.createProvider(ModSoundDefinitionsProvider::new);
+        event.createProvider(ModParticleDescriptionProvider::new);
     }
 }
