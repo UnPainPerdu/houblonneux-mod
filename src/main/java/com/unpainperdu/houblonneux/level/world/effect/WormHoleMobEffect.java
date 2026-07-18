@@ -46,7 +46,6 @@ public class WormHoleMobEffect extends MobEffect
                 destinationPos = new BlockPos(originalUserPos.getX(), 1000, originalUserPos.getZ());
             }
         }
-        //TODO particle
         ServerLevel level = (ServerLevel) entity.level();
         level.playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F , 0.2F);
         level.sendParticles(ModParticleTypeRegister.WORM_HOLE_PORTAL.get(), entity.getX(), entity.getY() + 1.0, entity.getZ(), 1, 0, 0, 0, 0.0);
