@@ -37,8 +37,8 @@ public class RecipeProviderDispatcher extends RecipeProvider
                 .unlockedBy("has_button", this.has(ItemTags.WOODEN_BUTTONS))
                 .save(this.output);
         this.shaped(RecipeCategory.MISC, ModBlockRegister.BEER_DISPENSER, 1)
-                .define('y', Tags.Items.INGOTS_IRON)
-                .define('x', Tags.Items.GEMS_EMERALD)
+                .define('x', Tags.Items.INGOTS_IRON)
+                .define('y', Tags.Items.GEMS_EMERALD)
                 .pattern("xxx")
                 .pattern("xyx")
                 .pattern("xxx")

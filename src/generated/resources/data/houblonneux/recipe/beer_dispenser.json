@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "x": "#c:gems/emerald",
-    "y": "#c:ingots/iron"
+    "x": "#c:ingots/iron",
+    "y": "#c:gems/emerald"
   },
   "pattern": [
     "xxx",
