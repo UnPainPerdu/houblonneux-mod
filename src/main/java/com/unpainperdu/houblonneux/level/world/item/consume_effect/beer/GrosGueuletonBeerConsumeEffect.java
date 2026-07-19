@@ -56,7 +56,7 @@ public class GrosGueuletonBeerConsumeEffect extends AbstractBeerConsumeEffect
     {
         BlockPos pos = user.blockPosition();
         int power = this.beerType.getPowerLevel();
-        int duration = 20 * (2 * power - 1);
+        int duration = (int) (2.5 * Math.pow(power, 2) - 2.5 * power + 5);
         user.addEffect(new MobEffectInstance(MobEffects.SATURATION, duration, 0));
         level.playSound(null, pos, ModSoundRegister.BURP.get(), SoundSource.NEUTRAL, 20F, 0.05F); //TODO dedicated sound, this is horrible
         return true;
