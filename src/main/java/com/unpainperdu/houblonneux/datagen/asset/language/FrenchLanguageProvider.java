@@ -2,8 +2,9 @@ package com.unpainperdu.houblonneux.datagen.asset.language;
 
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
-import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.BeerType;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
+import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.GrosGueuletonBeerConsumeEffect;
+import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.WormHoleBeerConsumeEffect;
 import com.unpainperdu.houblonneux.register.ModCreativeTabRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.entity.effect.ModMobEffectRegister;
@@ -44,9 +45,22 @@ public class FrenchLanguageProvider extends LanguageProvider
         this.add(ModItemRegister.EMERALD_CALL_BOTTLE.get(), "Bouteille d'Emerald Call");
         this.add(ModItemRegister.EMERALD_CALL_GLASS.get(), "Verre d'Emerald Call");
         this.add(ModItemRegister.EMERALD_CALL_MUG.get(), "Chope d'Emerald Call");
-        //      tool_tip
-        clp.beerToolTipTranslation(new EmeraldCallBeerConsumeEffect(BeerType.BOTTLE), "Bouteille et bière verte!");
-        clp.beerToolTipTranslation(new EmeraldCallBeerConsumeEffect(BeerType.GLASS), "Ca sent... le commerce.");
-        clp.beerToolTipTranslation(new EmeraldCallBeerConsumeEffect(BeerType.MUG), "De bonnes affaires en perspectives.");
+        this.add(EmeraldCallBeerConsumeEffect.BOTTLE_TOOLTIP_KEY, "Bouteille et bière verte!");
+        this.add(EmeraldCallBeerConsumeEffect.GLASS_TOOLTIP_KEY, "Ca sent... le commerce.");
+        this.add(EmeraldCallBeerConsumeEffect.MUG_TOOLTIP_KEY, "De bonnes affaires en perspectives.");
+        //  worm_hole
+        this.add(ModItemRegister.WORM_HOLE_BOTTLE.get(), "Bouteille de Worm Hole");
+        this.add(ModItemRegister.WORM_HOLE_GLASS.get(), "Verre de Worm Hole");
+        this.add(ModItemRegister.WORM_HOLE_MUG.get(), "Chope de Worm Hole");
+        this.add(WormHoleBeerConsumeEffect.BOTTLE_TOOLTIP_KEY, "Disparu et réaparu de si tôt");
+        this.add(WormHoleBeerConsumeEffect.GLASS_TOOLTIP_KEY, "Où bordel de merde je suis?");
+        this.add(WormHoleBeerConsumeEffect.MUG_TOOLTIP_KEY, "La meilleure manière d'utiliser cette technologie!");
+        //  gros_gueuleton
+        this.add(ModItemRegister.GROS_GUEULETON_BOTTLE.get(), "Bouteille de Gros Gueuleton");
+        this.add(ModItemRegister.GROS_GUEULETON_GLASS.get(), "Verre de Gros Gueuleton");
+        this.add(ModItemRegister.GROS_GUEULETON_MUG.get(), "Chope de Gros Gueuleton");
+        this.add(GrosGueuletonBeerConsumeEffect.BOTTLE_TOOLTIP_KEY, "Une bière, c'est l'équivalent d'une tartine");
+        this.add(GrosGueuletonBeerConsumeEffect.GLASS_TOOLTIP_KEY, "Tellement rassasié");
+        this.add(GrosGueuletonBeerConsumeEffect.MUG_TOOLTIP_KEY, "Plus besoin de rien avec ça!");
     }
 }

@@ -21,6 +21,9 @@ public class ModDispenserTradeTagProvider extends KeyTagProvider<DispenserTrade>
     protected void addTags(HolderLookup.Provider registries)
     {
         this.tag(ModDispenserTradeTags.BEER_TRADE)
-                .add(ModDispenserTradeProvider.EMERALD_CALL);
+                .add(ModDispenserTradeProvider.EMERALD_CALL)
+                .add(ModDispenserTradeProvider.WORM_HOLE)
+                .add(ModDispenserTradeProvider.GROS_GUEULETON)
+        ;
     }
 }

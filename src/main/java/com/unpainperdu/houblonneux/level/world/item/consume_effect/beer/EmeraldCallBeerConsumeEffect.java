@@ -7,6 +7,7 @@ import com.unpainperdu.houblonneux.util.PosHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -37,6 +38,14 @@ public class EmeraldCallBeerConsumeEffect extends AbstractBeerConsumeEffect
             EmeraldCallBeerConsumeEffect::new
     );
 
+    public static final String BOTTLE_TOOLTIP_KEY = "item.emerald_call.bottle.tooltip";
+    public static final String GLASS_TOOLTIP_KEY = "item.emerald_call.glass.tooltip";
+    public static final String MUG_TOOLTIP_KEY = "item.emerald_call.mug.tooltip";
+
+    public static final Component BOTTLE_TOOLTIP = Component.translatable(BOTTLE_TOOLTIP_KEY);
+    public static final Component GLASS_TOOLTIP = Component.translatable(GLASS_TOOLTIP_KEY);
+    public static final Component MUG_TOOLTIP = Component.translatable(MUG_TOOLTIP_KEY);
+
     public EmeraldCallBeerConsumeEffect(BeerType beerType)
     {
         this.beerType = beerType;
@@ -46,12 +55,6 @@ public class EmeraldCallBeerConsumeEffect extends AbstractBeerConsumeEffect
     public BeerType getBeerType()
     {
         return this.beerType;
-    }
-
-    @Override
-    public String getName()
-    {
-        return "emerald_call";
     }
 
     @Override

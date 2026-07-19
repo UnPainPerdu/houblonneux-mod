@@ -6,6 +6,7 @@ import com.unpainperdu.houblonneux.register.entity.effect.ModMobEffectRegister;
 import com.unpainperdu.houblonneux.register.item.ModConsumeEffectTypeRegister;
 import net.minecraft.core.Holder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
@@ -32,6 +33,14 @@ public class WormHoleBeerConsumeEffect extends AbstractBeerConsumeEffect
             WormHoleBeerConsumeEffect::new
     );
 
+    public static final String BOTTLE_TOOLTIP_KEY = "item.worm_hole.bottle.tooltip";
+    public static final String GLASS_TOOLTIP_KEY = "item.worm_hole.glass.tooltip";
+    public static final String MUG_TOOLTIP_KEY = "item.worm_hole.mug.tooltip";
+
+    public static final Component BOTTLE_TOOLTIP = Component.translatable(BOTTLE_TOOLTIP_KEY);
+    public static final Component GLASS_TOOLTIP = Component.translatable(GLASS_TOOLTIP_KEY);
+    public static final Component MUG_TOOLTIP = Component.translatable(MUG_TOOLTIP_KEY);
+
     public WormHoleBeerConsumeEffect(BeerType beerType)
     {
         this.beerType = beerType;
@@ -44,15 +53,9 @@ public class WormHoleBeerConsumeEffect extends AbstractBeerConsumeEffect
     }
 
     @Override
-    public String getName()
-    {
-        return "worm_hole";
-    }
-
-    @Override
     public boolean apply(ServerLevel level, ItemStack stack, LivingEntity user, BeerType beerType)
     {
-        Holder<MobEffect> levitation = MobEffects.LEVITATION;
+        Holder<MobEffect> levitation = MobEffects.LEVITATION; //TODO remove this and add following behavor in worm hole mob effect : feather falling but if user.y < 69 no gravity
         Holder<MobEffect> wormHole = ModMobEffectRegister.WORM_HOLE;
         if (!user.hasEffect(levitation) && !user.hasEffect(wormHole))
         {

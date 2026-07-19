@@ -6,6 +6,7 @@ import com.unpainperdu.houblonneux.register.ModSoundRegister;
 import com.unpainperdu.houblonneux.register.item.ModConsumeEffectTypeRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -31,6 +32,14 @@ public class GrosGueuletonBeerConsumeEffect extends AbstractBeerConsumeEffect
             GrosGueuletonBeerConsumeEffect::new
     );
 
+    public static final String BOTTLE_TOOLTIP_KEY = "item.gros_gueuleton.bottle.tooltip";
+    public static final String GLASS_TOOLTIP_KEY = "item.gros_gueuleton.glass.tooltip";
+    public static final String MUG_TOOLTIP_KEY = "item.gros_gueuleton.mug.tooltip";
+
+    public static final Component BOTTLE_TOOLTIP = Component.translatable(BOTTLE_TOOLTIP_KEY);
+    public static final Component GLASS_TOOLTIP = Component.translatable(GLASS_TOOLTIP_KEY);
+    public static final Component MUG_TOOLTIP = Component.translatable(MUG_TOOLTIP_KEY);
+
     public GrosGueuletonBeerConsumeEffect(BeerType beerType)
     {
         this.beerType = beerType;
@@ -40,12 +49,6 @@ public class GrosGueuletonBeerConsumeEffect extends AbstractBeerConsumeEffect
     public BeerType getBeerType()
     {
         return this.beerType;
-    }
-
-    @Override
-    public String getName()
-    {
-        return "gros_gueuleton";
     }
 
     @Override

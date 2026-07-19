@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "houblonneux:gros_gueuleton_bottle",
+    "houblonneux:empty_polymorphic_glass"
+  ],
+  "result": {
+    "id": "houblonneux:gros_gueuleton_glass"
+  }
+}

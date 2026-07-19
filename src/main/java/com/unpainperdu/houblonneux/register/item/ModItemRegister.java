@@ -2,8 +2,6 @@ package com.unpainperdu.houblonneux.register.item;
 
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.world.item.LockerItem;
-import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.BeerType;
-import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.item.list.ItemList;
 import net.minecraft.world.item.BlockItem;
@@ -25,9 +23,17 @@ public class ModItemRegister
     public static final DeferredItem<Item> EMPTY_POLYMORPHIC_GLASS = ITEMS.registerItem("empty_polymorphic_glass", Item::new);
     public static final DeferredItem<Item> EMPTY_POLYMORPHIC_MUG = ITEMS.registerItem("empty_polymorphic_mug", Item::new);
     //  emerald_call
-    public static final DeferredItem<Item> EMERALD_CALL_BOTTLE = registerBeerItem("emerald_call_bottle", ModItemProperties.getBeerProperties(new EmeraldCallBeerConsumeEffect(BeerType.BOTTLE)));
-    public static final DeferredItem<Item> EMERALD_CALL_GLASS = registerBeerItem("emerald_call_glass", ModItemProperties.getBeerProperties(new EmeraldCallBeerConsumeEffect(BeerType.GLASS)));
-    public static final DeferredItem<Item> EMERALD_CALL_MUG = registerBeerItem("emerald_call_mug", ModItemProperties.getBeerProperties(new EmeraldCallBeerConsumeEffect(BeerType.MUG)));
+    public static final DeferredItem<Item> EMERALD_CALL_BOTTLE = registerBeerItem("emerald_call_bottle", ModItemProperties.EMERALD_CALL_BOTTLE_PROPERTIES);
+    public static final DeferredItem<Item> EMERALD_CALL_GLASS = registerBeerItem("emerald_call_glass", ModItemProperties.EMERALD_CALL_GLASS_PROPERTIES);
+    public static final DeferredItem<Item> EMERALD_CALL_MUG = registerBeerItem("emerald_call_mug", ModItemProperties.EMERALD_CALL_MUG_PROPERTIES);
+    //  worm_hole
+    public static final DeferredItem<Item> WORM_HOLE_BOTTLE = registerBeerItem("worm_hole_bottle", ModItemProperties.WORM_HOLE_BOTTLE_PROPERTIES);
+    public static final DeferredItem<Item> WORM_HOLE_GLASS = registerBeerItem("worm_hole_glass", ModItemProperties.WORM_HOLE_GLASS_PROPERTIES);
+    public static final DeferredItem<Item> WORM_HOLE_MUG = registerBeerItem("worm_hole_mug", ModItemProperties.WORM_HOLE_MUG_PROPERTIES);
+    //  gros_gueuleton
+    public static final DeferredItem<Item> GROS_GUEULETON_BOTTLE = registerBeerItem("gros_gueuleton_bottle", ModItemProperties.GROS_GUEULETON_BOTTLE_PROPERTIES);
+    public static final DeferredItem<Item> GROS_GUEULETON_GLASS = registerBeerItem("gros_gueuleton_glass", ModItemProperties.GROS_GUEULETON_GLASS_PROPERTIES);
+    public static final DeferredItem<Item> GROS_GUEULETON_MUG = registerBeerItem("gros_gueuleton_mug", ModItemProperties.GROS_GUEULETON_MUG_PROPERTIES);
 
     public static void register(IEventBus event)
     {

@@ -15,10 +15,14 @@ public class ModDispenserTradeProvider
 {
     //for custom dispenser model, must be register in ModStandaloneModelRegister and mapped in BeerDispenserBlockEntityRenderer
     public static final ResourceKey<DispenserTrade> EMERALD_CALL = createKey("emerald_call");
+    public static final ResourceKey<DispenserTrade> WORM_HOLE = createKey("worm_hole");
+    public static final ResourceKey<DispenserTrade> GROS_GUEULETON = createKey("gros-gueuleton");
 
     public static void bootstrap(BootstrapContext<DispenserTrade> context)
     {
         registerTrade(context, EMERALD_CALL, Items.EMERALD, 5, ModItemRegister.EMERALD_CALL_BOTTLE, 1);
+        registerTrade(context, WORM_HOLE, Items.EMERALD, 8, ModItemRegister.WORM_HOLE_BOTTLE, 1);
+        registerTrade(context, GROS_GUEULETON, Items.EMERALD, 20, ModItemRegister.GROS_GUEULETON_BOTTLE, 1);
     }
 
     private static void registerTrade(BootstrapContext<DispenserTrade> context, ResourceKey<DispenserTrade> resourceKey, ItemLike costItem, int costNumber, ItemLike resultItem, int resultNumber)

@@ -34,6 +34,7 @@ public class ModItemTagProvider extends BlockTagCopyingItemTagProvider
                         ModItemRegister.HOP_FLOWER
                 )
         );
+        this.tag(Tags.Items.FOODS).addTag(ModItemTags.COASTER_POSABLE);
 
         this.addToTag(ModItemTags.COASTER_POSABLE,
                 Stream.of(
@@ -43,7 +44,15 @@ public class ModItemTagProvider extends BlockTagCopyingItemTagProvider
                         //emerald_call
                         ModItemRegister.EMERALD_CALL_BOTTLE,
                         ModItemRegister.EMERALD_CALL_MUG,
-                        ModItemRegister.EMERALD_CALL_GLASS
+                        ModItemRegister.EMERALD_CALL_GLASS,
+                        //worm_hole
+                        ModItemRegister.WORM_HOLE_BOTTLE,
+                        ModItemRegister.WORM_HOLE_MUG,
+                        ModItemRegister.WORM_HOLE_GLASS,
+                        //gros_gueuleton
+                        ModItemRegister.GROS_GUEULETON_BOTTLE,
+                        ModItemRegister.GROS_GUEULETON_MUG,
+                        ModItemRegister.GROS_GUEULETON_GLASS
                 )
         );
     }

@@ -90,11 +90,13 @@ public class RecipeProviderDispatcher extends RecipeProvider
                 .save(this.output);
         //  beer glass
         shapelessRecipe(ModItemRegister.EMERALD_CALL_GLASS, ModItemRegister.EMERALD_CALL_BOTTLE, ModItemRegister.EMPTY_POLYMORPHIC_GLASS);
+        shapelessRecipe(ModItemRegister.WORM_HOLE_GLASS, ModItemRegister.WORM_HOLE_BOTTLE, ModItemRegister.EMPTY_POLYMORPHIC_GLASS);
+        shapelessRecipe(ModItemRegister.GROS_GUEULETON_GLASS, ModItemRegister.GROS_GUEULETON_BOTTLE, ModItemRegister.EMPTY_POLYMORPHIC_GLASS);
     }
 
     /**
      *
-      * @param ingredient first one used as unlock condition
+     * @param ingredient first one used as unlock condition
      */
     private void shapelessRecipe(ItemLike result, ItemLike... ingredient)
     {
@@ -103,11 +105,11 @@ public class RecipeProviderDispatcher extends RecipeProvider
         {
             recipeBuilder.requires(item);
         }
-        ItemLike firstIngredient =  ingredient[0];
+        ItemLike firstIngredient = ingredient[0];
         System.out.println("getDescriptionId : " + firstIngredient.asItem().getDescriptionId());
         System.out.println("toString : " + firstIngredient.asItem());
         recipeBuilder.unlockedBy("has_" + StringHelper.getSimpleName(firstIngredient.asItem()), this.has(firstIngredient))
-            .save(this.output);
+                .save(this.output);
     }
 
     public static class Runner extends RecipeProvider.Runner

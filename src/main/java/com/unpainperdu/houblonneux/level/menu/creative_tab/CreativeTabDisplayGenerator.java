@@ -1,34 +1,40 @@
 package com.unpainperdu.houblonneux.level.menu.creative_tab;
 
+import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
+import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.ItemLike;
 
 import java.util.Arrays;
 import java.util.function.Supplier;
 
-import static com.unpainperdu.houblonneux.register.block.ModBlockRegister.BEER_DISPENSER;
-import static com.unpainperdu.houblonneux.register.block.ModBlockRegister.COASTER;
-import static com.unpainperdu.houblonneux.register.item.ModItemRegister.*;
-
 public class CreativeTabDisplayGenerator
 {
-    public static final CreativeModeTab.DisplayItemsGenerator MAIN_TAB= generateBasicGenerator(
+    public static final CreativeModeTab.DisplayItemsGenerator MAIN_TAB = generateBasicGenerator(
             //hop basis
-            HOP_FLOWER,
-            HOP_LUPULIN,
+            ModItemRegister.HOP_FLOWER,
+            ModItemRegister.HOP_LUPULIN,
             //utility
-            BEER_DISPENSER,
-            LOCKER,
-            COASTER,
+            ModBlockRegister.BEER_DISPENSER,
+            ModItemRegister.LOCKER,
+            ModBlockRegister.COASTER,
             //beer
             //  empty
-            EMPTY_POLYMORPHIC_BOTTLE,
-            EMPTY_POLYMORPHIC_GLASS,
-            EMPTY_POLYMORPHIC_MUG,
+            ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE,
+            ModItemRegister.EMPTY_POLYMORPHIC_GLASS,
+            ModItemRegister.EMPTY_POLYMORPHIC_MUG,
             //  emerald_call
-            EMERALD_CALL_BOTTLE,
-            EMERALD_CALL_GLASS,
-            EMERALD_CALL_MUG
+            ModItemRegister.EMERALD_CALL_BOTTLE,
+            ModItemRegister.EMERALD_CALL_GLASS,
+            ModItemRegister.EMERALD_CALL_MUG,
+            //  worm_hole
+            ModItemRegister.WORM_HOLE_BOTTLE,
+            ModItemRegister.WORM_HOLE_GLASS,
+            ModItemRegister.WORM_HOLE_MUG,
+            //  gros_gueuleton
+            ModItemRegister.GROS_GUEULETON_BOTTLE,
+            ModItemRegister.GROS_GUEULETON_GLASS,
+            ModItemRegister.GROS_GUEULETON_MUG
             //other
     );
 

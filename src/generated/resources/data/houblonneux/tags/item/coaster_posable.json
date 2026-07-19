@@ -5,6 +5,12 @@
     "houblonneux:empty_polymorphic_glass",
     "houblonneux:emerald_call_bottle",
     "houblonneux:emerald_call_mug",
-    "houblonneux:emerald_call_glass"
+    "houblonneux:emerald_call_glass",
+    "houblonneux:worm_hole_bottle",
+    "houblonneux:worm_hole_mug",
+    "houblonneux:worm_hole_glass",
+    "houblonneux:gros_gueuleton_bottle",
+    "houblonneux:gros_gueuleton_mug",
+    "houblonneux:gros_gueuleton_glass"
   ]
 }

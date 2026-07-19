@@ -1,7 +1,6 @@
 package com.unpainperdu.houblonneux.register.item;
 
-import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.AbstractBeerConsumeEffect;
-import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.BeerType;
+import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.*;
 import com.unpainperdu.houblonneux.register.ModSoundRegister;
 import com.unpainperdu.houblonneux.register.extensible_enum.ModItemUseAnimation;
 import net.minecraft.core.component.DataComponents;
@@ -23,25 +22,60 @@ public class ModItemProperties
                     .consumeSeconds(1.0F)
                     .build());
 
-    public static Item.Properties getBeerProperties(AbstractBeerConsumeEffect consumeEffect)
-    {
-        Item.Properties p = new Item.Properties();
-        BeerType beerType = consumeEffect.getBeerType();
-        switch (beerType)
-        {
-            case BOTTLE -> p.food(new FoodProperties(5, 0.6F, true))
-                    .craftRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE))
-                    .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE)));
-            case GLASS -> p.food(new FoodProperties(5, 0.75F, true))
-                    .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_GLASS)));
-            case MUG -> p.food(new FoodProperties(5, 0.9F, true))
-                    .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_MUG)));
-        }
-        return p.component(DataComponents.CONSUMABLE, getBeerConsumable(consumeEffect))
-                .component(DataComponents.LORE, new ItemLore(List.of(consumeEffect.getTooltip())));
-    }
+    //beer
+    //  emerald_call
+    public static final Item.Properties EMERALD_CALL_BOTTLE_PROPERTIES = new Item.Properties()
+            .food(new FoodProperties(5, 0.6F, true))
+            .craftRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE))
+            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE)))
+            .component(DataComponents.CONSUMABLE, getGenericBeerConsumable(new EmeraldCallBeerConsumeEffect(BeerType.BOTTLE)))
+            .component(DataComponents.LORE, new ItemLore(List.of(EmeraldCallBeerConsumeEffect.BOTTLE_TOOLTIP)));
+    public static final Item.Properties EMERALD_CALL_GLASS_PROPERTIES = new Item.Properties()
+            .food(new FoodProperties(6, 0.65F, true))
+            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_GLASS)))
+            .component(DataComponents.CONSUMABLE, getGenericBeerConsumable(new EmeraldCallBeerConsumeEffect(BeerType.GLASS)))
+            .component(DataComponents.LORE, new ItemLore(List.of(EmeraldCallBeerConsumeEffect.GLASS_TOOLTIP)));
+    public static final Item.Properties EMERALD_CALL_MUG_PROPERTIES = new Item.Properties()
+            .food(new FoodProperties(7, 0.7F, true))
+            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_MUG)))
+            .component(DataComponents.CONSUMABLE, getGenericBeerConsumable(new EmeraldCallBeerConsumeEffect(BeerType.MUG)))
+            .component(DataComponents.LORE, new ItemLore(List.of(EmeraldCallBeerConsumeEffect.MUG_TOOLTIP)));
+    //  worm_hole
+    public static final Item.Properties WORM_HOLE_BOTTLE_PROPERTIES = new Item.Properties()
+            .food(new FoodProperties(4, 0.55F, true))
+            .craftRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE))
+            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE)))
+            .component(DataComponents.CONSUMABLE, getGenericBeerConsumable(new WormHoleBeerConsumeEffect(BeerType.BOTTLE)))
+            .component(DataComponents.LORE, new ItemLore(List.of(WormHoleBeerConsumeEffect.BOTTLE_TOOLTIP)));
+    public static final Item.Properties WORM_HOLE_GLASS_PROPERTIES = new Item.Properties()
+            .food(new FoodProperties(5, 0.6F, true))
+            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_GLASS)))
+            .component(DataComponents.CONSUMABLE, getGenericBeerConsumable(new WormHoleBeerConsumeEffect(BeerType.GLASS)))
+            .component(DataComponents.LORE, new ItemLore(List.of(WormHoleBeerConsumeEffect.GLASS_TOOLTIP)));
+    public static final Item.Properties WORM_HOLE_MUG_PROPERTIES = new Item.Properties()
+            .food(new FoodProperties(6, 0.65F, true))
+            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_MUG)))
+            .component(DataComponents.CONSUMABLE, getGenericBeerConsumable(new WormHoleBeerConsumeEffect(BeerType.MUG)))
+            .component(DataComponents.LORE, new ItemLore(List.of(WormHoleBeerConsumeEffect.MUG_TOOLTIP)));
+    //  gros_gueuleton
+    public static final Item.Properties GROS_GUEULETON_BOTTLE_PROPERTIES = new Item.Properties()
+            .food(new FoodProperties(8, 0.7F, true))
+            .craftRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE))
+            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE)))
+            .component(DataComponents.CONSUMABLE, getGenericBeerConsumable(new GrosGueuletonBeerConsumeEffect(BeerType.BOTTLE)))
+            .component(DataComponents.LORE, new ItemLore(List.of(GrosGueuletonBeerConsumeEffect.BOTTLE_TOOLTIP)));
+    public static final Item.Properties GROS_GUEULETON_GLASS_PROPERTIES = new Item.Properties()
+            .food(new FoodProperties(9, 0.8F, true))
+            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_GLASS)))
+            .component(DataComponents.CONSUMABLE, getGenericBeerConsumable(new GrosGueuletonBeerConsumeEffect(BeerType.GLASS)))
+            .component(DataComponents.LORE, new ItemLore(List.of(GrosGueuletonBeerConsumeEffect.GLASS_TOOLTIP)));
+    public static final Item.Properties GROS_GUEULETON_MUG_PROPERTIES = new Item.Properties()
+            .food(new FoodProperties(10, 0.9F, true))
+            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStackTemplate(ModItemRegister.EMPTY_POLYMORPHIC_MUG)))
+            .component(DataComponents.CONSUMABLE, getGenericBeerConsumable(new GrosGueuletonBeerConsumeEffect(BeerType.MUG)))
+            .component(DataComponents.LORE, new ItemLore(List.of(GrosGueuletonBeerConsumeEffect.MUG_TOOLTIP)));
 
-    private static Consumable getBeerConsumable(AbstractBeerConsumeEffect consumeEffect)
+    private static Consumable getGenericBeerConsumable(AbstractBeerConsumeEffect consumeEffect)
     {
         return Consumable.builder()
                 .consumeSeconds(2.0F)

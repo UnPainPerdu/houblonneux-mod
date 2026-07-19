@@ -92,6 +92,14 @@ public class BeerDispenserBlockEntityRenderer implements BlockEntityRenderer<Bee
             {
                 return modelManager.getStandaloneModel(ModStandaloneModelRegister.EMERALD_CALL_BEER_DISPENSER_MODEL);
             }
+            if (trade.result().create().is(ModItemRegister.WORM_HOLE_BOTTLE.get()))
+            {
+                return modelManager.getStandaloneModel(ModStandaloneModelRegister.EMERALD_CALL_BEER_DISPENSER_MODEL); //TODO real model
+            }
+            if (trade.result().create().is(ModItemRegister.GROS_GUEULETON_BOTTLE.get()))
+            {
+                return modelManager.getStandaloneModel(ModStandaloneModelRegister.EMERALD_CALL_BEER_DISPENSER_MODEL); //TODO real model
+            }
         }
         return modelManager.getStandaloneModel(ModStandaloneModelRegister.DEFAULT_BEER_DISPENSER_MODEL);
     }
