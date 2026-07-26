@@ -172,7 +172,7 @@ public class CoasterBlockEntity extends BlockEntity implements Container
         components.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(this.getItems()));
     }
 
-    public void tryPlaceItem(Level level, ItemStack stackToPlace, int slot)
+    public void tryPlaceItem(Player player, Level level, ItemStack stackToPlace, int slot)
     {
         ItemStack stackInSlot = this.getItem(slot);
         ItemStack copyStackToPlace = stackToPlace.copy();
@@ -180,7 +180,10 @@ public class CoasterBlockEntity extends BlockEntity implements Container
         {
             copyStackToPlace.setCount(1);
             this.setItem(slot, copyStackToPlace);
-            stackToPlace.shrink(1);
+            if (!player.isCreative())
+            {
+                stackToPlace.shrink(1);
+            }
             this.markUpdated(level);
         }
     }

@@ -127,19 +127,19 @@ public class CoasterBlock extends BaseEntityBlock
                 {
                     if (isHitInOrOnShape(hitResult, state.getValue(FACING), COASTER_SHAPE_1))
                     {
-                        coasterBlockEntity.tryPlaceItem(level, itemStack, 0);
+                        coasterBlockEntity.tryPlaceItem(player, level, itemStack, 0);
                     }
                     else if (isHitInOrOnShape(hitResult, state.getValue(FACING), COASTER_SHAPE_2))
                     {
-                        coasterBlockEntity.tryPlaceItem(level, itemStack, 1);
+                        coasterBlockEntity.tryPlaceItem(player, level, itemStack, 1);
                     }
                     else if (isHitInOrOnShape(hitResult, state.getValue(FACING), COASTER_SHAPE_3))
                     {
-                        coasterBlockEntity.tryPlaceItem(level, itemStack, 2);
+                        coasterBlockEntity.tryPlaceItem(player, level, itemStack, 2);
                     }
                     else if (isHitInOrOnShape(hitResult, state.getValue(FACING), COASTER_SHAPE_4))
                     {
-                        coasterBlockEntity.tryPlaceItem(level, itemStack, 3);
+                        coasterBlockEntity.tryPlaceItem(player, level, itemStack, 3);
                     }
                 }
                 return InteractionResult.CONSUME;
