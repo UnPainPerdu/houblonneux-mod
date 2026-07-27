@@ -39,8 +39,8 @@ public class ItemModelProvider
         this.generateItemWithCustomModel(ModItemRegister.EMERALD_CALL_MUG.get(), "emerald_call_mug");
         //  emerald_call
         this.generateItemWithCustomModel(ModItemRegister.WORM_HOLE_BOTTLE.get(), "worm_hole_bottle");
-        this.generateItemWithCustomModel(ModItemRegister.WORM_HOLE_GLASS.get(), "emerald_call_glass"); //TODO real model
-        this.generateItemWithCustomModel(ModItemRegister.WORM_HOLE_MUG.get(), "emerald_call_mug"); //TODO real model
+        this.generateItemWithCustomModel(ModItemRegister.WORM_HOLE_GLASS.get(), "worm_hole_glass");
+        this.generateItemWithCustomModel(ModItemRegister.WORM_HOLE_MUG.get(), "worm_hole_mug");
         //  emerald_call
         this.generateItemWithCustomModel(ModItemRegister.GROS_GUEULETON_BOTTLE.get(), "gros_gueuleton_bottle");
         this.generateItemWithCustomModel(ModItemRegister.GROS_GUEULETON_GLASS.get(), "emerald_call_glass"); //TODO real model
