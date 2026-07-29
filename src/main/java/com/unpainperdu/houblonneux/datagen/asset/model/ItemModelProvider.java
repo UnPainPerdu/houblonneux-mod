@@ -43,8 +43,8 @@ public class ItemModelProvider
         this.generateItemWithCustomModel(ModItemRegister.WORM_HOLE_MUG.get(), "worm_hole_mug");
         //  emerald_call
         this.generateItemWithCustomModel(ModItemRegister.GROS_GUEULETON_BOTTLE.get(), "gros_gueuleton_bottle");
-        this.generateItemWithCustomModel(ModItemRegister.GROS_GUEULETON_GLASS.get(), "emerald_call_glass"); //TODO real model
-        this.generateItemWithCustomModel(ModItemRegister.GROS_GUEULETON_MUG.get(), "emerald_call_mug"); //TODO real model
+        this.generateItemWithCustomModel(ModItemRegister.GROS_GUEULETON_GLASS.get(), "gros_gueuleton_glass");
+        this.generateItemWithCustomModel(ModItemRegister.GROS_GUEULETON_MUG.get(), "gros_gueuleton_mug");
     }
 
     private void generateItemWithCustomModel(Item item, String modelLocation)
