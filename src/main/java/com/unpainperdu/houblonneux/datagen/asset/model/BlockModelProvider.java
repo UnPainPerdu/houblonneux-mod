@@ -51,7 +51,7 @@ public class BlockModelProvider
         itemModelsGenerator.itemModelOutput.accept(
                 dispenserBlock.asItem(),
                 new CuboidItemModelWrapper.Unbaked(
-                        getModelLocationWithCustomPrefix(dispenserBlock, "block_entity/default_"),
+                        getModelLocationWithCustomPrefix(dispenserBlock, "block/entity/default_"),
                         Optional.empty(),
                         Collections.emptyList()
                 )

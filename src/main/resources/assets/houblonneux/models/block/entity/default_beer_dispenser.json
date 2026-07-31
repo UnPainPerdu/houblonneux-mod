@@ -3,8 +3,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [128, 128],
 	"textures": {
-		"0": "houblonneux:block/block_entity/default_beer_dispenser",
-		"particle": "houblonneux:block/block_entity/default_beer_dispenser"
+		"0": "houblonneux:block/entity/default_beer_dispenser",
+		"particle": "houblonneux:block/entity/default_beer_dispenser"
 	},
 	"elements": [
 		{

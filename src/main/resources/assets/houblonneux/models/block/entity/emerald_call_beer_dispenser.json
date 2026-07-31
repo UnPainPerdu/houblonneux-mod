@@ -3,8 +3,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "houblonneux:block/block_entity/emerald_call_beer_dispenser",
-		"particle": "houblonneux:block/block_entity/emerald_call_beer_dispenser"
+		"0": "houblonneux:block/entity/emerald_call_beer_dispenser",
+		"particle": "houblonneux:block/entity/emerald_call_beer_dispenser"
 	},
 	"elements": [
 		{
@@ -138,7 +138,6 @@
 			}
 		}
 	],
-	"display": {},
 	"groups": [
 		{
 			"name": "main",

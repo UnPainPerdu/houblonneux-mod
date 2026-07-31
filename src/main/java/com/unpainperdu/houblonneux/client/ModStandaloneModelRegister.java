@@ -16,6 +16,7 @@ public class ModStandaloneModelRegister
     //TODO find a way to not have to register model, when done -> get model "automatically" by using trade resource key (change BE to hold key and not the trade itself)
     public static final StandaloneModelKey<BlockStateModelPart> DEFAULT_BEER_DISPENSER_MODEL = createKey("default_beer_dispenser");
     public static final StandaloneModelKey<BlockStateModelPart> EMERALD_CALL_BEER_DISPENSER_MODEL = createKey("emerald_call_beer_dispenser");
+    public static final StandaloneModelKey<BlockStateModelPart> WORM_HOLE_BEER_DISPENSER_MODEL = createKey("worm_hole_beer_dispenser");
 
     @SubscribeEvent
     public static void registerAdditional(ModelEvent.RegisterStandalone event)
@@ -23,13 +24,19 @@ public class ModStandaloneModelRegister
         event.register(
                 DEFAULT_BEER_DISPENSER_MODEL,
                 SimpleUnbakedStandaloneModel.simpleModelWrapper(
-                        Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "block_entity/default_beer_dispenser")
+                        Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "block/entity/default_beer_dispenser")
                 )
         );
         event.register(
                 EMERALD_CALL_BEER_DISPENSER_MODEL,
                 SimpleUnbakedStandaloneModel.simpleModelWrapper(
-                        Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "block_entity/emerald_call_beer_dispenser")
+                        Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "block/entity/emerald_call_beer_dispenser")
+                )
+        );
+        event.register(
+                WORM_HOLE_BEER_DISPENSER_MODEL,
+                SimpleUnbakedStandaloneModel.simpleModelWrapper(
+                        Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "block/entity/worm_hole_beer_dispenser")
                 )
         );
     }

@@ -63,7 +63,7 @@ public class BeerDispenserBlockEntityRenderer implements BlockEntityRenderer<Bee
         BlockStateModelPart model = getModelPartFromTrade(state.trade);
         submitNodeCollector.submitBlockModel(
                 poseStack,
-                RenderTypes.solidMovingBlock(),
+                RenderTypes.translucentMovingBlock(),
                 List.of(model),
                 new int[]{},
                 state.lightCoords,
@@ -94,7 +94,7 @@ public class BeerDispenserBlockEntityRenderer implements BlockEntityRenderer<Bee
             }
             if (trade.result().create().is(ModItemRegister.WORM_HOLE_BOTTLE.get()))
             {
-                return modelManager.getStandaloneModel(ModStandaloneModelRegister.EMERALD_CALL_BEER_DISPENSER_MODEL); //TODO real model
+                return modelManager.getStandaloneModel(ModStandaloneModelRegister.WORM_HOLE_BEER_DISPENSER_MODEL);
             }
             if (trade.result().create().is(ModItemRegister.GROS_GUEULETON_BOTTLE.get()))
             {
