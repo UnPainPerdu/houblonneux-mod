@@ -1,11 +1,11 @@
 package com.unpainperdu.houblonneux.level.world.effect;
 
+import com.mojang.datafixers.util.Pair;
 import com.unpainperdu.houblonneux.level.world.attachments.OriginalBlockPosAttach;
 import com.unpainperdu.houblonneux.register.ModDataAttachmentRegister;
 import com.unpainperdu.houblonneux.register.ModParticleTypeRegister;
 import com.unpainperdu.houblonneux.util.PosHelper;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.Blocks;
 public class WormHoleMobEffect extends MobEffect
 {
     private BlockPos originalUserPos;
+
     public WormHoleMobEffect(MobEffectCategory category, int color)
     {
         super(category, color);
@@ -30,11 +31,12 @@ public class WormHoleMobEffect extends MobEffect
         storeAndSaveOriginalBlockPos(entity);
         float r = entity.level().getRandom().nextFloat();
         BlockPos destinationPos;
-        if (r < 0.15F) // sky
+        Pair<Float, Float> pair = getLuckBornFromAmplifier(amplifier);
+        if (r < pair.getFirst()) // sky
         {
             destinationPos = new BlockPos(originalUserPos.getX(), 1000, originalUserPos.getZ());
         }
-        else if (r < 0.30F) // under world
+        else if (r < pair.getSecond()) // under world
         {
             destinationPos = new BlockPos(originalUserPos.getX(), -69, originalUserPos.getZ());
         }
@@ -47,10 +49,10 @@ public class WormHoleMobEffect extends MobEffect
             }
         }
         ServerLevel level = (ServerLevel) entity.level();
-        level.playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F , 0.2F);
+        level.playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F, 0.2F);
         level.sendParticles(ModParticleTypeRegister.WORM_HOLE_PORTAL.get(), entity.getX(), entity.getY() + 1.0, entity.getZ(), 1, 0, 0, 0, 0.0);
         entity.teleportTo(destinationPos.getX(), destinationPos.getY(), destinationPos.getZ());
-        level.playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F , 0.2F);
+        level.playSound(null, entity.blockPosition().getX(), entity.blockPosition().getY(), entity.blockPosition().getZ(), SoundEvents.PLAYER_TELEPORT, SoundSource.NEUTRAL, 1.0F, 0.2F);
         level.sendParticles(ModParticleTypeRegister.WORM_HOLE_PORTAL.get(), entity.getX(), entity.getY() + 1.0, entity.getZ(), 1, 0, 0, 0, 0.0);
     }
 
@@ -76,5 +78,13 @@ public class WormHoleMobEffect extends MobEffect
             }
         }
         return pos;
+    }
+
+    public Pair<Float, Float> getLuckBornFromAmplifier(int amplifier)
+    {
+        return Pair.of(
+                (float) Math.pow(0.29 * Math.E, -(-amplifier - 5)),
+                (float) Math.pow(0.50 * Math.E, -0.78 * amplifier)/2
+        );
     }
 }
