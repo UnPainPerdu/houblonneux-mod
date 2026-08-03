@@ -55,13 +55,11 @@ public class WormHoleBeerConsumeEffect extends AbstractBeerConsumeEffect
     @Override
     public boolean apply(ServerLevel level, ItemStack stack, LivingEntity user, BeerType beerType)
     {
-        Holder<MobEffect> levitation = MobEffects.LEVITATION; //TODO remove this and add following behavor in worm hole mob effect : feather falling but if user.y < 69 no gravity
         Holder<MobEffect> wormHole = ModMobEffectRegister.WORM_HOLE;
-        if (!user.hasEffect(levitation) && !user.hasEffect(wormHole))
+        if (!user.hasEffect(wormHole))
         {
             int power = this.beerType.getPowerLevel();
             double duration = 20.0 * (7.5 * power * power - 12.5 * power + 15);
-            user.addEffect(new MobEffectInstance(levitation, (int) duration, 0));
             user.addEffect(new MobEffectInstance(wormHole, (int) duration, 0));
             return true;
         }

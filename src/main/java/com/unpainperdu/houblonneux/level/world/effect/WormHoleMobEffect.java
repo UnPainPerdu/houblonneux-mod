@@ -34,11 +34,13 @@ public class WormHoleMobEffect extends MobEffect
         Pair<Float, Float> pair = getLuckBornFromAmplifier(amplifier);
         if (r < pair.getFirst()) // sky
         {
-            destinationPos = new BlockPos(originalUserPos.getX(), 1000, originalUserPos.getZ());
+            destinationPos = new BlockPos(originalUserPos.getX(), 10000, originalUserPos.getZ());
         }
         else if (r < pair.getSecond()) // under world
         {
             destinationPos = new BlockPos(originalUserPos.getX(), -69, originalUserPos.getZ());
+            entity.setNoGravity(true);
+            entity.setDeltaMovement(0, 2, 0);
         }
         else // not so far
         {
@@ -84,7 +86,7 @@ public class WormHoleMobEffect extends MobEffect
     {
         return Pair.of(
                 (float) Math.pow(0.29 * Math.E, -(-amplifier - 5)),
-                (float) Math.pow(0.50 * Math.E, -0.78 * amplifier)/2
+                (float) Math.pow(0.50 * Math.E, -0.78 * amplifier) / 2
         );
     }
 }
