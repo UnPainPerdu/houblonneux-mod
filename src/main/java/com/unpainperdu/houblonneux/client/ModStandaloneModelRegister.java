@@ -17,6 +17,7 @@ public class ModStandaloneModelRegister
     public static final StandaloneModelKey<BlockStateModelPart> DEFAULT_BEER_DISPENSER_MODEL = createKey("default_beer_dispenser");
     public static final StandaloneModelKey<BlockStateModelPart> EMERALD_CALL_BEER_DISPENSER_MODEL = createKey("emerald_call_beer_dispenser");
     public static final StandaloneModelKey<BlockStateModelPart> WORM_HOLE_BEER_DISPENSER_MODEL = createKey("worm_hole_beer_dispenser");
+    public static final StandaloneModelKey<BlockStateModelPart> GROS_GUEULETON_BEER_DISPENSER_MODEL = createKey("gros_gueuleton_beer_dispenser");
 
     @SubscribeEvent
     public static void registerAdditional(ModelEvent.RegisterStandalone event)
@@ -39,12 +40,18 @@ public class ModStandaloneModelRegister
                         Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "block/entity/worm_hole_beer_dispenser")
                 )
         );
+        event.register(
+                GROS_GUEULETON_BEER_DISPENSER_MODEL,
+                SimpleUnbakedStandaloneModel.simpleModelWrapper(
+                        Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "block/entity/gros_gueuleton_beer_dispenser")
+                )
+        );
     }
 
     private static StandaloneModelKey<BlockStateModelPart> createKey(String id)
     {
         return new StandaloneModelKey<>(
-                () -> Houblonneux.MOD_ID + id
+                () -> Houblonneux.MOD_ID + ":" + id
         );
     }
 }
