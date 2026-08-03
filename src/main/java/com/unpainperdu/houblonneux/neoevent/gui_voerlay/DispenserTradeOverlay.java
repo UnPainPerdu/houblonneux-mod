@@ -27,27 +27,30 @@ public class DispenserTradeOverlay
         {
             if (mc.hitResult instanceof BlockHitResult hit)
             {
-                BlockState state = level.getBlockState(hit.getBlockPos());
-                if (state.is(ModBlockRegister.BEER_DISPENSER))
+                if (!mc.options.hideGui)
                 {
-                    BlockEntity be = ((BeerDispenserBlock) state.getBlock()).getBlockEntity(level, hit.getBlockPos(), state);
-                    if (be instanceof BeerDispenserBlockEntity beerDispenserBE)
+                    BlockState state = level.getBlockState(hit.getBlockPos());
+                    if (state.is(ModBlockRegister.BEER_DISPENSER))
                     {
-                        DispenserTrade trade = beerDispenserBE.getTrade();
-                        if (trade != null)
+                        BlockEntity be = ((BeerDispenserBlock) state.getBlock()).getBlockEntity(level, hit.getBlockPos(), state);
+                        if (be instanceof BeerDispenserBlockEntity beerDispenserBE)
                         {
-                            ItemStack cost = trade.cost().create();
-                            ItemStack result = trade.result().create();
-                            GuiGraphicsExtractor gfx = event.getGuiGraphics();
-                            int screenWidth = mc.getWindow().getGuiScaledWidth();
-                            int screenHeight = mc.getWindow().getGuiScaledHeight();
-                            int overlayWidth = 106;
-                            int overlayHeight = 52;
-                            int x = (screenWidth - overlayWidth) / 2;
-                            int y = screenHeight - overlayHeight - 45;
-                            gfx.blit(RenderPipelines.GUI_TEXTURED, SCREEN, x, y, 0.0F, 0.0F, overlayWidth, overlayHeight, 128, 128);
-                            drawItemStack(gfx, x + 18, y + 18, cost);
-                            drawItemStack(gfx, x + 72, y + 18, result);
+                            DispenserTrade trade = beerDispenserBE.getTrade();
+                            if (trade != null)
+                            {
+                                ItemStack cost = trade.cost().create();
+                                ItemStack result = trade.result().create();
+                                GuiGraphicsExtractor gfx = event.getGuiGraphics();
+                                int screenWidth = mc.getWindow().getGuiScaledWidth();
+                                int screenHeight = mc.getWindow().getGuiScaledHeight();
+                                int overlayWidth = 106;
+                                int overlayHeight = 52;
+                                int x = (screenWidth - overlayWidth) / 2;
+                                int y = screenHeight - overlayHeight - 45;
+                                gfx.blit(RenderPipelines.GUI_TEXTURED, SCREEN, x, y, 0.0F, 0.0F, overlayWidth, overlayHeight, 128, 128);
+                                drawItemStack(gfx, x + 18, y + 18, cost);
+                                drawItemStack(gfx, x + 72, y + 18, result);
+                            }
                         }
                     }
                 }
