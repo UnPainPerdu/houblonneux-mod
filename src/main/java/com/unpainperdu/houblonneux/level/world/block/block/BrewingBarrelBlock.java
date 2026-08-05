@@ -60,24 +60,12 @@ public class BrewingBarrelBlock extends Block
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context)
     {
-        //TODO check if 2x2x2 available + handle water
         BlockPos blockpos = context.getClickedPos();
         Level level = context.getLevel();
         FluidState fluidStateDown = level.getFluidState(blockpos);
         Direction direction = context.getHorizontalDirection();
-        System.out.println(direction);
         boolean flag = fluidStateDown.getType() == Fluids.WATER;
-        if (blockpos.getY() < level.getMaxY() && getAllMultiBlockPosFromMasterPos(blockpos,direction).stream().allMatch(pos ->
-        {
-            if (level.getBlockState(pos).canBeReplaced(context))
-            {
-                System.out.println(pos + " can be replaced");
-                return true;
-            }
-            System.out.println(pos + " can NOT be replaced");
-            return false;
-        })
-        )
+        if (blockpos.getY() < level.getMaxY() && getAllMultiBlockPosFromMasterPos(blockpos, direction).stream().allMatch(pos -> level.getBlockState(pos).canBeReplaced(context)))
         {
             return this.defaultBlockState().setValue(POSITION, 0).setValue(WATERLOGGED, flag).setValue(FACING, direction);
         }
@@ -90,8 +78,15 @@ public class BrewingBarrelBlock extends Block
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity by, ItemStack itemStack)
     {
-        //TODO place 2x2x2 with water handle
-        super.setPlacedBy(level, pos, state, by, itemStack);
+        Direction direction = state.getValue(FACING);
+        List<BlockPos> poss = getAllMultiBlockPosFromMasterPos(pos, direction);
+        for (int i = 1; i < poss.size(); i++)
+        {
+            BlockPos currentPos = poss.get(i);
+            FluidState fluidStateUp = level.getFluidState(currentPos);
+            boolean flag = fluidStateUp.getType() == Fluids.WATER;
+            level.setBlock(currentPos, state.setValue(POSITION, i).setValue(WATERLOGGED, flag), 3);
+        }
     }
 
     @Override
@@ -156,7 +151,7 @@ public class BrewingBarrelBlock extends Block
     {
         DirectionalPosGetter dpg = PosHelper.getDirectionalPosGetter(direction, masterPos);
         return List.of(
-                dpg.getBlockPos(), // 0
+                dpg.getBlockPos(), // 0 (IntegerProperty POSITION)
                 dpg.getAbove().getBlockPos(), // 1
                 dpg.getRight().getBlockPos(), // 2
                 dpg.getRight().getAbove().getBlockPos(), // 3
