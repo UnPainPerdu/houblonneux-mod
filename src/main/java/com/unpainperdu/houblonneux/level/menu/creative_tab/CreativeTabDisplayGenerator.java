@@ -34,7 +34,9 @@ public class CreativeTabDisplayGenerator
             //  gros_gueuleton
             ModItemRegister.GROS_GUEULETON_BOTTLE,
             ModItemRegister.GROS_GUEULETON_GLASS,
-            ModItemRegister.GROS_GUEULETON_MUG
+            ModItemRegister.GROS_GUEULETON_MUG,
+            //brewing_barrel
+            ModBlockRegister.OAK_BREWING_BARREL
             //other
     );
 

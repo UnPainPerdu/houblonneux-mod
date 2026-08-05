@@ -4,7 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import com.unpainperdu.houblonneux.level.world.attachments.OriginalBlockPosAttach;
 import com.unpainperdu.houblonneux.register.ModDataAttachmentRegister;
 import com.unpainperdu.houblonneux.register.ModParticleTypeRegister;
-import com.unpainperdu.houblonneux.util.PosHelper;
+import com.unpainperdu.houblonneux.util.pos.PosHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;

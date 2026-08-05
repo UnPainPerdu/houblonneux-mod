@@ -3,7 +3,7 @@ package com.unpainperdu.houblonneux.level.world.item.consume_effect.beer;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.unpainperdu.houblonneux.register.item.ModConsumeEffectTypeRegister;
-import com.unpainperdu.houblonneux.util.PosHelper;
+import com.unpainperdu.houblonneux.util.pos.PosHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.RegistryFriendlyByteBuf;

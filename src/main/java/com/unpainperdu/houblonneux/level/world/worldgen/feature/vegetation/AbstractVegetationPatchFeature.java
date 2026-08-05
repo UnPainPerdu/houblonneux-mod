@@ -2,7 +2,7 @@ package com.unpainperdu.houblonneux.level.world.worldgen.feature.vegetation;
 
 import com.mojang.serialization.Codec;
 import com.unpainperdu.houblonneux.level.world.worldgen.feature.AbstractFeature;
-import com.unpainperdu.houblonneux.util.PosHelper;
+import com.unpainperdu.houblonneux.util.pos.PosHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
