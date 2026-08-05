@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -16,6 +17,8 @@ import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -24,6 +27,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.storage.loot.LootParams;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -115,6 +119,23 @@ public class BrewingBarrelBlock extends Block
         return super.updateShape(selfState, level, scheduledTickAccess, selfPos, direction, neighbourPos, neighbourState, rand);
     }
 
+    @Override
+    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player)
+    {
+        //TODO handle item save
+        //BlockEntity blockEntity = level.getBlockEntity(pos);
+        //if (blockEntity instanceof ShulkerBoxBlockEntity shulkerBoxBlockEntity) {
+            if (!level.isClientSide() && player.preventsBlockDrops() && state.getValue(POSITION) == 0) {
+                ItemStack itemStack = new ItemStack(state.getBlock());
+                ItemEntity entity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, itemStack);
+                entity.setDefaultPickUpDelay();
+                level.addFreshEntity(entity);
+            }
+        //}
+
+        return super.playerWillDestroy(level, pos, state, player);
+    }
+
     private BlockPos getMasterPos(BlockState state, BlockPos pos)
     {
         int currentPosition = state.getValue(POSITION);
@@ -172,5 +193,11 @@ public class BrewingBarrelBlock extends Block
                 dpg.getBehind().getRight().getBlockPos(), // 6
                 dpg.getBehind().getRight().getAbove().getBlockPos() // 7
         );
+    }
+
+    @Override
+    protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params)
+    {
+        return super.getDrops(state, params);
     }
 }
