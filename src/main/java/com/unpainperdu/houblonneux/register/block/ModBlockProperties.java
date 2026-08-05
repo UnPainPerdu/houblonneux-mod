@@ -29,4 +29,11 @@ public class ModBlockProperties
             .instabreak()
             .noOcclusion()
             .pushReaction(PushReaction.DESTROY);
+
+    public static final BlockBehaviour.Properties BREWING_BARREL_PROPERTIES = BlockBehaviour.Properties.of()
+            .mapColor(MapColor.WOOD)
+            .instrument(NoteBlockInstrument.BASS)
+            .strength(2.0F, 3.0F)
+            .sound(SoundType.WOOD)
+            .pushReaction(PushReaction.IGNORE);
 }

@@ -23,7 +23,7 @@ public class ModBlockRegister
     public static final DeferredBlock<HopBlock> HOP = registerBlock("hop", HopBlock::new, () -> ModBlockProperties.HOP_PROPERTIES);
     public static final DeferredBlock<BeerDispenserBlock> BEER_DISPENSER = registerBlockWithSimpleItem("beer_dispenser", BeerDispenserBlock::new, () -> ModBlockProperties.BEER_DISPENSER_PROPERTIES);
     public static final DeferredBlock<CoasterBlock> COASTER = registerBlockWithSimpleItem("coaster", CoasterBlock::new, () -> ModBlockProperties.COASTER_PROPERTIES);
-    public static final DeferredBlock<BrewingBarrelBlock> OAK_BREWING_BARREL = registerBlockWithSimpleItem("oak_brewing_barrel", BrewingBarrelBlock::new, BlockBehaviour.Properties::of);
+    public static final DeferredBlock<BrewingBarrelBlock> OAK_BREWING_BARREL = registerBlockWithSimpleItem("oak_brewing_barrel", BrewingBarrelBlock::new, () -> ModBlockProperties.BREWING_BARREL_PROPERTIES);
 
     public static <B extends Block> DeferredBlock<B> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends B> blockConstructor, Supplier<BlockBehaviour.Properties> properties)
     {
