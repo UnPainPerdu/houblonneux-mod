@@ -115,13 +115,6 @@ public class BrewingBarrelBlock extends Block
         return super.updateShape(selfState, level, scheduledTickAccess, selfPos, direction, neighbourPos, neighbourState, rand);
     }
 
-    @Override
-    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player)
-    {
-        //TODO handle player destruction here too
-        return super.playerWillDestroy(level, pos, state, player);
-    }
-
     private BlockPos getMasterPos(BlockState state, BlockPos pos)
     {
         int currentPosition = state.getValue(POSITION);

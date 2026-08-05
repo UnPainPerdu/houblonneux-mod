@@ -35,7 +35,6 @@ public class ModItemTagProvider extends BlockTagCopyingItemTagProvider
                 )
         );
         this.tag(Tags.Items.FOODS).addTag(ModItemTags.COASTER_POSABLE);
-
         this.addToTag(ModItemTags.COASTER_POSABLE,
                 Stream.of(
                         ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE,
@@ -55,6 +54,7 @@ public class ModItemTagProvider extends BlockTagCopyingItemTagProvider
                         ModItemRegister.GROS_GUEULETON_GLASS
                 )
         );
+        this.copy(ModBlockTags.BREWING_BARREL, ModItemTags.BREWING_BARREL);
     }
 
     @SafeVarargs

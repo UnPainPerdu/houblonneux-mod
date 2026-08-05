@@ -1,7 +1,9 @@
 package com.unpainperdu.houblonneux.datagen.data.tag;
 
 import com.unpainperdu.houblonneux.Houblonneux;
+import com.unpainperdu.houblonneux.level.world.block.block.BrewingBarrelBlock;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
+import com.unpainperdu.houblonneux.register.block.list.BlockList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -28,18 +30,21 @@ public class ModBlockTagProvider extends BlockTagsProvider
                         ModBlockRegister.HOP
                 )
         );
-
         this.addToTag(BlockTags.MAINTAINS_FARMLAND,
                 Stream.of(
                         ModBlockRegister.HOP
                 )
         );
-
+        this.addToTag(ModBlockTags.BREWING_BARREL,
+                BlockList.getAllBlocksFromClass(true, BrewingBarrelBlock.class).stream().map(t -> () -> t)
+        );
+        this.addToTag(BlockTags.MINEABLE_WITH_AXE,
+                BlockList.getAllBlocksFromClass(true, BrewingBarrelBlock.class).stream().map(t -> () -> t)
+        );
         this.addToTag(BlockTags.MINEABLE_WITH_PICKAXE,
                 Stream.of(
                         ModBlockRegister.BEER_DISPENSER
                 ));
-
         this.addToTag(BlockTags.NEEDS_IRON_TOOL,
                 Stream.of(
                         ModBlockRegister.BEER_DISPENSER

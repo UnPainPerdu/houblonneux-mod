@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "houblonneux:oak_brewing_barrel",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "brewing_barrel_position": "0"
+              }
+            }
+          ],
+          "name": "houblonneux:oak_brewing_barrel"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "houblonneux:blocks/oak_brewing_barrel"
+}

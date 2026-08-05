@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:empty_polymorphic_mug"
+        "recipe": "houblonneux:oak_brewing_barrel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "houblonneux:empty_polymorphic_mug"
+      "houblonneux:oak_brewing_barrel"
     ]
   }
 }

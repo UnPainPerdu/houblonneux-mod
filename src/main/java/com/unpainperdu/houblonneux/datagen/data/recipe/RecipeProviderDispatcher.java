@@ -12,6 +12,7 @@ import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 
 import java.util.concurrent.CompletableFuture;
@@ -44,6 +45,8 @@ public class RecipeProviderDispatcher extends RecipeProvider
                 .pattern("xxx")
                 .unlockedBy("has_iron", this.has(Tags.Items.INGOTS_IRON))
                 .save(this.output);
+        // brewing_barrel
+        this.brewingBarrelRecipe(ModBlockRegister.OAK_BREWING_BARREL, Blocks.OAK_PLANKS);
         //item
         this.shapeless(RecipeCategory.MISC, ModItemRegister.HOP_LUPULIN)
                 .requires(ModItemRegister.HOP_FLOWER)
@@ -82,11 +85,11 @@ public class RecipeProviderDispatcher extends RecipeProvider
         this.shaped(RecipeCategory.MISC, ModItemRegister.EMPTY_POLYMORPHIC_MUG, 5)
                 .define('x', ItemTags.PLANKS)
                 .define('y', Tags.Items.GEMS_LAPIS)
-                .define('z', Items.IRON_INGOT)
+                .define('z', Tags.Items.INGOTS_IRON)
                 .pattern("x x")
                 .pattern("zyz")
                 .pattern("xxx")
-                .unlockedBy("has_iron", this.has(Items.IRON_INGOT))
+                .unlockedBy("has_iron", this.has(Tags.Items.INGOTS_IRON))
                 .save(this.output);
         //  beer glass
         shapelessRecipe(ModItemRegister.EMERALD_CALL_GLASS, ModItemRegister.EMERALD_CALL_BOTTLE, ModItemRegister.EMPTY_POLYMORPHIC_GLASS);
@@ -106,9 +109,19 @@ public class RecipeProviderDispatcher extends RecipeProvider
             recipeBuilder.requires(item);
         }
         ItemLike firstIngredient = ingredient[0];
-        System.out.println("getDescriptionId : " + firstIngredient.asItem().getDescriptionId());
-        System.out.println("toString : " + firstIngredient.asItem());
         recipeBuilder.unlockedBy("has_" + StringHelper.getSimpleName(firstIngredient.asItem()), this.has(firstIngredient))
+                .save(this.output);
+    }
+
+    private void brewingBarrelRecipe(ItemLike barrel, ItemLike planks)
+    {
+        this.shaped(RecipeCategory.MISC, barrel, 1)
+                .define('x', planks)
+                .define('y', Tags.Items.INGOTS_IRON)
+                .pattern("xxx")
+                .pattern("y y")
+                .pattern("xxx")
+                .unlockedBy("has_iron", this.has(Tags.Items.INGOTS_IRON))
                 .save(this.output);
     }
 

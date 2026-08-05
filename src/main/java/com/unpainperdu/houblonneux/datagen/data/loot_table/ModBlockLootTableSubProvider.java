@@ -1,5 +1,6 @@
 package com.unpainperdu.houblonneux.datagen.data.loot_table;
 
+import com.unpainperdu.houblonneux.level.world.block.block.BrewingBarrelBlock;
 import com.unpainperdu.houblonneux.level.world.block.block.CoasterBlock;
 import com.unpainperdu.houblonneux.level.world.block.block.crop.HopBlock;
 import com.unpainperdu.houblonneux.level.world.block.blockstate.HopBlockstate;
@@ -46,6 +47,7 @@ public class ModBlockLootTableSubProvider extends BlockLootSubProvider
         hopDrop();
         this.add(ModBlockRegister.BEER_DISPENSER.get(), this::createDoorTable);
         this.add(ModBlockRegister.COASTER.get(), this.integerPropertySelfDrop(ModBlockRegister.COASTER.get(), CoasterBlock.COASTER_NUMBER, 1,4));
+        multiBlockDrop(ModBlockRegister.OAK_BREWING_BARREL.get(), BrewingBarrelBlock.POSITION);
     }
 
     private void hopDrop()
@@ -85,5 +87,20 @@ public class ModBlockLootTableSubProvider extends BlockLootSubProvider
                                                 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
                                                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                                                 .hasProperty(property, count)))))));
+    }
+
+    private void multiBlockDrop(Block block, IntegerProperty positonProperty)
+    {
+        LootTable.Builder lootTable = LootTable.lootTable()
+                .withPool(
+                        LootPool.lootPool()
+                                .add(LootItem.lootTableItem(block)
+                                        .when(
+                                                LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(positonProperty, 0))
+                                        )
+                                )
+                );
+        this.add(block, lootTable);
     }
 }

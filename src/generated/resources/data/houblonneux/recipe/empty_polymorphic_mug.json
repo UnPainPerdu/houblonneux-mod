@@ -4,7 +4,7 @@
   "key": {
     "x": "#minecraft:planks",
     "y": "#c:gems/lapis",
-    "z": "minecraft:iron_ingot"
+    "z": "#c:ingots/iron"
   },
   "pattern": [
     "x x",

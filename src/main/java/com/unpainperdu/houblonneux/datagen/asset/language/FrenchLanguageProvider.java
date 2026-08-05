@@ -62,5 +62,7 @@ public class FrenchLanguageProvider extends LanguageProvider
         this.add(GrosGueuletonBeerConsumeEffect.BOTTLE_TOOLTIP_KEY, "Une bière, c'est l'équivalent d'une tartine");
         this.add(GrosGueuletonBeerConsumeEffect.GLASS_TOOLTIP_KEY, "Tellement rassasié");
         this.add(GrosGueuletonBeerConsumeEffect.MUG_TOOLTIP_KEY, "Plus besoin de rien avec ça!");
+        // brewing_barrel
+        this.add(ModBlockRegister.OAK_BREWING_BARREL.get(), "Tonneau de Fermentation en chêne");
     }
 }

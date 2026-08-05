@@ -1,6 +1,7 @@
 {
   "block.container.houblonneux.beer_dispenser": "Stockage de disque",
   "block.houblonneux.hop_flower": "Fleur de Houblon",
+  "block.houblonneux.oak_brewing_barrel": "Tonneau de Fermentation en chêne",
   "effect.houblonneux.worm_hole": "Worm Hole",
   "item.emerald_call.bottle.tooltip": "Bouteille et bière verte!",
   "item.emerald_call.glass.tooltip": "Ca sent... le commerce.",
