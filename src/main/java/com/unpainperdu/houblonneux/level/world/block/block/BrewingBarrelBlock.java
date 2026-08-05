@@ -14,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -90,10 +91,28 @@ public class BrewingBarrelBlock extends Block
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState, RandomSource random)
+    protected BlockState updateShape(BlockState selfState, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos selfPos, Direction direction, BlockPos neighbourPos, BlockState neighbourState, RandomSource rand)
     {
-        //TODO handle water + world destruction
-        return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
+        if (selfState.getValue(WATERLOGGED))
+        {
+            scheduledTickAccess.createTick(selfPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        }
+        BlockPos masterPos = getMasterPos(selfState, selfPos);
+        Direction selfDirection = selfState.getValue(FACING);
+        List<BlockPos> selfPoss = getAllMultiBlockPosFromMasterPos(masterPos, selfDirection);
+        int position = selfPoss.indexOf(neighbourPos);
+        if (position != -1) //neighbor is in multiblock poss
+        {
+            if (!neighbourState.is(this))
+            {
+                return Blocks.AIR.defaultBlockState();
+            }
+            else if (position != neighbourState.getValue(POSITION))
+            {
+                return Blocks.AIR.defaultBlockState();
+            }
+        }
+        return super.updateShape(selfState, level, scheduledTickAccess, selfPos, direction, neighbourPos, neighbourState, rand);
     }
 
     @Override
