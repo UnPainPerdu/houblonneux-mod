@@ -1,3 +1,7 @@
 {
-  "parent": "houblonneux:block/brewing_barrel"
+  "parent": "houblonneux:block/brewing_barrel",
+  "textures": {
+    "material": "houblonneux:block/oak_brewing_barrel",
+    "particle": "houblonneux:block/oak_brewing_barrel"
+  }
 }

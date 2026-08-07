@@ -142,9 +142,8 @@ public class BlockModelProvider
 
     public void createBrewingBarrel(DeferredBlock<BrewingBarrelBlock> deferredBlock)
     {
-        //TODO place base model for all 2x2x2 and after looking to add a model in "front" using code in createFence(...)
         BrewingBarrelBlock block = deferredBlock.get();
-        MultiVariant base = plainVariant(ModModelTemplate.BREWING_BARREL.create(block, new TextureMapping(), this.blockModelsGenerator.modelOutput));
+        MultiVariant base = plainVariant(ModModelTemplate.BREWING_BARREL.create(block, ModTextureMapper.getBrewingStationTextureMapping(block), this.blockModelsGenerator.modelOutput));
         MultiPartGenerator modelDef = MultiPartGenerator.multiPart(block)
                 .with(condition().term(BlockStateProperties.FACING, Direction.NORTH).term(BrewingBarrelBlock.POSITION, 0), getVariantWithFacingAndPosition(base, Direction.NORTH, 0));
         modelDef = withForBrewingBarrel(modelDef, base, Direction.SOUTH, 0);
