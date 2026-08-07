@@ -63,6 +63,6 @@ public class EnglishLanguageProvider extends LanguageProvider
         this.add(GrosGueuletonBeerConsumeEffect.GLASS_TOOLTIP_KEY, "So much");
         this.add(GrosGueuletonBeerConsumeEffect.MUG_TOOLTIP_KEY, "We does not need anymore anything else !");
         // brewing_barrel
-        this.add(ModBlockRegister.OAK_BREWING_BARREL.get(), "Oak Brewing Barrel");
+        this.add(ModBlockRegister.OAK_BREWING_BARREL.asItem(), "Oak Brewing Barrel");
     }
 }

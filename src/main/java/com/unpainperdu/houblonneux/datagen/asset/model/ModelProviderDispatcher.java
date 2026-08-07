@@ -45,7 +45,6 @@ public class ModelProviderDispatcher extends ModelProvider
     private boolean blockFilter(Holder<Block> holder)
     {
         List<DeferredBlock<?>> filter = List.of(
-                ModBlockRegister.OAK_BREWING_BARREL
         );
         ResourceKey<Block> key = holder.getKey();
         if (key != null)

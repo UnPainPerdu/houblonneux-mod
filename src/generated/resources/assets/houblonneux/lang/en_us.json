@@ -1,7 +1,6 @@
 {
   "block.container.houblonneux.beer_dispenser": "Disk Storage",
   "block.houblonneux.hop_flower": "Hop Flower",
-  "block.houblonneux.oak_brewing_barrel": "Oak Brewing Barrel",
   "effect.houblonneux.worm_hole": "Worm Hole",
   "item.emerald_call.bottle.tooltip": "Green Bottle and Green Beer !",
   "item.emerald_call.glass.tooltip": "I smell... Money",
@@ -22,6 +21,7 @@
   "item.houblonneux.gros_gueuleton_mug": "Gros Gueuleton Mug",
   "item.houblonneux.hop_lupulin": "Hop Lupulin",
   "item.houblonneux.locker": "Locker",
+  "item.houblonneux.oak_brewing_barrel": "Oak Brewing Barrel",
   "item.houblonneux.worm_hole_bottle": "Worm Hole Bottle",
   "item.houblonneux.worm_hole_glass": "Worm Hole Glass",
   "item.houblonneux.worm_hole_mug": "Worm Hole Mug",
