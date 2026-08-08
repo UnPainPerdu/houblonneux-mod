@@ -2,6 +2,45 @@
   "multipart": [
     {
       "apply": {
+        "model": "houblonneux:block/oak_brewing_barrel_front",
+        "y": 180
+      },
+      "when": {
+        "brewing_barrel_position": "0",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/oak_brewing_barrel_front"
+      },
+      "when": {
+        "brewing_barrel_position": "0",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/oak_brewing_barrel_front",
+        "y": 270
+      },
+      "when": {
+        "brewing_barrel_position": "0",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/oak_brewing_barrel_front",
+        "y": 90
+      },
+      "when": {
+        "brewing_barrel_position": "0",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
         "model": "houblonneux:block/oak_brewing_barrel",
         "y": 180
       },

@@ -16,6 +16,7 @@ public class ModModelTemplate
     public static final ModelTemplate COASTER_3 = create("coaster_3");
     public static final ModelTemplate COASTER_4 = create("coaster_4");
     public static final ModelTemplate BREWING_BARREL = create("brewing_barrel", TextureSlot.PARTICLE, ModTextureSlot.MATERIAL);
+    public static final ModelTemplate BREWING_BARREL_FRONT = create("brewing_barrel_front");
 
     public static ModelTemplate create(TextureSlot... slots)
     {

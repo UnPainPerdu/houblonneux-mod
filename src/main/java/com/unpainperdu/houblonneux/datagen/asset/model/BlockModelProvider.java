@@ -143,8 +143,15 @@ public class BlockModelProvider
     public void createBrewingBarrel(BrewingBarrelBlock block, Block texture)
     {
         MultiVariant base = plainVariant(ModModelTemplate.BREWING_BARREL.create(block, ModTextureMapper.getBrewingStationTextureMapping(texture), this.blockModelsGenerator.modelOutput));
+        MultiVariant front = plainVariant(ModModelTemplate.BREWING_BARREL_FRONT.createWithSuffix(block, "_front", new TextureMapping(), this.blockModelsGenerator.modelOutput));
         MultiPartGenerator modelDef = MultiPartGenerator.multiPart(block)
-                .with(condition().term(BlockStateProperties.FACING, Direction.NORTH).term(BrewingBarrelBlock.POSITION, 0), getVariantWithFacingAndPosition(base, Direction.NORTH, 0));
+                //front
+                .with(condition().term(BlockStateProperties.FACING, Direction.NORTH).term(BrewingBarrelBlock.POSITION, 0), front.with(Y_ROT_180))
+                .with(condition().term(BlockStateProperties.FACING, Direction.SOUTH).term(BrewingBarrelBlock.POSITION, 0), front)
+                .with(condition().term(BlockStateProperties.FACING, Direction.EAST).term(BrewingBarrelBlock.POSITION, 0), front.with(Y_ROT_270))
+                .with(condition().term(BlockStateProperties.FACING, Direction.WEST).term(BrewingBarrelBlock.POSITION, 0), front.with(Y_ROT_90));
+        //base
+        modelDef = withForBrewingBarrel(modelDef, base, Direction.NORTH, 0);
         modelDef = withForBrewingBarrel(modelDef, base, Direction.SOUTH, 0);
         modelDef = withForBrewingBarrel(modelDef, base, Direction.EAST, 0);
         modelDef = withForBrewingBarrel(modelDef, base, Direction.WEST, 0);
