@@ -50,7 +50,7 @@ public class BlockModelProvider
     public void generateModel()
     {
         createHopBlock();
-        createBrewingBarrel(ModBlockRegister.OAK_BREWING_BARREL);
+        createBrewingBarrel(ModBlockRegister.OAK_BREWING_BARREL.get(), Blocks.OAK_PLANKS);
         //beer dispenser
         Block dispenserBlock = ModBlockRegister.BEER_DISPENSER.get();
         MultiVariant beerDispenserLower = plainVariant(this.blockModelsGenerator.createSuffixedVariant(dispenserBlock, "_lower", ModModelTemplate.EMPTY_WITH_PARTICLE, _ -> new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.IRON_BLOCK))));
@@ -140,10 +140,9 @@ public class BlockModelProvider
                         ));
     }
 
-    public void createBrewingBarrel(DeferredBlock<BrewingBarrelBlock> deferredBlock)
+    public void createBrewingBarrel(BrewingBarrelBlock block, Block texture)
     {
-        BrewingBarrelBlock block = deferredBlock.get();
-        MultiVariant base = plainVariant(ModModelTemplate.BREWING_BARREL.create(block, ModTextureMapper.getBrewingStationTextureMapping(block), this.blockModelsGenerator.modelOutput));
+        MultiVariant base = plainVariant(ModModelTemplate.BREWING_BARREL.create(block, ModTextureMapper.getBrewingStationTextureMapping(texture), this.blockModelsGenerator.modelOutput));
         MultiPartGenerator modelDef = MultiPartGenerator.multiPart(block)
                 .with(condition().term(BlockStateProperties.FACING, Direction.NORTH).term(BrewingBarrelBlock.POSITION, 0), getVariantWithFacingAndPosition(base, Direction.NORTH, 0));
         modelDef = withForBrewingBarrel(modelDef, base, Direction.SOUTH, 0);
