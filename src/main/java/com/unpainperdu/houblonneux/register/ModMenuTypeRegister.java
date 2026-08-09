@@ -2,6 +2,7 @@ package com.unpainperdu.houblonneux.register;
 
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.menu.block.entity.BeerDispenserMenu;
+import com.unpainperdu.houblonneux.level.menu.block.entity.BrewingBarrelMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
@@ -14,6 +15,7 @@ public class ModMenuTypeRegister
     public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(Registries.MENU, Houblonneux.MOD_ID);
 
     public static final DeferredHolder<MenuType<?>, MenuType<BeerDispenserMenu>> BEER_DISPENSER = MENU_TYPES.register("beer_dispenser", () -> new MenuType<>(BeerDispenserMenu::new, FeatureFlags.DEFAULT_FLAGS));
+    public static final DeferredHolder<MenuType<?>, MenuType<BrewingBarrelMenu>> BREWING_BARREL = MENU_TYPES.register("brewing_barrel", () -> new MenuType<>(BrewingBarrelMenu::new, FeatureFlags.DEFAULT_FLAGS));
 
     public static void register(IEventBus event)
     {

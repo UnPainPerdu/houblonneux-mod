@@ -1,11 +1,17 @@
 package com.unpainperdu.houblonneux.level.world.block.block;
 
+import com.mojang.serialization.MapCodec;
 import com.unpainperdu.houblonneux.level.world.block.blockstate.ModBlockStateProperties;
+import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
+import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEntity;
 import com.unpainperdu.houblonneux.util.pos.DirectionalPosGetter;
 import com.unpainperdu.houblonneux.util.pos.PosHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -14,29 +20,25 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
-public class BrewingBarrelBlock extends Block
+public class BrewingBarrelBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 {
     public static final IntegerProperty POSITION = ModBlockStateProperties.BREWING_BARREL_POSITION;
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final MapCodec<BrewingBarrelBlock> CODEC = simpleCodec(BrewingBarrelBlock::new);
 
     public BrewingBarrelBlock(Properties properties)
     {
@@ -48,6 +50,12 @@ public class BrewingBarrelBlock extends Block
                         .setValue(POSITION, 0)
                         .setValue(WATERLOGGED, false)
         );
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec()
+    {
+        return CODEC;
     }
 
     @Override
@@ -125,17 +133,21 @@ public class BrewingBarrelBlock extends Block
         //TODO handle item save
         //BlockEntity blockEntity = level.getBlockEntity(pos);
         //if (blockEntity instanceof ShulkerBoxBlockEntity shulkerBoxBlockEntity) {
-            if (!level.isClientSide() && player.preventsBlockDrops() && state.getValue(POSITION) == 0) {
-                ItemStack itemStack = new ItemStack(state.getBlock());
-                ItemEntity entity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, itemStack);
-                entity.setDefaultPickUpDelay();
-                level.addFreshEntity(entity);
-            }
+        if (!level.isClientSide() && player.preventsBlockDrops() && state.getValue(POSITION) == 0)
+        {
+            ItemStack itemStack = new ItemStack(state.getBlock());
+            ItemEntity entity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, itemStack);
+            entity.setDefaultPickUpDelay();
+            level.addFreshEntity(entity);
+        }
         //}
 
         return super.playerWillDestroy(level, pos, state, player);
     }
 
+    /**
+     * @return master pos, the one with blockstate POSITION = 0
+     */
     private BlockPos getMasterPos(BlockState state, BlockPos pos)
     {
         int currentPosition = state.getValue(POSITION);
@@ -199,5 +211,34 @@ public class BrewingBarrelBlock extends Block
     protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params)
     {
         return super.getDrops(state, params);
+    }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos worldPosition, BlockState blockState)
+    {
+        if (blockState.getValue(POSITION) == 0)
+        {
+            return new BrewingBarrelBlockEntity(worldPosition, blockState);
+        }
+        return null;
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult)
+    {
+        if (!level.isClientSide() && player instanceof ServerPlayer)
+        {
+            BlockEntity blockEntity = this.getBlockEntity(level, pos, state);
+            if (blockEntity instanceof BrewingBarrelBlockEntity)
+            {
+                player.openMenu((MenuProvider) blockEntity);
+            }
+        }
+        return InteractionResult.SUCCESS;
+    }
+
+    public @Nullable BlockEntity getBlockEntity(Level level, BlockPos pos, BlockState state)
+    {
+        return level.getBlockEntity(getMasterPos(state, pos));
     }
 }

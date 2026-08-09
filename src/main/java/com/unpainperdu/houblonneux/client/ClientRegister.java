@@ -5,6 +5,7 @@ import com.unpainperdu.houblonneux.client.particle.WormHoleParticle;
 import com.unpainperdu.houblonneux.client.render.BeerDispenserBlockEntityRenderer;
 import com.unpainperdu.houblonneux.client.render.CoasterBlockEntityRenderer;
 import com.unpainperdu.houblonneux.client.screen.BeerDispenserScreen;
+import com.unpainperdu.houblonneux.client.screen.BrewingBarrelScreen;
 import com.unpainperdu.houblonneux.register.ModMenuTypeRegister;
 import com.unpainperdu.houblonneux.register.ModParticleTypeRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
@@ -22,6 +23,7 @@ public class ClientRegister
     private static void registerMenuScreens(RegisterMenuScreensEvent event)
     {
         event.register(ModMenuTypeRegister.BEER_DISPENSER.get(), BeerDispenserScreen::new);
+        event.register(ModMenuTypeRegister.BREWING_BARREL.get(), BrewingBarrelScreen::new);
     }
 
     @SubscribeEvent
