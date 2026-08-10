@@ -4,8 +4,14 @@ import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.menu.block.entity.BrewingBarrelMenu;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.ContainerHelper;
@@ -22,6 +28,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
+import org.jspecify.annotations.Nullable;
 
 public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity
 {
@@ -123,5 +130,33 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity
     public void setFluidStack(FluidStack fluidStack)
     {
         this.fluidStacksResourceHandler.set(0, FluidResource.of(fluidStack), fluidStack.getAmount());
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries)
+    {
+        return saveWithoutMetadata(registries);
+    }
+
+    @Override
+    public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer)
+    {
+        buffer.writeBlockPos(this.getBlockPos());
+    }
+
+    @Override
+    public @Nullable Packet<ClientGamePacketListener> getUpdatePacket()
+    {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public void setChanged()
+    {
+        if (level instanceof ServerLevel serverLevel)
+        {
+            serverLevel.getChunkSource().blockChanged(getBlockPos());
+        }
+        super.setChanged();
     }
 }

@@ -4,38 +4,39 @@ import com.unpainperdu.houblonneux.level.menu.slot.WaterInputSlot;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
 import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEntity;
 import com.unpainperdu.houblonneux.register.ModMenuTypeRegister;
-import net.minecraft.world.Container;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 public class BrewingBarrelMenu extends AbstractContainerMenu
 {
-    private final Container container;
+    private final BrewingBarrelBlockEntity brewingBarrelBlockEntity;
 
-    public BrewingBarrelMenu(int containerId, Inventory inventory)
+    public BrewingBarrelMenu(int containerId, Inventory inventory, RegistryFriendlyByteBuf data)
     {
-        this(containerId, inventory, new SimpleContainer(17));
+        this(containerId, inventory, (BrewingBarrelBlockEntity) inventory.player.level().getBlockEntity(data.readBlockPos()));
     }
 
-    public BrewingBarrelMenu(int containerId, Inventory inventory, Container container)
+    public BrewingBarrelMenu(int containerId, Inventory inventory, BrewingBarrelBlockEntity brewingBarrelBlockEntity)
     {
         super(ModMenuTypeRegister.BREWING_BARREL.get(), containerId);
 
-        checkContainerSize(container, BeerDispenserBlockEntity.CONTAINER_SIZE);
-        this.container = container;
-        this.container.startOpen(inventory.player);
+        checkContainerSize(brewingBarrelBlockEntity, BeerDispenserBlockEntity.CONTAINER_SIZE);
+        this.brewingBarrelBlockEntity = brewingBarrelBlockEntity;
+        this.brewingBarrelBlockEntity.startOpen(inventory.player);
 
-        this.addSlot(new WaterInputSlot(this.container, BrewingBarrelBlockEntity.WATER_INPUT_SLOT, 52, 21));
+        this.addSlot(new WaterInputSlot(this.brewingBarrelBlockEntity, BrewingBarrelBlockEntity.WATER_INPUT_SLOT, 52, 21));
 
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 4; j++)
             {
-                this.addSlot(new Slot(this.container, 1 + (j + (i * 4)), 98 + (j * 18), 18 + (i * 18)));
+                this.addSlot(new Slot(this.brewingBarrelBlockEntity, 1 + (j + (i * 4)), 98 + (j * 18), 18 + (i * 18)));
             }
         }
 
@@ -79,6 +80,15 @@ public class BrewingBarrelMenu extends AbstractContainerMenu
     @Override
     public boolean stillValid(Player player)
     {
-        return this.container.stillValid(player);
+        return this.brewingBarrelBlockEntity.stillValid(player);
+    }
+
+    public FluidStack getFluidStack()
+    {
+        if (this.brewingBarrelBlockEntity != null)
+        {
+            return this.brewingBarrelBlockEntity.getFluidStack();
+        }
+        return FluidStack.EMPTY;
     }
 }
