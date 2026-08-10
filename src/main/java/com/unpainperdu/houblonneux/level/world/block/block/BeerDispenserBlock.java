@@ -285,6 +285,4 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
         }
         return super.getTicker(level, blockState, type);
     }
-
-
 }

@@ -4,10 +4,12 @@ import com.mojang.serialization.MapCodec;
 import com.unpainperdu.houblonneux.level.world.block.blockstate.ModBlockStateProperties;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
 import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEntity;
+import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
 import com.unpainperdu.houblonneux.util.pos.DirectionalPosGetter;
 import com.unpainperdu.houblonneux.util.pos.PosHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
@@ -22,9 +24,14 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.LootParams;
@@ -240,5 +247,15 @@ public class BrewingBarrelBlock extends BaseEntityBlock implements SimpleWaterlo
     public @Nullable BlockEntity getBlockEntity(Level level, BlockPos pos, BlockState state)
     {
         return level.getBlockEntity(getMasterPos(state, pos));
+    }
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> type)
+    {
+        if (!level.isClientSide())
+        {
+            return createTickerHelper(type, ModBlockEntityRegister.BREWING_BARREL.get(), (serverLevel, pos, state, blockEntity) -> BrewingBarrelBlockEntity.tick((ServerLevel) serverLevel, pos, state, blockEntity));
+        }
+        return super.getTicker(level, blockState, type);
     }
 }

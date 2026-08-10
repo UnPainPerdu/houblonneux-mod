@@ -2,6 +2,7 @@ package com.unpainperdu.houblonneux.datagen.asset.language;
 
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
+import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEntity;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.GrosGueuletonBeerConsumeEffect;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.WormHoleBeerConsumeEffect;
@@ -25,6 +26,7 @@ public class EnglishLanguageProvider extends LanguageProvider
         CommonLanguageHelper clp = new CommonLanguageHelper(this);
         //menu
         this.add(BeerDispenserBlockEntity.TITLE_KEY, "Disk Storage");
+        this.add(BrewingBarrelBlockEntity.TITLE_KEY, "Brewing Barrel");
         //creative tabs
         this.add(ModCreativeTabRegister.MAIN_TAB_TRANSLATION_KEY, "Houblonneux");
         // mob effect

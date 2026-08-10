@@ -1,6 +1,7 @@
 {
   "block.container.houblonneux.beer_dispenser": "Stockage de disque",
   "block.houblonneux.hop_flower": "Fleur de Houblon",
+  "container.houblonneux.brewing_barrel": "Tonneau de fermentation",
   "effect.houblonneux.worm_hole": "Worm Hole",
   "item.emerald_call.bottle.tooltip": "Bouteille et bière verte!",
   "item.emerald_call.glass.tooltip": "Ca sent... le commerce.",
@@ -21,7 +22,7 @@
   "item.houblonneux.gros_gueuleton_mug": "Chope de Gros Gueuleton",
   "item.houblonneux.hop_lupulin": "Lupuline de Houblon",
   "item.houblonneux.locker": "Verrouilleur",
-  "item.houblonneux.oak_brewing_barrel": "Tonneau de Fermentation en chêne",
+  "item.houblonneux.oak_brewing_barrel": "Tonneau de fermentation en chêne",
   "item.houblonneux.worm_hole_bottle": "Bouteille de Worm Hole",
   "item.houblonneux.worm_hole_glass": "Verre de Worm Hole",
   "item.houblonneux.worm_hole_mug": "Chope de Worm Hole",
