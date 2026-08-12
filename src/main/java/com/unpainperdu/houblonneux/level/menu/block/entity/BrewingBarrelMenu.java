@@ -1,11 +1,11 @@
 package com.unpainperdu.houblonneux.level.menu.block.entity;
 
+import com.unpainperdu.houblonneux.client.screen.BrewingBarrelScreen;
 import com.unpainperdu.houblonneux.level.menu.slot.WaterInputSlot;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
 import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEntity;
 import com.unpainperdu.houblonneux.register.ModMenuTypeRegister;
 import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -90,5 +90,15 @@ public class BrewingBarrelMenu extends AbstractContainerMenu
             return this.brewingBarrelBlockEntity.getFluidStack();
         }
         return FluidStack.EMPTY;
+    }
+
+    @Override
+    public boolean clickMenuButton(Player player, int buttonId)
+    {
+        if (buttonId == BrewingBarrelScreen.TRASH_BUTTON_ID)
+        {
+            return this.brewingBarrelBlockEntity.handleTrashButtonClicked(player);
+        }
+        return super.clickMenuButton(player, buttonId);
     }
 }

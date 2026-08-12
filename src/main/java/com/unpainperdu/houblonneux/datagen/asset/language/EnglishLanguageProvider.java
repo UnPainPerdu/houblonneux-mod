@@ -1,6 +1,8 @@
 package com.unpainperdu.houblonneux.datagen.asset.language;
 
 import com.unpainperdu.houblonneux.Houblonneux;
+import com.unpainperdu.houblonneux.client.screen.BrewingBarrelScreen;
+import com.unpainperdu.houblonneux.client.screen.util.FluidTankRenderer;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
 import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEntity;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
@@ -27,6 +29,11 @@ public class EnglishLanguageProvider extends LanguageProvider
         //menu
         this.add(BeerDispenserBlockEntity.TITLE_KEY, "Disk Storage");
         this.add(BrewingBarrelBlockEntity.TITLE_KEY, "Brewing Barrel");
+        //tooltip
+        this.add(FluidTankRenderer.AMOUNT, "%s mB");
+        this.add(FluidTankRenderer.AMOUNT_AND_CAPACITY, "%s / %s mB");
+        //  menu
+        this.add(BrewingBarrelScreen.TRASH, "Delete liquid Stored ?");
         //creative tabs
         this.add(ModCreativeTabRegister.MAIN_TAB_TRANSLATION_KEY, "Houblonneux");
         // mob effect

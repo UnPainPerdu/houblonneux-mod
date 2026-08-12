@@ -13,12 +13,16 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
@@ -158,5 +162,24 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity
             serverLevel.getChunkSource().blockChanged(getBlockPos());
         }
         super.setChanged();
+    }
+
+    public boolean handleTrashButtonClicked(Player player)
+    {
+        boolean isUsed = false;
+        Level level = this.getLevel();
+        if (level != null)
+        {
+            if (!this.getFluidStack().isEmpty())
+            {
+                this.setFluidStack(new FluidStack(Fluids.EMPTY, 0));
+                isUsed = true;
+            }
+            if (level.isClientSide())
+            {
+                level.playSound(player, this.getBlockPos(), SoundEvents.UI_BUTTON_CLICK.value(), SoundSource.BLOCKS, 0.5F, 1.0F);
+            }
+        }
+        return isUsed;
     }
 }

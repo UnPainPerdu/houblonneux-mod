@@ -1,6 +1,7 @@
 package com.unpainperdu.houblonneux.datagen.asset.language;
 
 import com.unpainperdu.houblonneux.Houblonneux;
+import com.unpainperdu.houblonneux.client.screen.BrewingBarrelScreen;
 import com.unpainperdu.houblonneux.client.screen.util.FluidTankRenderer;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
 import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEntity;
@@ -29,8 +30,8 @@ public class FrenchLanguageProvider extends LanguageProvider
         this.add(BeerDispenserBlockEntity.TITLE_KEY, "Stockage de disque");
         this.add(BrewingBarrelBlockEntity.TITLE_KEY, "Tonneau de fermentation");
         //tooltip
-        this.add(FluidTankRenderer.AMOUNT, "%s mB");
-        this.add(FluidTankRenderer.AMOUNT_AND_CAPACITY, "%s / %s mB");
+        //  menu
+        this.add(BrewingBarrelScreen.TRASH, "Supprimer le liquide contenu?");
         //creative tabs
         this.add(ModCreativeTabRegister.MAIN_TAB_TRANSLATION_KEY, "Houblonneux");
         // mob effect
