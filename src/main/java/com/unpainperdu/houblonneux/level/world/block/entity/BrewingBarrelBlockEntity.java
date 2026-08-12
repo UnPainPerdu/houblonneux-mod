@@ -4,6 +4,7 @@ import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.menu.block.entity.BrewingBarrelMenu;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -17,6 +18,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -34,7 +36,9 @@ import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import org.jspecify.annotations.Nullable;
 
-public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity
+import java.util.Arrays;
+
+public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer
 {
     public static final int WATER_INPUT_SLOT = 0;
     public static final int[] SLOTS_FOR_INGREDIENT = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
@@ -181,5 +185,36 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity
             }
         }
         return isUsed;
+    }
+
+    @Override
+    public int[] getSlotsForFace(Direction direction)
+    {
+        if (direction == Direction.UP || direction == Direction.DOWN)
+        {
+            return new int[]{WATER_INPUT_SLOT};
+        }
+        return SLOTS_FOR_INGREDIENT;
+    }
+
+    @Override
+    public boolean canPlaceItemThroughFace(int slot, ItemStack itemStack, @Nullable Direction direction)
+    {
+        return this.canPlaceItem(slot, itemStack);
+    }
+
+    @Override
+    public boolean canTakeItemThroughFace(int slot, ItemStack itemStack, Direction direction)
+    {
+        return (slot == WATER_INPUT_SLOT && itemStack.is(Items.BUCKET));
+    }
+
+    @Override
+    public boolean canPlaceItem(int slot, ItemStack itemStack)
+    {
+        return (
+                slot == WATER_INPUT_SLOT && itemStack.is(Items.WATER_BUCKET)
+                || Arrays.stream(SLOTS_FOR_INGREDIENT).anyMatch(x -> x == slot)
+        );
     }
 }

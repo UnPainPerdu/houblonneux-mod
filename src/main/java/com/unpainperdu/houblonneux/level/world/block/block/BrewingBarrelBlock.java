@@ -2,7 +2,6 @@ package com.unpainperdu.houblonneux.level.world.block.block;
 
 import com.mojang.serialization.MapCodec;
 import com.unpainperdu.houblonneux.level.world.block.blockstate.ModBlockStateProperties;
-import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
 import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEntity;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
 import com.unpainperdu.houblonneux.util.pos.DirectionalPosGetter;
@@ -14,12 +13,15 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.WorldlyContainerHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.*;
@@ -40,7 +42,7 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
-public class BrewingBarrelBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
+public class BrewingBarrelBlock extends BaseEntityBlock implements SimpleWaterloggedBlock, WorldlyContainerHolder
 {
     public static final IntegerProperty POSITION = ModBlockStateProperties.BREWING_BARREL_POSITION;
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
@@ -231,6 +233,13 @@ public class BrewingBarrelBlock extends BaseEntityBlock implements SimpleWaterlo
     }
 
     @Override
+    protected @Nullable MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos)
+    {
+        BlockEntity blockEntity = this.getBlockEntity(level, pos, state);
+        return blockEntity instanceof MenuProvider ? (MenuProvider)blockEntity : null;
+    }
+
+    @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult)
     {
         if (!level.isClientSide() && player instanceof ServerPlayer)
@@ -244,7 +253,7 @@ public class BrewingBarrelBlock extends BaseEntityBlock implements SimpleWaterlo
         return InteractionResult.SUCCESS;
     }
 
-    public @Nullable BlockEntity getBlockEntity(Level level, BlockPos pos, BlockState state)
+    public @Nullable BlockEntity getBlockEntity(LevelAccessor level, BlockPos pos, BlockState state)
     {
         return level.getBlockEntity(getMasterPos(state, pos));
     }
@@ -257,5 +266,11 @@ public class BrewingBarrelBlock extends BaseEntityBlock implements SimpleWaterlo
             return createTickerHelper(type, ModBlockEntityRegister.BREWING_BARREL.get(), (serverLevel, pos, state, blockEntity) -> BrewingBarrelBlockEntity.tick((ServerLevel) serverLevel, pos, state, blockEntity));
         }
         return super.getTicker(level, blockState, type);
+    }
+
+    @Override
+    public WorldlyContainer getContainer(BlockState state, LevelAccessor level, BlockPos pos)
+    {
+        return (WorldlyContainer) this.getBlockEntity(level, pos, state);
     }
 }
