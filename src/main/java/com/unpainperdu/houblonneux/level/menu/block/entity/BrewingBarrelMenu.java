@@ -11,6 +11,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.GameType;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 public class BrewingBarrelMenu extends AbstractContainerMenu
@@ -95,7 +96,7 @@ public class BrewingBarrelMenu extends AbstractContainerMenu
     @Override
     public boolean clickMenuButton(Player player, int buttonId)
     {
-        if (buttonId == BrewingBarrelScreen.TRASH_BUTTON_ID)
+        if (buttonId == BrewingBarrelScreen.TRASH_BUTTON_ID && player.gameMode() !=  GameType.SPECTATOR)
         {
             return this.brewingBarrelBlockEntity.handleTrashButtonClicked(player);
         }
