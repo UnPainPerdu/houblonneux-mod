@@ -8,6 +8,7 @@ import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEn
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.GrosGueuletonBeerConsumeEffect;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.WormHoleBeerConsumeEffect;
+import com.unpainperdu.houblonneux.neoevent.ModItemToolTipEvent;
 import com.unpainperdu.houblonneux.register.ModCreativeTabRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.entity.effect.ModMobEffectRegister;
@@ -32,6 +33,7 @@ public class EnglishLanguageProvider extends LanguageProvider
         //tooltip
         this.add(FluidTankRenderer.AMOUNT, "%s mB");
         this.add(FluidTankRenderer.AMOUNT_AND_CAPACITY, "%s / %s mB");
+        this.add(ModItemToolTipEvent.ITEM_FLUIDSTACK_TOOLTIP, "%s mB of %s");
         //  menu
         this.add(BrewingBarrelScreen.TRASH, "Delete liquid Stored ?");
         //creative tabs

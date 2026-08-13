@@ -6,6 +6,7 @@
   "houblonneux.tooltip.container.trash_button": "Delete liquid Stored ?",
   "houblonneux.tooltip.liquid.amount": "%s mB",
   "houblonneux.tooltip.liquid.amount.with.capacity": "%s / %s mB",
+  "houblonneuxitem.fluidstack.tooltip": "%s mB of %s",
   "item.emerald_call.bottle.tooltip": "Green Bottle and Green Beer !",
   "item.emerald_call.glass.tooltip": "I smell... Money",
   "item.emerald_call.mug.tooltip": "Good Deals in sight",

@@ -8,6 +8,7 @@ import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEn
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.GrosGueuletonBeerConsumeEffect;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.WormHoleBeerConsumeEffect;
+import com.unpainperdu.houblonneux.neoevent.ModItemToolTipEvent;
 import com.unpainperdu.houblonneux.register.ModCreativeTabRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.entity.effect.ModMobEffectRegister;
@@ -30,6 +31,7 @@ public class FrenchLanguageProvider extends LanguageProvider
         this.add(BeerDispenserBlockEntity.TITLE_KEY, "Stockage de disque");
         this.add(BrewingBarrelBlockEntity.TITLE_KEY, "Tonneau de fermentation");
         //tooltip
+        this.add(ModItemToolTipEvent.ITEM_FLUIDSTACK_TOOLTIP, "%s mB de %s");
         //  menu
         this.add(BrewingBarrelScreen.TRASH, "Supprimer le liquide contenu?");
         //creative tabs
