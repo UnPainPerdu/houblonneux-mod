@@ -2,7 +2,6 @@ package com.unpainperdu.houblonneux.level.world.block.entity;
 
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.menu.block.entity.BrewingBarrelMenu;
-import com.unpainperdu.houblonneux.level.world.component.FluidStackDataComponent;
 import com.unpainperdu.houblonneux.register.ModDataComponentRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
 import net.minecraft.core.BlockPos;
@@ -36,6 +35,7 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.SimpleFluidContent;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import org.jspecify.annotations.Nullable;
@@ -226,8 +226,8 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
     protected void applyImplicitComponents(DataComponentGetter components)
     {
         super.applyImplicitComponents(components);
-        FluidStackDataComponent fluidStackDataComponent = components.getOrDefault(ModDataComponentRegister.FLUIDSTACK.get(), new FluidStackDataComponent(FluidStack.EMPTY));
-        FluidStack fluidStack = fluidStackDataComponent.fluidStack();
+        SimpleFluidContent fluidStackDataComponent = components.getOrDefault(ModDataComponentRegister.FLUIDSTACK.get(), SimpleFluidContent.EMPTY);
+        FluidStack fluidStack = fluidStackDataComponent.copy();
         if (!fluidStack.isEmpty())
         {
             this.setFluidStack(fluidStack);
@@ -241,7 +241,7 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
         FluidStack fluidStack = this.getFluidStack();
         if (!fluidStack.isEmpty())
         {
-            components.set(ModDataComponentRegister.FLUIDSTACK.get(), new FluidStackDataComponent(fluidStack));
+            components.set(ModDataComponentRegister.FLUIDSTACK.get(), SimpleFluidContent.copyOf(fluidStack));
         }
     }
 
