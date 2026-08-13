@@ -95,4 +95,10 @@ public class ModItemProperties
                 .onConsume(consumeEffect)
                 .build();
     }
+
+    public static class ModBlockItemProperties
+    {
+        public static final Item.Properties BREWING_BARREL_PROPERTIES = new Item.Properties()
+                .stacksTo(1);
+    }
 }
