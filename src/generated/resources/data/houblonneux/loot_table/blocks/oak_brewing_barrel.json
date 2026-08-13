@@ -15,6 +15,18 @@
               }
             }
           ],
+          "functions": [
+            {
+              "function": "minecraft:copy_components",
+              "include": [
+                "minecraft:custom_name",
+                "minecraft:container",
+                "minecraft:lock",
+                "houblonneux:fluidstack"
+              ],
+              "source": "block_entity"
+            }
+          ],
           "name": "houblonneux:oak_brewing_barrel"
         }
       ],

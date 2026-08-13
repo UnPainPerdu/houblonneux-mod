@@ -36,7 +36,6 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jspecify.annotations.Nullable;
 
@@ -139,18 +138,21 @@ public class BrewingBarrelBlock extends BaseEntityBlock implements SimpleWaterlo
     @Override
     public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player)
     {
-        //TODO handle item save
-        //BlockEntity blockEntity = level.getBlockEntity(pos);
-        //if (blockEntity instanceof ShulkerBoxBlockEntity shulkerBoxBlockEntity) {
-        if (!level.isClientSide() && player.preventsBlockDrops() && state.getValue(POSITION) == 0)
+        if (state.getValue(POSITION) == 0)
         {
-            ItemStack itemStack = new ItemStack(state.getBlock());
-            ItemEntity entity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, itemStack);
-            entity.setDefaultPickUpDelay();
-            level.addFreshEntity(entity);
+            if (!level.isClientSide() && player.preventsBlockDrops())
+            {
+                BlockEntity blockEntity = this.getBlockEntity(level, pos, state);
+                if (blockEntity instanceof BrewingBarrelBlockEntity)
+                {
+                    ItemStack itemStack = new ItemStack(state.getBlock());
+                    itemStack.applyComponents(blockEntity.collectComponents());
+                    ItemEntity entity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, itemStack);
+                    entity.setDefaultPickUpDelay();
+                    level.addFreshEntity(entity);
+                }
+            }
         }
-        //}
-
         return super.playerWillDestroy(level, pos, state, player);
     }
 
@@ -217,12 +219,6 @@ public class BrewingBarrelBlock extends BaseEntityBlock implements SimpleWaterlo
     }
 
     @Override
-    protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params)
-    {
-        return super.getDrops(state, params);
-    }
-
-    @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos worldPosition, BlockState blockState)
     {
         if (blockState.getValue(POSITION) == 0)
@@ -236,7 +232,7 @@ public class BrewingBarrelBlock extends BaseEntityBlock implements SimpleWaterlo
     protected @Nullable MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos)
     {
         BlockEntity blockEntity = this.getBlockEntity(level, pos, state);
-        return blockEntity instanceof MenuProvider ? (MenuProvider)blockEntity : null;
+        return blockEntity instanceof MenuProvider ? (MenuProvider) blockEntity : null;
     }
 
     @Override

@@ -4,10 +4,12 @@ import com.unpainperdu.houblonneux.level.world.block.block.BrewingBarrelBlock;
 import com.unpainperdu.houblonneux.level.world.block.block.CoasterBlock;
 import com.unpainperdu.houblonneux.level.world.block.block.crop.HopBlock;
 import com.unpainperdu.houblonneux.level.world.block.blockstate.HopBlockstate;
+import com.unpainperdu.houblonneux.register.ModDataComponentRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -17,7 +19,9 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
@@ -46,8 +50,8 @@ public class ModBlockLootTableSubProvider extends BlockLootSubProvider
     {
         hopDrop();
         this.add(ModBlockRegister.BEER_DISPENSER.get(), this::createDoorTable);
-        this.add(ModBlockRegister.COASTER.get(), this.integerPropertySelfDrop(ModBlockRegister.COASTER.get(), CoasterBlock.COASTER_NUMBER, 1,4));
-        multiBlockDrop(ModBlockRegister.OAK_BREWING_BARREL.get(), BrewingBarrelBlock.POSITION);
+        this.add(ModBlockRegister.COASTER.get(), this.integerPropertySelfDrop(ModBlockRegister.COASTER.get(), CoasterBlock.COASTER_NUMBER, 1, 4));
+        brewingBarrelBlockDrop(ModBlockRegister.OAK_BREWING_BARREL.get());
     }
 
     private void hopDrop()
@@ -89,15 +93,22 @@ public class ModBlockLootTableSubProvider extends BlockLootSubProvider
                                                                 .hasProperty(property, count)))))));
     }
 
-    private void multiBlockDrop(Block block, IntegerProperty positonProperty)
+    private void brewingBarrelBlockDrop(Block block)
     {
         LootTable.Builder lootTable = LootTable.lootTable()
                 .withPool(
                         LootPool.lootPool()
                                 .add(LootItem.lootTableItem(block)
+                                        .apply(
+                                                CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
+                                                        .include(DataComponents.CUSTOM_NAME)
+                                                        .include(DataComponents.CONTAINER)
+                                                        .include(DataComponents.LOCK)
+                                                        .include(ModDataComponentRegister.FLUIDSTACK.get())
+                                        )
                                         .when(
                                                 LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
-                                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(positonProperty, 0))
+                                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BrewingBarrelBlock.POSITION, 0))
                                         )
                                 )
                 );

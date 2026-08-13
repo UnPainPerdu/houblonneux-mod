@@ -2,11 +2,15 @@ package com.unpainperdu.houblonneux.level.world.block.entity;
 
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.menu.block.entity.BrewingBarrelMenu;
+import com.unpainperdu.houblonneux.level.world.component.FluidStackDataComponent;
+import com.unpainperdu.houblonneux.register.ModDataComponentRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -214,7 +218,35 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
     {
         return (
                 slot == WATER_INPUT_SLOT && itemStack.is(Items.WATER_BUCKET)
-                || Arrays.stream(SLOTS_FOR_INGREDIENT).anyMatch(x -> x == slot)
+                        || Arrays.stream(SLOTS_FOR_INGREDIENT).anyMatch(x -> x == slot)
         );
+    }
+
+    @Override
+    protected void applyImplicitComponents(DataComponentGetter components)
+    {
+        super.applyImplicitComponents(components);
+        FluidStackDataComponent fluidStackDataComponent = components.getOrDefault(ModDataComponentRegister.FLUIDSTACK.get(), new FluidStackDataComponent(FluidStack.EMPTY));
+        FluidStack fluidStack = fluidStackDataComponent.fluidStack();
+        if (!fluidStack.isEmpty())
+        {
+            this.setFluidStack(fluidStack);
+        }
+    }
+
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.Builder components)
+    {
+        super.collectImplicitComponents(components);
+        FluidStack fluidStack = this.getFluidStack();
+        if (!fluidStack.isEmpty())
+        {
+            components.set(ModDataComponentRegister.FLUIDSTACK.get(), new FluidStackDataComponent(fluidStack));
+        }
+    }
+
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state)
+    {
     }
 }
