@@ -14,17 +14,13 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStackTemplate;
-import net.neoforged.neoforge.fluids.crafting.SimpleFluidIngredient;
-import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends RecipeProvider
@@ -141,17 +137,18 @@ public class ModRecipeProvider extends RecipeProvider
 
     public void brewingRecipe()
     {
-        this.brewing(Fluids.WATER, 4000, List.of(Blocks.MAGMA_BLOCK, Items.BLAZE_POWDER), 12000, Fluids.LAVA, 4000)
+        this.brewing(12000, Fluids.LAVA, 4000)
+                .setFluidIngredient(Fluids.WATER, 4000)
+                .setIngredients(Blocks.MAGMA_BLOCK, Items.BLAZE_POWDER)
                 .unlockedBy("has_magma_block", this.has(Blocks.MAGMA_BLOCK))
                 .save(this.output);
     }
 
-    //TODO handle tags for fluid ingredient and ingredients
-    public BrewingRecipeBuilder brewing(Fluid fluidIngredient, int fluidIngredientAmount, List<ItemLike> ingredients, int brewingTime, Fluid fluidResult, int fluidResultAmount)
+    public BrewingRecipeBuilder brewing(int brewingTime, Fluid fluidResult, int fluidResultAmount)
     {
         return new BrewingRecipeBuilder(
-                new SizedFluidIngredient(SimpleFluidIngredient.of(fluidIngredient), fluidIngredientAmount),
-                ingredients.stream().map(Ingredient::of).toList(),
+                this.items,
+                this.fluids,
                 brewingTime,
                 new FluidStackTemplate(fluidResult, fluidResultAmount)
         );
