@@ -7,6 +7,8 @@ import com.unpainperdu.houblonneux.register.entity.effect.ModMobEffectRegister;
 import com.unpainperdu.houblonneux.register.gen.structure.ModStructureProcessorRegister;
 import com.unpainperdu.houblonneux.register.item.ModConsumeEffectTypeRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
+import com.unpainperdu.houblonneux.register.recipe.ModRecipeSerializerRegister;
+import com.unpainperdu.houblonneux.register.recipe.ModRecipeTypeRegister;
 import com.unpainperdu.houblonneux.register.worldgen.ModFeatureRegister;
 import net.neoforged.bus.api.IEventBus;
 
@@ -28,5 +30,7 @@ public class RegisterHandler
         ModMobEffectRegister.register(event);
         ModDataAttachmentRegister.register(event);
         ModParticleTypeRegister.register(event);
+        ModRecipeTypeRegister.register(event);
+        ModRecipeSerializerRegister.register(event);
     }
 }

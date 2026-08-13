@@ -1,9 +1,12 @@
 package com.unpainperdu.houblonneux.datagen.data.recipe;
 
+import com.unpainperdu.houblonneux.level.world.item.crafting.brewing.BrewingRecipeBuilder;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import com.unpainperdu.houblonneux.util.StringHelper;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -11,23 +14,34 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.fluids.FluidStackTemplate;
+import net.neoforged.neoforge.fluids.crafting.SimpleFluidIngredient;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-public class RecipeProviderDispatcher extends RecipeProvider
+public class ModRecipeProvider extends RecipeProvider
 {
-    protected RecipeProviderDispatcher(HolderLookup.Provider registries, RecipeOutput output)
+    protected final HolderGetter<Fluid> fluids;
+
+    protected ModRecipeProvider(HolderLookup.Provider registries, RecipeOutput output)
     {
         super(registries, output);
+        this.fluids = registries.lookupOrThrow(Registries.FLUID);
     }
 
     @Override
     protected void buildRecipes()
     {
         craftingTableRecipes();
+        brewingRecipe();
     }
 
     public void craftingTableRecipes()
@@ -125,6 +139,24 @@ public class RecipeProviderDispatcher extends RecipeProvider
                 .save(this.output);
     }
 
+    public void brewingRecipe()
+    {
+        this.brewing(Fluids.WATER, 4000, List.of(Blocks.MAGMA_BLOCK, Items.BLAZE_POWDER), 12000, Fluids.LAVA, 4000)
+                .unlockedBy("has_magma_block", this.has(Blocks.MAGMA_BLOCK))
+                .save(this.output);
+    }
+
+    //TODO handle tags for fluid ingredient and ingredients
+    public BrewingRecipeBuilder brewing(Fluid fluidIngredient, int fluidIngredientAmount, List<ItemLike> ingredients, int brewingTime, Fluid fluidResult, int fluidResultAmount)
+    {
+        return new BrewingRecipeBuilder(
+                new SizedFluidIngredient(SimpleFluidIngredient.of(fluidIngredient), fluidIngredientAmount),
+                ingredients.stream().map(Ingredient::of).toList(),
+                brewingTime,
+                new FluidStackTemplate(fluidResult, fluidResultAmount)
+        );
+    }
+
     public static class Runner extends RecipeProvider.Runner
     {
         public Runner(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider)
@@ -135,7 +167,7 @@ public class RecipeProviderDispatcher extends RecipeProvider
         @Override
         protected RecipeProvider createRecipeProvider(HolderLookup.Provider provider, RecipeOutput output)
         {
-            return new RecipeProviderDispatcher(provider, output);
+            return new ModRecipeProvider(provider, output);
         }
 
         @Override

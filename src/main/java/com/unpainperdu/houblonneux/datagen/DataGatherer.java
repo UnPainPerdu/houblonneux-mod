@@ -7,7 +7,7 @@ import com.unpainperdu.houblonneux.datagen.asset.language.FrenchLanguageProvider
 import com.unpainperdu.houblonneux.datagen.asset.model.ModelProviderDispatcher;
 import com.unpainperdu.houblonneux.datagen.data.loot_table.ModGlobalLootModifierProvider;
 import com.unpainperdu.houblonneux.datagen.data.loot_table.ModLootTableProvider;
-import com.unpainperdu.houblonneux.datagen.data.recipe.RecipeProviderDispatcher;
+import com.unpainperdu.houblonneux.datagen.data.recipe.ModRecipeProvider;
 import com.unpainperdu.houblonneux.datagen.data.tag.ModBlockTagProvider;
 import com.unpainperdu.houblonneux.datagen.data.tag.ModDispenserTradeTagProvider;
 import com.unpainperdu.houblonneux.datagen.data.tag.ModItemTagProvider;
@@ -45,7 +45,7 @@ public class DataGatherer
         event.createProvider(ModGlobalLootModifierProvider::new);
         event.createBlockAndItemTags(ModBlockTagProvider::new, ModItemTagProvider::new);
         event.createProvider(ModDispenserTradeTagProvider::new);
-        event.createProvider(RecipeProviderDispatcher.Runner::new);
+        event.createProvider(ModRecipeProvider.Runner::new);
         event.createProvider(ModSoundDefinitionsProvider::new);
         event.createProvider(ModParticleDescriptionProvider::new);
     }

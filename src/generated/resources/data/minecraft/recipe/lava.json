@@ -1,0 +1,16 @@
+{
+  "type": "houblonneux:brewing_recipe",
+  "brewingTime": 12000,
+  "fluidInput": {
+    "amount": 4000,
+    "ingredient": "minecraft:water"
+  },
+  "fluidResult": {
+    "amount": 4000,
+    "id": "minecraft:lava"
+  },
+  "ingredients": [
+    "minecraft:magma_block",
+    "minecraft:blaze_powder"
+  ]
+}
