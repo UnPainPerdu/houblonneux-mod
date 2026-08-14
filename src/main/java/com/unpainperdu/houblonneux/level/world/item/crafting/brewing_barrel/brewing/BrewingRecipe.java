@@ -18,40 +18,30 @@ import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 import java.util.List;
 
-public class BrewingRecipe implements Recipe<BrewingInput>
+public record BrewingRecipe(CommonInfo commonInfo,
+                            SizedFluidIngredient sizedFluidIngredient,
+                            List<Ingredient> ingredients,
+                            Integer brewingTime,
+                            FluidStackTemplate result
+) implements Recipe<BrewingInput>
 {
-    private final Recipe.CommonInfo commonInfo;
-    private final SizedFluidIngredient sizedFluidIngredient;
-    private final List<Ingredient> ingredients;
-    private final FluidStackTemplate result;
-    private final Integer brewingTime;
-
     public static final MapCodec<BrewingRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-            Recipe.CommonInfo.MAP_CODEC.forGetter(recipe -> recipe.commonInfo),
-            SizedFluidIngredient.CODEC.fieldOf("fluidInput").forGetter(recipe -> recipe.sizedFluidIngredient),
-            Ingredient.CODEC.listOf().fieldOf("ingredients").forGetter(recipe -> recipe.ingredients),
-            Codec.INT.fieldOf("brewingTime").forGetter(BrewingRecipe::getBrewingTime),
-            FluidStackTemplate.CODEC.fieldOf("fluidResult").forGetter(recipe -> recipe.result)
+            CommonInfo.MAP_CODEC.forGetter(BrewingRecipe::commonInfo),
+            SizedFluidIngredient.CODEC.fieldOf("fluidInput").forGetter(BrewingRecipe::sizedFluidIngredient),
+            Ingredient.CODEC.listOf().fieldOf("ingredients").forGetter(BrewingRecipe::ingredients),
+            Codec.INT.fieldOf("brewingTime").forGetter(BrewingRecipe::brewingTime),
+            FluidStackTemplate.CODEC.fieldOf("fluidResult").forGetter(BrewingRecipe::result)
     ).apply(inst, BrewingRecipe::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, BrewingRecipe> STREAM_CODEC =
             StreamCodec.composite(
-                    Recipe.CommonInfo.STREAM_CODEC, recipe -> recipe.commonInfo,
-                    SizedFluidIngredient.STREAM_CODEC, recipe -> recipe.sizedFluidIngredient,
-                    Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.ingredients,
-                    ByteBufCodecs.INT, BrewingRecipe::getBrewingTime,
-                    FluidStackTemplate.STREAM_CODEC, recipe -> recipe.result,
+                    CommonInfo.STREAM_CODEC, BrewingRecipe::commonInfo,
+                    SizedFluidIngredient.STREAM_CODEC, BrewingRecipe::sizedFluidIngredient,
+                    Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()), BrewingRecipe::ingredients,
+                    ByteBufCodecs.INT, BrewingRecipe::brewingTime,
+                    FluidStackTemplate.STREAM_CODEC, BrewingRecipe::result,
                     BrewingRecipe::new
             );
-
-    public BrewingRecipe(CommonInfo commonInfo, SizedFluidIngredient sizedFluidIngredient, List<Ingredient> ingredients, Integer brewingTime, FluidStackTemplate result)
-    {
-        this.commonInfo = commonInfo;
-        this.sizedFluidIngredient = sizedFluidIngredient;
-        this.ingredients = ingredients;
-        this.result = result;
-        this.brewingTime = brewingTime;
-    }
 
     @Override
     public RecipeType<? extends Recipe<BrewingInput>> getType()
@@ -68,19 +58,19 @@ public class BrewingRecipe implements Recipe<BrewingInput>
     @Override
     public boolean matches(BrewingInput input, Level level)
     {
-        if (!sizedFluidIngredient.test(input.fluidStack()))
+        if (!this.sizedFluidIngredient().test(input.fluidStack()))
         {
             return false;
         }
 
         List<ItemStack> inPutItemStacks = input.itemStacks().stream().filter(itemStack -> !itemStack.isEmpty()).toList();
-        if (inPutItemStacks.size() != this.ingredients.size())
+        if (inPutItemStacks.size() != this.ingredients().size())
         {
             return false;
         }
 
         boolean match = true;
-        for (Ingredient ingredient : ingredients)
+        for (Ingredient ingredient : this.ingredients())
         {
             boolean ingreMatch = false;
 
@@ -114,18 +104,13 @@ public class BrewingRecipe implements Recipe<BrewingInput>
 
     public FluidStack assembleFluidStack()
     {
-        return this.result.create();
-    }
-
-    public Integer getBrewingTime()
-    {
-        return this.brewingTime;
+        return this.result().create();
     }
 
     @Override
     public boolean showNotification()
     {
-        return this.commonInfo.showNotification();
+        return this.commonInfo().showNotification();
     }
 
     @Override

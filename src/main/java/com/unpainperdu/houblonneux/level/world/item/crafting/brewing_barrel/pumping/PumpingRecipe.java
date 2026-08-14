@@ -12,36 +12,27 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
-public class PumpingRecipe implements Recipe<PumpingInput>
+public record PumpingRecipe(CommonInfo commonInfo,
+                            SizedFluidIngredient sizedFluidIngredient,
+                            Ingredient ingredient,
+                            ItemStackTemplate result
+) implements Recipe<PumpingInput>
 {
-    private final Recipe.CommonInfo commonInfo;
-    private final SizedFluidIngredient sizedFluidIngredient;
-    private final Ingredient ingredient;
-    private final ItemStackTemplate result;
-
     public static final MapCodec<PumpingRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-            Recipe.CommonInfo.MAP_CODEC.forGetter(recipe -> recipe.commonInfo),
-            SizedFluidIngredient.CODEC.fieldOf("fluidInput").forGetter(recipe -> recipe.sizedFluidIngredient),
-            Ingredient.CODEC.fieldOf("ingredient").forGetter(recipe -> recipe.ingredient),
-            ItemStackTemplate.CODEC.fieldOf("result").forGetter(recipe -> recipe.result)
+            CommonInfo.MAP_CODEC.forGetter(PumpingRecipe::commonInfo),
+            SizedFluidIngredient.CODEC.fieldOf("fluidInput").forGetter(PumpingRecipe::sizedFluidIngredient),
+            Ingredient.CODEC.fieldOf("ingredient").forGetter(PumpingRecipe::ingredient),
+            ItemStackTemplate.CODEC.fieldOf("result").forGetter(PumpingRecipe::result)
     ).apply(inst, PumpingRecipe::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, PumpingRecipe> STREAM_CODEC =
             StreamCodec.composite(
-                    Recipe.CommonInfo.STREAM_CODEC, recipe -> recipe.commonInfo,
-                    SizedFluidIngredient.STREAM_CODEC, recipe -> recipe.sizedFluidIngredient,
-                    Ingredient.CONTENTS_STREAM_CODEC, recipe -> recipe.ingredient,
-                    ItemStackTemplate.STREAM_CODEC, recipe -> recipe.result,
+                    CommonInfo.STREAM_CODEC, PumpingRecipe::commonInfo,
+                    SizedFluidIngredient.STREAM_CODEC, PumpingRecipe::sizedFluidIngredient,
+                    Ingredient.CONTENTS_STREAM_CODEC, PumpingRecipe::ingredient,
+                    ItemStackTemplate.STREAM_CODEC, PumpingRecipe::result,
                     PumpingRecipe::new
             );
-
-    public PumpingRecipe(CommonInfo commonInfo, SizedFluidIngredient sizedFluidIngredient, Ingredient ingredient, ItemStackTemplate result)
-    {
-        this.commonInfo = commonInfo;
-        this.sizedFluidIngredient = sizedFluidIngredient;
-        this.ingredient = ingredient;
-        this.result = result;
-    }
 
     @Override
     public RecipeType<? extends Recipe<PumpingInput>> getType()

@@ -160,7 +160,7 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
             RecipeHolder<? extends BrewingRecipe> recipeholder = this.quickCheckBrewing.getRecipeFor(new BrewingInput(fluidStack, this.getItems()), serverLevel).orElse(null);
             if (recipeholder != null)
             {
-                if (this.brewingTime >= recipeholder.value().getBrewingTime())
+                if (this.brewingTime >= recipeholder.value().brewingTime())
                 {
                     this.brew(recipeholder.value());
                 }
