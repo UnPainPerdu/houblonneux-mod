@@ -6,9 +6,9 @@ import com.unpainperdu.houblonneux.integration.jei.category.PumpingCategory;
 import com.unpainperdu.houblonneux.level.world.block.block.BrewingBarrelBlock;
 import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brewing.BrewingRecipe;
 import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pumping.PumpingRecipe;
+import com.unpainperdu.houblonneux.neoevent.recipe.BrewingRecipeCache;
+import com.unpainperdu.houblonneux.neoevent.recipe.PumpingRecipeCache;
 import com.unpainperdu.houblonneux.register.block.list.BlockList;
-import com.unpainperdu.houblonneux.server.packs.ressources.trade.brewing.BrewingRecipeLoader;
-import com.unpainperdu.houblonneux.server.packs.ressources.trade.pumping.PumpingRecipeLoader;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -42,8 +42,8 @@ public class ModJeiPlugin implements IModPlugin
     @Override
     public void registerRecipes(IRecipeRegistration registration)
     {
-        registration.addRecipes(BREWING, BrewingRecipeLoader.RECIPES.values().stream().toList());
-        registration.addRecipes(PUMPING, PumpingRecipeLoader.RECIPES.values().stream().toList());
+        registration.addRecipes(BREWING, BrewingRecipeCache.all());
+        registration.addRecipes(PUMPING, PumpingRecipeCache.all());
     }
 
     @Override
