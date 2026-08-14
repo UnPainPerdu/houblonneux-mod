@@ -2,7 +2,7 @@ package com.unpainperdu.houblonneux.register.recipe;
 
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brewing.BrewingRecipe;
-import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pomp.PumpingRecipe;
+import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pumping.PumpingRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.neoforged.bus.api.IEventBus;

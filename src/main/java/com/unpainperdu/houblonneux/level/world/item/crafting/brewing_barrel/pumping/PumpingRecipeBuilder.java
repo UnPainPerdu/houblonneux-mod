@@ -1,4 +1,4 @@
-package com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pomp;
+package com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pumping;
 
 import net.minecraft.advancements.Criterion;
 import net.minecraft.core.HolderGetter;

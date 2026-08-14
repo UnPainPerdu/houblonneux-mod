@@ -1,4 +1,4 @@
-package com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pomp;
+package com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pumping;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;

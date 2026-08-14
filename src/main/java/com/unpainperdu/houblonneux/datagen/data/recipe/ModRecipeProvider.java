@@ -2,7 +2,7 @@ package com.unpainperdu.houblonneux.datagen.data.recipe;
 
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brewing.BrewingRecipeBuilder;
-import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pomp.PumpingRecipeBuilder;
+import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pumping.PumpingRecipeBuilder;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import com.unpainperdu.houblonneux.util.StringHelper;
@@ -163,7 +163,7 @@ public class ModRecipeProvider extends RecipeProvider
     {
         this.pomp(Items.WATER_BUCKET, 1)
                 .setFluidIngredient(Fluids.WATER, 1000)
-                .setIngredient(Tags.Items.BUCKETS_WATER)
+                .setIngredient(Tags.Items.BUCKETS)
                 .unlockedBy("has_bucket", this.has(Tags.Items.BUCKETS_WATER))
                 .save(this.output);
     }

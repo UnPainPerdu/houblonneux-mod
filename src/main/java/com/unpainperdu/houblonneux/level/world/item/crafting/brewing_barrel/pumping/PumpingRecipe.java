@@ -1,4 +1,4 @@
-package com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pomp;
+package com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pumping;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

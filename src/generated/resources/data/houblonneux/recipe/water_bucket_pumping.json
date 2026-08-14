@@ -4,7 +4,7 @@
     "amount": 1000,
     "ingredient": "minecraft:water"
   },
-  "ingredient": "#c:buckets/water",
+  "ingredient": "#c:buckets",
   "result": {
     "id": "minecraft:water_bucket"
   }

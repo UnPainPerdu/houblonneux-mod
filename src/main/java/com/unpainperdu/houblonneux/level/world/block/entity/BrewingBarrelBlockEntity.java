@@ -4,6 +4,8 @@ import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.menu.block.entity.BrewingBarrelMenu;
 import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brewing.BrewingInput;
 import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brewing.BrewingRecipe;
+import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pumping.PumpingInput;
+import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pumping.PumpingRecipe;
 import com.unpainperdu.houblonneux.register.ModDataComponentRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
 import com.unpainperdu.houblonneux.register.recipe.ModRecipeTypeRegister;
@@ -20,11 +22,13 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -63,7 +67,8 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
             BrewingBarrelBlockEntity.this.setChanged();
         }
     };
-    private final RecipeManager.CachedCheck<BrewingInput, ? extends BrewingRecipe> quickCheck;
+    private final RecipeManager.CachedCheck<BrewingInput, ? extends BrewingRecipe> quickCheckBrewing;
+    private final RecipeManager.CachedCheck<PumpingInput, ? extends PumpingRecipe> quickCheckPumping;
 
     private NonNullList<ItemStack> items = NonNullList.withSize(CONTAINER_SIZE, ItemStack.EMPTY);
     private int brewingTime;
@@ -71,7 +76,8 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
     public BrewingBarrelBlockEntity(BlockPos worldPosition, BlockState blockState)
     {
         super(ModBlockEntityRegister.BREWING_BARREL.get(), worldPosition, blockState);
-        this.quickCheck = RecipeManager.createCheck(ModRecipeTypeRegister.BREWING_RECIPE.get());
+        this.quickCheckBrewing = RecipeManager.createCheck(ModRecipeTypeRegister.BREWING_RECIPE.get());
+        this.quickCheckPumping = RecipeManager.createCheck(ModRecipeTypeRegister.PUMPING_RECIPE.get());
     }
 
     @Override
@@ -149,9 +155,9 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
     private void handleBrewing()
     {
         FluidStack fluidStack = this.getFluidStack();
-        if (this.level instanceof ServerLevel serverLevel && fluidStack.getAmount() == TANK_CAPACITY && this.getItems().stream().anyMatch(itemStack -> !itemStack.isEmpty()))
+        if (this.level instanceof ServerLevel serverLevel && !fluidStack.isEmpty() && this.getItems().stream().anyMatch(itemStack -> !itemStack.isEmpty()))
         {
-            RecipeHolder<? extends BrewingRecipe> recipeholder = this.quickCheck.getRecipeFor(new BrewingInput(fluidStack, this.getItems()), serverLevel).orElse(null);
+            RecipeHolder<? extends BrewingRecipe> recipeholder = this.quickCheckBrewing.getRecipeFor(new BrewingInput(fluidStack, this.getItems()), serverLevel).orElse(null);
             if (recipeholder != null)
             {
                 if (this.brewingTime >= recipeholder.value().getBrewingTime())
@@ -173,6 +179,34 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
         this.getItems().forEach(itemStack -> itemStack.shrink(1));
         this.setFluidStack(recipe.assembleFluidStack());
         this.setChanged();
+    }
+
+    /**
+     * @return true if item in hand successfully pump fluid in barrel
+     */
+    public boolean handlePumping(ItemStack stackUsed, ServerPlayer player)
+    {
+        FluidStack fluidStack = this.getFluidStack();
+        if (this.level instanceof ServerLevel serverLevel && !fluidStack.isEmpty() && !stackUsed.isEmpty())
+        {
+            PumpingInput input = new PumpingInput(fluidStack, stackUsed);
+            RecipeHolder<? extends PumpingRecipe> recipeholder = this.quickCheckPumping.getRecipeFor(input, serverLevel).orElse(null);
+            if (recipeholder != null)
+            {
+                stackUsed.shrink(1);
+                fluidStack.shrink(1000);
+                this.setChanged();
+                ItemStack result = recipeholder.value().assemble(input);
+                if (!player.addItem(result))
+                {
+                    ItemEntity entity = new ItemEntity(level, player.getX() + 0.5, player.getY() + 0.5, player.getZ() + 0.5, result);
+                    entity.setDefaultPickUpDelay();
+                    level.addFreshEntity(entity);
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     public FluidStack getFluidStack()

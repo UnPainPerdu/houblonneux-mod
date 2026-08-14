@@ -11,10 +11,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.WorldlyContainer;
-import net.minecraft.world.WorldlyContainerHolder;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -233,6 +230,20 @@ public class BrewingBarrelBlock extends BaseEntityBlock implements SimpleWaterlo
     {
         BlockEntity blockEntity = this.getBlockEntity(level, pos, state);
         return blockEntity instanceof MenuProvider ? (MenuProvider) blockEntity : null;
+    }
+
+    @Override
+    protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult)
+    {
+        if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer)
+        {
+            BlockEntity blockEntity = this.getBlockEntity(level, pos, state);
+            if (blockEntity instanceof BrewingBarrelBlockEntity brewingBarrelBlockEntity && brewingBarrelBlockEntity.handlePumping(itemStack, serverPlayer))
+            {
+                return InteractionResult.SUCCESS;
+            }
+        }
+        return super.useItemOn(itemStack, state, level, pos, player, hand, hitResult);
     }
 
     @Override
