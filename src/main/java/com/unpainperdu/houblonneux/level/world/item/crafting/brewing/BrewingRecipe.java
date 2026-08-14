@@ -73,8 +73,8 @@ public class BrewingRecipe implements Recipe<BrewingInput>
             return false;
         }
 
-        List<ItemStack> itemStacks = input.itemStacks();
-        if (itemStacks.size() != this.ingredients.size())
+        List<ItemStack> inPutItemStacks = input.itemStacks().stream().filter(itemStack -> !itemStack.isEmpty()).toList();
+        if (inPutItemStacks.size() != this.ingredients.size())
         {
             return false;
         }
@@ -84,7 +84,7 @@ public class BrewingRecipe implements Recipe<BrewingInput>
         {
             boolean ingreMatch = false;
 
-            for (ItemStack itemStack : itemStacks)
+            for (ItemStack itemStack : inPutItemStacks)
             {
                 if (ingredient.test(itemStack))
                 {
@@ -112,7 +112,7 @@ public class BrewingRecipe implements Recipe<BrewingInput>
         return new ItemStack(Blocks.AIR);
     }
 
-    public FluidStack assembleFluidStack(BrewingInput input)
+    public FluidStack assembleFluidStack()
     {
         return this.result.create();
     }

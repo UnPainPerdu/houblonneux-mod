@@ -1,10 +1,12 @@
 package com.unpainperdu.houblonneux.register;
 
+import com.mojang.serialization.Codec;
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.world.component.ImmediateRollTable;
 import com.unpainperdu.houblonneux.level.world.component.WrappedDispenserTradeTableKey;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.fluids.SimpleFluidContent;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -30,6 +32,12 @@ public class ModDataComponentRegister
             "fluidstack",
             b -> b.persistent(SimpleFluidContent.CODEC)
                     .networkSynchronized(SimpleFluidContent.STREAM_CODEC)
+    );
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> BREWING_TIME = register(
+            "brewing_time",
+            b -> b.persistent(Codec.INT)
+                    .networkSynchronized(ByteBufCodecs.VAR_INT)
     );
 
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String id, UnaryOperator<DataComponentType.Builder<T>> builder)

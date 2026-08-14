@@ -137,7 +137,7 @@ public class ModRecipeProvider extends RecipeProvider
 
     public void brewingRecipe()
     {
-        this.brewing(12000, Fluids.LAVA, 4000)
+        this.brewing(100, Fluids.LAVA, 4000)
                 .setFluidIngredient(Fluids.WATER, 4000)
                 .setIngredients(Blocks.MAGMA_BLOCK, Items.BLAZE_POWDER)
                 .unlockedBy("has_magma_block", this.has(Blocks.MAGMA_BLOCK))

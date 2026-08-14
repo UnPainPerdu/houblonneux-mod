@@ -1,6 +1,6 @@
 {
   "type": "houblonneux:brewing_recipe",
-  "brewingTime": 12000,
+  "brewingTime": 100,
   "fluidInput": {
     "amount": 4000,
     "ingredient": "minecraft:water"
