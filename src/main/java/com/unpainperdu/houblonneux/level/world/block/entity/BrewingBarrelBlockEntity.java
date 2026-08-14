@@ -2,8 +2,8 @@ package com.unpainperdu.houblonneux.level.world.block.entity;
 
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.menu.block.entity.BrewingBarrelMenu;
-import com.unpainperdu.houblonneux.level.world.item.crafting.brewing.BrewingInput;
-import com.unpainperdu.houblonneux.level.world.item.crafting.brewing.BrewingRecipe;
+import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brewing.BrewingInput;
+import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brewing.BrewingRecipe;
 import com.unpainperdu.houblonneux.register.ModDataComponentRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
 import com.unpainperdu.houblonneux.register.recipe.ModRecipeTypeRegister;

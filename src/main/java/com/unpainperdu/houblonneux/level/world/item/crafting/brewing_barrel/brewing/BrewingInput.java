@@ -1,4 +1,4 @@
-package com.unpainperdu.houblonneux.level.world.item.crafting.brewing;
+package com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brewing;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;
@@ -11,12 +11,12 @@ public record BrewingInput(FluidStack fluidStack, List<ItemStack> itemStacks) im
     @Override
     public ItemStack getItem(int index)
     {
-        return itemStacks.get(index);
+        return this.itemStacks.get(index);
     }
 
     @Override
     public int size()
     {
-        return itemStacks.size();
+        return this.itemStacks.size();
     }
 }

@@ -1,6 +1,8 @@
 package com.unpainperdu.houblonneux.datagen.data.recipe;
 
-import com.unpainperdu.houblonneux.level.world.item.crafting.brewing.BrewingRecipeBuilder;
+import com.unpainperdu.houblonneux.Houblonneux;
+import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brewing.BrewingRecipeBuilder;
+import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pomp.PumpingRecipeBuilder;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import com.unpainperdu.houblonneux.util.StringHelper;
@@ -13,6 +15,7 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
@@ -38,6 +41,7 @@ public class ModRecipeProvider extends RecipeProvider
     {
         craftingTableRecipes();
         brewingRecipe();
+        pompRecipe();
     }
 
     public void craftingTableRecipes()
@@ -147,10 +151,30 @@ public class ModRecipeProvider extends RecipeProvider
     public BrewingRecipeBuilder brewing(int brewingTime, Fluid fluidResult, int fluidResultAmount)
     {
         return new BrewingRecipeBuilder(
+                Houblonneux.MOD_ID,
                 this.items,
                 this.fluids,
                 brewingTime,
                 new FluidStackTemplate(fluidResult, fluidResultAmount)
+        );
+    }
+
+    public void pompRecipe()
+    {
+        this.pomp(Items.WATER_BUCKET, 1)
+                .setFluidIngredient(Fluids.WATER, 1000)
+                .setIngredient(Tags.Items.BUCKETS_WATER)
+                .unlockedBy("has_bucket", this.has(Tags.Items.BUCKETS_WATER))
+                .save(this.output);
+    }
+
+    public PumpingRecipeBuilder pomp(ItemLike item, int amount)
+    {
+        return new PumpingRecipeBuilder(
+                Houblonneux.MOD_ID,
+                this.items,
+                this.fluids,
+                new ItemStackTemplate(item.asItem(), amount)
         );
     }
 

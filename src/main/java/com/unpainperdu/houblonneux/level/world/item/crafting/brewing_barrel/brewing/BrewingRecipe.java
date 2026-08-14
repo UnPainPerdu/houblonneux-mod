@@ -1,4 +1,4 @@
-package com.unpainperdu.houblonneux.level.world.item.crafting.brewing;
+package com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brewing;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -26,15 +26,6 @@ public class BrewingRecipe implements Recipe<BrewingInput>
     private final FluidStackTemplate result;
     private final Integer brewingTime;
 
-    public BrewingRecipe(CommonInfo commonInfo, SizedFluidIngredient sizedFluidIngredient, List<Ingredient> ingredients, Integer brewingTime, FluidStackTemplate result)
-    {
-        this.commonInfo = commonInfo;
-        this.sizedFluidIngredient = sizedFluidIngredient;
-        this.ingredients = ingredients;
-        this.result = result;
-        this.brewingTime = brewingTime;
-    }
-
     public static final MapCodec<BrewingRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             Recipe.CommonInfo.MAP_CODEC.forGetter(recipe -> recipe.commonInfo),
             SizedFluidIngredient.CODEC.fieldOf("fluidInput").forGetter(recipe -> recipe.sizedFluidIngredient),
@@ -52,6 +43,15 @@ public class BrewingRecipe implements Recipe<BrewingInput>
                     FluidStackTemplate.STREAM_CODEC, recipe -> recipe.result,
                     BrewingRecipe::new
             );
+
+    public BrewingRecipe(CommonInfo commonInfo, SizedFluidIngredient sizedFluidIngredient, List<Ingredient> ingredients, Integer brewingTime, FluidStackTemplate result)
+    {
+        this.commonInfo = commonInfo;
+        this.sizedFluidIngredient = sizedFluidIngredient;
+        this.ingredients = ingredients;
+        this.result = result;
+        this.brewingTime = brewingTime;
+    }
 
     @Override
     public RecipeType<? extends Recipe<BrewingInput>> getType()
