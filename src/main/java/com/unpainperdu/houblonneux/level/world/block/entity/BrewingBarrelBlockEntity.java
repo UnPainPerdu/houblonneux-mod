@@ -205,6 +205,7 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
                     entity.setDefaultPickUpDelay();
                     level.addFreshEntity(entity);
                 }
+                level.playSound(null, this.getBlockPos(), SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS);
                 return true;
             }
         }
