@@ -148,6 +148,7 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
                 this.getFluidStack().grow(1000);
             }
             this.setItem(WATER_INPUT_SLOT, new ItemStack(Items.BUCKET));
+            level.playSound(null, this.getBlockPos(), SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS);
             this.setChanged();
         }
     }
@@ -178,6 +179,7 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
     {
         this.getItems().forEach(itemStack -> itemStack.shrink(1));
         this.setFluidStack(recipe.assembleFluidStack());
+        level.playSound(null, this.getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 1.0F, 0.4F);
         this.setChanged();
     }
 
