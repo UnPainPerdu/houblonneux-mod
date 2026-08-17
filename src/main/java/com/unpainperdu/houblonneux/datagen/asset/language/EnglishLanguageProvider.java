@@ -12,6 +12,8 @@ import com.unpainperdu.houblonneux.neoevent.ModItemToolTipEvent;
 import com.unpainperdu.houblonneux.register.ModCreativeTabRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.entity.effect.ModMobEffectRegister;
+import com.unpainperdu.houblonneux.register.fluid.ModFluidRegister;
+import com.unpainperdu.houblonneux.register.fluid.ModFluidTypeRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -27,6 +29,10 @@ public class EnglishLanguageProvider extends LanguageProvider
     protected void addTranslations()
     {
         CommonLanguageHelper clp = new CommonLanguageHelper(this);
+        //fluid
+        this.add(ModFluidTypeRegister.EMERALD_CALL.get().getDescriptionId(), "Emerald Call");
+        this.add(ModFluidTypeRegister.WORM_HOLE.get().getDescriptionId(), "Worm Hole");
+        this.add(ModFluidTypeRegister.GROS_GUEULETON.get().getDescriptionId(), "Gros Gueuleton");
         //menu
         this.add(BeerDispenserBlockEntity.TITLE_KEY, "Disk Storage");
         this.add(BrewingBarrelBlockEntity.TITLE_KEY, "Brewing Barrel");
