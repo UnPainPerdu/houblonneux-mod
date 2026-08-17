@@ -1,0 +1,17 @@
+{
+  "type": "houblonneux:brewing_recipe",
+  "brewingTime": 100,
+  "fluidInput": {
+    "amount": 4000,
+    "ingredient": "minecraft:water"
+  },
+  "fluidResult": {
+    "amount": 4000,
+    "id": "houblonneux:gros_gueuleton"
+  },
+  "ingredients": [
+    "houblonneux:hop_lupulin",
+    "minecraft:emerald",
+    "minecraft:cake"
+  ]
+}

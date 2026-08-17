@@ -1,0 +1,11 @@
+{
+  "type": "houblonneux:pomp_recipe",
+  "fluidInput": {
+    "amount": 250,
+    "ingredient": "houblonneux:worm_hole"
+  },
+  "ingredient": "houblonneux:empty_polymorphic_bottle",
+  "result": {
+    "id": "houblonneux:worm_hole_bottle"
+  }
+}

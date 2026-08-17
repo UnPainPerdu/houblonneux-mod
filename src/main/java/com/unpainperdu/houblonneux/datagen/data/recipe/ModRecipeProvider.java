@@ -4,6 +4,7 @@ import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brewing.BrewingRecipeBuilder;
 import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pumping.PumpingRecipeBuilder;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
+import com.unpainperdu.houblonneux.register.fluid.ModFluidRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import com.unpainperdu.houblonneux.util.StringHelper;
 import net.minecraft.core.HolderGetter;
@@ -152,9 +153,21 @@ public class ModRecipeProvider extends RecipeProvider
 
     public void brewingRecipe()
     {
-        this.brewing(100, Fluids.LAVA, 4000)
+        this.brewing(100, ModFluidRegister.EMERALD_CALL.get(), 4000) //TODO better recipe
                 .setFluidIngredient(Fluids.WATER, 4000)
-                .setIngredients(Blocks.MAGMA_BLOCK, Items.BLAZE_POWDER)
+                .setIngredients(ModItemRegister.HOP_LUPULIN, Items.EMERALD)
+                .unlockedBy("has_magma_block", this.has(Blocks.MAGMA_BLOCK))
+                .save(this.output);
+
+        this.brewing(100, ModFluidRegister.WORM_HOLE.get(), 4000) //TODO better recipe
+                .setFluidIngredient(Fluids.WATER, 4000)
+                .setIngredients(ModItemRegister.HOP_LUPULIN, Items.EMERALD, Items.EMERALD)
+                .unlockedBy("has_magma_block", this.has(Blocks.MAGMA_BLOCK))
+                .save(this.output);
+
+        this.brewing(100, ModFluidRegister.GROS_GUEULETON.get(), 4000) //TODO better recipe
+                .setFluidIngredient(Fluids.WATER, 4000)
+                .setIngredients(ModItemRegister.HOP_LUPULIN, Items.EMERALD, Items.CAKE)
                 .unlockedBy("has_magma_block", this.has(Blocks.MAGMA_BLOCK))
                 .save(this.output);
     }
@@ -177,6 +190,40 @@ public class ModRecipeProvider extends RecipeProvider
                 .setIngredient(Tags.Items.BUCKETS)
                 .unlockedBy("has_bucket", this.has(Tags.Items.BUCKETS_WATER))
                 .save(this.output);
+
+        this.pomp(ModItemRegister.EMERALD_CALL_BOTTLE, 1)
+                .setFluidIngredient(ModFluidRegister.EMERALD_CALL.get(), 250)
+                .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE)
+                .unlockedBy("has_empty_polymorphic_bottle", this.has(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE))
+                .save(this.output);
+        this.pomp(ModItemRegister.EMERALD_CALL_MUG, 1)
+                .setFluidIngredient(ModFluidRegister.EMERALD_CALL.get(), 250)
+                .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_MUG)
+                .unlockedBy("has_empty_polymorphic_mug", this.has(ModItemRegister.EMPTY_POLYMORPHIC_MUG))
+                .save(this.output);
+
+        this.pomp(ModItemRegister.WORM_HOLE_BOTTLE, 1)
+                .setFluidIngredient(ModFluidRegister.WORM_HOLE.get(), 250)
+                .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE)
+                .unlockedBy("has_empty_polymorphic_bottle", this.has(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE))
+                .save(this.output);
+        this.pomp(ModItemRegister.WORM_HOLE_MUG, 1)
+                .setFluidIngredient(ModFluidRegister.WORM_HOLE.get(), 250)
+                .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_MUG)
+                .unlockedBy("has_empty_polymorphic_mug", this.has(ModItemRegister.EMPTY_POLYMORPHIC_MUG))
+                .save(this.output);
+
+        this.pomp(ModItemRegister.GROS_GUEULETON_BOTTLE, 1)
+                .setFluidIngredient(ModFluidRegister.GROS_GUEULETON.get(), 250)
+                .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE)
+                .unlockedBy("has_empty_polymorphic_bottle", this.has(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE))
+                .save(this.output);
+        this.pomp(ModItemRegister.GROS_GUEULETON_MUG, 1)
+                .setFluidIngredient(ModFluidRegister.GROS_GUEULETON.get(), 250)
+                .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_MUG)
+                .unlockedBy("has_empty_polymorphic_mug", this.has(ModItemRegister.EMPTY_POLYMORPHIC_MUG))
+                .save(this.output);
+
     }
 
     public PumpingRecipeBuilder pomp(ItemLike item, int amount)

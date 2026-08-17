@@ -1,0 +1,11 @@
+{
+  "type": "houblonneux:pomp_recipe",
+  "fluidInput": {
+    "amount": 250,
+    "ingredient": "houblonneux:emerald_call"
+  },
+  "ingredient": "houblonneux:empty_polymorphic_bottle",
+  "result": {
+    "id": "houblonneux:emerald_call_bottle"
+  }
+}

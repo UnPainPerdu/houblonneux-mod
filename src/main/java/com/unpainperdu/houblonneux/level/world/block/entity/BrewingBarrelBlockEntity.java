@@ -158,7 +158,7 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
         FluidStack fluidStack = this.getFluidStack();
         if (this.level instanceof ServerLevel serverLevel && !fluidStack.isEmpty() && this.getItems().stream().anyMatch(itemStack -> !itemStack.isEmpty()))
         {
-            RecipeHolder<? extends BrewingRecipe> recipeholder = this.quickCheckBrewing.getRecipeFor(new BrewingInput(fluidStack, this.getItems()), serverLevel).orElse(null);
+            RecipeHolder<? extends BrewingRecipe> recipeholder = this.quickCheckBrewing.getRecipeFor(new BrewingInput(fluidStack, this.getItems()), serverLevel).orElse(null); //TODO, handle recipe change -> brewingTime reset
             if (recipeholder != null)
             {
                 if (this.brewingTime >= recipeholder.value().brewingTime())
