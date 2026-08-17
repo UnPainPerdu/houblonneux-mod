@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -24,6 +25,8 @@ public class FluidTankRenderer
 {
     public static final String AMOUNT = Houblonneux.MOD_ID + ".tooltip.liquid.amount";
     public static final String AMOUNT_AND_CAPACITY = Houblonneux.MOD_ID + ".tooltip.liquid.amount.with.capacity";
+
+    public static final Identifier LOCATION_BLOCKS = Identifier.withDefaultNamespace("textures/atlas/blocks.png");
 
     private static final NumberFormat nf = NumberFormat.getIntegerInstance();
     private static final int TEXTURE_SIZE = 16;
@@ -83,8 +86,8 @@ public class FluidTankRenderer
         {
             int drawingHeight = Math.min(16, renderableHeight - 16 * i);
             int notDrawingHeight = 16 - drawingHeight;
-            guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TextureAtlas.LOCATION_BLOCKS,
-                    posX, posY,
+            guiGraphics.blit(RenderPipelines.GUI_TEXTURED, LOCATION_BLOCKS,
+                    posX, posY + notDrawingHeight,
                     sprite.getU0() * atlasWidth,
                     sprite.getV0() * atlasHeight + notDrawingHeight,
                     width, drawingHeight, atlasWidth,

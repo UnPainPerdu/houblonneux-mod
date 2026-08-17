@@ -38,7 +38,7 @@ public class BrewingBarrelScreen extends AbstractContainerScreen<BrewingBarrelMe
         int mainScreenPosY = (this.height - this.imageHeight) / 2;
         graphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND, mainScreenPosX, mainScreenPosY, 0.0F, 0.0F, this.imageWidth, this.imageHeight, 256, 256);
         //fluid tank
-        FluidTankRenderer fluidTankRenderer = new FluidTankRenderer(BrewingBarrelBlockEntity.TANK_CAPACITY, true, 16, 64); //TODO, when taking 250mb, it take from the bottom of the 16 pixel square
+        FluidTankRenderer fluidTankRenderer = new FluidTankRenderer(BrewingBarrelBlockEntity.TANK_CAPACITY, true, 16, 64);
         fluidTankRenderer.render(graphics, mouseX, mouseY, mainScreenPosX + 74, mainScreenPosY + 21, this.getMenu().getFluidStack());
         //trash_button
         renderButton(graphics, mouseX, mouseY, mainScreenPosX + 52, mainScreenPosY + 69);
