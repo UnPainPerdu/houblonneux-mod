@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.world.component.ImmediateRollTable;
 import com.unpainperdu.houblonneux.level.world.component.WrappedDispenserTradeTableKey;
+import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brewing.BrewingRecipe;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -38,6 +39,12 @@ public class ModDataComponentRegister
             "brewing_time",
             b -> b.persistent(Codec.INT)
                     .networkSynchronized(ByteBufCodecs.VAR_INT)
+    );
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<BrewingRecipe>> BREWING_RECIPE = register(
+            "brewing_recipe",
+            b -> b.persistent(BrewingRecipe.CODEC.codec())
+                    .networkSynchronized(BrewingRecipe.STREAM_CODEC)
     );
 
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String id, UnaryOperator<DataComponentType.Builder<T>> builder)

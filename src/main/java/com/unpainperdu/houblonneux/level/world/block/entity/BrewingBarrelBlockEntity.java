@@ -50,6 +50,7 @@ import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import org.jspecify.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer
 {
@@ -72,6 +73,7 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
 
     private NonNullList<ItemStack> items = NonNullList.withSize(CONTAINER_SIZE, ItemStack.EMPTY);
     private int brewingTime;
+    private BrewingRecipe currentRecipe;
 
     public BrewingBarrelBlockEntity(BlockPos worldPosition, BlockState blockState)
     {
@@ -117,6 +119,10 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
         ContainerHelper.saveAllItems(output, this.items);
         this.fluidStacksResourceHandler.serialize(output);
         output.putInt("brewingTime", this.brewingTime);
+        if (this.currentRecipe != null)
+        {
+            output.store("currentRecipe", BrewingRecipe.CODEC.codec(), this.currentRecipe);
+        }
     }
 
     @Override
@@ -126,6 +132,8 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
         ContainerHelper.loadAllItems(input, this.items);
         this.fluidStacksResourceHandler.deserialize(input);
         this.brewingTime = input.getIntOr("brewingTime", 0);
+        Optional<BrewingRecipe> opt = input.read("currentRecipe", BrewingRecipe.CODEC.codec());
+        opt.ifPresent(recipe -> this.currentRecipe = recipe);
     }
 
     public static void tick(ServerLevel level, BlockPos pos, BlockState state, BrewingBarrelBlockEntity blockEntity)
@@ -158,12 +166,20 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
         FluidStack fluidStack = this.getFluidStack();
         if (this.level instanceof ServerLevel serverLevel && !fluidStack.isEmpty() && this.getItems().stream().anyMatch(itemStack -> !itemStack.isEmpty()))
         {
-            RecipeHolder<? extends BrewingRecipe> recipeholder = this.quickCheckBrewing.getRecipeFor(new BrewingInput(fluidStack, this.getItems()), serverLevel).orElse(null); //TODO, handle recipe change -> brewingTime reset
+            RecipeHolder<? extends BrewingRecipe> recipeholder = this.quickCheckBrewing.getRecipeFor(new BrewingInput(fluidStack, this.getItems()), serverLevel).orElse(null);
             if (recipeholder != null)
             {
-                if (this.brewingTime >= recipeholder.value().brewingTime())
+                BrewingRecipe recipe = recipeholder.value();
+                if (recipe != this.currentRecipe)
                 {
-                    this.brew(recipeholder.value());
+                    this.currentRecipe = recipe;
+                    this.brewingTime = 0;
+                    return;
+                }
+                if (this.brewingTime >= recipe.brewingTime())
+                {
+                    this.brew(recipe);
+                    this.currentRecipe = null;
                 }
                 else
                 {
@@ -316,6 +332,11 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
         {
             this.brewingTime = bt;
         }
+        BrewingRecipe br = components.get(ModDataComponentRegister.BREWING_RECIPE.get());
+        if (br != null)
+        {
+            this.currentRecipe = br;
+        }
     }
 
     @Override
@@ -330,6 +351,10 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
         if (this.brewingTime > 0)
         {
             components.set(ModDataComponentRegister.BREWING_TIME.get(), this.brewingTime);
+        }
+        if (this.currentRecipe != null)
+        {
+            components.set(ModDataComponentRegister.BREWING_RECIPE.get(), this.currentRecipe);
         }
     }
 
