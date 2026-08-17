@@ -74,6 +74,7 @@ public class BrewingCategory extends AbstractRecipeCategory<BrewingRecipe>
     @Override
     public void draw(BrewingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics, double mouseX, double mouseY)
     {
+        //TODO display somewhere time needed for recipe
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND_TEXTURES, 0, 0, 0, 0, this.getWidth(), this.getHeight(), 256, 256);
     }
 }
