@@ -47,5 +47,8 @@
   "item.worm_hole.bottle.tooltip": "Zoup in. Zoup out",
   "item.worm_hole.glass.tooltip": "Where the fuck Am I now ?",
   "item.worm_hole.mug.tooltip": "We could not find a better use of this technology !",
-  "itemGroup.houblonneux.mainTab": "Houblonneux"
+  "itemGroup.houblonneux.mainTab": "Houblonneux",
+  "jei.houblonneux.brewing": "Brewing",
+  "jei.houblonneux.brewing.time": "Time To Brew : %sh %sm %ss",
+  "jei.houblonneux.pumping": "Pumping"
 }

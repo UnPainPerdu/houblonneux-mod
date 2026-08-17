@@ -2,7 +2,8 @@ package com.unpainperdu.houblonneux.datagen.asset.language;
 
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.client.screen.BrewingBarrelScreen;
-import com.unpainperdu.houblonneux.client.screen.util.FluidTankRenderer;
+import com.unpainperdu.houblonneux.integration.jei.category.BrewingCategory;
+import com.unpainperdu.houblonneux.integration.jei.category.PumpingCategory;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
 import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEntity;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
@@ -27,6 +28,11 @@ public class FrenchLanguageProvider extends LanguageProvider
     protected void addTranslations()
     {
         CommonLanguageHelper clp = new CommonLanguageHelper(this);
+        //integration
+        //  jei
+        this.add(BrewingCategory.CATEGORY_KEY, "Brassage");
+        this.add(PumpingCategory.CATEGORY_KEY, "Tirage");
+        this.add(BrewingCategory.BREWING_TIME_KEY, "Temps de brassage : %sh %sm %ss");
         //menu
         this.add(BeerDispenserBlockEntity.TITLE_KEY, "Stockage de disque");
         this.add(BrewingBarrelBlockEntity.TITLE_KEY, "Tonneau de fermentation");

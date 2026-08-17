@@ -42,5 +42,8 @@
   "item.worm_hole.bottle.tooltip": "Disparu et réaparu de si tôt",
   "item.worm_hole.glass.tooltip": "Où bordel de merde je suis?",
   "item.worm_hole.mug.tooltip": "La meilleure manière d'utiliser cette technologie!",
-  "itemGroup.houblonneux.mainTab": "Houblonneux"
+  "itemGroup.houblonneux.mainTab": "Houblonneux",
+  "jei.houblonneux.brewing": "Brassage",
+  "jei.houblonneux.brewing.time": "Temps de brassage : %sh %sm %ss",
+  "jei.houblonneux.pumping": "Tirage"
 }

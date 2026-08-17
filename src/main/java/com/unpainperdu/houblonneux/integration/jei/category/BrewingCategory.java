@@ -11,6 +11,7 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.AbstractRecipeCategory;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
@@ -19,11 +20,13 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
+import java.time.Duration;
 import java.util.List;
 
 public class BrewingCategory extends AbstractRecipeCategory<BrewingRecipe>
 {
     public static final String CATEGORY_KEY = "jei." + Houblonneux.MOD_ID + ".brewing";
+    public static final String BREWING_TIME_KEY = "jei." + Houblonneux.MOD_ID + ".brewing.time";
 
     public static final Identifier BACKGROUND_TEXTURES = Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "textures/gui/integration/jei/brewing_menu.png");
 
@@ -74,7 +77,10 @@ public class BrewingCategory extends AbstractRecipeCategory<BrewingRecipe>
     @Override
     public void draw(BrewingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics, double mouseX, double mouseY)
     {
-        //TODO display somewhere time needed for recipe
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND_TEXTURES, 0, 0, 0, 0, this.getWidth(), this.getHeight(), 256, 256);
+        int brewingTime = recipe.brewingTime();
+        int timeInSecond = brewingTime / 20;
+        Duration d = Duration.ofSeconds(timeInSecond);
+        guiGraphics.text(Minecraft.getInstance().font, Component.translatable(BREWING_TIME_KEY, d.toHours(), d.toMinutesPart(), d.toSecondsPart()), 0, 0, -12566464, false);
     }
 }

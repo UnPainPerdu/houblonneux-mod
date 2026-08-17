@@ -3,6 +3,8 @@ package com.unpainperdu.houblonneux.datagen.asset.language;
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.client.screen.BrewingBarrelScreen;
 import com.unpainperdu.houblonneux.client.screen.util.FluidTankRenderer;
+import com.unpainperdu.houblonneux.integration.jei.category.BrewingCategory;
+import com.unpainperdu.houblonneux.integration.jei.category.PumpingCategory;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
 import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEntity;
 import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
@@ -12,7 +14,6 @@ import com.unpainperdu.houblonneux.neoevent.ModItemToolTipEvent;
 import com.unpainperdu.houblonneux.register.ModCreativeTabRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.entity.effect.ModMobEffectRegister;
-import com.unpainperdu.houblonneux.register.fluid.ModFluidRegister;
 import com.unpainperdu.houblonneux.register.fluid.ModFluidTypeRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import net.minecraft.data.PackOutput;
@@ -29,6 +30,11 @@ public class EnglishLanguageProvider extends LanguageProvider
     protected void addTranslations()
     {
         CommonLanguageHelper clp = new CommonLanguageHelper(this);
+        //integration
+        //  jei
+        this.add(BrewingCategory.CATEGORY_KEY, "Brewing");
+        this.add(PumpingCategory.CATEGORY_KEY, "Pumping");
+        this.add(BrewingCategory.BREWING_TIME_KEY, "Time To Brew : %sh %sm %ss");
         //fluid
         this.add(ModFluidTypeRegister.EMERALD_CALL.get().getDescriptionId(), "Emerald Call");
         this.add(ModFluidTypeRegister.WORM_HOLE.get().getDescriptionId(), "Worm Hole");
