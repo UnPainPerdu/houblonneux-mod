@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "x": "minecraft:mangrove_planks",
+    "y": "#c:ingots/iron"
+  },
+  "pattern": [
+    "xxx",
+    "y y",
+    "xxx"
+  ],
+  "result": {
+    "id": "houblonneux:mangrove_brewing_barrel"
+  }
+}

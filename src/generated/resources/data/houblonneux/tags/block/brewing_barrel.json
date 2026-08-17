@@ -1,5 +1,16 @@
 {
   "values": [
-    "houblonneux:oak_brewing_barrel"
+    "houblonneux:acacia_brewing_barrel",
+    "houblonneux:bamboo_brewing_barrel",
+    "houblonneux:birch_brewing_barrel",
+    "houblonneux:cherry_brewing_barrel",
+    "houblonneux:crimson_brewing_barrel",
+    "houblonneux:dark_oak_brewing_barrel",
+    "houblonneux:jungle_brewing_barrel",
+    "houblonneux:mangrove_brewing_barrel",
+    "houblonneux:oak_brewing_barrel",
+    "houblonneux:pale_oak_brewing_barrel",
+    "houblonneux:spruce_brewing_barrel",
+    "houblonneux:warped_brewing_barrel"
   ]
 }

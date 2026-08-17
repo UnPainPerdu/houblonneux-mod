@@ -52,6 +52,17 @@ public class ModBlockLootTableSubProvider extends BlockLootSubProvider
         this.add(ModBlockRegister.BEER_DISPENSER.get(), this::createDoorTable);
         this.add(ModBlockRegister.COASTER.get(), this.integerPropertySelfDrop(ModBlockRegister.COASTER.get(), CoasterBlock.COASTER_NUMBER, 1, 4));
         brewingBarrelBlockDrop(ModBlockRegister.OAK_BREWING_BARREL.get());
+        brewingBarrelBlockDrop(ModBlockRegister.SPRUCE_BREWING_BARREL.get());
+        brewingBarrelBlockDrop(ModBlockRegister.BIRCH_BREWING_BARREL.get());
+        brewingBarrelBlockDrop(ModBlockRegister.JUNGLE_BREWING_BARREL.get());
+        brewingBarrelBlockDrop(ModBlockRegister.ACACIA_BREWING_BARREL.get());
+        brewingBarrelBlockDrop(ModBlockRegister.DARK_OAK_BREWING_BARREL.get());
+        brewingBarrelBlockDrop(ModBlockRegister.MANGROVE_BREWING_BARREL.get());
+        brewingBarrelBlockDrop(ModBlockRegister.CHERRY_BREWING_BARREL.get());
+        brewingBarrelBlockDrop(ModBlockRegister.PALE_OAK_BREWING_BARREL.get());
+        brewingBarrelBlockDrop(ModBlockRegister.BAMBOO_BREWING_BARREL.get());
+        brewingBarrelBlockDrop(ModBlockRegister.CRIMSON_BREWING_BARREL.get());
+        brewingBarrelBlockDrop(ModBlockRegister.WARPED_BREWING_BARREL.get());
     }
 
     private void hopDrop()

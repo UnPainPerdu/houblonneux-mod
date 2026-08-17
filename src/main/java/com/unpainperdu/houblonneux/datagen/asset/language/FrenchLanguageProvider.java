@@ -73,5 +73,16 @@ public class FrenchLanguageProvider extends LanguageProvider
         this.add(GrosGueuletonBeerConsumeEffect.MUG_TOOLTIP_KEY, "Plus besoin de rien avec ça!");
         // brewing_barrel
         this.add(ModBlockRegister.OAK_BREWING_BARREL.asItem(), "Tonneau de fermentation en chêne");
+        this.add(ModBlockRegister.SPRUCE_BREWING_BARREL.asItem(), "Tonneau de fermentation en sapin");
+        this.add(ModBlockRegister.BIRCH_BREWING_BARREL.asItem(), "Tonneau de fermentation en bouleau");
+        this.add(ModBlockRegister.JUNGLE_BREWING_BARREL.asItem(), "Tonneau de fermentation en acajou");
+        this.add(ModBlockRegister.ACACIA_BREWING_BARREL.asItem(), "Tonneau de fermentation en acacia");
+        this.add(ModBlockRegister.DARK_OAK_BREWING_BARREL.asItem(), "Tonneau de fermentation en chêne noir");
+        this.add(ModBlockRegister.MANGROVE_BREWING_BARREL.asItem(), "Tonneau de fermentation en palétuvier");
+        this.add(ModBlockRegister.CHERRY_BREWING_BARREL.asItem(), "Tonneau de fermentation en cerisier");
+        this.add(ModBlockRegister.PALE_OAK_BREWING_BARREL.asItem(), "Tonneau de fermentation en chêne pâle");
+        this.add(ModBlockRegister.BAMBOO_BREWING_BARREL.asItem(), "Tonneau de fermentation en bambou");
+        this.add(ModBlockRegister.CRIMSON_BREWING_BARREL.asItem(), "Tonneau de fermentation carmin");
+        this.add(ModBlockRegister.WARPED_BREWING_BARREL.asItem(), "Tonneau de fermentation birscornue");
     }
 }

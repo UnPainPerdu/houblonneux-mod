@@ -75,5 +75,16 @@ public class EnglishLanguageProvider extends LanguageProvider
         this.add(GrosGueuletonBeerConsumeEffect.MUG_TOOLTIP_KEY, "We does not need anymore anything else !");
         // brewing_barrel
         this.add(ModBlockRegister.OAK_BREWING_BARREL.asItem(), "Oak Brewing Barrel");
+        this.add(ModBlockRegister.SPRUCE_BREWING_BARREL.asItem(), "Spruce Brewing Barrel");
+        this.add(ModBlockRegister.BIRCH_BREWING_BARREL.asItem(), "Birch Brewing Barrel");
+        this.add(ModBlockRegister.JUNGLE_BREWING_BARREL.asItem(), "Jungle Brewing Barrel");
+        this.add(ModBlockRegister.ACACIA_BREWING_BARREL.asItem(), "Acacia Brewing Barrel");
+        this.add(ModBlockRegister.DARK_OAK_BREWING_BARREL.asItem(), "Dark Oak Brewing Barrel");
+        this.add(ModBlockRegister.MANGROVE_BREWING_BARREL.asItem(), "Mangrove Brewing Barrel");
+        this.add(ModBlockRegister.CHERRY_BREWING_BARREL.asItem(), "Cherry Brewing Barrel");
+        this.add(ModBlockRegister.PALE_OAK_BREWING_BARREL.asItem(), "Pale Oak Brewing Barrel");
+        this.add(ModBlockRegister.BAMBOO_BREWING_BARREL.asItem(), "Bamboo Brewing Barrel");
+        this.add(ModBlockRegister.CRIMSON_BREWING_BARREL.asItem(), "Crimson Brewing Barrel");
+        this.add(ModBlockRegister.WARPED_BREWING_BARREL.asItem(), "Warped Brewing Barrel");
     }
 }

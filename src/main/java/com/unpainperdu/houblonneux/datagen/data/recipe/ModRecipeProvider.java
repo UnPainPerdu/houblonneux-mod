@@ -61,6 +61,17 @@ public class ModRecipeProvider extends RecipeProvider
                 .save(this.output);
         // brewing_barrel
         this.brewingBarrelRecipe(ModBlockRegister.OAK_BREWING_BARREL, Blocks.OAK_PLANKS);
+        this.brewingBarrelRecipe(ModBlockRegister.SPRUCE_BREWING_BARREL, Blocks.SPRUCE_PLANKS);
+        this.brewingBarrelRecipe(ModBlockRegister.BIRCH_BREWING_BARREL, Blocks.BIRCH_PLANKS);
+        this.brewingBarrelRecipe(ModBlockRegister.JUNGLE_BREWING_BARREL, Blocks.JUNGLE_PLANKS);
+        this.brewingBarrelRecipe(ModBlockRegister.ACACIA_BREWING_BARREL, Blocks.ACACIA_PLANKS);
+        this.brewingBarrelRecipe(ModBlockRegister.DARK_OAK_BREWING_BARREL, Blocks.DARK_OAK_PLANKS);
+        this.brewingBarrelRecipe(ModBlockRegister.MANGROVE_BREWING_BARREL, Blocks.MANGROVE_PLANKS);
+        this.brewingBarrelRecipe(ModBlockRegister.CHERRY_BREWING_BARREL, Blocks.CHERRY_PLANKS);
+        this.brewingBarrelRecipe(ModBlockRegister.PALE_OAK_BREWING_BARREL, Blocks.PALE_OAK_PLANKS);
+        this.brewingBarrelRecipe(ModBlockRegister.BAMBOO_BREWING_BARREL, Blocks.BAMBOO_PLANKS);
+        this.brewingBarrelRecipe(ModBlockRegister.CRIMSON_BREWING_BARREL, Blocks.CRIMSON_PLANKS);
+        this.brewingBarrelRecipe(ModBlockRegister.WARPED_BREWING_BARREL, Blocks.WARPED_PLANKS);
         //item
         this.shapeless(RecipeCategory.MISC, ModItemRegister.HOP_LUPULIN)
                 .requires(ModItemRegister.HOP_FLOWER)

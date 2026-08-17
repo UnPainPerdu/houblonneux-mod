@@ -1,0 +1,7 @@
+{
+  "parent": "houblonneux:block/brewing_barrel",
+  "textures": {
+    "material": "minecraft:block/birch_planks",
+    "particle": "minecraft:block/birch_planks"
+  }
+}

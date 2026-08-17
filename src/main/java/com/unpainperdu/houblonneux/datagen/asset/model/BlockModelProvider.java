@@ -53,6 +53,17 @@ public class BlockModelProvider
     {
         createHopBlock();
         createBrewingBarrel(ModBlockRegister.OAK_BREWING_BARREL.get(), Blocks.OAK_PLANKS);
+        createBrewingBarrel(ModBlockRegister.SPRUCE_BREWING_BARREL.get(), Blocks.SPRUCE_PLANKS);
+        createBrewingBarrel(ModBlockRegister.BIRCH_BREWING_BARREL.get(), Blocks.BIRCH_PLANKS);
+        createBrewingBarrel(ModBlockRegister.JUNGLE_BREWING_BARREL.get(), Blocks.JUNGLE_PLANKS);
+        createBrewingBarrel(ModBlockRegister.ACACIA_BREWING_BARREL.get(), Blocks.ACACIA_PLANKS);
+        createBrewingBarrel(ModBlockRegister.DARK_OAK_BREWING_BARREL.get(), Blocks.DARK_OAK_PLANKS);
+        createBrewingBarrel(ModBlockRegister.MANGROVE_BREWING_BARREL.get(), Blocks.MANGROVE_PLANKS);
+        createBrewingBarrel(ModBlockRegister.CHERRY_BREWING_BARREL.get(), Blocks.CHERRY_PLANKS);
+        createBrewingBarrel(ModBlockRegister.PALE_OAK_BREWING_BARREL.get(), Blocks.PALE_OAK_PLANKS);
+        createBrewingBarrel(ModBlockRegister.BAMBOO_BREWING_BARREL.get(), Blocks.BAMBOO_PLANKS);
+        createBrewingBarrel(ModBlockRegister.CRIMSON_BREWING_BARREL.get(), Blocks.CRIMSON_PLANKS);
+        createBrewingBarrel(ModBlockRegister.WARPED_BREWING_BARREL.get(), Blocks.WARPED_PLANKS);
         //beer dispenser
         Block dispenserBlock = ModBlockRegister.BEER_DISPENSER.get();
         MultiVariant beerDispenserLower = plainVariant(this.blockModelsGenerator.createSuffixedVariant(dispenserBlock, "_lower", ModModelTemplate.EMPTY_WITH_PARTICLE, _ -> new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.IRON_BLOCK))));

@@ -1,0 +1,6 @@
+{
+  "parent": "houblonneux:item/brewing_barrel_item",
+  "textures": {
+    "material": "minecraft:block/bamboo_planks"
+  }
+}

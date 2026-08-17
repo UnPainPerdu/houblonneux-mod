@@ -24,7 +24,19 @@ public class ModBlockRegister
     public static final DeferredBlock<HopBlock> HOP = registerBlock("hop", HopBlock::new, () -> ModBlockProperties.HOP_PROPERTIES);
     public static final DeferredBlock<BeerDispenserBlock> BEER_DISPENSER = registerBlockWithSimpleItem("beer_dispenser", BeerDispenserBlock::new, () -> ModBlockProperties.BEER_DISPENSER_PROPERTIES);
     public static final DeferredBlock<CoasterBlock> COASTER = registerBlockWithSimpleItem("coaster", CoasterBlock::new, () -> ModBlockProperties.COASTER_PROPERTIES);
+    //brewing_barrel
     public static final DeferredBlock<BrewingBarrelBlock> OAK_BREWING_BARREL = registerBrewingBarrel("oak_brewing_barrel");
+    public static final DeferredBlock<BrewingBarrelBlock> SPRUCE_BREWING_BARREL = registerBrewingBarrel("spruce_brewing_barrel");
+    public static final DeferredBlock<BrewingBarrelBlock> BIRCH_BREWING_BARREL = registerBrewingBarrel("birch_brewing_barrel");
+    public static final DeferredBlock<BrewingBarrelBlock> JUNGLE_BREWING_BARREL = registerBrewingBarrel("jungle_brewing_barrel");
+    public static final DeferredBlock<BrewingBarrelBlock> ACACIA_BREWING_BARREL = registerBrewingBarrel("acacia_brewing_barrel");
+    public static final DeferredBlock<BrewingBarrelBlock> DARK_OAK_BREWING_BARREL = registerBrewingBarrel("dark_oak_brewing_barrel");
+    public static final DeferredBlock<BrewingBarrelBlock> MANGROVE_BREWING_BARREL = registerBrewingBarrel("mangrove_brewing_barrel");
+    public static final DeferredBlock<BrewingBarrelBlock> CHERRY_BREWING_BARREL = registerBrewingBarrel("cherry_brewing_barrel");
+    public static final DeferredBlock<BrewingBarrelBlock> PALE_OAK_BREWING_BARREL = registerBrewingBarrel("pale_oak_brewing_barrel");
+    public static final DeferredBlock<BrewingBarrelBlock> BAMBOO_BREWING_BARREL = registerBrewingBarrel("bamboo_brewing_barrel");
+    public static final DeferredBlock<BrewingBarrelBlock> CRIMSON_BREWING_BARREL = registerBrewingBarrel("crimson_brewing_barrel");
+    public static final DeferredBlock<BrewingBarrelBlock> WARPED_BREWING_BARREL = registerBrewingBarrel("warped_brewing_barrel");
 
     private static DeferredBlock<BrewingBarrelBlock> registerBrewingBarrel(String name)
     {

@@ -36,7 +36,18 @@ public class CreativeTabDisplayGenerator
             ModItemRegister.GROS_GUEULETON_GLASS,
             ModItemRegister.GROS_GUEULETON_MUG,
             //brewing_barrel
-            ModBlockRegister.OAK_BREWING_BARREL
+            ModBlockRegister.OAK_BREWING_BARREL,
+            ModBlockRegister.SPRUCE_BREWING_BARREL,
+            ModBlockRegister.BIRCH_BREWING_BARREL,
+            ModBlockRegister.JUNGLE_BREWING_BARREL,
+            ModBlockRegister.ACACIA_BREWING_BARREL,
+            ModBlockRegister.DARK_OAK_BREWING_BARREL,
+            ModBlockRegister.MANGROVE_BREWING_BARREL,
+            ModBlockRegister.CHERRY_BREWING_BARREL,
+            ModBlockRegister.PALE_OAK_BREWING_BARREL,
+            ModBlockRegister.BAMBOO_BREWING_BARREL,
+            ModBlockRegister.CRIMSON_BREWING_BARREL,
+            ModBlockRegister.WARPED_BREWING_BARREL
             //other
     );
 

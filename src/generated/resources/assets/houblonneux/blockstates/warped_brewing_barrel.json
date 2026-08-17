@@ -1,0 +1,379 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel_front",
+        "y": 180
+      },
+      "when": {
+        "brewing_barrel_position": "0",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel_front"
+      },
+      "when": {
+        "brewing_barrel_position": "0",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel_front",
+        "y": 270
+      },
+      "when": {
+        "brewing_barrel_position": "0",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel_front",
+        "y": 90
+      },
+      "when": {
+        "brewing_barrel_position": "0",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 180
+      },
+      "when": {
+        "brewing_barrel_position": "0",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel"
+      },
+      "when": {
+        "brewing_barrel_position": "0",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 270
+      },
+      "when": {
+        "brewing_barrel_position": "0",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 90
+      },
+      "when": {
+        "brewing_barrel_position": "0",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 180,
+        "z": 90
+      },
+      "when": {
+        "brewing_barrel_position": "1",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "z": 270
+      },
+      "when": {
+        "brewing_barrel_position": "1",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "x": 270,
+        "z": 270
+      },
+      "when": {
+        "brewing_barrel_position": "1",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "x": 90,
+        "z": 270
+      },
+      "when": {
+        "brewing_barrel_position": "1",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 180,
+        "z": 270
+      },
+      "when": {
+        "brewing_barrel_position": "2",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "z": 90
+      },
+      "when": {
+        "brewing_barrel_position": "2",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "x": 90,
+        "z": 90
+      },
+      "when": {
+        "brewing_barrel_position": "2",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "x": 270,
+        "z": 90
+      },
+      "when": {
+        "brewing_barrel_position": "2",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 180,
+        "z": 180
+      },
+      "when": {
+        "brewing_barrel_position": "3",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "z": 180
+      },
+      "when": {
+        "brewing_barrel_position": "3",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 90,
+        "z": 180
+      },
+      "when": {
+        "brewing_barrel_position": "3",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 270,
+        "z": 180
+      },
+      "when": {
+        "brewing_barrel_position": "3",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "z": 90
+      },
+      "when": {
+        "brewing_barrel_position": "4",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 180,
+        "z": 270
+      },
+      "when": {
+        "brewing_barrel_position": "4",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "x": 270,
+        "z": 90
+      },
+      "when": {
+        "brewing_barrel_position": "4",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "x": 90,
+        "z": 90
+      },
+      "when": {
+        "brewing_barrel_position": "4",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "z": 180
+      },
+      "when": {
+        "brewing_barrel_position": "5",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 180,
+        "z": 180
+      },
+      "when": {
+        "brewing_barrel_position": "5",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 270,
+        "z": 180
+      },
+      "when": {
+        "brewing_barrel_position": "5",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 90,
+        "z": 180
+      },
+      "when": {
+        "brewing_barrel_position": "5",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel"
+      },
+      "when": {
+        "brewing_barrel_position": "6",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 180
+      },
+      "when": {
+        "brewing_barrel_position": "6",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 90
+      },
+      "when": {
+        "brewing_barrel_position": "6",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 270
+      },
+      "when": {
+        "brewing_barrel_position": "6",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "z": 270
+      },
+      "when": {
+        "brewing_barrel_position": "7",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "y": 180,
+        "z": 90
+      },
+      "when": {
+        "brewing_barrel_position": "7",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "x": 90,
+        "z": 270
+      },
+      "when": {
+        "brewing_barrel_position": "7",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "houblonneux:block/warped_brewing_barrel",
+        "x": 270,
+        "z": 270
+      },
+      "when": {
+        "brewing_barrel_position": "7",
+        "facing": "west"
+      }
+    }
+  ]
+}

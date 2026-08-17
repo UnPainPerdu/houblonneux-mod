@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "x": "minecraft:spruce_planks",
+    "y": "#c:ingots/iron"
+  },
+  "pattern": [
+    "xxx",
+    "y y",
+    "xxx"
+  ],
+  "result": {
+    "id": "houblonneux:spruce_brewing_barrel"
+  }
+}
