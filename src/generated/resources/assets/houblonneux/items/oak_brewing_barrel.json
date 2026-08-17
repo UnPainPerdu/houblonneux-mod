@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "houblonneux:block/oak_brewing_barrel"
+    "model": "houblonneux:item/oak_brewing_barrel_generated"
   }
 }

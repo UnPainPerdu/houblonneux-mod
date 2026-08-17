@@ -1,6 +1,8 @@
 package com.unpainperdu.houblonneux.datagen.asset.model;
 
 import com.mojang.math.Quadrant;
+import com.mojang.math.Transformation;
+import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.world.block.block.BrewingBarrelBlock;
 import com.unpainperdu.houblonneux.level.world.block.block.CoasterBlock;
 import com.unpainperdu.houblonneux.level.world.block.block.crop.HopBlock;
@@ -13,22 +15,22 @@ import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
-import net.minecraft.client.data.models.model.ModelTemplates;
-import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.block.dispatch.VariantMutator;
 import net.minecraft.client.renderer.item.CuboidItemModelWrapper;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.Collections;
+import java.util.Map;
 import java.util.Optional;
 
 import static net.minecraft.client.data.models.BlockModelGenerators.*;
@@ -184,6 +186,8 @@ public class BlockModelProvider
         modelDef = withForBrewingBarrel(modelDef, base, Direction.EAST, 7);
         modelDef = withForBrewingBarrel(modelDef, base, Direction.WEST, 7);
         this.blockModelsGenerator.blockStateOutput.accept(modelDef);
+        //item part
+        this.generateItemWithCustomModel(block.asItem(), "brewing_barrel_item", Map.of(ModTextureSlot.MATERIAL, BuiltInRegistries.BLOCK.getKey(texture).withPrefix("block/")));
     }
 
     private MultiPartGenerator withForBrewingBarrel(MultiPartGenerator modelDef, MultiVariant base, Direction facing, int position)
@@ -229,7 +233,7 @@ public class BlockModelProvider
                 {
                     case 1 -> model.with(VariantMutator.Z_ROT.withValue(Quadrant.R270)).with(X_ROT_270);
                     case 2 -> model.with(VariantMutator.Z_ROT.withValue(Quadrant.R90)).with(X_ROT_90);
-                    case 3 ->  model.with(VariantMutator.Z_ROT.withValue(Quadrant.R180)).with(Y_ROT_90);
+                    case 3 -> model.with(VariantMutator.Z_ROT.withValue(Quadrant.R180)).with(Y_ROT_90);
                     case 4 -> model.with(VariantMutator.Z_ROT.withValue(Quadrant.R90)).with(X_ROT_270);
                     case 5 -> model.with(VariantMutator.Z_ROT.withValue(Quadrant.R180)).with(Y_ROT_270);
                     case 6 -> model.with(Y_ROT_90);
@@ -258,5 +262,27 @@ public class BlockModelProvider
     {
         Identifier key = BuiltInRegistries.BLOCK.getKey(block);
         return key.withPrefix(prefix);
+    }
+
+    /**
+     * @param modelLocation            houblonneux:item/ added in method
+     */
+    private void generateItemWithCustomModel(Item item, String modelLocation, Map<TextureSlot, Identifier> textureSlotAndTextureLoc)
+    {
+        ModelTemplate model = new ModelTemplate(
+                Optional.of(ModelLocationUtils.decorateItemModelLocation("houblonneux:" + modelLocation)),
+                Optional.of("_generated"),
+                textureSlotAndTextureLoc.keySet().toArray(new TextureSlot[0])
+        );
+
+        TextureMapping textureMapping = new TextureMapping();
+        textureSlotAndTextureLoc.forEach((slot, textureLoc) -> textureMapping.put(slot, new Material(textureLoc)));
+
+        Identifier modelAndTexture = model.create(
+                item,
+                textureMapping,
+                this.itemModelsGenerator.modelOutput);
+
+        this.itemModelsGenerator.itemModelOutput.accept(item, ItemModelUtils.plainModel(modelAndTexture));
     }
 }
