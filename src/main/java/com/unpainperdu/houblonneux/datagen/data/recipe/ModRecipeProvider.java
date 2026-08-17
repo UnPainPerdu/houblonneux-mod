@@ -153,22 +153,37 @@ public class ModRecipeProvider extends RecipeProvider
 
     public void brewingRecipe()
     {
-        this.brewing(100, ModFluidRegister.EMERALD_CALL.get(), 4000) //TODO better recipe
+        this.brewing(72000, ModFluidRegister.EMERALD_CALL.get(), 4000)
                 .setFluidIngredient(Fluids.WATER, 4000)
-                .setIngredients(ModItemRegister.HOP_LUPULIN, Items.EMERALD)
-                .unlockedBy("has_magma_block", this.has(Blocks.MAGMA_BLOCK))
+                .setIngredients(ModItemRegister.HOP_LUPULIN,
+                        Items.POTATO,
+                        Items.CARROT,
+                        Items.WHEAT,
+                        Items.BEETROOT,
+                        Items.MELON_SLICE
+                )
+                .unlockedBy("has_hop_lupulin", this.has(ModItemRegister.HOP_LUPULIN))
                 .save(this.output);
 
-        this.brewing(100, ModFluidRegister.WORM_HOLE.get(), 4000) //TODO better recipe
+        this.brewing(108000, ModFluidRegister.WORM_HOLE.get(), 4000)
                 .setFluidIngredient(Fluids.WATER, 4000)
-                .setIngredients(ModItemRegister.HOP_LUPULIN, Items.EMERALD, Items.EMERALD)
-                .unlockedBy("has_magma_block", this.has(Blocks.MAGMA_BLOCK))
+                .setIngredients(ModItemRegister.HOP_LUPULIN,
+                        Items.ENDER_PEARL,
+                        Items.WIND_CHARGE,
+                        Items.APPLE
+                )
+                .unlockedBy("has_hop_lupulin", this.has(ModItemRegister.HOP_LUPULIN))
                 .save(this.output);
 
-        this.brewing(100, ModFluidRegister.GROS_GUEULETON.get(), 4000) //TODO better recipe
+        this.brewing(144000, ModFluidRegister.GROS_GUEULETON.get(), 4000)
                 .setFluidIngredient(Fluids.WATER, 4000)
-                .setIngredients(ModItemRegister.HOP_LUPULIN, Items.EMERALD, Items.CAKE)
-                .unlockedBy("has_magma_block", this.has(Blocks.MAGMA_BLOCK))
+                .setIngredients(ModItemRegister.HOP_LUPULIN,
+                        Items.CAKE,
+                        Items.MUSHROOM_STEW
+                )
+                .setIngredients(Tags.Items.FOODS_COOKED_MEAT, Tags.Items.FOODS_COOKED_MEAT)
+                .setIngredients(Items.SUGAR)
+                .unlockedBy("has_hop_lupulin", this.has(ModItemRegister.HOP_LUPULIN))
                 .save(this.output);
     }
 

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_magma_block": {
+    "has_hop_lupulin": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:magma_block"
+            "items": "houblonneux:hop_lupulin"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_magma_block"
+      "has_hop_lupulin"
     ]
   ],
   "rewards": {

@@ -1,6 +1,6 @@
 {
   "type": "houblonneux:brewing_recipe",
-  "brewingTime": 100,
+  "brewingTime": 108000,
   "fluidInput": {
     "amount": 4000,
     "ingredient": "minecraft:water"
@@ -11,7 +11,8 @@
   },
   "ingredients": [
     "houblonneux:hop_lupulin",
-    "minecraft:emerald",
-    "minecraft:emerald"
+    "minecraft:ender_pearl",
+    "minecraft:wind_charge",
+    "minecraft:apple"
   ]
 }

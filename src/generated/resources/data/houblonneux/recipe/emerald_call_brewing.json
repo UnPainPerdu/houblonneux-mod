@@ -1,6 +1,6 @@
 {
   "type": "houblonneux:brewing_recipe",
-  "brewingTime": 100,
+  "brewingTime": 72000,
   "fluidInput": {
     "amount": 4000,
     "ingredient": "minecraft:water"
@@ -11,6 +11,10 @@
   },
   "ingredients": [
     "houblonneux:hop_lupulin",
-    "minecraft:emerald"
+    "minecraft:potato",
+    "minecraft:carrot",
+    "minecraft:wheat",
+    "minecraft:beetroot",
+    "minecraft:melon_slice"
   ]
 }

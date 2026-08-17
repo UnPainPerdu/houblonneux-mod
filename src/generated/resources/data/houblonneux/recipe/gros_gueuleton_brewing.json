@@ -1,6 +1,6 @@
 {
   "type": "houblonneux:brewing_recipe",
-  "brewingTime": 100,
+  "brewingTime": 144000,
   "fluidInput": {
     "amount": 4000,
     "ingredient": "minecraft:water"
@@ -11,7 +11,10 @@
   },
   "ingredients": [
     "houblonneux:hop_lupulin",
-    "minecraft:emerald",
-    "minecraft:cake"
+    "minecraft:cake",
+    "minecraft:mushroom_stew",
+    "#c:foods/cooked_meat",
+    "#c:foods/cooked_meat",
+    "minecraft:sugar"
   ]
 }

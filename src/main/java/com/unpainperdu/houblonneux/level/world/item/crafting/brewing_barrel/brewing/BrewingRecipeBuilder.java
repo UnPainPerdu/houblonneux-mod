@@ -81,7 +81,8 @@ public class BrewingRecipeBuilder implements RecipeBuilder
         return this;
     }
 
-    public BrewingRecipeBuilder setIngredients(TagKey<Item>... itemTags)
+    @SafeVarargs
+    public final BrewingRecipeBuilder setIngredients(TagKey<Item>... itemTags)
     {
         Arrays.stream(itemTags).forEach(tagKey -> this.ingredients.add(Ingredient.of(this.items.getOrThrow(tagKey))));
         return this;
