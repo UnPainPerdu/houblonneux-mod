@@ -3,6 +3,8 @@
   "block.houblonneux.hop_flower": "Fleur de Houblon",
   "container.houblonneux.brewing_barrel": "Tonneau de fermentation",
   "effect.houblonneux.worm_hole": "Worm Hole",
+  "houblonneux.container.brewing_time": "Temps restant :\n%sh %sm %ss\nSur %sh %sm %ss",
+  "houblonneux.container.no_brewing": "Rien ne fermante",
   "houblonneux.tooltip.container.trash_button": "Supprimer le liquide contenu?",
   "houblonneuxitem.fluidstack.tooltip": "%s mB de %s",
   "item.emerald_call.bottle.tooltip": "Bouteille et bière verte!",

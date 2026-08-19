@@ -32,6 +32,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -68,12 +69,59 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
             BrewingBarrelBlockEntity.this.setChanged();
         }
     };
+
+    private final ContainerData dataAccess = new ContainerData()
+    {
+        @Override
+        public int get(int dataId)
+        {
+            switch (dataId)
+            {
+                case 0 ->
+                {
+                    return BrewingBarrelBlockEntity.this.getBrewingTime();
+                }
+                case 1 ->
+                {
+                    if (BrewingBarrelBlockEntity.this.level != null)
+                    {
+                        if (BrewingBarrelBlockEntity.this.level.isClientSide())
+                        {
+                            return BrewingBarrelBlockEntity.this.getClientSideCurrentRecipeMaxBrewingTime();
+                        }
+                        if (BrewingBarrelBlockEntity.this.currentRecipe != null)
+                        {
+                            return BrewingBarrelBlockEntity.this.currentRecipe.brewingTime();
+                        }
+                    }
+                    return -1;
+                }
+                default ->
+                {
+                    return 0;
+                }
+            }
+        }
+
+        @Override
+        public void set(int dataId, int value)
+        {
+        }
+
+        @Override
+        public int getCount()
+        {
+            return 2;
+        }
+    };
+
     private final RecipeManager.CachedCheck<BrewingInput, ? extends BrewingRecipe> quickCheckBrewing;
     private final RecipeManager.CachedCheck<PumpingInput, ? extends PumpingRecipe> quickCheckPumping;
 
     private NonNullList<ItemStack> items = NonNullList.withSize(CONTAINER_SIZE, ItemStack.EMPTY);
     private int brewingTime;
     private BrewingRecipe currentRecipe;
+    private int currentRecipeMaxBrewingTime; //for client side access only
 
     public BrewingBarrelBlockEntity(BlockPos worldPosition, BlockState blockState)
     {
@@ -103,7 +151,7 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
     @Override
     protected AbstractContainerMenu createMenu(int containerId, Inventory inventory)
     {
-        return new BrewingBarrelMenu(containerId, inventory, this);
+        return new BrewingBarrelMenu(containerId, inventory, this, dataAccess);
     }
 
     @Override
@@ -188,7 +236,11 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
                 return;
             }
         }
-        this.brewingTime = 0;
+        if (this.currentRecipe != null)
+        {
+            this.currentRecipe = null;
+            this.brewingTime = 0;
+        }
     }
 
     private void brew(BrewingRecipe recipe)
@@ -237,6 +289,20 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
     public void setFluidStack(FluidStack fluidStack)
     {
         this.fluidStacksResourceHandler.set(0, FluidResource.of(fluidStack), fluidStack.getAmount());
+    }
+
+    public int getBrewingTime()
+    {
+        return this.brewingTime;
+    }
+
+    /**
+     * Only client side with sync
+     * @return -1 if no recipe
+     */
+    public int getClientSideCurrentRecipeMaxBrewingTime()
+    {
+        return this.currentRecipeMaxBrewingTime;
     }
 
     @Override

@@ -36,6 +36,8 @@ public class FrenchLanguageProvider extends LanguageProvider
         //menu
         this.add(BeerDispenserBlockEntity.TITLE_KEY, "Stockage de disque");
         this.add(BrewingBarrelBlockEntity.TITLE_KEY, "Tonneau de fermentation");
+        this.add(BrewingBarrelScreen.BREWING_TIME, "Temps restant :\n%sh %sm %ss\nSur %sh %sm %ss");
+        this.add(BrewingBarrelScreen.NO_BREWING, "Rien ne fermante");
         //tooltip
         this.add(ModItemToolTipEvent.ITEM_FLUIDSTACK_TOOLTIP, "%s mB de %s");
         //  menu

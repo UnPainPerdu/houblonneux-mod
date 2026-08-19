@@ -1,17 +1,23 @@
 package com.unpainperdu.houblonneux.client.screen;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.client.screen.util.FluidTankRenderer;
 import com.unpainperdu.houblonneux.level.menu.block.entity.BrewingBarrelMenu;
 import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEntity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Inventory;
+import org.joml.Matrix3x2fStack;
 
+import java.time.Duration;
 import java.util.List;
 
 public class BrewingBarrelScreen extends AbstractContainerScreen<BrewingBarrelMenu>
@@ -21,6 +27,9 @@ public class BrewingBarrelScreen extends AbstractContainerScreen<BrewingBarrelMe
     private static final Identifier TRASH_BUTTON_UNLIT = Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "common/trash_button_unlit");
 
     public static final String TRASH = Houblonneux.MOD_ID + ".tooltip.container.trash_button";
+    public static final String BREWING_TIME = Houblonneux.MOD_ID + ".container.brewing_time";
+    public static final String NO_BREWING = Houblonneux.MOD_ID + ".container.no_brewing";
+
     public static final int TRASH_BUTTON_ID = 0;
 
     public BrewingBarrelScreen(BrewingBarrelMenu menu, Inventory inventory, Component title)
@@ -31,17 +40,50 @@ public class BrewingBarrelScreen extends AbstractContainerScreen<BrewingBarrelMe
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a)
     {
-        //TODO handle display somehow of brewing time left
         super.extractBackground(graphics, mouseX, mouseY, a);
         //background
         int mainScreenPosX = (this.width - this.imageWidth) / 2;
         int mainScreenPosY = (this.height - this.imageHeight) / 2;
         graphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND, mainScreenPosX, mainScreenPosY, 0.0F, 0.0F, this.imageWidth, this.imageHeight, 256, 256);
+        //brewing time text
+        renderBrewingTimeText(graphics, mainScreenPosX + 10, mainScreenPosY + 21);
         //fluid tank
         FluidTankRenderer fluidTankRenderer = new FluidTankRenderer(BrewingBarrelBlockEntity.TANK_CAPACITY, true, 16, 64);
         fluidTankRenderer.render(graphics, mouseX, mouseY, mainScreenPosX + 74, mainScreenPosY + 21, this.getMenu().getFluidStack());
         //trash_button
-        renderButton(graphics, mouseX, mouseY, mainScreenPosX + 52, mainScreenPosY + 69);
+        renderButton(graphics, mouseX, mouseY, mainScreenPosX + 24, mainScreenPosY + 69);
+    }
+
+    private void renderBrewingTimeText(GuiGraphicsExtractor graphics, int posX, int posY)
+    {
+        int maxBrewingTime = this.getMenu().getCurrentRecipeMaxBrewingTime();
+        Component component;
+        if (maxBrewingTime > -1)
+        {
+            Duration brewingTimeDuration = Duration.ofSeconds(this.getMenu().getBrewingTime()/20);
+            Duration maxBrewingTimeDuration = Duration.ofSeconds(maxBrewingTime/20);
+            component = Component.translatable(BREWING_TIME, brewingTimeDuration.toHours(), brewingTimeDuration.toMinutesPart(), brewingTimeDuration.toSecondsPart(), maxBrewingTimeDuration.toHours(), maxBrewingTimeDuration.toMinutesPart(), maxBrewingTimeDuration.toSecondsPart());
+        }
+        else
+        {
+            component = Component.translatable(NO_BREWING);
+        }
+        List<FormattedCharSequence> formattedCharSequences = Minecraft.getInstance().font.split(component, 150);
+
+        float scale = 0.65f;
+
+        Matrix3x2fStack pose = graphics.pose();
+        pose.pushMatrix();
+        pose.scale(scale, scale);
+        int x = (int)(posX / scale);
+        int y = (int)(posY / scale);
+        for (FormattedCharSequence formattedCharSequence : formattedCharSequences)
+        {
+            Font font = Minecraft.getInstance().font;
+            graphics.text(font, formattedCharSequence, x, y, -12566464, false);
+            y += this.font.lineHeight;
+        }
+        pose.popMatrix();
     }
 
     private void renderButton(GuiGraphicsExtractor graphics, int mouseX, int mouseY, int buttonPosX, int buttonPosY)

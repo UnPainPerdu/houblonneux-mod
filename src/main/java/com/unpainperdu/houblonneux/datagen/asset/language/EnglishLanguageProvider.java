@@ -42,6 +42,8 @@ public class EnglishLanguageProvider extends LanguageProvider
         //menu
         this.add(BeerDispenserBlockEntity.TITLE_KEY, "Disk Storage");
         this.add(BrewingBarrelBlockEntity.TITLE_KEY, "Brewing Barrel");
+        this.add(BrewingBarrelScreen.BREWING_TIME, "Time left :\n%sh %sm %ss\nOf %sh %sm %ss");
+        this.add(BrewingBarrelScreen.NO_BREWING, "Nothing Brew");
         //tooltip
         this.add(FluidTankRenderer.AMOUNT, "%s mB");
         this.add(FluidTankRenderer.AMOUNT_AND_CAPACITY, "%s / %s mB");
