@@ -16,8 +16,6 @@ public class ModSoundRegister
 
     public static final DeferredHolder<SoundEvent, SoundEvent> BURP = register("burp");
     public static final String BURP_SUBTITLE = "sound." + Houblonneux.MOD_ID + ".burp";
-    public static final DeferredHolder<SoundEvent, SoundEvent> BIG_BURP = register("big_burp");
-    public static final String BIG_BURP_SUBTITLE = "sound." + Houblonneux.MOD_ID + ".big_burp";
 
     private static DeferredHolder<SoundEvent, SoundEvent> register(String name)
     {

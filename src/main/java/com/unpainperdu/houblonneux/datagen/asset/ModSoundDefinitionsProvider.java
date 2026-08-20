@@ -34,24 +34,5 @@ public class ModSoundDefinitionsProvider extends SoundDefinitionsProvider
                 .subtitle(ModSoundRegister.BURP_SUBTITLE)
                 .replace(true)
         );
-
-        add(ModSoundRegister.BIG_BURP, SoundDefinition.definition()
-                .with(
-                        sound("houblonneux:burp_01", SoundDefinition.SoundType.SOUND) //TODO real big burp sound
-                                .volume(0.8f)
-                                .pitch(1.2f)
-                                .attenuationDistance(8),
-                        sound("houblonneux:burp_02", SoundDefinition.SoundType.SOUND)
-                                .volume(0.8f)
-                                .pitch(1.2f)
-                                .attenuationDistance(8),
-                        sound("houblonneux:burp_03", SoundDefinition.SoundType.SOUND)
-                                .volume(0.8f)
-                                .pitch(1.2f)
-                                .attenuationDistance(8)
-                )
-                .subtitle(ModSoundRegister.BIG_BURP_SUBTITLE)
-                .replace(true)
-        );
     }
 }

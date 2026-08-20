@@ -2,14 +2,11 @@ package com.unpainperdu.houblonneux.level.world.item.consume_effect.beer;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.unpainperdu.houblonneux.register.ModSoundRegister;
 import com.unpainperdu.houblonneux.register.item.ModConsumeEffectTypeRegister;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -54,11 +51,9 @@ public class GrosGueuletonBeerConsumeEffect extends AbstractBeerConsumeEffect
     @Override
     public boolean apply(ServerLevel level, ItemStack stack, LivingEntity user, BeerType beerType)
     {
-        BlockPos pos = user.blockPosition();
         int power = this.beerType.getPowerLevel();
         int duration = (int) (2.5 * Math.pow(power, 2) - 2.5 * power + 5);
         user.addEffect(new MobEffectInstance(MobEffects.SATURATION, duration, 0));
-        level.playSound(null, pos, ModSoundRegister.BIG_BURP.get(), SoundSource.NEUTRAL, 20F, 0.05F);
         return true;
     }
 
