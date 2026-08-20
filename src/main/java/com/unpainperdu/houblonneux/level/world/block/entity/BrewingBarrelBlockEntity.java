@@ -114,7 +114,6 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
     private NonNullList<ItemStack> items = NonNullList.withSize(CONTAINER_SIZE, ItemStack.EMPTY);
     private int brewingTime;
     private BrewingRecipe currentRecipe;
-    private int currentRecipeMaxBrewingTime; //for client side access only
 
     public BrewingBarrelBlockEntity(BlockPos worldPosition, BlockState blockState)
     {
@@ -289,15 +288,6 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
     public int getBrewingTime()
     {
         return this.brewingTime;
-    }
-
-    /**
-     * Only client side with sync
-     * @return -1 if no recipe
-     */
-    public int getClientSideCurrentRecipeMaxBrewingTime()
-    {
-        return this.currentRecipeMaxBrewingTime;
     }
 
     @Override
