@@ -83,16 +83,9 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
                 }
                 case 1 ->
                 {
-                    if (BrewingBarrelBlockEntity.this.level != null)
+                    if (BrewingBarrelBlockEntity.this.currentRecipe != null)
                     {
-                        if (BrewingBarrelBlockEntity.this.level.isClientSide())
-                        {
-                            return BrewingBarrelBlockEntity.this.getClientSideCurrentRecipeMaxBrewingTime();
-                        }
-                        if (BrewingBarrelBlockEntity.this.currentRecipe != null)
-                        {
-                            return BrewingBarrelBlockEntity.this.currentRecipe.brewingTime();
-                        }
+                        return BrewingBarrelBlockEntity.this.currentRecipe.brewingTime();
                     }
                     return -1;
                 }
@@ -218,7 +211,7 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
             if (recipeholder != null)
             {
                 BrewingRecipe recipe = recipeholder.value();
-                if (recipe != this.currentRecipe)
+                if (!recipe.equals(this.currentRecipe))
                 {
                     this.currentRecipe = recipe;
                     this.brewingTime = 0;
@@ -233,6 +226,7 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
                 {
                     this.brewingTime += 1;
                 }
+                this.setChanged();
                 return;
             }
         }
@@ -240,6 +234,7 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
         {
             this.currentRecipe = null;
             this.brewingTime = 0;
+            this.setChanged();
         }
     }
 
