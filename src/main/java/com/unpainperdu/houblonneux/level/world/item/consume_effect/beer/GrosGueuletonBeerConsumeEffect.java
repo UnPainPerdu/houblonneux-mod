@@ -58,7 +58,7 @@ public class GrosGueuletonBeerConsumeEffect extends AbstractBeerConsumeEffect
         int power = this.beerType.getPowerLevel();
         int duration = (int) (2.5 * Math.pow(power, 2) - 2.5 * power + 5);
         user.addEffect(new MobEffectInstance(MobEffects.SATURATION, duration, 0));
-        level.playSound(null, pos, ModSoundRegister.BURP.get(), SoundSource.NEUTRAL, 20F, 0.05F); //TODO dedicated sound, this is horrible
+        level.playSound(null, pos, ModSoundRegister.BIG_BURP.get(), SoundSource.NEUTRAL, 20F, 0.05F);
         return true;
     }
 
