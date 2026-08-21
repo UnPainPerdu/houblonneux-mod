@@ -33,6 +33,10 @@ public class EnglishLanguageProvider extends LanguageProvider
         CommonLanguageHelper clp = new CommonLanguageHelper(this);
         //neoforge
         //  config
+        this.addConfigCategory(ModServerConfig.BREWING_RECIPE_CATEGORY, "Brewing Recipes");
+        this.add(ModServerConfig.BREWING_RECIPE_TIME_MULTIPLICATION_FACTOR_TRANSLATION_KEY, "Brewing Recipe Time Multiplication Factor");
+        this.add(ModServerConfig.BREWING_RECIPE_TIME_DIVISION_FACTOR_TRANSLATION_KEY, "Brewing Recipe Time Division Factor");
+        this.addConfigCategory(ModServerConfig.BEER_EFFECTS, "Beer Effects");
         this.add(ModServerConfig.PAIN_DIEUX_CAN_DESTROY_BLOCKS_TRANSLATION_KEY, "Pain Dieux explosion destroy blocks");
         this.add(ModServerConfig.PAIN_DIEUX_CAN_HURT_OTHER_PLAYER_TRANSLATION_KEY, "Pain Dieux explosion hurt other player");
         //integration
@@ -105,5 +109,10 @@ public class EnglishLanguageProvider extends LanguageProvider
         this.add(ModBlockRegister.BAMBOO_BREWING_BARREL.asItem(), "Bamboo Brewing Barrel");
         this.add(ModBlockRegister.CRIMSON_BREWING_BARREL.asItem(), "Crimson Brewing Barrel");
         this.add(ModBlockRegister.WARPED_BREWING_BARREL.asItem(), "Warped Brewing Barrel");
+    }
+
+    private void addConfigCategory(String name, String translation)
+    {
+        this.add(Houblonneux.MOD_ID + ".configuration." + name, translation);
     }
 }

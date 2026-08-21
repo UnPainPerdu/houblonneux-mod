@@ -3,6 +3,7 @@ package com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.bre
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.unpainperdu.houblonneux.config.ModServerConfig;
 import com.unpainperdu.houblonneux.register.recipe.ModRecipeSerializerRegister;
 import com.unpainperdu.houblonneux.register.recipe.ModRecipeTypeRegister;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -129,5 +130,13 @@ public record BrewingRecipe(CommonInfo commonInfo,
     public boolean isSpecial()
     {
         return true;
+    }
+
+    /**
+     * @return brewing time multiplier is applied to it before returning
+     */
+    public int getRealBrewingTime()
+    {
+        return this.brewingTime * ModServerConfig.CONFIG.BREWING_RECIPE_TIME_MULTIPLICATION_FACTOR.get() / ModServerConfig.CONFIG.BREWING_RECIPE_TIME_DIVISION_FACTOR.get();
     }
 }

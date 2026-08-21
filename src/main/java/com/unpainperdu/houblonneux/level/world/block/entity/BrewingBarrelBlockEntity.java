@@ -85,7 +85,7 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
                 {
                     if (BrewingBarrelBlockEntity.this.currentRecipe != null)
                     {
-                        return BrewingBarrelBlockEntity.this.currentRecipe.brewingTime();
+                        return BrewingBarrelBlockEntity.this.currentRecipe.getRealBrewingTime();
                     }
                     return -1;
                 }
@@ -216,7 +216,7 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
                     this.brewingTime = 0;
                     return;
                 }
-                if (this.brewingTime >= recipe.brewingTime())
+                if (this.brewingTime >= recipe.getRealBrewingTime())
                 {
                     this.brew(recipe);
                     this.currentRecipe = null;

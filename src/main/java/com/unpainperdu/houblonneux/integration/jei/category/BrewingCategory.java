@@ -78,7 +78,7 @@ public class BrewingCategory extends AbstractRecipeCategory<BrewingRecipe>
     public void draw(BrewingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics, double mouseX, double mouseY)
     {
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND_TEXTURES, 0, 0, 0, 0, this.getWidth(), this.getHeight(), 256, 256);
-        int brewingTime = recipe.brewingTime();
+        int brewingTime = recipe.getRealBrewingTime();
         int timeInSecond = brewingTime / 20;
         Duration d = Duration.ofSeconds(timeInSecond);
         guiGraphics.text(Minecraft.getInstance().font, Component.translatable(BREWING_TIME_KEY, d.toHours(), d.toMinutesPart(), d.toSecondsPart()), 0, 0, -12566464, false);
