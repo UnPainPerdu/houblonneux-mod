@@ -1,6 +1,6 @@
 package com.unpainperdu.houblonneux.neoevent.effect;
 
-import com.unpainperdu.houblonneux.Houblonneux;
+import com.unpainperdu.houblonneux.config.ModServerConfig;
 import com.unpainperdu.houblonneux.register.entity.effect.ModMobEffectRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -34,20 +34,20 @@ public class NeoEventPainDieuxEffect
                                     @Override
                                     public boolean shouldBlockExplode(Explosion explosion, BlockGetter level, BlockPos pos, BlockState state, float power)
                                     {
-                                        return Houblonneux.Config.PAIN_DIEUX_CAN_DESTROY_BLOCKS.get();
+                                        return ModServerConfig.CONFIG.PAIN_DIEUX_CAN_DESTROY_BLOCKS.get();
                                     }
 
                                     public boolean shouldDamageEntity(Explosion explosion, Entity entity1)
                                     {
-                                        if (Houblonneux.Config.PAIN_DIEUX_CAN_DESTROY_BLOCKS.get())
+                                        if (ModServerConfig.CONFIG.PAIN_DIEUX_CAN_DESTROY_BLOCKS.get())
                                         {
-                                            if (Houblonneux.Config.PAIN_DIEUX_CAN_HURT_OTHER_PLAYER.get())
+                                            if (ModServerConfig.CONFIG.PAIN_DIEUX_CAN_HURT_OTHER_PLAYER.get())
                                             {
                                                 return !entity1.is(entity);
                                             }
                                             return !entity1.is(entity) && !(entity1 instanceof Player);
                                         }
-                                        if (Houblonneux.Config.PAIN_DIEUX_CAN_HURT_OTHER_PLAYER.get())
+                                        if (ModServerConfig.CONFIG.PAIN_DIEUX_CAN_HURT_OTHER_PLAYER.get())
                                         {
                                             return !entity1.is(entity) && (entity1 instanceof Mob || entity1 instanceof Player);
                                         }

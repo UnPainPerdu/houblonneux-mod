@@ -3,6 +3,7 @@ package com.unpainperdu.houblonneux.datagen.asset.language;
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.client.screen.BrewingBarrelScreen;
 import com.unpainperdu.houblonneux.client.screen.util.FluidTankRenderer;
+import com.unpainperdu.houblonneux.config.ModServerConfig;
 import com.unpainperdu.houblonneux.integration.jei.category.BrewingCategory;
 import com.unpainperdu.houblonneux.integration.jei.category.PumpingCategory;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
@@ -32,8 +33,8 @@ public class EnglishLanguageProvider extends LanguageProvider
         CommonLanguageHelper clp = new CommonLanguageHelper(this);
         //neoforge
         //  config
-        this.add(Houblonneux.Config.PAIN_DIEUX_CAN_DESTROY_BLOCKS_TRANSLATION_KEY, "Pain Dieux explosion destroy blocks");
-        this.add(Houblonneux.Config.PAIN_DIEUX_CAN_HURT_OTHER_PLAYER_TRANSLATION_KEY, "Pain Dieux explosion hurt other player");
+        this.add(ModServerConfig.PAIN_DIEUX_CAN_DESTROY_BLOCKS_TRANSLATION_KEY, "Pain Dieux explosion destroy blocks");
+        this.add(ModServerConfig.PAIN_DIEUX_CAN_HURT_OTHER_PLAYER_TRANSLATION_KEY, "Pain Dieux explosion hurt other player");
         //integration
         //  jei
         this.add(BrewingCategory.CATEGORY_KEY, "Brewing");
