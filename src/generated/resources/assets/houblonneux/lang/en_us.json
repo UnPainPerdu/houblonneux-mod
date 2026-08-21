@@ -6,6 +6,8 @@
   "fluid_type.houblonneux.emerald_call": "Emerald Call",
   "fluid_type.houblonneux.gros_gueuleton": "Gros Gueuleton",
   "fluid_type.houblonneux.worm_hole": "Worm Hole",
+  "houblonneux.configuration.painDieuxCanDestroyBlocks": "Pain Dieux explosion destroy blocks",
+  "houblonneux.configuration.painDieuxCanHurtOtherPlayer": "Pain Dieux explosion hurt other player",
   "houblonneux.container.brewing_time": "Time left :\n%sh %sm %ss\nOf %sh %sm %ss",
   "houblonneux.container.no_brewing": "Nothing Brew",
   "houblonneux.tooltip.container.trash_button": "Delete liquid Stored ?",

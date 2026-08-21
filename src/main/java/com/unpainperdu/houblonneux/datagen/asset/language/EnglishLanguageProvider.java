@@ -30,6 +30,10 @@ public class EnglishLanguageProvider extends LanguageProvider
     protected void addTranslations()
     {
         CommonLanguageHelper clp = new CommonLanguageHelper(this);
+        //neoforge
+        //  config
+        this.add(Houblonneux.Config.PAIN_DIEUX_CAN_DESTROY_BLOCKS_TRANSLATION_KEY, "Pain Dieux explosion destroy blocks");
+        this.add(Houblonneux.Config.PAIN_DIEUX_CAN_HURT_OTHER_PLAYER_TRANSLATION_KEY, "Pain Dieux explosion hurt other player");
         //integration
         //  jei
         this.add(BrewingCategory.CATEGORY_KEY, "Brewing");
