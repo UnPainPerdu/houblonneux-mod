@@ -22,5 +22,15 @@
       }
     ],
     "subtitle": "sound.houblonneux.burp"
+  },
+  "holy_grenade": {
+    "replace": true,
+    "sounds": [
+      {
+        "attenuation_distance": 8,
+        "name": "houblonneux:holy_grenade"
+      }
+    ],
+    "subtitle": "sound.houblonneux.holy_grenade"
   }
 }

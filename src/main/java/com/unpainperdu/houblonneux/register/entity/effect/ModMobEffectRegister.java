@@ -1,7 +1,7 @@
 package com.unpainperdu.houblonneux.register.entity.effect;
 
 import com.unpainperdu.houblonneux.Houblonneux;
-import com.unpainperdu.houblonneux.level.world.effect.WormHoleMobEffect;
+import com.unpainperdu.houblonneux.level.world.effect.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -16,6 +16,25 @@ public class ModMobEffectRegister
     public static final DeferredHolder<MobEffect, WormHoleMobEffect> WORM_HOLE = MOB_EFFECT.register(
             "worm_hole",
             () -> new WormHoleMobEffect(MobEffectCategory.NEUTRAL, 0x000000)
+    );
+
+    public static final DeferredHolder<MobEffect, PainDieuxMobEffect> PAIN_DIEUX = MOB_EFFECT.register(
+            "pain_dieux",
+            () -> new PainDieuxMobEffect(MobEffectCategory.NEUTRAL, 0x000000)
+    );
+
+    public static final DeferredHolder<MobEffect, RealDwarveMobEffect> REAL_DWARVE = MOB_EFFECT.register(
+            "real_dwarve",
+            () -> new RealDwarveMobEffect(MobEffectCategory.NEUTRAL, 0x000000)
+    );
+
+    public static final DeferredHolder<MobEffect, PiedDeGeantsMobEffect> PIED_DE_GEANTS = MOB_EFFECT.register(
+            "pied_de_geants",
+            () -> new PiedDeGeantsMobEffect(MobEffectCategory.NEUTRAL, 0x000000)
+    );
+    public static final DeferredHolder<MobEffect, LaBlancheDeChezNousMobEffect> LA_BLANCHE_DE_CHEZ_NOUS = MOB_EFFECT.register(
+            "la_blanche_de_chez_nous",
+            () -> new LaBlancheDeChezNousMobEffect(MobEffectCategory.NEUTRAL, 0x000000)
     );
 
     public static void register(IEventBus event)

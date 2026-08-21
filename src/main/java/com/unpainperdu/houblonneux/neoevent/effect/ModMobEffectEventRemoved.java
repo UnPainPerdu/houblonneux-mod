@@ -15,6 +15,7 @@ public class ModMobEffectEventRemoved
     {
         MobEffectInstance currentMobEffectInstance = event.getEffectInstance();
         LivingEntity currentLivingEntity = event.getEntity();
-        CommonEffect.handleWormHoleEndEffect(currentMobEffectInstance, currentLivingEntity);
+        NeoEventWormHoleMobEffect.handleWormHoleEndEffect(currentMobEffectInstance, currentLivingEntity);
+        NeoEventPainDieuxEffect.handlePainDieuxEndEffect(currentMobEffectInstance, currentLivingEntity);
     }
 }

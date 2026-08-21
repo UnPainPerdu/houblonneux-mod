@@ -17,6 +17,9 @@ public class ModSoundRegister
     public static final DeferredHolder<SoundEvent, SoundEvent> BURP = register("burp");
     public static final String BURP_SUBTITLE = "sound." + Houblonneux.MOD_ID + ".burp";
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> HOLY_GRENADE = register("holy_grenade");
+    public static final String HOLY_GRENADE_SUBTITLE = "sound." + Houblonneux.MOD_ID + ".holy_grenade";
+
     private static DeferredHolder<SoundEvent, SoundEvent> register(String name)
     {
         return SOUND_EVENTS.register(name, SoundEvent::createVariableRangeEvent);

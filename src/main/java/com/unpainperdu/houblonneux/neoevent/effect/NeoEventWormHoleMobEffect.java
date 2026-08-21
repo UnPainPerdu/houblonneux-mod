@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 
-public class CommonEffect
+public class NeoEventWormHoleMobEffect
 {
     public static void handleWormHoleEndEffect(MobEffectInstance currentMobEffectInstance, LivingEntity entity)
     {

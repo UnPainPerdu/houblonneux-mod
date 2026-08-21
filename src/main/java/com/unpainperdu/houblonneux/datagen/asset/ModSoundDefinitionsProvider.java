@@ -34,5 +34,16 @@ public class ModSoundDefinitionsProvider extends SoundDefinitionsProvider
                 .subtitle(ModSoundRegister.BURP_SUBTITLE)
                 .replace(true)
         );
+
+        add(ModSoundRegister.HOLY_GRENADE, SoundDefinition.definition()
+                .with(
+                        sound("houblonneux:holy_grenade", SoundDefinition.SoundType.SOUND)
+                                .volume(1.0F)
+                                .pitch(1.0f)
+                                .attenuationDistance(8)
+                )
+                .subtitle(ModSoundRegister.HOLY_GRENADE_SUBTITLE)
+                .replace(true)
+        );
     }
 }
