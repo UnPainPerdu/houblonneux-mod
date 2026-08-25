@@ -17,5 +17,7 @@ public class ModMobEffectEventRemoved
         LivingEntity currentLivingEntity = event.getEntity();
         NeoEventWormHoleMobEffect.handleWormHoleEndEffect(currentMobEffectInstance, currentLivingEntity);
         NeoEventPainDieuxEffect.handlePainDieuxEndEffect(currentMobEffectInstance, currentLivingEntity);
+        NeoRealDwarveEffect.handleRealDwarveEndEffect(currentMobEffectInstance, currentLivingEntity);
+        NeoPiedDeGeantsEffect.handlePiedDeGeantsEndEffect(currentMobEffectInstance, currentLivingEntity);
     }
 }
