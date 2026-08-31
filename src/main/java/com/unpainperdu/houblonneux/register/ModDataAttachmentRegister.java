@@ -30,12 +30,22 @@ public class ModDataAttachmentRegister
             "original_jump_factor", () -> AttachmentType.builder(() -> 0.45D).serialize(Codec.DOUBLE.fieldOf("original_jump_factor")).build()
     );
 
-    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Double>> ORIGINAL_REACH_FACTOR = ATTACHMENT_TYPE.register(
-            "original_reach_factor", () -> AttachmentType.builder(() -> 4.5D).serialize(Codec.DOUBLE.fieldOf("original_reach_factor")).build()
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Double>> ORIGINAL_BLOCK_REACH_FACTOR = ATTACHMENT_TYPE.register(
+            "original_block_reach_factor", () -> AttachmentType.builder(() -> 4.5D).serialize(Codec.DOUBLE.fieldOf("original_block_reach_factor")).build()
+    );
+
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Double>> ORIGINAL_ENTITY_REACH_FACTOR = ATTACHMENT_TYPE.register(
+            "original_entity_reach_factor", () -> AttachmentType.builder(() -> 3D).serialize(Codec.DOUBLE.fieldOf("original_entity_reach_factor")).build()
     );
 
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Double>> ORIGINAL_SAFE_FALL_DISTANCE_FACTOR = ATTACHMENT_TYPE.register(
             "original_safe_fall_distance_factor", () -> AttachmentType.builder(() -> 3D).serialize(Codec.DOUBLE.fieldOf("original_safe_fall_distance_factor")).build()
+    );
+
+    public static final double DEFAULT_SCALE_FACTOR = 1D;
+
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Double>> SCALE_FACTOR = ATTACHMENT_TYPE.register(
+            "scale_factor", () -> AttachmentType.builder(() -> DEFAULT_SCALE_FACTOR).serialize(Codec.DOUBLE.fieldOf("scale_factor")).build()
     );
 
     public static void register(IEventBus event)

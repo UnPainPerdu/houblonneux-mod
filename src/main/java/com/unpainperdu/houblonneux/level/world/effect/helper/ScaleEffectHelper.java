@@ -1,13 +1,15 @@
 package com.unpainperdu.houblonneux.level.world.effect.helper;
 
 import com.unpainperdu.houblonneux.register.ModDataAttachmentRegister;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 
 public class ScaleEffectHelper
 {
-    public static void scaleTo(LivingEntity entity, float scaleFactor)
+    public static void scaleTo(LivingEntity entity, double scaleFactor)
     {
         AttributeInstance sizeA = entity.getAttribute(Attributes.SCALE);
         AttributeInstance speedMovementA = entity.getAttribute(Attributes.MOVEMENT_SPEED);
@@ -27,18 +29,27 @@ public class ScaleEffectHelper
             entity.setData(ModDataAttachmentRegister.ORIGINAL_SPEED_FACTOR, speedFactor);
             entity.setData(ModDataAttachmentRegister.ORIGINAL_JUMP_FACTOR, jumpFactor);
             entity.setData(ModDataAttachmentRegister.ORIGINAL_SAFE_FALL_DISTANCE_FACTOR, safeFallDistanceFactor);
+            entity.setData(ModDataAttachmentRegister.SCALE_FACTOR, scaleFactor);
             //scale
             sizeA.setBaseValue(sizeFactor * scaleFactor);
             speedMovementA.setBaseValue((speedFactor * scaleFactor));
             jumpFactorA.setBaseValue(Math.max(jumpFactor * (scaleFactor * 0.65), 0.3));
             safeFallDistanceFactorA.setBaseValue(safeFallDistanceFactor * scaleFactor);
             //optional
-            AttributeInstance reachFactorA = entity.getAttribute(Attributes.BLOCK_INTERACTION_RANGE);
-            if (reachFactorA != null)
+            AttributeInstance blockReachFactorA = entity.getAttribute(Attributes.BLOCK_INTERACTION_RANGE);
+            if (blockReachFactorA != null)
             {
-                double reachFactor = reachFactorA.getValue();
-                entity.setData(ModDataAttachmentRegister.ORIGINAL_REACH_FACTOR, reachFactor);
-                reachFactorA.setBaseValue(reachFactor * (scaleFactor * 0.8));
+                double reachFactor = blockReachFactorA.getValue();
+                entity.setData(ModDataAttachmentRegister.ORIGINAL_BLOCK_REACH_FACTOR, reachFactor);
+                blockReachFactorA.setBaseValue(reachFactor * (scaleFactor * 0.8));
+            }
+
+            AttributeInstance entityReachFactorA = entity.getAttribute(Attributes.ENTITY_INTERACTION_RANGE);
+            if (entityReachFactorA != null)
+            {
+                double reachFactor = entityReachFactorA.getValue();
+                entity.setData(ModDataAttachmentRegister.ORIGINAL_ENTITY_REACH_FACTOR, reachFactor);
+                entityReachFactorA.setBaseValue(reachFactor * (scaleFactor * 0.8));
             }
         }
     }
@@ -60,12 +71,43 @@ public class ScaleEffectHelper
             safeFallDistanceFactor.setBaseValue(entity.getData(ModDataAttachmentRegister.ORIGINAL_SAFE_FALL_DISTANCE_FACTOR));
             entity.removeData(ModDataAttachmentRegister.ORIGINAL_SAFE_FALL_DISTANCE_FACTOR);
 
-            AttributeInstance reachFactor = entity.getAttribute(Attributes.BLOCK_INTERACTION_RANGE);
-            if (reachFactor != null)
+            AttributeInstance blockReachFactor = entity.getAttribute(Attributes.BLOCK_INTERACTION_RANGE);
+            if (blockReachFactor != null)
             {
-                reachFactor.setBaseValue(entity.getData(ModDataAttachmentRegister.ORIGINAL_REACH_FACTOR));
-                entity.removeData(ModDataAttachmentRegister.ORIGINAL_REACH_FACTOR);
+                blockReachFactor.setBaseValue(entity.getData(ModDataAttachmentRegister.ORIGINAL_BLOCK_REACH_FACTOR));
+                entity.removeData(ModDataAttachmentRegister.ORIGINAL_BLOCK_REACH_FACTOR);
             }
+            AttributeInstance entityReachFactor = entity.getAttribute(Attributes.ENTITY_INTERACTION_RANGE);
+            if (entityReachFactor != null)
+            {
+                entityReachFactor.setBaseValue(entity.getData(ModDataAttachmentRegister.ORIGINAL_ENTITY_REACH_FACTOR));
+                entity.removeData(ModDataAttachmentRegister.ORIGINAL_ENTITY_REACH_FACTOR);
+            }
+
+            entity.removeData(ModDataAttachmentRegister.SCALE_FACTOR);
+        }
+    }
+
+    public static void handleDamageChangeFromScale(LivingDamageEvent.Pre event, LivingEntity entityHurt, Entity entitySource)
+    {
+        double scaleFactorEntityHurt = entityHurt.getData(ModDataAttachmentRegister.SCALE_FACTOR);
+        double scaleFactorEntitySource = entitySource.getData(ModDataAttachmentRegister.SCALE_FACTOR);
+        double ratio = scaleFactorEntitySource / scaleFactorEntityHurt;
+
+        float finalDamage = (float) (event.getContainer().getNewDamage() * ratio);
+
+        event.getContainer().setNewDamage(finalDamage);
+
+        cleanDataIfDefault(entityHurt);
+        cleanDataIfDefault(entitySource);
+    }
+
+    public static void cleanDataIfDefault(Entity entity)
+    {
+        double scaleFactorEntity = entity.getData(ModDataAttachmentRegister.SCALE_FACTOR);
+        if (scaleFactorEntity == ModDataAttachmentRegister.DEFAULT_SCALE_FACTOR)
+        {
+            entity.removeData(ModDataAttachmentRegister.SCALE_FACTOR);
         }
     }
 }
