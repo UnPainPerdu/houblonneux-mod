@@ -40,7 +40,7 @@ public class LaBlancheDeChezNousMobEffect extends MobEffect
         }
 
         Random rand = new Random();
-        serverLevel.sendParticles(ParticleTypes.SNOWFLAKE, mob.getX(), mob.getY() + 1.0, mob.getZ(), 3, (rand.nextDouble(1)) * (rand.nextBoolean() ? 1 : -1), (rand.nextDouble(1)) * (rand.nextBoolean() ? 1 : -1), (rand.nextDouble(1)) * (rand.nextBoolean() ? 1 : -1), rand.nextDouble(0.3));
+        serverLevel.sendParticles(ParticleTypes.SNOWFLAKE, mob.getX(), mob.getY() + 1.0, mob.getZ(), 3, (rand.nextDouble(1)) * (rand.nextBoolean() ? 1 : -1), (rand.nextDouble(1)) * (rand.nextBoolean() ? 1 : -1), (rand.nextDouble(1)) * (rand.nextBoolean() ? 1 : -1), rand.nextDouble(0.1));
 
         applySnowAndIce(serverLevel, entityOnPos, amplification);
         if (amplification > 0)
