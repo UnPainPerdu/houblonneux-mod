@@ -121,6 +121,10 @@ public class ModRecipeProvider extends RecipeProvider
         shapelessRecipe(ModItemRegister.EMERALD_CALL_GLASS, ModItemRegister.EMERALD_CALL_BOTTLE, ModItemRegister.EMPTY_POLYMORPHIC_GLASS);
         shapelessRecipe(ModItemRegister.WORM_HOLE_GLASS, ModItemRegister.WORM_HOLE_BOTTLE, ModItemRegister.EMPTY_POLYMORPHIC_GLASS);
         shapelessRecipe(ModItemRegister.GROS_GUEULETON_GLASS, ModItemRegister.GROS_GUEULETON_BOTTLE, ModItemRegister.EMPTY_POLYMORPHIC_GLASS);
+        shapelessRecipe(ModItemRegister.PAIN_DIEUX_GLASS, ModItemRegister.PAIN_DIEUX_BOTTLE, ModItemRegister.EMPTY_POLYMORPHIC_GLASS);
+        shapelessRecipe(ModItemRegister.REAL_DWARVE_GLASS, ModItemRegister.REAL_DWARVE_BOTTLE, ModItemRegister.EMPTY_POLYMORPHIC_GLASS);
+        shapelessRecipe(ModItemRegister.PIED_DE_GEANTS_GLASS, ModItemRegister.PIED_DE_GEANTS_BOTTLE, ModItemRegister.EMPTY_POLYMORPHIC_GLASS);
+        shapelessRecipe(ModItemRegister.LA_BLANCHE_DE_CHEZ_NOUS_GLASS, ModItemRegister.LA_BLANCHE_DE_CHEZ_NOUS_BOTTLE, ModItemRegister.EMPTY_POLYMORPHIC_GLASS);
     }
 
     /**
@@ -185,6 +189,64 @@ public class ModRecipeProvider extends RecipeProvider
                 .setIngredients(Items.SUGAR)
                 .unlockedBy("has_hop_lupulin", this.has(ModItemRegister.HOP_LUPULIN))
                 .save(this.output);
+
+        this.brewing(82000, ModFluidRegister.PAIN_DIEUX.get(), 4000)
+                .setFluidIngredient(Fluids.WATER, 4000)
+                .setIngredients(ModItemRegister.HOP_LUPULIN,
+                        Items.GUNPOWDER,
+                        Items.GUNPOWDER,
+                        Items.GUNPOWDER,
+                        Items.REDSTONE,
+                        Items.WHEAT,
+                        Items.GOLDEN_CARROT
+                )
+                .setIngredients(
+                        Tags.Items.NUGGETS_GOLD,
+                        Tags.Items.NUGGETS_GOLD
+                )
+                .unlockedBy("has_hop_lupulin", this.has(ModItemRegister.HOP_LUPULIN))
+                .save(this.output);
+
+        this.brewing(72000, ModFluidRegister.REAL_DWARVE.get(), 4000)
+                .setFluidIngredient(Fluids.WATER, 4000)
+                .setIngredients(ModItemRegister.HOP_LUPULIN,
+                        Items.POTATO,
+                        Items.POTATO,
+                        Items.POTATO,
+                        Items.FEATHER,
+                        Items.EGG
+                )
+                .setIngredients(Tags.Items.RAW_MATERIALS_GOLD)
+                .unlockedBy("has_hop_lupulin", this.has(ModItemRegister.HOP_LUPULIN))
+                .save(this.output);
+
+        this.brewing(144000, ModFluidRegister.PIED_DE_GEANTS.get(), 4000)
+                .setFluidIngredient(Fluids.WATER, 4000)
+                .setIngredients(ModItemRegister.HOP_LUPULIN,
+                        Items.WHEAT,
+                        Items.BLAZE_POWDER,
+                        Items.REDSTONE
+                )
+                .setIngredients(
+                        Tags.Items.FOODS_COOKED_MEAT,
+                        Tags.Items.FOODS_COOKED_MEAT,
+                        Tags.Items.FOODS_COOKED_MEAT,
+                        Tags.Items.FOODS_COOKED_MEAT
+                )
+                .unlockedBy("has_hop_lupulin", this.has(ModItemRegister.HOP_LUPULIN))
+                .save(this.output);
+
+        this.brewing(90000, ModFluidRegister.LA_BLANCHE_DE_CHEZ_NOUS.get(), 4000)
+                .setFluidIngredient(Fluids.WATER, 4000)
+                .setIngredients(ModItemRegister.HOP_LUPULIN,
+                        Items.BLUE_ICE,
+                        Items.WHEAT,
+                        Items.SUGAR
+                )
+                .setIngredients(Tags.Items.MUSHROOMS)
+                .unlockedBy("has_hop_lupulin", this.has(ModItemRegister.HOP_LUPULIN))
+                .save(this.output);
+
     }
 
     public BrewingRecipeBuilder brewing(int brewingTime, Fluid fluidResult, int fluidResultAmount)
@@ -235,6 +297,50 @@ public class ModRecipeProvider extends RecipeProvider
                 .save(this.output);
         this.pomp(ModItemRegister.GROS_GUEULETON_MUG, 1)
                 .setFluidIngredient(ModFluidRegister.GROS_GUEULETON.get(), 250)
+                .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_MUG)
+                .unlockedBy("has_empty_polymorphic_mug", this.has(ModItemRegister.EMPTY_POLYMORPHIC_MUG))
+                .save(this.output);
+
+        this.pomp(ModItemRegister.PAIN_DIEUX_BOTTLE, 1)
+                .setFluidIngredient(ModFluidRegister.PAIN_DIEUX.get(), 250)
+                .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE)
+                .unlockedBy("has_empty_polymorphic_bottle", this.has(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE))
+                .save(this.output);
+        this.pomp(ModItemRegister.PAIN_DIEUX_MUG, 1)
+                .setFluidIngredient(ModFluidRegister.PAIN_DIEUX.get(), 250)
+                .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_MUG)
+                .unlockedBy("has_empty_polymorphic_mug", this.has(ModItemRegister.EMPTY_POLYMORPHIC_MUG))
+                .save(this.output);
+
+        this.pomp(ModItemRegister.REAL_DWARVE_BOTTLE, 1)
+                .setFluidIngredient(ModFluidRegister.REAL_DWARVE.get(), 250)
+                .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE)
+                .unlockedBy("has_empty_polymorphic_bottle", this.has(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE))
+                .save(this.output);
+        this.pomp(ModItemRegister.REAL_DWARVE_MUG, 1)
+                .setFluidIngredient(ModFluidRegister.REAL_DWARVE.get(), 250)
+                .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_MUG)
+                .unlockedBy("has_empty_polymorphic_mug", this.has(ModItemRegister.EMPTY_POLYMORPHIC_MUG))
+                .save(this.output);
+
+        this.pomp(ModItemRegister.PIED_DE_GEANTS_BOTTLE, 1)
+                .setFluidIngredient(ModFluidRegister.PIED_DE_GEANTS.get(), 250)
+                .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE)
+                .unlockedBy("has_empty_polymorphic_bottle", this.has(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE))
+                .save(this.output);
+        this.pomp(ModItemRegister.PIED_DE_GEANTS_MUG, 1)
+                .setFluidIngredient(ModFluidRegister.PIED_DE_GEANTS.get(), 250)
+                .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_MUG)
+                .unlockedBy("has_empty_polymorphic_mug", this.has(ModItemRegister.EMPTY_POLYMORPHIC_MUG))
+                .save(this.output);
+
+        this.pomp(ModItemRegister.LA_BLANCHE_DE_CHEZ_NOUS_BOTTLE, 1)
+                .setFluidIngredient(ModFluidRegister.LA_BLANCHE_DE_CHEZ_NOUS.get(), 250)
+                .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE)
+                .unlockedBy("has_empty_polymorphic_bottle", this.has(ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE))
+                .save(this.output);
+        this.pomp(ModItemRegister.LA_BLANCHE_DE_CHEZ_NOUS_MUG, 1)
+                .setFluidIngredient(ModFluidRegister.LA_BLANCHE_DE_CHEZ_NOUS.get(), 250)
                 .setIngredient(ModItemRegister.EMPTY_POLYMORPHIC_MUG)
                 .unlockedBy("has_empty_polymorphic_mug", this.has(ModItemRegister.EMPTY_POLYMORPHIC_MUG))
                 .save(this.output);

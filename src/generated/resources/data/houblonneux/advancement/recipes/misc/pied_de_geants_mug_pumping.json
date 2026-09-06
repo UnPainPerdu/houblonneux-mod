@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_empty_polymorphic_mug": {
+      "conditions": {
+        "items": [
+          {
+            "items": "houblonneux:empty_polymorphic_mug"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "houblonneux:pied_de_geants_mug_pumping"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_empty_polymorphic_mug"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "houblonneux:pied_de_geants_mug_pumping"
+    ]
+  }
+}

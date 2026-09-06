@@ -1,0 +1,11 @@
+{
+  "type": "houblonneux:pomp_recipe",
+  "fluidInput": {
+    "amount": 250,
+    "ingredient": "houblonneux:real_dwarve"
+  },
+  "ingredient": "houblonneux:empty_polymorphic_mug",
+  "result": {
+    "id": "houblonneux:real_dwarve_mug"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_hop_lupulin": {
+      "conditions": {
+        "items": [
+          {
+            "items": "houblonneux:hop_lupulin"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "houblonneux:pain_dieux_brewing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_hop_lupulin"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "houblonneux:pain_dieux_brewing"
+    ]
+  }
+}

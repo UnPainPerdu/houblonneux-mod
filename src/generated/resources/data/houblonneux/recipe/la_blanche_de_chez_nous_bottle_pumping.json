@@ -1,0 +1,11 @@
+{
+  "type": "houblonneux:pomp_recipe",
+  "fluidInput": {
+    "amount": 250,
+    "ingredient": "houblonneux:la_blanche_de_chez_nous"
+  },
+  "ingredient": "houblonneux:empty_polymorphic_bottle",
+  "result": {
+    "id": "houblonneux:la_blanche_de_chez_nous_bottle"
+  }
+}

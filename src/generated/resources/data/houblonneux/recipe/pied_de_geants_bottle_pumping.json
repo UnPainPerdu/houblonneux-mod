@@ -1,0 +1,11 @@
+{
+  "type": "houblonneux:pomp_recipe",
+  "fluidInput": {
+    "amount": 250,
+    "ingredient": "houblonneux:pied_de_geants"
+  },
+  "ingredient": "houblonneux:empty_polymorphic_bottle",
+  "result": {
+    "id": "houblonneux:pied_de_geants_bottle"
+  }
+}

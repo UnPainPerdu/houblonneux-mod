@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "houblonneux:real_dwarve_bottle",
+    "houblonneux:empty_polymorphic_glass"
+  ],
+  "result": {
+    "id": "houblonneux:real_dwarve_glass"
+  }
+}

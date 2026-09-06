@@ -22,7 +22,7 @@ public class ModRegisterFluidModelEvent
                         WATER_MATERIAL,
                         FLOWING_WATER_MATERIAL,
                         null,
-                        _ -> 0xff85d185,
+                        _ -> ModFluidRegister.EMERALD_CALL_COLOR,
                         null),
                 ModFluidRegister.EMERALD_CALL,
                 ModFluidRegister.FLOWING_EMERALD_CALL);
@@ -31,7 +31,7 @@ public class ModRegisterFluidModelEvent
                         WATER_MATERIAL,
                         FLOWING_WATER_MATERIAL,
                         null,
-                        _ -> 0xff3b094b,
+                        _ -> ModFluidRegister.WORM_HOLE_COLOR,
                         null),
                 ModFluidRegister.WORM_HOLE,
                 ModFluidRegister.FLOWING_WORM_HOLE);
@@ -40,9 +40,45 @@ public class ModRegisterFluidModelEvent
                         WATER_MATERIAL,
                         FLOWING_WATER_MATERIAL,
                         null,
-                        _ -> 0xfff19323,
+                        _ -> ModFluidRegister.GROS_GUEULETON_COLOR,
                         null),
                 ModFluidRegister.GROS_GUEULETON,
                 ModFluidRegister.FLOWING_GROS_GUEULETON);
+
+        event.register(new FluidModel.Unbaked(
+                        WATER_MATERIAL,
+                        FLOWING_WATER_MATERIAL,
+                        null,
+                        _ -> ModFluidRegister.PAIN_DIEUX_COLOR,
+                        null),
+                ModFluidRegister.PAIN_DIEUX,
+                ModFluidRegister.FLOWING_PAIN_DIEUX);
+
+        event.register(new FluidModel.Unbaked(
+                        WATER_MATERIAL,
+                        FLOWING_WATER_MATERIAL,
+                        null,
+                        _ -> ModFluidRegister.REAL_DWARVE_COLOR,
+                        null),
+                ModFluidRegister.REAL_DWARVE,
+                ModFluidRegister.FLOWING_REAL_DWARVE);
+
+        event.register(new FluidModel.Unbaked(
+                        WATER_MATERIAL,
+                        FLOWING_WATER_MATERIAL,
+                        null,
+                        _ -> ModFluidRegister.PIED_DE_GEANTS_COLOR,
+                        null),
+                ModFluidRegister.PIED_DE_GEANTS,
+                ModFluidRegister.FLOWING_PIED_DE_GEANTS);
+        event.register(new FluidModel.Unbaked(
+                        WATER_MATERIAL,
+                        FLOWING_WATER_MATERIAL,
+                        null,
+                        _ -> ModFluidRegister.LA_BLANCHE_DE_CHEZ_NOUS_COLOR,
+                        null),
+                ModFluidRegister.LA_BLANCHE_DE_CHEZ_NOUS,
+                ModFluidRegister.FLOWING_LA_BLANCHE_DE_CHEZ_NOUS);
+
     }
 }

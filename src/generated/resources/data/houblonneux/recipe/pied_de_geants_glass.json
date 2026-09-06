@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "houblonneux:pied_de_geants_bottle",
+    "houblonneux:empty_polymorphic_glass"
+  ],
+  "result": {
+    "id": "houblonneux:pied_de_geants_glass"
+  }
+}

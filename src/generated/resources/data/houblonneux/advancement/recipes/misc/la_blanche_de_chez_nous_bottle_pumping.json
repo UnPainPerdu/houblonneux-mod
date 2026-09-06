@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_empty_polymorphic_bottle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "houblonneux:empty_polymorphic_bottle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "houblonneux:la_blanche_de_chez_nous_bottle_pumping"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_empty_polymorphic_bottle"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "houblonneux:la_blanche_de_chez_nous_bottle_pumping"
+    ]
+  }
+}

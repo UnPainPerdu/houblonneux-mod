@@ -11,6 +11,18 @@
     "houblonneux:worm_hole_glass",
     "houblonneux:gros_gueuleton_bottle",
     "houblonneux:gros_gueuleton_mug",
-    "houblonneux:gros_gueuleton_glass"
+    "houblonneux:gros_gueuleton_glass",
+    "houblonneux:pain_dieux_bottle",
+    "houblonneux:pain_dieux_glass",
+    "houblonneux:pain_dieux_mug",
+    "houblonneux:real_dwarve_bottle",
+    "houblonneux:real_dwarve_glass",
+    "houblonneux:real_dwarve_mug",
+    "houblonneux:pied_de_geants_bottle",
+    "houblonneux:pied_de_geants_glass",
+    "houblonneux:pied_de_geants_mug",
+    "houblonneux:la_blanche_de_chez_nous_bottle",
+    "houblonneux:la_blanche_de_chez_nous_glass",
+    "houblonneux:la_blanche_de_chez_nous_mug"
   ]
 }

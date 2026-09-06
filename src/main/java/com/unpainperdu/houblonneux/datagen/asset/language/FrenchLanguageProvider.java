@@ -6,9 +6,7 @@ import com.unpainperdu.houblonneux.integration.jei.category.BrewingCategory;
 import com.unpainperdu.houblonneux.integration.jei.category.PumpingCategory;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
 import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEntity;
-import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.EmeraldCallBeerConsumeEffect;
-import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.GrosGueuletonBeerConsumeEffect;
-import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.WormHoleBeerConsumeEffect;
+import com.unpainperdu.houblonneux.level.world.item.consume_effect.beer.*;
 import com.unpainperdu.houblonneux.neoevent.ModItemToolTipEvent;
 import com.unpainperdu.houblonneux.register.ModCreativeTabRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
@@ -79,6 +77,35 @@ public class FrenchLanguageProvider extends LanguageProvider
         this.add(GrosGueuletonBeerConsumeEffect.BOTTLE_TOOLTIP_KEY, "Une bière, c'est l'équivalent d'une tartine");
         this.add(GrosGueuletonBeerConsumeEffect.GLASS_TOOLTIP_KEY, "Tellement rassasié");
         this.add(GrosGueuletonBeerConsumeEffect.MUG_TOOLTIP_KEY, "Plus besoin de rien avec ça!");
+        //  pain_dieux
+        this.add(ModItemRegister.PAIN_DIEUX_BOTTLE.get(), "Bouteille de Pain Dieux");
+        this.add(ModItemRegister.PAIN_DIEUX_GLASS.get(), "Verre de Pain Dieux");
+        this.add(ModItemRegister.PAIN_DIEUX_MUG.get(), "Chope de Pain Dieux");
+        this.add(PainDieuxConsumeEffect.BOTTLE_TOOLTIP_KEY, "un vrai travail de moine");
+        this.add(PainDieuxConsumeEffect.GLASS_TOOLTIP_KEY, "Quand tu as besoin de voir Sa lumière");
+        this.add(PainDieuxConsumeEffect.MUG_TOOLTIP_KEY, "Bon Dieux, ce goût!");
+        //  real_dwarve
+        this.add(ModItemRegister.REAL_DWARVE_BOTTLE.get(), "Bouteille de Real Dwarve");
+        this.add(ModItemRegister.REAL_DWARVE_GLASS.get(), "Verre de Real Dwarve");
+        this.add(ModItemRegister.REAL_DWARVE_MUG.get(), "Chope de Real Dwarve");
+        this.add(RealDwarveConsumeEffect.BOTTLE_TOOLTIP_KEY, "La mini voix non incluse");
+        this.add(RealDwarveConsumeEffect.GLASS_TOOLTIP_KEY, "Parfois, il faut foire les choses en plus petits pour avancer");
+        this.add(RealDwarveConsumeEffect.MUG_TOOLTIP_KEY, "Karl aurrait approuvé");
+        //  pied_de_geants
+        this.add(ModItemRegister.PIED_DE_GEANTS_BOTTLE.get(), "Bouteille de Pied De Géants");
+        this.add(ModItemRegister.PIED_DE_GEANTS_GLASS.get(), "Verre de Pied De Géants");
+        this.add(ModItemRegister.PIED_DE_GEANTS_MUG.get(), "Chope de Pied De Géants");
+        this.add(PiedDeGeantsConsumeEffect.BOTTLE_TOOLTIP_KEY, "Tu as un complexe?");
+        this.add(PiedDeGeantsConsumeEffect.GLASS_TOOLTIP_KEY, "La force brute est parfois la solution");
+        this.add(PiedDeGeantsConsumeEffect.MUG_TOOLTIP_KEY, "Le plus gros des gros");
+        //  la_blanche_de_chez_nous
+        this.add(ModItemRegister.LA_BLANCHE_DE_CHEZ_NOUS_BOTTLE.get(), "Bouteille de La Blanche De Chez Nous");
+        this.add(ModItemRegister.LA_BLANCHE_DE_CHEZ_NOUS_GLASS.get(), "Verre de La Blanche De Chez Nous");
+        this.add(ModItemRegister.LA_BLANCHE_DE_CHEZ_NOUS_MUG.get(), "Chope de La Blanche De Chez Nous");
+        this.add(LaBlancheDeChezNousConsumeEffect.BOTTLE_TOOLTIP_KEY, "Bien frais");
+        this.add(LaBlancheDeChezNousConsumeEffect.GLASS_TOOLTIP_KEY, "Je ne sens plus rien");
+        this.add(LaBlancheDeChezNousConsumeEffect.MUG_TOOLTIP_KEY, "Je ne fais qu'un avec la neige et la neige ne fait qu'un avec moi");
+        // brewing_barrel
         // brewing_barrel
         this.add(ModBlockRegister.OAK_BREWING_BARREL.asItem(), "Tonneau de fermentation en chêne");
         this.add(ModBlockRegister.SPRUCE_BREWING_BARREL.asItem(), "Tonneau de fermentation en sapin");

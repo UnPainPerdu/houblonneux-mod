@@ -1,0 +1,11 @@
+{
+  "type": "houblonneux:pomp_recipe",
+  "fluidInput": {
+    "amount": 250,
+    "ingredient": "houblonneux:pain_dieux"
+  },
+  "ingredient": "houblonneux:empty_polymorphic_mug",
+  "result": {
+    "id": "houblonneux:pain_dieux_mug"
+  }
+}

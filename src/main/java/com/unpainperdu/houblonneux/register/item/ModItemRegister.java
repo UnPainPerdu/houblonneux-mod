@@ -34,6 +34,22 @@ public class ModItemRegister
     public static final DeferredItem<Item> GROS_GUEULETON_BOTTLE = registerBeerItem("gros_gueuleton_bottle", ModItemProperties.GROS_GUEULETON_BOTTLE_PROPERTIES);
     public static final DeferredItem<Item> GROS_GUEULETON_GLASS = registerBeerItem("gros_gueuleton_glass", ModItemProperties.GROS_GUEULETON_GLASS_PROPERTIES);
     public static final DeferredItem<Item> GROS_GUEULETON_MUG = registerBeerItem("gros_gueuleton_mug", ModItemProperties.GROS_GUEULETON_MUG_PROPERTIES);
+    //  pain_dieux
+    public static final DeferredItem<Item> PAIN_DIEUX_BOTTLE = registerBeerItem("pain_dieux_bottle", ModItemProperties.PAIN_DIEUX_BOTTLE_PROPERTIES);
+    public static final DeferredItem<Item> PAIN_DIEUX_GLASS = registerBeerItem("pain_dieux_glass", ModItemProperties.PAIN_DIEUX_GLASS_PROPERTIES);
+    public static final DeferredItem<Item> PAIN_DIEUX_MUG = registerBeerItem("pain_dieux_mug", ModItemProperties.PAIN_DIEUX_MUG_PROPERTIES);
+    //  real_dwarve
+    public static final DeferredItem<Item> REAL_DWARVE_BOTTLE = registerBeerItem("real_dwarve_bottle", ModItemProperties.REAL_DWARVE_BOTTLE_PROPERTIES);
+    public static final DeferredItem<Item>REAL_DWARVE_GLASS = registerBeerItem("real_dwarve_glass", ModItemProperties.REAL_DWARVE_GLASS_PROPERTIES);
+    public static final DeferredItem<Item> REAL_DWARVE_MUG = registerBeerItem("real_dwarve_mug", ModItemProperties.REAL_DWARVE_MUG_PROPERTIES);
+    //  pied_de_geants
+    public static final DeferredItem<Item> PIED_DE_GEANTS_BOTTLE = registerBeerItem("pied_de_geants_bottle", ModItemProperties.PIED_DE_GEANTS_BOTTLE_PROPERTIES);
+    public static final DeferredItem<Item> PIED_DE_GEANTS_GLASS = registerBeerItem("pied_de_geants_glass", ModItemProperties.PIED_DE_GEANTS_GLASS_PROPERTIES);
+    public static final DeferredItem<Item> PIED_DE_GEANTS_MUG = registerBeerItem("pied_de_geants_mug", ModItemProperties.PIED_DE_GEANTS_MUG_PROPERTIES);
+    //  la_blanche_de_chez_nous
+    public static final DeferredItem<Item> LA_BLANCHE_DE_CHEZ_NOUS_BOTTLE = registerBeerItem("la_blanche_de_chez_nous_bottle", ModItemProperties.LA_BLANCHE_DE_CHEZ_NOUS_BOTTLE_PROPERTIES);
+    public static final DeferredItem<Item> LA_BLANCHE_DE_CHEZ_NOUS_GLASS = registerBeerItem("la_blanche_de_chez_nous_glass", ModItemProperties.LA_BLANCHE_DE_CHEZ_NOUS_GLASS_PROPERTIES);
+    public static final DeferredItem<Item> LA_BLANCHE_DE_CHEZ_NOUS_MUG = registerBeerItem("la_blanche_de_chez_nous_mug", ModItemProperties.LA_BLANCHE_DE_CHEZ_NOUS_MUG_PROPERTIES);
 
     public static void register(IEventBus event)
     {

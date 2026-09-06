@@ -26,6 +26,15 @@ public class ModFluidTagsProvider extends TagsProvider<Fluid>
                 .addElement(ModFluidRegister.WORM_HOLE.getId())
                 .addElement(ModFluidRegister.FLOWING_WORM_HOLE.getId())
                 .addElement(ModFluidRegister.GROS_GUEULETON.getId())
-                .addElement(ModFluidRegister.FLOWING_GROS_GUEULETON.getId());
+                .addElement(ModFluidRegister.FLOWING_GROS_GUEULETON.getId())
+                .addElement(ModFluidRegister.PAIN_DIEUX.getId())
+                .addElement(ModFluidRegister.FLOWING_PAIN_DIEUX.getId())
+                .addElement(ModFluidRegister.REAL_DWARVE.getId())
+                .addElement(ModFluidRegister.FLOWING_REAL_DWARVE.getId())
+                .addElement(ModFluidRegister.PIED_DE_GEANTS.getId())
+                .addElement(ModFluidRegister.FLOWING_PIED_DE_GEANTS.getId())
+                .addElement(ModFluidRegister.LA_BLANCHE_DE_CHEZ_NOUS.getId())
+                .addElement(ModFluidRegister.FLOWING_LA_BLANCHE_DE_CHEZ_NOUS.getId())
+        ;
     }
 }

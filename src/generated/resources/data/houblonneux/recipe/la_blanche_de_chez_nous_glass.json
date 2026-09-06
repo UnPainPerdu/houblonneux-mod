@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "houblonneux:la_blanche_de_chez_nous_bottle",
+    "houblonneux:empty_polymorphic_glass"
+  ],
+  "result": {
+    "id": "houblonneux:la_blanche_de_chez_nous_glass"
+  }
+}

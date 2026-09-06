@@ -1,0 +1,21 @@
+{
+  "type": "houblonneux:brewing_recipe",
+  "brewingTime": 72000,
+  "fluidInput": {
+    "amount": 4000,
+    "ingredient": "minecraft:water"
+  },
+  "fluidResult": {
+    "amount": 4000,
+    "id": "houblonneux:real_dwarve"
+  },
+  "ingredients": [
+    "houblonneux:hop_lupulin",
+    "minecraft:potato",
+    "minecraft:potato",
+    "minecraft:potato",
+    "minecraft:feather",
+    "minecraft:egg",
+    "#c:raw_materials/gold"
+  ]
+}

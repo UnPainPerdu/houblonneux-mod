@@ -6,6 +6,7 @@ import com.unpainperdu.houblonneux.register.entity.effect.ModMobEffectRegister;
 import com.unpainperdu.houblonneux.register.item.ModConsumeEffectTypeRegister;
 import net.minecraft.core.Holder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
@@ -29,6 +30,14 @@ public class PainDieuxConsumeEffect extends AbstractBeerConsumeEffect
             NeoForgeStreamCodecs.enumCodec(BeerType.class), PainDieuxConsumeEffect::getBeerType,
             PainDieuxConsumeEffect::new
     );
+
+    public static final String BOTTLE_TOOLTIP_KEY = "item.pain_dieux.bottle.tooltip";
+    public static final String GLASS_TOOLTIP_KEY = "item.pain_dieux.glass.tooltip";
+    public static final String MUG_TOOLTIP_KEY = "item.pain_dieux.mug.tooltip";
+
+    public static final Component BOTTLE_TOOLTIP = Component.translatable(BOTTLE_TOOLTIP_KEY);
+    public static final Component GLASS_TOOLTIP = Component.translatable(GLASS_TOOLTIP_KEY);
+    public static final Component MUG_TOOLTIP = Component.translatable(MUG_TOOLTIP_KEY);
 
     public PainDieuxConsumeEffect(BeerType beerType)
     {

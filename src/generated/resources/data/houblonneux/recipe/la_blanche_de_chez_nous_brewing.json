@@ -1,0 +1,19 @@
+{
+  "type": "houblonneux:brewing_recipe",
+  "brewingTime": 90000,
+  "fluidInput": {
+    "amount": 4000,
+    "ingredient": "minecraft:water"
+  },
+  "fluidResult": {
+    "amount": 4000,
+    "id": "houblonneux:la_blanche_de_chez_nous"
+  },
+  "ingredients": [
+    "houblonneux:hop_lupulin",
+    "minecraft:blue_ice",
+    "minecraft:wheat",
+    "minecraft:sugar",
+    "#c:mushrooms"
+  ]
+}

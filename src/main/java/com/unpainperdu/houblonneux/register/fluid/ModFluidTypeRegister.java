@@ -14,6 +14,10 @@ public class ModFluidTypeRegister
     public static final DeferredHolder<FluidType, FluidType> EMERALD_CALL = FLUID_TYPE.register("emerald_call", () -> new FluidType(FluidType.Properties.create()));
     public static final DeferredHolder<FluidType, FluidType> WORM_HOLE = FLUID_TYPE.register("worm_hole", () -> new FluidType(FluidType.Properties.create()));
     public static final DeferredHolder<FluidType, FluidType> GROS_GUEULETON = FLUID_TYPE.register("gros_gueuleton", () -> new FluidType(FluidType.Properties.create()));
+    public static final DeferredHolder<FluidType, FluidType> PAIN_DIEUX = FLUID_TYPE.register("pain_dieux", () -> new FluidType(FluidType.Properties.create()));
+    public static final DeferredHolder<FluidType, FluidType> REAL_DWARVE = FLUID_TYPE.register("real_dwarve", () -> new FluidType(FluidType.Properties.create()));
+    public static final DeferredHolder<FluidType, FluidType> PIED_DE_GEANTS = FLUID_TYPE.register("pied_de_geants", () -> new FluidType(FluidType.Properties.create()));
+    public static final DeferredHolder<FluidType, FluidType> LA_BLANCHE_DE_CHEZ_NOUS = FLUID_TYPE.register("la_blanche_de_chez_nous", () -> new FluidType(FluidType.Properties.create()));
 
     public static void register(IEventBus event)
     {
