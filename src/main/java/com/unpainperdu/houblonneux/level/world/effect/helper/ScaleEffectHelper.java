@@ -1,14 +1,49 @@
 package com.unpainperdu.houblonneux.level.world.effect.helper;
 
+import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.register.ModDataAttachmentRegister;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 
+import java.util.function.Function;
+
 public class ScaleEffectHelper
 {
+    private static final Identifier SIZE_MODIFIER_ID = Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "size");
+
+    private static final Function<Double, AttributeModifier> SIZE_MODIFIER = (d) ->
+            new AttributeModifier(SIZE_MODIFIER_ID, d, AttributeModifier.Operation.ADD_VALUE);
+
+    private static final Identifier SPEED_MODIFIER_ID = Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "speed");
+
+    private static final Function<Double, AttributeModifier> SPEED_MODIFIER = (d) ->
+            new AttributeModifier(SPEED_MODIFIER_ID, d, AttributeModifier.Operation.ADD_VALUE);
+
+    private static final Identifier JUMP_MODIFIER_ID = Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "jump");
+
+    private static final Function<Double, AttributeModifier> JUMP_MODIFIER = (d) ->
+            new AttributeModifier(JUMP_MODIFIER_ID, d, AttributeModifier.Operation.ADD_VALUE);
+
+    private static final Identifier SAFE_FALL_DISTANCE_MODIFIER_ID = Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "safe_fall_distance");
+
+    private static final Function<Double, AttributeModifier> SAFE_FALL_DISTANCE_MODIFIER = (d) ->
+            new AttributeModifier(SAFE_FALL_DISTANCE_MODIFIER_ID, d, AttributeModifier.Operation.ADD_VALUE);
+
+    private static final Identifier BLOCK_REACH_MODIFIER_ID = Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "block_reach");
+
+    private static final Function<Double, AttributeModifier> BLOCK_REACH_MODIFIER = (d) ->
+            new AttributeModifier(BLOCK_REACH_MODIFIER_ID, d, AttributeModifier.Operation.ADD_VALUE);
+
+    private static final Identifier ENTITY_REACH_MODIFIER_ID = Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "entity_reach");
+
+    private static final Function<Double, AttributeModifier> ENTITY_REACH_MODIFIER = (d) ->
+            new AttributeModifier(ENTITY_REACH_MODIFIER_ID, d, AttributeModifier.Operation.ADD_VALUE);
+
     public static void scaleTo(LivingEntity entity, double scaleFactor)
     {
         AttributeInstance sizeA = entity.getAttribute(Attributes.SCALE);
@@ -20,36 +55,22 @@ public class ScaleEffectHelper
                 && jumpFactorA != null
                 && safeFallDistanceFactorA != null)
         {
-            double sizeFactor = sizeA.getValue();
-            double speedFactor = speedMovementA.getValue();
-            double jumpFactor = jumpFactorA.getValue();
-            double safeFallDistanceFactor = safeFallDistanceFactorA.getValue();
-            //save
-            entity.setData(ModDataAttachmentRegister.ORIGINAL_SIZE_FACTOR, sizeFactor);
-            entity.setData(ModDataAttachmentRegister.ORIGINAL_SPEED_FACTOR, speedFactor);
-            entity.setData(ModDataAttachmentRegister.ORIGINAL_JUMP_FACTOR, jumpFactor);
-            entity.setData(ModDataAttachmentRegister.ORIGINAL_SAFE_FALL_DISTANCE_FACTOR, safeFallDistanceFactor);
-            entity.setData(ModDataAttachmentRegister.SCALE_FACTOR, scaleFactor);
             //scale
-            sizeA.setBaseValue(sizeFactor * scaleFactor);
-            speedMovementA.setBaseValue((speedFactor * scaleFactor));
-            jumpFactorA.setBaseValue(Math.max(jumpFactor * (scaleFactor * 0.65), 0.3));
-            safeFallDistanceFactorA.setBaseValue(safeFallDistanceFactor * scaleFactor);
+            sizeA.addOrReplacePermanentModifier(SIZE_MODIFIER.apply((sizeA.getValue() * scaleFactor) - sizeA.getValue()));
+            speedMovementA.addOrReplacePermanentModifier(SPEED_MODIFIER.apply((speedMovementA.getValue() * scaleFactor + (scaleFactor < 1 ? speedMovementA.getValue() * 0.2 : 0)) - speedMovementA.getValue()));
+            jumpFactorA.addOrReplacePermanentModifier(JUMP_MODIFIER.apply((Math.max(jumpFactorA.getValue() * (scaleFactor * 0.65), 0.3)) - jumpFactorA.getValue()));
+            safeFallDistanceFactorA.addOrReplacePermanentModifier(SAFE_FALL_DISTANCE_MODIFIER.apply((safeFallDistanceFactorA.getValue() * scaleFactor) - safeFallDistanceFactorA.getValue()));
             //optional
             AttributeInstance blockReachFactorA = entity.getAttribute(Attributes.BLOCK_INTERACTION_RANGE);
             if (blockReachFactorA != null)
             {
-                double reachFactor = blockReachFactorA.getValue();
-                entity.setData(ModDataAttachmentRegister.ORIGINAL_BLOCK_REACH_FACTOR, reachFactor);
-                blockReachFactorA.setBaseValue(reachFactor * (scaleFactor * 0.8));
+                blockReachFactorA.addOrReplacePermanentModifier(BLOCK_REACH_MODIFIER.apply((blockReachFactorA.getValue() * scaleFactor * 0.8) - blockReachFactorA.getValue()));
             }
 
             AttributeInstance entityReachFactorA = entity.getAttribute(Attributes.ENTITY_INTERACTION_RANGE);
             if (entityReachFactorA != null)
             {
-                double reachFactor = entityReachFactorA.getValue();
-                entity.setData(ModDataAttachmentRegister.ORIGINAL_ENTITY_REACH_FACTOR, reachFactor);
-                entityReachFactorA.setBaseValue(reachFactor * (scaleFactor * 0.8));
+                entityReachFactorA.addOrReplacePermanentModifier(ENTITY_REACH_MODIFIER.apply((entityReachFactorA.getValue() * scaleFactor * 0.8) - entityReachFactorA.getValue()));
             }
         }
     }
@@ -62,26 +83,20 @@ public class ScaleEffectHelper
         AttributeInstance safeFallDistanceFactor = entity.getAttribute(Attributes.SAFE_FALL_DISTANCE);
         if (size != null && speedMovement != null && jumpFactor != null && safeFallDistanceFactor != null)
         {
-            size.setBaseValue(entity.getData(ModDataAttachmentRegister.ORIGINAL_SIZE_FACTOR));
-            entity.removeData(ModDataAttachmentRegister.ORIGINAL_SIZE_FACTOR);
-            speedMovement.setBaseValue(entity.getData(ModDataAttachmentRegister.ORIGINAL_SPEED_FACTOR));
-            entity.removeData(ModDataAttachmentRegister.ORIGINAL_SPEED_FACTOR);
-            jumpFactor.setBaseValue(entity.getData(ModDataAttachmentRegister.ORIGINAL_JUMP_FACTOR));
-            entity.removeData(ModDataAttachmentRegister.ORIGINAL_JUMP_FACTOR);
-            safeFallDistanceFactor.setBaseValue(entity.getData(ModDataAttachmentRegister.ORIGINAL_SAFE_FALL_DISTANCE_FACTOR));
-            entity.removeData(ModDataAttachmentRegister.ORIGINAL_SAFE_FALL_DISTANCE_FACTOR);
+            size.removeModifier(SIZE_MODIFIER_ID);
+            speedMovement.removeModifier(SPEED_MODIFIER_ID);
+            jumpFactor.removeModifier(JUMP_MODIFIER_ID);
+            safeFallDistanceFactor.removeModifier(SAFE_FALL_DISTANCE_MODIFIER_ID);
 
             AttributeInstance blockReachFactor = entity.getAttribute(Attributes.BLOCK_INTERACTION_RANGE);
             if (blockReachFactor != null)
             {
-                blockReachFactor.setBaseValue(entity.getData(ModDataAttachmentRegister.ORIGINAL_BLOCK_REACH_FACTOR));
-                entity.removeData(ModDataAttachmentRegister.ORIGINAL_BLOCK_REACH_FACTOR);
+                blockReachFactor.removeModifier(BLOCK_REACH_MODIFIER_ID);
             }
             AttributeInstance entityReachFactor = entity.getAttribute(Attributes.ENTITY_INTERACTION_RANGE);
             if (entityReachFactor != null)
             {
-                entityReachFactor.setBaseValue(entity.getData(ModDataAttachmentRegister.ORIGINAL_ENTITY_REACH_FACTOR));
-                entity.removeData(ModDataAttachmentRegister.ORIGINAL_ENTITY_REACH_FACTOR);
+                entityReachFactor.removeModifier(ENTITY_REACH_MODIFIER_ID);
             }
 
             entity.removeData(ModDataAttachmentRegister.SCALE_FACTOR);

@@ -18,30 +18,6 @@ public class ModDataAttachmentRegister
             "original_block_pos", () -> AttachmentType.serializable(() -> new OriginalBlockPosAttach(new BlockPos(0, 0, 0))).build()
     );
 
-    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Double>> ORIGINAL_SIZE_FACTOR = ATTACHMENT_TYPE.register(
-            "original_size_factor", () -> AttachmentType.builder(() -> 1.0D).serialize(Codec.DOUBLE.fieldOf("original_size_factor")).build()
-    );
-
-    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Double>> ORIGINAL_SPEED_FACTOR = ATTACHMENT_TYPE.register(
-            "original_speed_factor", () -> AttachmentType.builder(() -> 0.1D).serialize(Codec.DOUBLE.fieldOf("original_speed_factor")).build()
-    );
-
-    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Double>> ORIGINAL_JUMP_FACTOR = ATTACHMENT_TYPE.register(
-            "original_jump_factor", () -> AttachmentType.builder(() -> 0.45D).serialize(Codec.DOUBLE.fieldOf("original_jump_factor")).build()
-    );
-
-    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Double>> ORIGINAL_BLOCK_REACH_FACTOR = ATTACHMENT_TYPE.register(
-            "original_block_reach_factor", () -> AttachmentType.builder(() -> 4.5D).serialize(Codec.DOUBLE.fieldOf("original_block_reach_factor")).build()
-    );
-
-    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Double>> ORIGINAL_ENTITY_REACH_FACTOR = ATTACHMENT_TYPE.register(
-            "original_entity_reach_factor", () -> AttachmentType.builder(() -> 3D).serialize(Codec.DOUBLE.fieldOf("original_entity_reach_factor")).build()
-    );
-
-    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Double>> ORIGINAL_SAFE_FALL_DISTANCE_FACTOR = ATTACHMENT_TYPE.register(
-            "original_safe_fall_distance_factor", () -> AttachmentType.builder(() -> 3D).serialize(Codec.DOUBLE.fieldOf("original_safe_fall_distance_factor")).build()
-    );
-
     public static final double DEFAULT_SCALE_FACTOR = 1D;
 
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Double>> SCALE_FACTOR = ATTACHMENT_TYPE.register(
