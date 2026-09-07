@@ -33,14 +33,12 @@ public class LaBlancheDeChezNousMobEffect extends MobEffect
         {
             amplification = 2;
         }
-        BlockPos entityOnPos = mob.getOnPos();
-            if (mob.getY() > entityOnPos.getY())
-        {
-            entityOnPos = entityOnPos.below();
-        }
 
         Random rand = new Random();
         serverLevel.sendParticles(ParticleTypes.SNOWFLAKE, mob.getX(), mob.getY() + 1.0, mob.getZ(), 3, (rand.nextDouble(1)) * (rand.nextBoolean() ? 1 : -1), (rand.nextDouble(1)) * (rand.nextBoolean() ? 1 : -1), (rand.nextDouble(1)) * (rand.nextBoolean() ? 1 : -1), rand.nextDouble(0.1));
+
+        BlockPos tempOnPos = mob.getOnPos();
+        BlockPos entityOnPos = new BlockPos(tempOnPos.getX(), (int) Math.floor(mob.getY()) - 1, tempOnPos.getZ());
 
         applySnowAndIce(serverLevel, entityOnPos, amplification);
         if (amplification > 0)
@@ -78,7 +76,7 @@ public class LaBlancheDeChezNousMobEffect extends MobEffect
         BlockState basicSnowBlockState = Blocks.SNOW.defaultBlockState();
         if (basicSnowBlockState.canSurvive(serverLevel, onPos.above()) && aboveOnPosBlockstate.isAir())
         {
-            serverLevel.setBlockAndUpdate(onPos.above(), basicSnowBlockState.setValue(BlockStateProperties.LAYERS, getSnowLayer(rand, 2 + amplification, 0.1F + amplification*0.1F)));
+            serverLevel.setBlockAndUpdate(onPos.above(), basicSnowBlockState.setValue(BlockStateProperties.LAYERS, getSnowLayer(rand, 2 + amplification, 0.1F + amplification * 0.1F)));
         }
         else if (onPosBlockstate.is(Blocks.WATER))
         {

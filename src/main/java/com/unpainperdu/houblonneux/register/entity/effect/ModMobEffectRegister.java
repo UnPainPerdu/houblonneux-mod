@@ -12,8 +12,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModMobEffectRegister
 {
-    //TODO attribute not correctly reset with real dwarve
-    //TODO la blanche not set snow if no snow
     public static final DeferredRegister<MobEffect> MOB_EFFECT = DeferredRegister.create(Registries.MOB_EFFECT, Houblonneux.MOD_ID);
 
     public static final DeferredHolder<MobEffect, WormHoleMobEffect> WORM_HOLE = MOB_EFFECT.register(
