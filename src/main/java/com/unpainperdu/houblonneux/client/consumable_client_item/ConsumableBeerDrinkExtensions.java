@@ -3,15 +3,20 @@ package com.unpainperdu.houblonneux.client.consumable_client_item;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.unpainperdu.houblonneux.register.extensible_enum.ModItemUseAnimation;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import org.jspecify.annotations.Nullable;
 
 public class ConsumableBeerDrinkExtensions implements IClientItemExtensions
 {
+    public static final HumanoidModel.ArmPose BEER_DRINK = HumanoidModel.ArmPose.valueOf("HOUBLONNEUX_BEER_DRINK");
+
     //first person
     @Override
     public boolean applyForgeHandTransform(PoseStack poseStack, LocalPlayer player, HumanoidArm arm, ItemStack itemInHand, float partialTick, float equipProcess, float swingProcess)
@@ -33,7 +38,7 @@ public class ConsumableBeerDrinkExtensions implements IClientItemExtensions
             if (reversScaledUsageTime < 0.50)
             {
                 poseStack.mulPose(Axis.XP.rotationDegrees((reversScaledUsageTime * 2) * 75F));
-                poseStack.translate(0.0F, (reversScaledUsageTime * 2) *-0.2F, (reversScaledUsageTime * 2) *-0.4F);
+                poseStack.translate(0.0F, (reversScaledUsageTime * 2) * -0.2F, (reversScaledUsageTime * 2) * -0.4F);
             }
             else
             {
@@ -56,5 +61,18 @@ public class ConsumableBeerDrinkExtensions implements IClientItemExtensions
             return true;
         }
         return false;
+    }
+
+    @Override
+    public HumanoidModel.@Nullable ArmPose getArmPose(LivingEntity entity, InteractionHand hand, ItemStack itemInHand)
+    {
+        if (entity.isUsingItem() && entity.getUseItemRemainingTicks() > 0
+                        && entity.getUsedItemHand() == hand
+                        && itemInHand.getUseAnimation() == ModItemUseAnimation.BEER_DRINK.get())
+        {
+            //see ModHumanoidModelArmPose for pose logic
+            return BEER_DRINK;
+        }
+        return null;
     }
 }
