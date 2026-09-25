@@ -45,5 +45,27 @@ public class ModSoundDefinitionsProvider extends SoundDefinitionsProvider
                 .subtitle(ModSoundRegister.HOLY_GRENADE_SUBTITLE)
                 .replace(true)
         );
+
+        add(ModSoundRegister.SHRINK, SoundDefinition.definition()
+                .with(
+                        sound("houblonneux:shrink", SoundDefinition.SoundType.SOUND)
+                                .volume(1.0F)
+                                .pitch(1.3f)
+                                .attenuationDistance(8)
+                )
+                .subtitle(ModSoundRegister.SHRINK_SUBTITLE)
+                .replace(true)
+        );
+
+        add(ModSoundRegister.GROW, SoundDefinition.definition()
+                .with(
+                        sound("houblonneux:grow", SoundDefinition.SoundType.SOUND)
+                                .volume(1.0F)
+                                .pitch(1.3f)
+                                .attenuationDistance(8)
+                )
+                .subtitle(ModSoundRegister.GROW_SUBTITLE)
+                .replace(true)
+        );
     }
 }

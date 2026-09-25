@@ -20,6 +20,12 @@ public class ModSoundRegister
     public static final DeferredHolder<SoundEvent, SoundEvent> HOLY_GRENADE = register("holy_grenade");
     public static final String HOLY_GRENADE_SUBTITLE = "sound." + Houblonneux.MOD_ID + ".holy_grenade";
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> SHRINK = register("shrink");
+    public static final String SHRINK_SUBTITLE = "sound." + Houblonneux.MOD_ID + ".shrink";
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> GROW = register("grow");
+    public static final String GROW_SUBTITLE = "sound." + Houblonneux.MOD_ID + ".grow";
+
     private static DeferredHolder<SoundEvent, SoundEvent> register(String name)
     {
         return SOUND_EVENTS.register(name, SoundEvent::createVariableRangeEvent);
