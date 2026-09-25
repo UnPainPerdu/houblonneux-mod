@@ -1,0 +1,35 @@
+{
+  "criteria": {
+    "get_hop_flower": {
+      "conditions": {
+        "items": [
+          {
+            "items": "houblonneux:hop_flower"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "houblonneux:textures/gui/advancements/backgrounds/main.png",
+    "description": {
+      "translate": "advancements.houblonneux.main.root.description"
+    },
+    "hidden": true,
+    "icon": {
+      "id": "houblonneux:hop_flower"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.houblonneux.main.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_hop_flower"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
