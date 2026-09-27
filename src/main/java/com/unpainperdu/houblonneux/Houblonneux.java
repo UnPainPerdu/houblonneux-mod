@@ -26,4 +26,6 @@ public class Houblonneux
         modContainer.registerConfig(ModConfig.Type.SERVER, ModServerConfig.CONFIG_SPEC);
         modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }
+
+
 }

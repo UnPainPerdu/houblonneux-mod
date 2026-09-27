@@ -47,6 +47,12 @@ public class ModDataComponentRegister
                     .networkSynchronized(BrewingRecipe.STREAM_CODEC)
     );
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> IS_DISPENSER_STANDALONE_MODEL_HACK = register(
+            "is_item_standalone_model_hack",
+            b -> b.persistent(Codec.BOOL)
+                    .networkSynchronized(ByteBufCodecs.BOOL)
+    );
+
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String id, UnaryOperator<DataComponentType.Builder<T>> builder)
     {
         return DATA_COMPONENT_TYPE.register(id, () -> builder.apply(DataComponentType.builder()).build());

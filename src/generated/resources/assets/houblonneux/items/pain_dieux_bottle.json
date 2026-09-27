@@ -1,6 +1,16 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "houblonneux:item/pain_dieux_bottle_generated"
+    "type": "minecraft:condition",
+    "component": "houblonneux:is_item_standalone_model_hack",
+    "ignore_default": true,
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "houblonneux:item/pain_dieux_bottle_generated"
+    },
+    "on_true": {
+      "type": "minecraft:model",
+      "model": "houblonneux:item/hack/dispenser/pain_dieux_bottle_beer_dispenser"
+    },
+    "property": "minecraft:has_component"
   }
 }
