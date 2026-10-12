@@ -24,8 +24,5 @@ public class Houblonneux
         modEventBus.addListener(DataGatherer::gatherData);
 
         modContainer.registerConfig(ModConfig.Type.SERVER, ModServerConfig.CONFIG_SPEC);
-        modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }
-
-
 }
