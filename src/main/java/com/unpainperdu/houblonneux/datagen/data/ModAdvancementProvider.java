@@ -35,20 +35,17 @@ public class ModAdvancementProvider extends AdvancementProvider
 
     private static final class ModAdvancementGenerator implements AdvancementSubProvider
     {
-        private Consumer<AdvancementHolder> saver;
-
         @Override
         public void generate(HolderLookup.Provider provider, Consumer<AdvancementHolder> saver)
         {
-            this.saver = saver;
             HolderGetter<Item> itemHolderGetter = provider.lookupOrThrow(Registries.ITEM);
             //root
             Advancement.Builder.advancement()
             .display(
                     ModItemRegister.HOP_FLOWER,
-                    Component.translatable("advancements.houblonneux.main.root.title"),
-                    Component.translatable("advancements.houblonneux.main.root.description"),
-                    Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "textures/gui/advancements/backgrounds/main.png"),
+                    Component.translatable(getAdvancementTitle("root")),
+                    Component.translatable(getAdvancementDescription("root")),
+                    Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "gui/advancements/backgrounds/root"),
                     AdvancementType.TASK,
                     true,
                     true,
@@ -56,7 +53,7 @@ public class ModAdvancementProvider extends AdvancementProvider
             )
             .addCriterion("get_hop_flower", InventoryChangeTrigger.TriggerInstance.hasItems(ModItemRegister.HOP_FLOWER))
             .requirements(AdvancementRequirements.allOf(List.of("get_hop_flower")))
-            .save(this.saver, Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "main/root"));
+            .save(saver, Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "main/root"));
             //main
             //  first_beer
             String advancementName = "first_beer";
@@ -64,8 +61,8 @@ public class ModAdvancementProvider extends AdvancementProvider
             .parent(AdvancementSubProvider.createPlaceholder("houblonneux:main/root"))
             .display(
                     ModItemRegister.EMERALD_CALL_BOTTLE,
-                    Component.translatable("advancements.houblonneux." + advancementName + ".title"),
-                    Component.translatable("advancements.houblonneux." + advancementName + ".description"),
+                    Component.translatable(getAdvancementTitle(advancementName)),
+                    Component.translatable(getAdvancementDescription(advancementName)),
                     null,
                     AdvancementType.TASK,
                     true,
@@ -74,15 +71,15 @@ public class ModAdvancementProvider extends AdvancementProvider
             )
             .addCriterion("has_beer", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(itemHolderGetter, ModItemTags.BEER)))
             .requirements(AdvancementRequirements.allOf(List.of("has_beer")))
-            .save(this.saver, Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "main/" + advancementName));
+            .save(saver, Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "main/" + advancementName));
             //  all_mug_beer
             advancementName = "all_mug_beer";
             Advancement.Builder.advancement()
             .parent(AdvancementSubProvider.createPlaceholder("houblonneux:main/first_beer"))
             .display(
                     ModItemRegister.EMERALD_CALL_MUG,
-                    Component.translatable("advancements.houblonneux." + advancementName + ".title"),
-                    Component.translatable("advancements.houblonneux." + advancementName + ".description"),
+                    Component.translatable(getAdvancementTitle(advancementName)),
+                    Component.translatable(getAdvancementDescription(advancementName)),
                     null,
                     AdvancementType.CHALLENGE,
                     true,
@@ -92,15 +89,15 @@ public class ModAdvancementProvider extends AdvancementProvider
             .addCriterion("has_all_mug", AllItemItemTagTrigger.Instance.instance(new AllItemItemTagPredicate(itemHolderGetter, ModItemTags.BEER_MUG)))
             .requirements(AdvancementRequirements.allOf(List.of("has_all_mug")))
             .rewards(AdvancementRewards.Builder.experience(160))
-            .save(this.saver, Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "main/" + advancementName));
+            .save(saver, Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "main/" + advancementName));
             //  use_beer_dispenser
             advancementName = "use_beer_dispenser";
             Advancement.Builder.advancement()
             .parent(AdvancementSubProvider.createPlaceholder("houblonneux:main/root"))
             .display(
                     ModBlockRegister.BEER_DISPENSER,
-                    Component.translatable("advancements.houblonneux." + advancementName + ".title"),
-                    Component.translatable("advancements.houblonneux." + advancementName + ".description"),
+                    Component.translatable(getAdvancementTitle(advancementName)),
+                    Component.translatable(getAdvancementDescription(advancementName)),
                     null,
                     AdvancementType.TASK,
                     true,
@@ -109,15 +106,15 @@ public class ModAdvancementProvider extends AdvancementProvider
             )
             .addCriterion("has_traded_wtih_dispenser_trade", AnyDispenserTradeTrigger.Instance.instance())
             .requirements(AdvancementRequirements.allOf(List.of("has_traded_wtih_dispenser_trade")))
-            .save(this.saver, Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "main/" + advancementName));
+            .save(saver, Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "main/" + advancementName));
             //  get_hit_hard_as_dwarf
             advancementName = "get_hit_hard_as_dwarf";
             Advancement.Builder.advancement()
             .parent(AdvancementSubProvider.createPlaceholder("houblonneux:main/first_beer"))
             .display(
                     ModItemRegister.REAL_DWARVE_MUG,
-                    Component.translatable("advancements.houblonneux." + advancementName + ".title"),
-                    Component.translatable("advancements.houblonneux." + advancementName + ".description"),
+                    Component.translatable(getAdvancementTitle(advancementName)),
+                    Component.translatable(getAdvancementDescription(advancementName)),
                     null,
                     AdvancementType.TASK,
                     true,
@@ -126,15 +123,15 @@ public class ModAdvancementProvider extends AdvancementProvider
             )
             .addCriterion("getting_hit_hard_as_dwarf", DamageWithEffectTrigger.Instance.instance(true, 20.0F, ModMobEffectRegister.REAL_DWARVE))
             .requirements(AdvancementRequirements.allOf(List.of("getting_hit_hard_as_dwarf")))
-            .save(this.saver, Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "main/" + advancementName));
+            .save(saver, Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "main/" + advancementName));
             //  hit_hard_as_giant
             advancementName = "hit_hard_as_giant";
             Advancement.Builder.advancement()
                     .parent(AdvancementSubProvider.createPlaceholder("houblonneux:main/first_beer"))
                     .display(
                             ModItemRegister.PIED_DE_GEANTS_MUG,
-                            Component.translatable("advancements.houblonneux." + advancementName + ".title"),
-                            Component.translatable("advancements.houblonneux." + advancementName + ".description"),
+                            Component.translatable(getAdvancementTitle(advancementName)),
+                            Component.translatable(getAdvancementDescription(advancementName)),
                             null,
                             AdvancementType.TASK,
                             true,
@@ -143,7 +140,17 @@ public class ModAdvancementProvider extends AdvancementProvider
                     )
                     .addCriterion("has_hit_hard_as_giant", DamageWithEffectTrigger.Instance.instance(false, 20.0F, ModMobEffectRegister.PIED_DE_GEANTS))
                     .requirements(AdvancementRequirements.allOf(List.of("has_hit_hard_as_giant")))
-                    .save(this.saver, Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "main/" + advancementName));
+                    .save(saver, Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "main/" + advancementName));
         }
+    }
+
+    public static String getAdvancementTitle(String name)
+    {
+        return "advancements.houblonneux." + name + ".title";
+    }
+
+    public static String getAdvancementDescription(String name)
+    {
+        return "advancements.houblonneux." + name + ".description";
     }
 }

@@ -4,6 +4,7 @@ import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.client.screen.BrewingBarrelScreen;
 import com.unpainperdu.houblonneux.client.screen.util.FluidTankRenderer;
 import com.unpainperdu.houblonneux.config.ModServerConfig;
+import com.unpainperdu.houblonneux.datagen.data.ModAdvancementProvider;
 import com.unpainperdu.houblonneux.integration.jei.category.BrewingCategory;
 import com.unpainperdu.houblonneux.integration.jei.category.PumpingCategory;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
@@ -37,6 +38,19 @@ public class EnglishLanguageProvider extends LanguageProvider
         clp.addConfigCategory(ModServerConfig.BEER_EFFECTS, "Beer Effects");
         this.add(ModServerConfig.PAIN_DIEUX_CAN_DESTROY_BLOCKS_TRANSLATION_KEY, "Pain Dieux explosion destroy blocks");
         this.add(ModServerConfig.PAIN_DIEUX_CAN_HURT_OTHER_PLAYER_TRANSLATION_KEY, "Pain Dieux explosion hurt other player");
+        //advancement
+        this.add(ModAdvancementProvider.getAdvancementTitle("root"), "Houblonneux");
+        this.add(ModAdvancementProvider.getAdvancementDescription("root"), "Harvest your first hop flower and start thinking about beers");
+        this.add(ModAdvancementProvider.getAdvancementTitle("first_beer"), "A new addiction for your collection");
+        this.add(ModAdvancementProvider.getAdvancementDescription("first_beer"), "Get beer any beer");
+        this.add(ModAdvancementProvider.getAdvancementTitle("all_mug_beer"), "Warning, A dwarve wave is coming");
+        this.add(ModAdvancementProvider.getAdvancementDescription("all_mug_beer"), "Get all mug beer");
+        this.add(ModAdvancementProvider.getAdvancementTitle("use_beer_dispenser"), "Equivalent Exchange");
+        this.add(ModAdvancementProvider.getAdvancementDescription("use_beer_dispenser"), "Trade with a beer dispenser");
+        this.add(ModAdvancementProvider.getAdvancementTitle("get_hit_hard_as_dwarf"), "Really to small");
+        this.add(ModAdvancementProvider.getAdvancementDescription("get_hit_hard_as_dwarf"), "Get 20 damage point as a dwarf");
+        this.add(ModAdvancementProvider.getAdvancementTitle("hit_hard_as_giant"), "Big Man in coming");
+        this.add(ModAdvancementProvider.getAdvancementDescription("hit_hard_as_giant"), "Deal 20 damage point as a giant");
         //integration
         //  jei
         this.add(BrewingCategory.CATEGORY_KEY, "Brewing");

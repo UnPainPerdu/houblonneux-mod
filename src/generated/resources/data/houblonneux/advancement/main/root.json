@@ -12,15 +12,15 @@
     }
   },
   "display": {
-    "background": "houblonneux:textures/gui/advancements/backgrounds/main.png",
+    "background": "houblonneux:gui/advancements/backgrounds/root",
     "description": {
-      "translate": "advancements.houblonneux.main.root.description"
+      "translate": "advancements.houblonneux.root.description"
     },
     "icon": {
       "id": "houblonneux:hop_flower"
     },
     "title": {
-      "translate": "advancements.houblonneux.main.root.title"
+      "translate": "advancements.houblonneux.root.title"
     }
   },
   "requirements": [
