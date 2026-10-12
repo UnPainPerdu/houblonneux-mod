@@ -1,0 +1,32 @@
+{
+  "parent": "houblonneux:main/first_beer",
+  "criteria": {
+    "has_hit_hard_as_giant": {
+      "conditions": {
+        "isTarget": false,
+        "minDamageTaken": 20.0,
+        "predicate": {
+          "houblonneux:pied_de_geants": {}
+        }
+      },
+      "trigger": "houblonneux:damage_with_effect"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.houblonneux.hit_hard_as_giant.description"
+    },
+    "icon": {
+      "id": "houblonneux:pied_de_geants_mug"
+    },
+    "title": {
+      "translate": "advancements.houblonneux.hit_hard_as_giant.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_hit_hard_as_giant"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

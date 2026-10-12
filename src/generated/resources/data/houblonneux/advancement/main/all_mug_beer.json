@@ -1,0 +1,34 @@
+{
+  "parent": "houblonneux:main/first_beer",
+  "criteria": {
+    "has_all_mug": {
+      "conditions": {
+        "tag_predicate": {
+          "items": "#houblonneux:beer_mug"
+        }
+      },
+      "trigger": "houblonneux:all_item_item_tag_trigger"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.houblonneux.all_mug_beer.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "id": "houblonneux:emerald_call_mug"
+    },
+    "title": {
+      "translate": "advancements.houblonneux.all_mug_beer.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_all_mug"
+    ]
+  ],
+  "rewards": {
+    "experience": 160
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "houblonneux:main/root",
+  "criteria": {
+    "has_beer": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#houblonneux:beer"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.houblonneux.first_beer.description"
+    },
+    "icon": {
+      "id": "houblonneux:emerald_call_bottle"
+    },
+    "title": {
+      "translate": "advancements.houblonneux.first_beer.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_beer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

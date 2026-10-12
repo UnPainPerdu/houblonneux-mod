@@ -1,0 +1,32 @@
+{
+  "parent": "houblonneux:main/first_beer",
+  "criteria": {
+    "getting_hit_hard_as_dwarf": {
+      "conditions": {
+        "isTarget": true,
+        "minDamageTaken": 20.0,
+        "predicate": {
+          "houblonneux:real_dwarve": {}
+        }
+      },
+      "trigger": "houblonneux:damage_with_effect"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.houblonneux.get_hit_hard_as_dwarf.description"
+    },
+    "icon": {
+      "id": "houblonneux:real_dwarve_mug"
+    },
+    "title": {
+      "translate": "advancements.houblonneux.get_hit_hard_as_dwarf.title"
+    }
+  },
+  "requirements": [
+    [
+      "getting_hit_hard_as_dwarf"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

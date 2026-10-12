@@ -107,7 +107,7 @@ public class BrewingBarrelScreen extends AbstractContainerScreen<BrewingBarrelMe
         int mainScreenPosX = (this.width - this.imageWidth) / 2;
         int mainScreenPosY = (this.height - this.imageHeight) / 2;
 
-        if (isMouseOver(event.x(), event.y(), mainScreenPosX + 52, mainScreenPosY + 69, 16, 16)
+        if (isMouseOver(event.x(), event.y(), mainScreenPosX + 24, mainScreenPosY + 69, 16, 16)
                 && this.minecraft.player != null
                 && this.minecraft.gameMode != null
                 && this.menu.clickMenuButton(this.minecraft.player, TRASH_BUTTON_ID)

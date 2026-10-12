@@ -46,6 +46,7 @@ public class ScaleEffectHelper
 
     public static void scaleTo(LivingEntity entity, double scaleFactor)
     {
+        entity.setData(ModDataAttachmentRegister.SCALE_FACTOR, scaleFactor);
         AttributeInstance sizeA = entity.getAttribute(Attributes.SCALE);
         AttributeInstance speedMovementA = entity.getAttribute(Attributes.MOVEMENT_SPEED);
         AttributeInstance jumpFactorA = entity.getAttribute(Attributes.JUMP_STRENGTH);

@@ -35,41 +35,45 @@ public class ModItemTagProvider extends BlockTagCopyingItemTagProvider
                 )
         );
         this.tag(Tags.Items.FOODS).addTag(ModItemTags.COASTER_POSABLE);
-        this.addToTag(ModItemTags.COASTER_POSABLE,
+        this.addToTag(ModItemTags.BEER_BOTTLE,
                 Stream.of(
-                        ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE,
-                        ModItemRegister.EMPTY_POLYMORPHIC_MUG,
-                        ModItemRegister.EMPTY_POLYMORPHIC_GLASS,
-                        //emerald_call
                         ModItemRegister.EMERALD_CALL_BOTTLE,
-                        ModItemRegister.EMERALD_CALL_MUG,
-                        ModItemRegister.EMERALD_CALL_GLASS,
-                        //worm_hole
                         ModItemRegister.WORM_HOLE_BOTTLE,
-                        ModItemRegister.WORM_HOLE_MUG,
-                        ModItemRegister.WORM_HOLE_GLASS,
-                        //gros_gueuleton
                         ModItemRegister.GROS_GUEULETON_BOTTLE,
-                        ModItemRegister.GROS_GUEULETON_MUG,
-                        ModItemRegister.GROS_GUEULETON_GLASS,
-                        //  pain_dieux
                         ModItemRegister.PAIN_DIEUX_BOTTLE,
-                        ModItemRegister.PAIN_DIEUX_GLASS,
-                        ModItemRegister.PAIN_DIEUX_MUG,
-                        //  real_dwarve
                         ModItemRegister.REAL_DWARVE_BOTTLE,
-                        ModItemRegister.REAL_DWARVE_GLASS,
-                        ModItemRegister.REAL_DWARVE_MUG,
-                        //  pied_de_geants
                         ModItemRegister.PIED_DE_GEANTS_BOTTLE,
-                        ModItemRegister.PIED_DE_GEANTS_GLASS,
-                        ModItemRegister.PIED_DE_GEANTS_MUG,
-                        //  la_blanche_de_chez_nous
-                        ModItemRegister.LA_BLANCHE_DE_CHEZ_NOUS_BOTTLE,
-                        ModItemRegister.LA_BLANCHE_DE_CHEZ_NOUS_GLASS,
-                        ModItemRegister.LA_BLANCHE_DE_CHEZ_NOUS_MUG
+                        ModItemRegister.LA_BLANCHE_DE_CHEZ_NOUS_BOTTLE
                 )
         );
+        this.addToTag(ModItemTags.BEER_GLASS,
+                Stream.of(
+                        ModItemRegister.EMERALD_CALL_GLASS,
+                        ModItemRegister.WORM_HOLE_GLASS,
+                        ModItemRegister.GROS_GUEULETON_GLASS,
+                        ModItemRegister.PAIN_DIEUX_GLASS,
+                        ModItemRegister.REAL_DWARVE_GLASS,
+                        ModItemRegister.PIED_DE_GEANTS_GLASS,
+                        ModItemRegister.LA_BLANCHE_DE_CHEZ_NOUS_GLASS
+                ));
+        this.addToTag(ModItemTags.BEER_MUG,
+                Stream.of(
+                        ModItemRegister.EMERALD_CALL_MUG,
+                        ModItemRegister.WORM_HOLE_MUG,
+                        ModItemRegister.GROS_GUEULETON_MUG,
+                        ModItemRegister.PAIN_DIEUX_MUG,
+                        ModItemRegister.REAL_DWARVE_MUG,
+                        ModItemRegister.PIED_DE_GEANTS_MUG,
+                        ModItemRegister.LA_BLANCHE_DE_CHEZ_NOUS_MUG
+                ));
+        this.addTagsToTag(ModItemTags.BEER, ModItemTags.BEER_BOTTLE, ModItemTags.BEER_GLASS, ModItemTags.BEER_MUG);
+        this.addTagsToTag(ModItemTags.COASTER_POSABLE, ModItemTags.BEER);
+        this.addToTag(ModItemTags.COASTER_POSABLE,
+                Stream.of(
+                        ModItemRegister.EMPTY_POLYMORPHIC_MUG,
+                        ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE,
+                        ModItemRegister.EMPTY_POLYMORPHIC_GLASS
+                ));
         this.copy(ModBlockTags.BREWING_BARREL, ModItemTags.BREWING_BARREL);
     }
 
@@ -84,5 +88,12 @@ public class ModItemTagProvider extends BlockTagCopyingItemTagProvider
         );
     }
 
-
+    @SafeVarargs
+    private void addTagsToTag(TagKey<Item> itemTag, TagKey<Item>... itemTags)
+    {
+        for (TagKey<Item> key : itemTags)
+        {
+            this.tag(itemTag).addTag(key);
+        }
+    }
 }

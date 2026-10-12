@@ -5,6 +5,7 @@ import com.unpainperdu.houblonneux.level.world.component.ImmediateRollTable;
 import com.unpainperdu.houblonneux.level.world.component.WrappedDispenserTradeTableKey;
 import com.unpainperdu.houblonneux.level.world.item.trading.DispenserTrade;
 import com.unpainperdu.houblonneux.register.ModDataComponentRegister;
+import com.unpainperdu.houblonneux.register.ModTriggerRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
 import com.unpainperdu.houblonneux.server.packs.ressources.trade.dispenser.DispenserTradeTable;
 import net.minecraft.core.BlockPos;
@@ -328,7 +329,11 @@ public class BeerDispenserBlockEntity extends RandomizableContainerBlockEntity i
     public void trade(ServerPlayer serverPlayer, Level level)
     {
         ItemStack result = this.trade.result().create();
-        if (!serverPlayer.addItem(result))
+        if (serverPlayer.addItem(result))
+        {
+            ModTriggerRegister.ANY_DISPENSER_TRADE_TRIGGER.get().trigger(serverPlayer);
+        }
+        else
         {
             BlockPos playerPos = serverPlayer.getOnPos().above();
             level.addFreshEntity(new ItemEntity(level, playerPos.getX(), playerPos.getY(), playerPos.getZ(), result));

@@ -6,6 +6,7 @@ import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brew
 import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brewing.BrewingRecipe;
 import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pumping.PumpingInput;
 import com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.pumping.PumpingRecipe;
+import com.unpainperdu.houblonneux.neoevent.common.InventoryChangeHelper;
 import com.unpainperdu.houblonneux.register.ModDataComponentRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
 import com.unpainperdu.houblonneux.register.recipe.ModRecipeTypeRegister;
@@ -262,7 +263,11 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
                 fluidStack.shrink(recipe.sizedFluidIngredient().amount());
                 this.setChanged();
                 ItemStack result = recipe.assemble(input);
-                if (!player.addItem(result))
+                if (player.addItem(result))
+                {
+                    InventoryChangeHelper.trigger(player);
+                }
+                else
                 {
                     ItemEntity entity = new ItemEntity(level, player.getX() + 0.5, player.getY() + 0.5, player.getZ() + 0.5, result);
                     entity.setDefaultPickUpDelay();

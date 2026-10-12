@@ -36,5 +36,6 @@ public class RegisterHandler
         ModRecipeSerializerRegister.register(event);
         ModFluidRegister.register(event);
         ModFluidTypeRegister.register(event);
+        ModTriggerRegister.register(event);
     }
 }

@@ -1,0 +1,25 @@
+{
+  "parent": "houblonneux:main/root",
+  "criteria": {
+    "has_traded_wtih_dispenser_trade": {
+      "trigger": "houblonneux:any_dispenser_trade_trigger"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.houblonneux.use_beer_dispenser.description"
+    },
+    "icon": {
+      "id": "houblonneux:beer_dispenser"
+    },
+    "title": {
+      "translate": "advancements.houblonneux.use_beer_dispenser.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_traded_wtih_dispenser_trade"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
