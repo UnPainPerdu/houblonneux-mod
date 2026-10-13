@@ -2,8 +2,10 @@ package com.unpainperdu.houblonneux.neoevent.recipe;
 
 import com.unpainperdu.houblonneux.register.recipe.ModRecipeTypeRegister;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 
+@EventBusSubscriber
 public class DataPackSyncEvent
 {
     @SubscribeEvent
