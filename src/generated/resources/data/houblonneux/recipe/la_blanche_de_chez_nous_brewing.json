@@ -12,6 +12,9 @@
   "ingredients": [
     "houblonneux:hop_lupulin",
     "minecraft:blue_ice",
+    "minecraft:blue_ice",
+    "minecraft:packed_ice",
+    "minecraft:ice",
     "minecraft:wheat",
     "minecraft:sugar",
     "#c:mushrooms"

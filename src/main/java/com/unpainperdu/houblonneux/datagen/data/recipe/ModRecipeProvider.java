@@ -164,7 +164,9 @@ public class ModRecipeProvider extends RecipeProvider
                         Items.CARROT,
                         Items.WHEAT,
                         Items.BEETROOT,
-                        Items.MELON_SLICE
+                        Items.MELON_SLICE,
+                        Items.PUMPKIN,
+                        Items.EMERALD_BLOCK
                 )
                 .unlockedBy("has_hop_lupulin", this.has(ModItemRegister.HOP_LUPULIN))
                 .save(this.output);
@@ -172,6 +174,9 @@ public class ModRecipeProvider extends RecipeProvider
         this.brewing(108000, ModFluidRegister.WORM_HOLE.get(), 4000)
                 .setFluidIngredient(Fluids.WATER, 4000)
                 .setIngredients(ModItemRegister.HOP_LUPULIN,
+                        Items.CHORUS_FRUIT,
+                        Items.CHORUS_FRUIT,
+                        Items.CHORUS_FRUIT,
                         Items.ENDER_PEARL,
                         Items.WIND_CHARGE,
                         Items.APPLE
@@ -183,10 +188,11 @@ public class ModRecipeProvider extends RecipeProvider
                 .setFluidIngredient(Fluids.WATER, 4000)
                 .setIngredients(ModItemRegister.HOP_LUPULIN,
                         Items.CAKE,
-                        Items.MUSHROOM_STEW
+                        Items.RABBIT_STEW,
+                        Items.MUSHROOM_STEW,
+                        Items.SUGAR
                 )
                 .setIngredients(Tags.Items.FOODS_COOKED_MEAT, Tags.Items.FOODS_COOKED_MEAT)
-                .setIngredients(Items.SUGAR)
                 .unlockedBy("has_hop_lupulin", this.has(ModItemRegister.HOP_LUPULIN))
                 .save(this.output);
 
@@ -198,7 +204,10 @@ public class ModRecipeProvider extends RecipeProvider
                         Items.GUNPOWDER,
                         Items.REDSTONE,
                         Items.WHEAT,
-                        Items.GOLDEN_CARROT
+                        Items.GOLDEN_CARROT,
+                        Items.GOLDEN_DANDELION,
+                        Items.GLISTERING_MELON_SLICE,
+                        Items.EMERALD
                 )
                 .setIngredients(
                         Tags.Items.NUGGETS_GOLD,
@@ -210,21 +219,22 @@ public class ModRecipeProvider extends RecipeProvider
         this.brewing(72000, ModFluidRegister.REAL_DWARVE.get(), 4000)
                 .setFluidIngredient(Fluids.WATER, 4000)
                 .setIngredients(ModItemRegister.HOP_LUPULIN,
+                        ModItemRegister.HOP_LUPULIN,
                         Items.POTATO,
                         Items.POTATO,
                         Items.POTATO,
-                        Items.FEATHER,
                         Items.EGG
                 )
                 .setIngredients(Tags.Items.RAW_MATERIALS_GOLD)
                 .unlockedBy("has_hop_lupulin", this.has(ModItemRegister.HOP_LUPULIN))
                 .save(this.output);
 
-        this.brewing(144000, ModFluidRegister.PIED_DE_GEANTS.get(), 4000)
+        this.brewing(250000, ModFluidRegister.PIED_DE_GEANTS.get(), 4000)
                 .setFluidIngredient(Fluids.WATER, 4000)
                 .setIngredients(ModItemRegister.HOP_LUPULIN,
                         Items.WHEAT,
-                        Items.BLAZE_POWDER,
+                        Items.BLAZE_ROD,
+                        Items.GLOWSTONE_DUST,
                         Items.REDSTONE
                 )
                 .setIngredients(
@@ -240,6 +250,9 @@ public class ModRecipeProvider extends RecipeProvider
                 .setFluidIngredient(Fluids.WATER, 4000)
                 .setIngredients(ModItemRegister.HOP_LUPULIN,
                         Items.BLUE_ICE,
+                        Items.BLUE_ICE,
+                        Items.PACKED_ICE,
+                        Items.ICE,
                         Items.WHEAT,
                         Items.SUGAR
                 )

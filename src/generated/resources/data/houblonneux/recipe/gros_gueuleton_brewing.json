@@ -12,9 +12,10 @@
   "ingredients": [
     "houblonneux:hop_lupulin",
     "minecraft:cake",
+    "minecraft:rabbit_stew",
     "minecraft:mushroom_stew",
+    "minecraft:sugar",
     "#c:foods/cooked_meat",
-    "#c:foods/cooked_meat",
-    "minecraft:sugar"
+    "#c:foods/cooked_meat"
   ]
 }
