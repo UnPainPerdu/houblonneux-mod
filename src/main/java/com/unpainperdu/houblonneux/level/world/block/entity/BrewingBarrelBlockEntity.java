@@ -259,8 +259,11 @@ public class BrewingBarrelBlockEntity extends BaseContainerBlockEntity implement
             if (recipeholder != null)
             {
                 PumpingRecipe recipe = recipeholder.value();
-                stackUsed.shrink(1);
-                fluidStack.shrink(recipe.sizedFluidIngredient().amount());
+                if (!player.isCreative())
+                {
+                    stackUsed.shrink(1);
+                    fluidStack.shrink(recipe.sizedFluidIngredient().amount());
+                }
                 this.setChanged();
                 ItemStack result = recipe.assemble(input);
                 if (player.addItem(result))
