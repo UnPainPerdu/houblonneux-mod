@@ -42,7 +42,7 @@ public class EnglishLanguageProvider extends LanguageProvider
         this.add(ModAdvancementProvider.getAdvancementTitle("root"), "Houblonneux");
         this.add(ModAdvancementProvider.getAdvancementDescription("root"), "Harvest your first hop flower and start thinking about beers");
         this.add(ModAdvancementProvider.getAdvancementTitle("first_beer"), "A new addiction for your collection");
-        this.add(ModAdvancementProvider.getAdvancementDescription("first_beer"), "Get beer any beer");
+        this.add(ModAdvancementProvider.getAdvancementDescription("first_beer"), "Get any beer");
         this.add(ModAdvancementProvider.getAdvancementTitle("all_mug_beer"), "Warning, A dwarve wave is coming");
         this.add(ModAdvancementProvider.getAdvancementDescription("all_mug_beer"), "Get all mug beer");
         this.add(ModAdvancementProvider.getAdvancementTitle("use_beer_dispenser"), "Equivalent Exchange");

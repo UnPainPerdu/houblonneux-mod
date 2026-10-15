@@ -44,6 +44,11 @@ public class ScaleEffectHelper
     private static final Function<Double, AttributeModifier> ENTITY_REACH_MODIFIER = (d) ->
             new AttributeModifier(ENTITY_REACH_MODIFIER_ID, d, AttributeModifier.Operation.ADD_VALUE);
 
+    private static final Identifier STEP_HEIGHT_MODIFIER_ID = Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "step_height");
+
+    private static final Function<Double, AttributeModifier> STEP_HEIGHT_MODIFIER = (d) ->
+            new AttributeModifier(STEP_HEIGHT_MODIFIER_ID, d, AttributeModifier.Operation.ADD_VALUE);
+
     public static void scaleTo(LivingEntity entity, double scaleFactor)
     {
         entity.setData(ModDataAttachmentRegister.SCALE_FACTOR, scaleFactor);
@@ -73,6 +78,12 @@ public class ScaleEffectHelper
             {
                 entityReachFactorA.addOrReplacePermanentModifier(ENTITY_REACH_MODIFIER.apply((entityReachFactorA.getValue() * scaleFactor * 0.8) - entityReachFactorA.getValue()));
             }
+
+            AttributeInstance stepHeightFactorA = entity.getAttribute(Attributes.STEP_HEIGHT);
+            if (stepHeightFactorA != null)
+            {
+                stepHeightFactorA.addOrReplacePermanentModifier(STEP_HEIGHT_MODIFIER.apply((stepHeightFactorA.getValue() * scaleFactor * 0.8) - stepHeightFactorA.getValue()));
+            }
         }
     }
 
@@ -98,6 +109,11 @@ public class ScaleEffectHelper
             if (entityReachFactor != null)
             {
                 entityReachFactor.removeModifier(ENTITY_REACH_MODIFIER_ID);
+            }
+            AttributeInstance stepHeightFactor = entity.getAttribute(Attributes.STEP_HEIGHT);
+            if (stepHeightFactor != null)
+            {
+                stepHeightFactor.removeModifier(STEP_HEIGHT_MODIFIER_ID);
             }
 
             entity.removeData(ModDataAttachmentRegister.SCALE_FACTOR);

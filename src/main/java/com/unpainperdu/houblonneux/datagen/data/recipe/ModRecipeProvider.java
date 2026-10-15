@@ -200,18 +200,12 @@ public class ModRecipeProvider extends RecipeProvider
                 .setFluidIngredient(Fluids.WATER, 4000)
                 .setIngredients(ModItemRegister.HOP_LUPULIN,
                         Items.GUNPOWDER,
-                        Items.GUNPOWDER,
-                        Items.GUNPOWDER,
                         Items.REDSTONE,
                         Items.WHEAT,
                         Items.GOLDEN_CARROT,
                         Items.GOLDEN_DANDELION,
                         Items.GLISTERING_MELON_SLICE,
                         Items.EMERALD
-                )
-                .setIngredients(
-                        Tags.Items.NUGGETS_GOLD,
-                        Tags.Items.NUGGETS_GOLD
                 )
                 .unlockedBy("has_hop_lupulin", this.has(ModItemRegister.HOP_LUPULIN))
                 .save(this.output);
@@ -220,24 +214,28 @@ public class ModRecipeProvider extends RecipeProvider
                 .setFluidIngredient(Fluids.WATER, 4000)
                 .setIngredients(ModItemRegister.HOP_LUPULIN,
                         ModItemRegister.HOP_LUPULIN,
+                        Items.WHEAT,
                         Items.POTATO,
                         Items.POTATO,
-                        Items.POTATO,
-                        Items.EGG
+                        Items.STONE
                 )
                 .setIngredients(Tags.Items.RAW_MATERIALS_GOLD)
                 .unlockedBy("has_hop_lupulin", this.has(ModItemRegister.HOP_LUPULIN))
                 .save(this.output);
 
-        this.brewing(250000, ModFluidRegister.PIED_DE_GEANTS.get(), 4000)
+        this.brewing(288000, ModFluidRegister.PIED_DE_GEANTS.get(), 4000)
                 .setFluidIngredient(Fluids.WATER, 4000)
                 .setIngredients(ModItemRegister.HOP_LUPULIN,
                         Items.WHEAT,
+                        Items.BLAZE_ROD,
                         Items.BLAZE_ROD,
                         Items.GLOWSTONE_DUST,
                         Items.REDSTONE
                 )
                 .setIngredients(
+                        Tags.Items.FOODS_COOKED_MEAT,
+                        Tags.Items.FOODS_COOKED_MEAT,
+                        Tags.Items.FOODS_COOKED_MEAT,
                         Tags.Items.FOODS_COOKED_MEAT,
                         Tags.Items.FOODS_COOKED_MEAT,
                         Tags.Items.FOODS_COOKED_MEAT,
@@ -250,9 +248,8 @@ public class ModRecipeProvider extends RecipeProvider
                 .setFluidIngredient(Fluids.WATER, 4000)
                 .setIngredients(ModItemRegister.HOP_LUPULIN,
                         Items.BLUE_ICE,
-                        Items.BLUE_ICE,
                         Items.PACKED_ICE,
-                        Items.ICE,
+                        Items.SNOWBALL,
                         Items.WHEAT,
                         Items.SUGAR
                 )

@@ -12,10 +12,10 @@
   "ingredients": [
     "houblonneux:hop_lupulin",
     "houblonneux:hop_lupulin",
+    "minecraft:wheat",
     "minecraft:potato",
     "minecraft:potato",
-    "minecraft:potato",
-    "minecraft:egg",
+    "minecraft:stone",
     "#c:raw_materials/gold"
   ]
 }

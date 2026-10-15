@@ -1,6 +1,6 @@
 {
   "type": "houblonneux:brewing_recipe",
-  "brewingTime": 250000,
+  "brewingTime": 288000,
   "fluidInput": {
     "amount": 4000,
     "ingredient": "minecraft:water"
@@ -13,8 +13,12 @@
     "houblonneux:hop_lupulin",
     "minecraft:wheat",
     "minecraft:blaze_rod",
+    "minecraft:blaze_rod",
     "minecraft:glowstone_dust",
     "minecraft:redstone",
+    "#c:foods/cooked_meat",
+    "#c:foods/cooked_meat",
+    "#c:foods/cooked_meat",
     "#c:foods/cooked_meat",
     "#c:foods/cooked_meat",
     "#c:foods/cooked_meat",
