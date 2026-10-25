@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:pied_de_geants_glass"
+        "recipes": "houblonneux:pied_de_geants_glass"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

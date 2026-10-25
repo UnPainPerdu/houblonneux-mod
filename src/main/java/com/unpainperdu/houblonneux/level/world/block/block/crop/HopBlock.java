@@ -1,6 +1,5 @@
 package com.unpainperdu.houblonneux.level.world.block.block.crop;
 
-import com.mojang.serialization.MapCodec;
 import com.unpainperdu.houblonneux.level.world.block.blockstate.HopBlockstate;
 import com.unpainperdu.houblonneux.level.world.block.blockstate.ModBlockStateProperties;
 import net.minecraft.core.BlockPos;
@@ -16,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.VegetationBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,7 +34,6 @@ import java.util.Optional;
 
 public class HopBlock extends VegetationBlock implements BonemealableBlock
 {
-    public static final MapCodec<HopBlock> CODEC = simpleCodec(HopBlock::new);
     public static final int MIN_HEIGHT = 4;
     public static final int MAX_HEIGHT = 10;
     public static final BooleanProperty CAN_GROW = ModBlockStateProperties.CAN_GROW;
@@ -53,12 +52,6 @@ public class HopBlock extends VegetationBlock implements BonemealableBlock
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
         builder.add(CAN_GROW, HOP_BLOCKSTATE);
-    }
-
-    @Override
-    protected MapCodec<? extends VegetationBlock> codec()
-    {
-        return CODEC;
     }
 
     @Override
@@ -239,21 +232,21 @@ public class HopBlock extends VegetationBlock implements BonemealableBlock
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state)
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, BonemealSource bonemealSource)
     {
-        HopBlockstate hopBlockstate = state.getValue(HOP_BLOCKSTATE);
+        HopBlockstate hopBlockstate = blockState.getValue(HOP_BLOCKSTATE);
         return hopBlockstate == HopBlockstate.SEED || hopBlockstate == HopBlockstate.TOP_GROW;
     }
 
     @Override
-    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state)
+    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState, BonemealSource bonemealSource)
     {
-        return random.nextFloat() < 0.45;
+        return randomSource.nextFloat() < 0.45;
     }
 
     @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state)
+    public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState, BonemealSource bonemealSource)
     {
-        this.grow(level, random, pos, state);
+        this.grow(serverLevel, randomSource, blockPos, blockState);
     }
 }

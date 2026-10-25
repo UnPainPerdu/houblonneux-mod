@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:coaster"
+        "recipes": "houblonneux:coaster"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

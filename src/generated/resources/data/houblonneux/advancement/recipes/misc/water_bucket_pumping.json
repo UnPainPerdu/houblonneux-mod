@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:water_bucket_pumping"
+        "recipes": "houblonneux:water_bucket_pumping"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

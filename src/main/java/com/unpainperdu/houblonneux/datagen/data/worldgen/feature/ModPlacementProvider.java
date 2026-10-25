@@ -8,7 +8,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -20,9 +20,9 @@ public class ModPlacementProvider
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context)
     {
-        HolderGetter<ConfiguredFeature<?, ?>> holdergetter = context.lookup(Registries.CONFIGURED_FEATURE);
+        HolderGetter<Feature> holdergetter = context.lookup(Registries.FEATURE);
 
-        final Holder<ConfiguredFeature<?, ?>> FOREST_HOP_PATCH_HOLDER = holdergetter.getOrThrow(ModFeatureProvider.FOREST_HOP_PATCH);
+        Holder<Feature> FOREST_HOP_PATCH_HOLDER = holdergetter.getOrThrow(ModFeatureProvider.FOREST_HOP_PATCH);
         PlacementUtils.register(context,
                 FOREST_HOP_PATCH,
                 FOREST_HOP_PATCH_HOLDER,

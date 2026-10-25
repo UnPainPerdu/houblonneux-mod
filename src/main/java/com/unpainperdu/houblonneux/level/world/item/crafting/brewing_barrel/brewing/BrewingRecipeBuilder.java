@@ -1,7 +1,6 @@
 package com.unpainperdu.houblonneux.level.world.item.crafting.brewing_barrel.brewing;
 
-import com.unpainperdu.houblonneux.Houblonneux;
-import net.minecraft.advancements.Criterion;
+import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeBuilder;

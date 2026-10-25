@@ -5,8 +5,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
-import net.minecraft.core.RegistryCodecs;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.core.registries.codec.RegistryCodecs;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemInstance;
@@ -24,7 +24,7 @@ public record AllItemItemTagPredicate(Optional<HolderSet<Item>> items) implement
     }
 
     public static final Codec<AllItemItemTagPredicate> CODEC = RecordCodecBuilder.create(
-            i -> i.group(RegistryCodecs.homogeneousList(Registries.ITEM).optionalFieldOf("items").forGetter(AllItemItemTagPredicate::items))
+            i -> i.group(RegistryCodecs.holderSet(Registries.ITEM).optionalFieldOf("items").forGetter(AllItemItemTagPredicate::items))
                     .apply(i, AllItemItemTagPredicate::new)
     );
 

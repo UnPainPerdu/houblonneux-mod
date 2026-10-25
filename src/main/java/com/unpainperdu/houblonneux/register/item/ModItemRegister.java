@@ -4,11 +4,16 @@ import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.world.item.LockerItem;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.item.list.ItemList;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.Optional;
 
 public class ModItemRegister
 {
@@ -61,5 +66,10 @@ public class ModItemRegister
         DeferredItem<Item> deferredHolder = ITEMS.registerItem(name, Item::new, () -> properties);
         ItemList.BEER_ITEM.add(deferredHolder);
         return deferredHolder;
+    }
+
+    public static Optional<ResourceKey<Item>> getResourceKey(ItemLike itemLike)
+    {
+        return BuiltInRegistries.ITEM.getResourceKey(itemLike.asItem());
     }
 }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:pain_dieux_bottle_pumping"
+        "recipes": "houblonneux:pain_dieux_bottle_pumping"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

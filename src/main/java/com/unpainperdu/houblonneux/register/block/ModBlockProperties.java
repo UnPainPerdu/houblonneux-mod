@@ -13,10 +13,10 @@ public class ModBlockProperties
             .randomTicks()
             .destroyTime(0.2F)
             .sound(SoundType.CROP)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
             .noCollision();
     public static final BlockBehaviour.Properties BEER_DISPENSER_PROPERTIES = BlockBehaviour.Properties.of()
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
             .sound(SoundType.METAL)
             .mapColor(MapColor.METAL)
             .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
@@ -28,7 +28,7 @@ public class ModBlockProperties
             .mapColor(MapColor.COLOR_BROWN)
             .instabreak()
             .noOcclusion()
-            .pushReaction(PushReaction.DESTROY);
+            .pushReaction(PushReaction.POPPED);
 
     public static final BlockBehaviour.Properties BREWING_BARREL_PROPERTIES = BlockBehaviour.Properties.of()
             .mapColor(MapColor.WOOD)
@@ -36,5 +36,5 @@ public class ModBlockProperties
             .strength(2.0F, 3.0F)
             .sound(SoundType.WOOD)
             .noOcclusion()
-            .pushReaction(PushReaction.BLOCK);
+            .pushReaction(PushReaction.POPPED);
 }

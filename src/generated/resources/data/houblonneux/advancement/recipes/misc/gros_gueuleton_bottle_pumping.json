@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:gros_gueuleton_bottle_pumping"
+        "recipes": "houblonneux:gros_gueuleton_bottle_pumping"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

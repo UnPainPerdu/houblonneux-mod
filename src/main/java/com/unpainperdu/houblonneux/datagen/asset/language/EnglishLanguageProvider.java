@@ -4,7 +4,7 @@ import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.client.screen.BrewingBarrelScreen;
 import com.unpainperdu.houblonneux.client.screen.util.FluidTankRenderer;
 import com.unpainperdu.houblonneux.config.ModServerConfig;
-import com.unpainperdu.houblonneux.datagen.data.ModAdvancementProvider;
+import com.unpainperdu.houblonneux.datagen.data.ModAdvancementSubProvider;
 import com.unpainperdu.houblonneux.integration.jei.category.BrewingCategory;
 import com.unpainperdu.houblonneux.integration.jei.category.PumpingCategory;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
@@ -29,28 +29,27 @@ public class EnglishLanguageProvider extends LanguageProvider
     @Override
     protected void addTranslations()
     {
-        CommonLanguageHelper clp = new CommonLanguageHelper(this);
         //neoforge
         //  config
-        clp.addConfigCategory(ModServerConfig.BREWING_RECIPE_CATEGORY, "Brewing Recipes");
+        this.addConfigCategory(ModServerConfig.BREWING_RECIPE_CATEGORY, "Brewing Recipes");
         this.add(ModServerConfig.BREWING_RECIPE_TIME_MULTIPLICATION_FACTOR_TRANSLATION_KEY, "Brewing Recipe Time Multiplication Factor");
         this.add(ModServerConfig.BREWING_RECIPE_TIME_DIVISION_FACTOR_TRANSLATION_KEY, "Brewing Recipe Time Division Factor");
-        clp.addConfigCategory(ModServerConfig.BEER_EFFECTS, "Beer Effects");
+        this.addConfigCategory(ModServerConfig.BEER_EFFECTS, "Beer Effects");
         this.add(ModServerConfig.PAIN_DIEUX_CAN_DESTROY_BLOCKS_TRANSLATION_KEY, "Pain Dieux explosion destroy blocks");
         this.add(ModServerConfig.PAIN_DIEUX_CAN_HURT_OTHER_PLAYER_TRANSLATION_KEY, "Pain Dieux explosion hurt other player");
         //advancement
-        this.add(ModAdvancementProvider.getAdvancementTitle("root"), "Houblonneux");
-        this.add(ModAdvancementProvider.getAdvancementDescription("root"), "Harvest your first hop flower and start thinking about beers");
-        this.add(ModAdvancementProvider.getAdvancementTitle("first_beer"), "A new addiction for your collection");
-        this.add(ModAdvancementProvider.getAdvancementDescription("first_beer"), "Get any beer");
-        this.add(ModAdvancementProvider.getAdvancementTitle("all_mug_beer"), "Warning, A dwarve wave is coming");
-        this.add(ModAdvancementProvider.getAdvancementDescription("all_mug_beer"), "Get all mug beer");
-        this.add(ModAdvancementProvider.getAdvancementTitle("use_beer_dispenser"), "Equivalent Exchange");
-        this.add(ModAdvancementProvider.getAdvancementDescription("use_beer_dispenser"), "Trade with a beer dispenser");
-        this.add(ModAdvancementProvider.getAdvancementTitle("get_hit_hard_as_dwarf"), "Really to small");
-        this.add(ModAdvancementProvider.getAdvancementDescription("get_hit_hard_as_dwarf"), "Get 20 damage point as a dwarf");
-        this.add(ModAdvancementProvider.getAdvancementTitle("hit_hard_as_giant"), "Big Man in coming");
-        this.add(ModAdvancementProvider.getAdvancementDescription("hit_hard_as_giant"), "Deal 20 damage point as a giant");
+        this.add(ModAdvancementSubProvider.getAdvancementTitle("root"), "Houblonneux");
+        this.add(ModAdvancementSubProvider.getAdvancementDescription("root"), "Harvest your first hop flower and start thinking about beers");
+        this.add(ModAdvancementSubProvider.getAdvancementTitle("first_beer"), "A new addiction for your collection");
+        this.add(ModAdvancementSubProvider.getAdvancementDescription("first_beer"), "Get any beer");
+        this.add(ModAdvancementSubProvider.getAdvancementTitle("all_mug_beer"), "Warning, A dwarve wave is coming");
+        this.add(ModAdvancementSubProvider.getAdvancementDescription("all_mug_beer"), "Get all mug beer");
+        this.add(ModAdvancementSubProvider.getAdvancementTitle("use_beer_dispenser"), "Equivalent Exchange");
+        this.add(ModAdvancementSubProvider.getAdvancementDescription("use_beer_dispenser"), "Trade with a beer dispenser");
+        this.add(ModAdvancementSubProvider.getAdvancementTitle("get_hit_hard_as_dwarf"), "Really to small");
+        this.add(ModAdvancementSubProvider.getAdvancementDescription("get_hit_hard_as_dwarf"), "Get 20 damage point as a dwarf");
+        this.add(ModAdvancementSubProvider.getAdvancementTitle("hit_hard_as_giant"), "Big Man in coming");
+        this.add(ModAdvancementSubProvider.getAdvancementDescription("hit_hard_as_giant"), "Deal 20 damage point as a giant");
         //integration
         //  jei
         this.add(BrewingCategory.CATEGORY_KEY, "Brewing");
@@ -157,5 +156,10 @@ public class EnglishLanguageProvider extends LanguageProvider
         this.add(ModBlockRegister.BAMBOO_BREWING_BARREL.asItem(), "Bamboo Brewing Barrel");
         this.add(ModBlockRegister.CRIMSON_BREWING_BARREL.asItem(), "Crimson Brewing Barrel");
         this.add(ModBlockRegister.WARPED_BREWING_BARREL.asItem(), "Warped Brewing Barrel");
+    }
+
+    public void addConfigCategory(String name, String translation)
+    {
+        this.add(Houblonneux.MOD_ID + ".configuration." + name, translation);
     }
 }

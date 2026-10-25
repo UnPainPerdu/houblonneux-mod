@@ -2,7 +2,7 @@ package com.unpainperdu.houblonneux.datagen.asset.language;
 
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.client.screen.BrewingBarrelScreen;
-import com.unpainperdu.houblonneux.datagen.data.ModAdvancementProvider;
+import com.unpainperdu.houblonneux.datagen.data.ModAdvancementSubProvider;
 import com.unpainperdu.houblonneux.integration.jei.category.BrewingCategory;
 import com.unpainperdu.houblonneux.integration.jei.category.PumpingCategory;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
@@ -26,20 +26,19 @@ public class FrenchLanguageProvider extends LanguageProvider
     @Override
     protected void addTranslations()
     {
-        CommonLanguageHelper clp = new CommonLanguageHelper(this);
         //advancement
-        this.add(ModAdvancementProvider.getAdvancementTitle("root"), "Houblonneux");
-        this.add(ModAdvancementProvider.getAdvancementDescription("root"), "Récoltez votre première fleure de houblon");
-        this.add(ModAdvancementProvider.getAdvancementTitle("first_beer"), "Une nouvelle adiction pour votre collection");
-        this.add(ModAdvancementProvider.getAdvancementDescription("first_beer"), "Obtenez n'importe quelle bière");
-        this.add(ModAdvancementProvider.getAdvancementTitle("all_mug_beer"), "Alerte, horde de nain en approche");
-        this.add(ModAdvancementProvider.getAdvancementDescription("all_mug_beer"), "Obtenez toutes les bières en chope");
-        this.add(ModAdvancementProvider.getAdvancementTitle("use_beer_dispenser"), "Echange équivalent");
-        this.add(ModAdvancementProvider.getAdvancementDescription("use_beer_dispenser"), "Echangez avec un distributeur de bière");
-        this.add(ModAdvancementProvider.getAdvancementTitle("get_hit_hard_as_dwarf"), "Minus");
-        this.add(ModAdvancementProvider.getAdvancementDescription("get_hit_hard_as_dwarf"), "Prenez 20 points de dégats entant que nain");
-        this.add(ModAdvancementProvider.getAdvancementTitle("hit_hard_as_giant"), "GROOOS");
-        this.add(ModAdvancementProvider.getAdvancementDescription("hit_hard_as_giant"), "Infligez 20 points de dégats entant que géant");
+        this.add(ModAdvancementSubProvider.getAdvancementTitle("root"), "Houblonneux");
+        this.add(ModAdvancementSubProvider.getAdvancementDescription("root"), "Récoltez votre première fleure de houblon");
+        this.add(ModAdvancementSubProvider.getAdvancementTitle("first_beer"), "Une nouvelle adiction pour votre collection");
+        this.add(ModAdvancementSubProvider.getAdvancementDescription("first_beer"), "Obtenez n'importe quelle bière");
+        this.add(ModAdvancementSubProvider.getAdvancementTitle("all_mug_beer"), "Alerte, horde de nain en approche");
+        this.add(ModAdvancementSubProvider.getAdvancementDescription("all_mug_beer"), "Obtenez toutes les bières en chope");
+        this.add(ModAdvancementSubProvider.getAdvancementTitle("use_beer_dispenser"), "Echange équivalent");
+        this.add(ModAdvancementSubProvider.getAdvancementDescription("use_beer_dispenser"), "Echangez avec un distributeur de bière");
+        this.add(ModAdvancementSubProvider.getAdvancementTitle("get_hit_hard_as_dwarf"), "Minus");
+        this.add(ModAdvancementSubProvider.getAdvancementDescription("get_hit_hard_as_dwarf"), "Prenez 20 points de dégats entant que nain");
+        this.add(ModAdvancementSubProvider.getAdvancementTitle("hit_hard_as_giant"), "GROOOS");
+        this.add(ModAdvancementSubProvider.getAdvancementDescription("hit_hard_as_giant"), "Infligez 20 points de dégats entant que géant");
         //integration
         //  jei
         this.add(BrewingCategory.CATEGORY_KEY, "Brassage");

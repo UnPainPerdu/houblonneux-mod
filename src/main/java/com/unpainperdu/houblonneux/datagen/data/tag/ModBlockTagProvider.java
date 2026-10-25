@@ -6,11 +6,14 @@ import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.block.list.BlockList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -54,11 +57,13 @@ public class ModBlockTagProvider extends BlockTagsProvider
     @SafeVarargs
     private void addToTag(TagKey<Block> blockTag, Stream<Supplier<? extends Block>>... blockStreams)
     {
-        this.tag(blockTag).add(
-                Stream.of(blockStreams)
-                        .flatMap(s -> s)
-                        .map(Supplier::get)
-                        .toArray(Block[]::new)
-        );
+        List<ResourceKey<Block>> blockRKs = Stream.of(blockStreams)
+                .flatMap(s -> s)
+                .map(s -> ModBlockRegister.getResourceKey(s.get()))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+
+        this.tag(blockTag).add(blockRKs.toArray(new ResourceKey[0]));
     }
 }

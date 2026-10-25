@@ -1,7 +1,6 @@
 package com.unpainperdu.houblonneux.datagen.asset.model;
 
 import com.unpainperdu.houblonneux.Houblonneux;
-import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
@@ -46,7 +45,7 @@ public class ModelProviderDispatcher extends ModelProvider
     {
         List<DeferredBlock<?>> filter = List.of(
         );
-        ResourceKey<Block> key = holder.getKey();
+        ResourceKey<Block> key = holder.keyOrNull();
         if (key != null)
         {
             return filter.stream().noneMatch(h -> h.is(key));
@@ -58,7 +57,7 @@ public class ModelProviderDispatcher extends ModelProvider
     {
         List<Holder<Item>> filter = List.of(
         );
-        ResourceKey<Item> key = holder.getKey();
+        ResourceKey<Item> key = holder.keyOrNull();
         if (key != null)
         {
             return filter.stream().noneMatch(h -> h.is(key));

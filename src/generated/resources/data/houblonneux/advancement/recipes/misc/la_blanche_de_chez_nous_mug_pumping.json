@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:la_blanche_de_chez_nous_mug_pumping"
+        "recipes": "houblonneux:la_blanche_de_chez_nous_mug_pumping"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

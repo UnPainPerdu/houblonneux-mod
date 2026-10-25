@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:pied_de_geants_bottle_pumping"
+        "recipes": "houblonneux:pied_de_geants_bottle_pumping"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

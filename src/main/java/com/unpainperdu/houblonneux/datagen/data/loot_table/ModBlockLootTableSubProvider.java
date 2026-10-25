@@ -7,8 +7,7 @@ import com.unpainperdu.houblonneux.level.world.block.blockstate.HopBlockstate;
 import com.unpainperdu.houblonneux.register.ModDataComponentRegister;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
-import net.minecraft.advancements.criterion.StatePropertiesPredicate;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.advancements.predicates.StatePropertiesPredicate;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
@@ -22,18 +21,17 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.world.level.storage.loot.predicates.MatchBlock;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 
 import java.util.Set;
 import java.util.stream.IntStream;
 
 public class ModBlockLootTableSubProvider extends BlockLootSubProvider
 {
-    protected ModBlockLootTableSubProvider(HolderLookup.Provider registries)
+    public ModBlockLootTableSubProvider(Context output)
     {
-        super(Set.of(), FeatureFlags.DEFAULT_FLAGS, registries);
+        super(Set.of(), FeatureFlags.DEFAULT_FLAGS, output);
     }
 
     @Override
@@ -74,10 +72,9 @@ public class ModBlockLootTableSubProvider extends BlockLootSubProvider
                         LootPool.lootPool()
                                 .add(LootItem.lootTableItem(hopFlower)
                                         .when(
-                                                LootItemBlockStatePropertyCondition.hasBlockStateProperties(hopBlock)
-                                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(HopBlock.HOP_BLOCKSTATE, HopBlockstate.MIDDLE_FLOWERED))
+                                                MatchBlock.blockMatches(this.blocks, hopBlock, StatePropertiesPredicate.Builder.properties().hasProperty(HopBlock.HOP_BLOCKSTATE, HopBlockstate.MIDDLE_FLOWERED))
                                         )
-                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3)))
+                                        .apply(SetItemCountFunction.setCount(ContextIntProviders.between(1, 3)))
                                 )
                 );
         this.add(hopBlock, lootTable);
@@ -95,13 +92,16 @@ public class ModBlockLootTableSubProvider extends BlockLootSubProvider
             throw new RuntimeException("Property " + property.getName() + " is missing in " + block);
         }
         return LootTable.lootTable().withPool(
-                LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(this.applyExplosionDecay(block, LootItem.lootTableItem(drop)
-                                .apply(IntStream.rangeClosed(min, max).boxed().toList(),
-                                        (count) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) count))
-                                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
-                                                        .setProperties(StatePropertiesPredicate.Builder.properties()
-                                                                .hasProperty(property, count)))))));
+                LootPool.lootPool().setRolls(ContextIntProviders.exactly(1))
+                        .add(this.applyExplosionDecay(
+                                        block, LootItem.lootTableItem(drop)
+                                                .apply(IntStream.rangeClosed(min, max).boxed().toList(),
+                                                        (count) -> SetItemCountFunction.setCount(ContextIntProviders.exactly(count))
+                                                                .when(MatchBlock.blockMatches(this.blocks, block, StatePropertiesPredicate.Builder.properties().hasProperty(property, count)))
+                                                )
+                                )
+                        )
+        );
     }
 
     private void brewingBarrelBlockDrop(Block block)
@@ -117,10 +117,7 @@ public class ModBlockLootTableSubProvider extends BlockLootSubProvider
                                                         .include(DataComponents.LOCK)
                                                         .include(ModDataComponentRegister.FLUIDSTACK.get())
                                         )
-                                        .when(
-                                                LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
-                                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BrewingBarrelBlock.POSITION, 0))
-                                        )
+                                        .when(MatchBlock.blockMatches(this.blocks, block, StatePropertiesPredicate.Builder.properties().hasProperty(BrewingBarrelBlock.POSITION, 0)))
                                 )
                 );
         this.add(block, lootTable);

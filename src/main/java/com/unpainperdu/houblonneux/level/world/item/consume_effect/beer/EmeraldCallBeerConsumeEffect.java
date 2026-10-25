@@ -13,7 +13,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.wanderingtrader.WanderingTrader;
 import net.minecraft.world.item.ItemStack;
@@ -67,7 +67,7 @@ public class EmeraldCallBeerConsumeEffect extends AbstractBeerConsumeEffect
         poss = PosHelper.setAllPosToTheGround(poss, level);
         for (int i = 0; i < wanderingNumber; i++)
         {
-            WanderingTrader trader = new WanderingTrader(EntityType.WANDERING_TRADER, level);
+            WanderingTrader trader = new WanderingTrader(EntityTypes.WANDERING_TRADER, level);
             BlockPos wantedPos = poss.get(i + 1);
             trader.setPos(wantedPos.getX(), wantedPos.getY(), wantedPos.getZ());
             trader.setDespawnDelay((level.getRandom().nextInt(10, 21)) * 20);

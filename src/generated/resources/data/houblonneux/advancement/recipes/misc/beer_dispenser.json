@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:beer_dispenser"
+        "recipes": "houblonneux:beer_dispenser"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

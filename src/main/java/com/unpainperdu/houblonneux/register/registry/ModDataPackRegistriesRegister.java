@@ -8,7 +8,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+import net.neoforged.neoforge.registries.NewDatapackRegistryEvent;
 
 @EventBusSubscriber(modid = Houblonneux.MOD_ID)
 public class ModDataPackRegistriesRegister
@@ -17,17 +17,15 @@ public class ModDataPackRegistriesRegister
     public static final ResourceKey<Registry<DispenserTradeTable>> DISPENSER_TRADE_TABLE = ResourceKey.createRegistryKey(Identifier.fromNamespaceAndPath(Houblonneux.MOD_ID, "dispenser_trade_table"));
 
     @SubscribeEvent
-    public static void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event)
+    public static void registerDatapackRegistries(NewDatapackRegistryEvent event)
     {
-        event.dataPackRegistry(
+        event.reloadableRegistry(
                 DISPENSER_TRADE,
-                DispenserTrade.CODEC,
                 DispenserTrade.CODEC
         );
 
-        event.dataPackRegistry(
+        event.reloadableRegistry(
                 DISPENSER_TRADE_TABLE,
-                DispenserTradeTable.CODEC,
                 DispenserTradeTable.CODEC
         );
     }

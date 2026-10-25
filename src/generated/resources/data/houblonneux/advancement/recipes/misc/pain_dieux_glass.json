@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:pain_dieux_glass"
+        "recipes": "houblonneux:pain_dieux_glass"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

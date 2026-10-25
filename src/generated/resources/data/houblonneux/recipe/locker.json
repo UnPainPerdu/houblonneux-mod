@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "x": "#c:nuggets/gold",
     "y": "#c:nuggets/iron"

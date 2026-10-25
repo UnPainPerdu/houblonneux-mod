@@ -4,7 +4,7 @@ import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.advancements.criterion.AllItemItemTagTrigger;
 import com.unpainperdu.houblonneux.level.advancements.criterion.AnyDispenserTradeTrigger;
 import com.unpainperdu.houblonneux.level.advancements.criterion.DamageWithEffectTrigger;
-import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.advancements.triggers.CriterionTrigger;
 import net.minecraft.core.registries.Registries;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;

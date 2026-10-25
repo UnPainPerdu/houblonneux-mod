@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:emerald_call_brewing"
+        "recipes": "houblonneux:emerald_call_brewing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

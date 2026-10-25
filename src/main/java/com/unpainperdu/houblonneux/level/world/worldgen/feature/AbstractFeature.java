@@ -1,24 +1,24 @@
 package com.unpainperdu.houblonneux.level.world.worldgen.feature;
 
-import com.mojang.serialization.Codec;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
-public abstract class AbstractFeature<T extends FeatureConfiguration> extends Feature<T>
+public abstract class AbstractFeature implements Feature
 {
-    public AbstractFeature(Codec<T> codec)
+    public AbstractFeature()
     {
-        super(codec);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<T> context)
+    public boolean place(WorldGenLevel worldGenLevel, ChunkGenerator chunkGenerator, RandomSource rand, BlockPos posOrigin)
     {
-        if (canGenerate(context))
+        if (canGenerate(worldGenLevel, chunkGenerator, rand, posOrigin))
         {
-            generate(context);
+            generate(worldGenLevel, chunkGenerator, rand, posOrigin);
             return true;
         }
         else
@@ -27,9 +27,9 @@ public abstract class AbstractFeature<T extends FeatureConfiguration> extends Fe
         }
     }
 
-    public abstract boolean canGenerate(FeaturePlaceContext<T> context);
+    public abstract boolean canGenerate(WorldGenLevel worldGenLevel, ChunkGenerator chunkGenerator, RandomSource rand, BlockPos posOrigin);
 
-    public abstract void generate(FeaturePlaceContext<T> context);
+    public abstract void generate(WorldGenLevel worldGenLevel, ChunkGenerator chunkGenerator, RandomSource rand, BlockPos posOrigin);
 
     public static boolean isInGeneratedChunks(ChunkPos originChunk, ChunkPos generationChunk)
     {

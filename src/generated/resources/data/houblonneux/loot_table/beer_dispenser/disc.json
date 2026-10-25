@@ -2,24 +2,20 @@
   "type": "minecraft:empty",
   "pools": [
     {
-      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:tag",
           "expand": true,
-          "functions": [
-            {
-              "add": false,
-              "count": 1.0,
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "c:music_discs"
+          "items": "#c:music_discs",
+          "modifier": {
+            "type": "minecraft:set_count",
+            "count": 1
+          }
         }
       ],
       "rolls": {
         "type": "minecraft:binomial",
-        "n": 10.0,
+        "n": 10,
         "p": 0.2
       }
     }

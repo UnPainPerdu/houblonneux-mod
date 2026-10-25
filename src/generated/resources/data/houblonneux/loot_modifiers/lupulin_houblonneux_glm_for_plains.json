@@ -1,20 +1,12 @@
 {
-  "type": "houblonneux:villager_chest_glm",
-  "amountProvider": {
-    "type": "minecraft:uniform",
-    "max": 7.0,
-    "min": 3.0
-  },
-  "conditions": [
-    {
-      "condition": "neoforge:loot_table_id",
-      "loot_table_id": "minecraft:chests/village/village_plains_house"
-    },
-    {
-      "chance": 0.45,
-      "condition": "minecraft:random_chance"
+  "type": "neoforge:add_table",
+  "condition": {
+    "type": "minecraft:all_of",
+    "terms": {
+      "type": "minecraft:random_chance",
+      "chance": 0.45
     }
-  ],
-  "item": "houblonneux:hop_lupulin",
-  "priority": 1
+  },
+  "priority": 1,
+  "table": "minecraft:chests/village/village_plains_house"
 }

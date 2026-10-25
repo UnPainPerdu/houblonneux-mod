@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "x": "minecraft:bamboo_planks",
     "y": "#c:ingots/iron"

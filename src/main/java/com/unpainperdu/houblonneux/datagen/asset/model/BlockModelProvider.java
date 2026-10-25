@@ -1,8 +1,6 @@
 package com.unpainperdu.houblonneux.datagen.asset.model;
 
 import com.mojang.math.Quadrant;
-import com.mojang.math.Transformation;
-import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.world.block.block.BrewingBarrelBlock;
 import com.unpainperdu.houblonneux.level.world.block.block.CoasterBlock;
 import com.unpainperdu.houblonneux.level.world.block.block.crop.HopBlock;
@@ -276,7 +274,7 @@ public class BlockModelProvider
     }
 
     /**
-     * @param modelLocation            houblonneux:item/ added in method
+     * @param modelLocation houblonneux:item/ added in method
      */
     private void generateItemWithCustomModel(Item item, String modelLocation, Map<TextureSlot, Identifier> textureSlotAndTextureLoc)
     {

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:crimson_brewing_barrel"
+        "recipes": "houblonneux:crimson_brewing_barrel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

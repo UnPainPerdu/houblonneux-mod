@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:worm_hole_mug_pumping"
+        "recipes": "houblonneux:worm_hole_mug_pumping"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:emerald_call_mug_pumping"
+        "recipes": "houblonneux:emerald_call_mug_pumping"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

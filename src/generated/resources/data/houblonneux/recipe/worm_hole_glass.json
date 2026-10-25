@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "ingredients": [
     "houblonneux:worm_hole_bottle",
     "houblonneux:empty_polymorphic_glass"

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:hop_lupulin"
+        "recipes": "houblonneux:hop_lupulin"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

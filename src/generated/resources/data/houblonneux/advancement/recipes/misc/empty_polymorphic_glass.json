@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:empty_polymorphic_glass"
+        "recipes": "houblonneux:empty_polymorphic_glass"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

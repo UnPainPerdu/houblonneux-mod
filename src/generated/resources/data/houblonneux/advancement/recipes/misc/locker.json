@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:locker"
+        "recipes": "houblonneux:locker"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

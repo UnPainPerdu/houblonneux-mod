@@ -11,24 +11,24 @@ import com.unpainperdu.houblonneux.register.item.ModConsumeEffectTypeRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import com.unpainperdu.houblonneux.register.recipe.ModRecipeSerializerRegister;
 import com.unpainperdu.houblonneux.register.recipe.ModRecipeTypeRegister;
-import com.unpainperdu.houblonneux.register.worldgen.ModFeatureRegister;
+import com.unpainperdu.houblonneux.register.worldgen.ModFeatureTypeRegister;
 import net.neoforged.bus.api.IEventBus;
 
 public class RegisterHandler
 {
     public static void register(IEventBus event)
     {
+        ModFeatureTypeRegister.register(event);
+        ModStructureProcessorRegister.register(event);
         ModBlockRegister.register(event);
         ModItemRegister.register(event);
         ModCreativeTabRegister.register(event);
         ModGLMCodecRegister.register(event);
-        ModFeatureRegister.register(event);
         ModConsumeEffectTypeRegister.register(event);
         ModSoundRegister.register(event);
         ModBlockEntityRegister.register(event);
         ModMenuTypeRegister.register(event);
         ModDataComponentRegister.register(event);
-        ModStructureProcessorRegister.register(event);
         ModMobEffectRegister.register(event);
         ModDataAttachmentRegister.register(event);
         ModParticleTypeRegister.register(event);

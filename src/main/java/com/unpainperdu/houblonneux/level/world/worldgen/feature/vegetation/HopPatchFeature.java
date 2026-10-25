@@ -2,15 +2,20 @@ package com.unpainperdu.houblonneux.level.world.worldgen.feature.vegetation;
 
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.level.world.block.block.crop.HopBlock;
 import com.unpainperdu.houblonneux.level.world.block.blockstate.HopBlockstate;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
 import java.util.ArrayList;
@@ -18,30 +23,45 @@ import java.util.List;
 
 public class HopPatchFeature extends AbstractVegetationPatchFeature
 {
-    public HopPatchFeature(Codec<PatchConfiguration> codec)
+    public static final MapCodec<HopPatchFeature> CODEC = RecordCodecBuilder.mapCodec(
+            builder -> builder.group(
+                            Codec.INT.fieldOf("spread").forGetter(g -> g.spread),
+                            Codec.INT.fieldOf("min_flower_number").forGetter(g -> g.minFlowerNumber),
+                            Codec.INT.fieldOf("max_flower_number").forGetter(g -> g.maxFlowerNumber),
+                            Codec.list(BlockStateProvider.TYPED_CODEC).fieldOf("states").forGetter(g -> g.states),
+                            Codec.list(TagKey.codec(Registries.BLOCK)).fieldOf("ground_allowed").forGetter(g -> g.groundAllowed)
+                    )
+                    .apply(builder, HopPatchFeature::new)
+    );
+
+    public HopPatchFeature(int spread, int minFlowerNumber, int maxFlowerNumber, List<BlockStateProvider> states, List<TagKey<Block>> groundAllowed)
     {
-        super(codec);
+        super(spread, minFlowerNumber, maxFlowerNumber, states, groundAllowed);
     }
 
     @Override
-    public void placeFeature(FeaturePlaceContext<PatchConfiguration> context, BlockPos posToPlace)
+    public MapCodec<HopPatchFeature> codec()
     {
-        printWarnStateIfNeeded(context.config());
-        RandomSource rand = context.random();
-        WorldGenLevel worldIn = context.level();
+        return CODEC;
+    }
 
-        int randomHeight = getRealHeight(worldIn, posToPlace, rand.nextInt(3, HopBlock.MAX_HEIGHT) + 1);
+    @Override
+    public void placeFeature(WorldGenLevel worldGenLevel, ChunkGenerator chunkGenerator, RandomSource rand, BlockPos posToPlace)
+    {
+        printWarnStateIfNeeded();
+
+        int randomHeight = getRealHeight(worldGenLevel, posToPlace, rand.nextInt(3, HopBlock.MAX_HEIGHT) + 1);
         if (randomHeight > 2)
         {
             for (int i = 0; i < randomHeight; i++)
             {
                 if (i == randomHeight - 1)
                 {
-                    placeTop(worldIn, posToPlace);
+                    placeTop(worldGenLevel, posToPlace);
                 }
                 else
                 {
-                    placeMiddle(worldIn, posToPlace, rand);
+                    placeMiddle(worldGenLevel, posToPlace, rand);
                 }
                 posToPlace = posToPlace.above();
             }
@@ -79,12 +99,11 @@ public class HopPatchFeature extends AbstractVegetationPatchFeature
         worldIn.setBlock(pos, ModBlockRegister.HOP.get().defaultBlockState().setValue(HopBlock.HOP_BLOCKSTATE, HopBlockstate.TOP_GROW), 2);
     }
 
-    private void printWarnStateIfNeeded(PatchConfiguration config)
+    private void printWarnStateIfNeeded()
     {
-        List<BlockStateProvider> states = config.states();
-        if (!states.isEmpty())
+        if (!this.states.isEmpty())
         {
-            Houblonneux.LOGGER.warn("HopPatchFeature should not have states given : reused config with this not used parameter ");
+            Houblonneux.LOGGER.warn("HopPatchFeature should not have states given, feature already call them in java code");
         }
     }
 }

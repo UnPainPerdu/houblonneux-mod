@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:gros_gueuleton_glass"
+        "recipes": "houblonneux:gros_gueuleton_glass"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

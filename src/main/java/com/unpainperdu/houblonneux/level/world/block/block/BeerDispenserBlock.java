@@ -1,6 +1,5 @@
 package com.unpainperdu.houblonneux.level.world.block.block;
 
-import com.mojang.serialization.MapCodec;
 import com.unpainperdu.houblonneux.level.world.block.ModBlockStateProperties;
 import com.unpainperdu.houblonneux.level.world.block.entity.BeerDispenserBlockEntity;
 import com.unpainperdu.houblonneux.level.world.item.LockerItem;
@@ -46,8 +45,6 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
     {
         return RenderShape.INVISIBLE;
     }
-
-    public static final MapCodec<BeerDispenserBlock> CODEC = simpleCodec(BeerDispenserBlock::new);
 
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
@@ -132,12 +129,6 @@ public class BeerDispenserBlock extends BaseEntityBlock implements SimpleWaterlo
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         return SHAPE;
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec()
-    {
-        return CODEC;
     }
 
     @Override

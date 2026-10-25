@@ -4,12 +4,15 @@ import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagCopyingItemTagProvider;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -80,12 +83,13 @@ public class ModItemTagProvider extends BlockTagCopyingItemTagProvider
     @SafeVarargs
     private void addToTag(TagKey<Item> itemTag, Stream<Supplier<? extends Item>>... itemStreams)
     {
-        this.tag(itemTag).add(
-                Stream.of(itemStreams)
-                        .flatMap(s -> s)
-                        .map(Supplier::get)
-                        .toArray(Item[]::new)
-        );
+        List<ResourceKey<Item>> itemRKs = Stream.of(itemStreams)
+                .flatMap(s -> s)
+                .map(s -> ModItemRegister.getResourceKey(s.get()))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+        this.tag(itemTag).add(itemRKs.toArray(new ResourceKey[0]));
     }
 
     @SafeVarargs

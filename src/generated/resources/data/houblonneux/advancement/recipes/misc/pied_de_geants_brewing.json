@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:pied_de_geants_brewing"
+        "recipes": "houblonneux:pied_de_geants_brewing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

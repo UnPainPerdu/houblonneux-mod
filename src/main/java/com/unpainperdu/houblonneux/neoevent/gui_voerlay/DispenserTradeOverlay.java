@@ -27,7 +27,7 @@ public class DispenserTradeOverlay
         {
             if (mc.hitResult instanceof BlockHitResult hit)
             {
-                if (!mc.options.hideGui)
+                if (!mc.gui.hud.isHidden())
                 {
                     BlockState state = level.getBlockState(hit.getBlockPos());
                     if (state.is(ModBlockRegister.BEER_DISPENSER))

@@ -1,13 +1,15 @@
 package com.unpainperdu.houblonneux.datagen;
 
+import com.unpainperdu.houblonneux.Houblonneux;
 import com.unpainperdu.houblonneux.datagen.asset.ModParticleDescriptionProvider;
 import com.unpainperdu.houblonneux.datagen.asset.ModSoundDefinitionsProvider;
 import com.unpainperdu.houblonneux.datagen.asset.language.EnglishLanguageProvider;
 import com.unpainperdu.houblonneux.datagen.asset.language.FrenchLanguageProvider;
 import com.unpainperdu.houblonneux.datagen.asset.model.ModelProviderDispatcher;
-import com.unpainperdu.houblonneux.datagen.data.ModAdvancementProvider;
+import com.unpainperdu.houblonneux.datagen.data.ModAdvancementSubProvider;
+import com.unpainperdu.houblonneux.datagen.data.loot_table.ModBeerDispenserLootTable;
+import com.unpainperdu.houblonneux.datagen.data.loot_table.ModBlockLootTableSubProvider;
 import com.unpainperdu.houblonneux.datagen.data.loot_table.ModGlobalLootModifierProvider;
-import com.unpainperdu.houblonneux.datagen.data.loot_table.ModLootTableProvider;
 import com.unpainperdu.houblonneux.datagen.data.recipe.ModRecipeProvider;
 import com.unpainperdu.houblonneux.datagen.data.tag.ModBlockTagProvider;
 import com.unpainperdu.houblonneux.datagen.data.tag.ModDispenserTradeTagProvider;
@@ -23,34 +25,66 @@ import com.unpainperdu.houblonneux.datagen.data.worldgen.structure.ModStructureT
 import com.unpainperdu.houblonneux.register.registry.ModDataPackRegistriesRegister;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.advancements.AdvancementProvider;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.data.event.PackGenerator;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
+import java.util.List;
+import java.util.Set;
+
+@EventBusSubscriber(modid = Houblonneux.MOD_ID)
 public class DataGatherer
 {
+    @SubscribeEvent
     public static void gatherData(GatherDataEvent.Client event)
     {
-        event.createDatapackRegistryObjects(
-                new RegistrySetBuilder()
-                        .add(Registries.CONFIGURED_FEATURE, ModFeatureProvider::bootstrap)
-                        .add(Registries.PLACED_FEATURE, ModPlacementProvider::bootstrap)
-                        .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifierProvider::bootstrap)
-                        .add(ModDataPackRegistriesRegister.DISPENSER_TRADE, ModDispenserTradeProvider::bootstrap)
-                        .add(ModDataPackRegistriesRegister.DISPENSER_TRADE_TABLE, ModDispenserTradeTableProvider::bootstrap)
-                        .add(Registries.PROCESSOR_LIST, ModProcessorListRegister::boostrap)
-                        .add(Registries.TEMPLATE_POOL, ModStructureTemplatePoolRegister::boostrap)
-        );
+        RegistrySetBuilder worldBuilder = new RegistrySetBuilder()
+                .add(Registries.FEATURE, ModFeatureProvider::bootstrap)
+                .add(Registries.PLACED_FEATURE, ModPlacementProvider::bootstrap)
+                .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifierProvider::bootstrap)
+                .add(Registries.TEMPLATE_POOL, ModStructureTemplatePoolRegister::boostrap)
+                .add(Registries.PROCESSOR_LIST, ModProcessorListRegister::boostrap);
+
+        RegistrySetBuilder reloadableBuilder = new RegistrySetBuilder()
+                .add(ModDataPackRegistriesRegister.DISPENSER_TRADE, ModDispenserTradeProvider::bootstrap)
+                .add(ModDataPackRegistriesRegister.DISPENSER_TRADE_TABLE, ModDispenserTradeTableProvider::bootstrap)
+                .add(
+                        Registries.LOOT_TABLE,
+                        new LootTableProvider(
+                                Set.of(),
+                                List.of(
+                                        new LootTableProvider.SubProviderEntry(ModBlockLootTableSubProvider::new, LootContextParamSets.BLOCK),
+                                        new LootTableProvider.SubProviderEntry(ModBeerDispenserLootTable::new, LootContextParamSets.EMPTY)
+                                )
+                        )
+                )
+                .add(
+                        Registries.ADVANCEMENT,
+                        new AdvancementProvider(
+                                List.of(
+                                        ModAdvancementSubProvider::new
+                                )
+                        )
+                )
+                .add(ModRecipeProvider.create());
+
+        PackGenerator packGenerator = event.getPackGenerator(event.getGenerator().getPackOutput());
+        packGenerator.createWorldRegistryObjects(worldBuilder);
+        packGenerator.createReloadableRegistryObjects(reloadableBuilder);
+
         event.createProvider(ModelProviderDispatcher::new);
         event.createProvider(EnglishLanguageProvider::new);
         event.createProvider(FrenchLanguageProvider::new);
-        event.createProvider(ModLootTableProvider::new);
         event.createProvider(ModGlobalLootModifierProvider::new);
         event.createBlockAndItemTags(ModBlockTagProvider::new, ModItemTagProvider::new);
-        event.createProvider(ModDispenserTradeTagProvider::new);
+        //event.createProvider(ModDispenserTradeTagProvider::new); //TODO whi registry not found for it ?
         event.createProvider(ModFluidTagsProvider::new);
-        event.createProvider(ModRecipeProvider.Runner::new);
         event.createProvider(ModSoundDefinitionsProvider::new);
         event.createProvider(ModParticleDescriptionProvider::new);
-        event.createProvider(ModAdvancementProvider::new);
     }
 }

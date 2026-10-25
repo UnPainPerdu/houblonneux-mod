@@ -7,17 +7,20 @@ import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
 import com.unpainperdu.houblonneux.register.fluid.ModFluidRegister;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import com.unpainperdu.houblonneux.util.StringHelper;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.MultiRegistryBootstrap;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluid;
@@ -25,16 +28,34 @@ import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStackTemplate;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.Set;
 
 public class ModRecipeProvider extends RecipeProvider
 {
+    public static MultiRegistryBootstrap create()
+    {
+        return new MultiRegistryBootstrap()
+        {
+            @Override
+            public Set<ResourceKey<? extends Registry<?>>> requestedRegistries()
+            {
+                return Set.of(Registries.RECIPE, Registries.ADVANCEMENT);
+            }
+
+            @Override
+            public void run(MultiRegistryBootstrap.BootstrapGetter registries)
+            {
+                new ModRecipeProvider(registries.get(Registries.RECIPE), registries.get(Registries.ADVANCEMENT)).buildRecipes();
+            }
+        };
+    }
+
     protected final HolderGetter<Fluid> fluids;
 
-    protected ModRecipeProvider(HolderLookup.Provider registries, RecipeOutput output)
+    protected ModRecipeProvider(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput)
     {
-        super(registries, output);
-        this.fluids = registries.lookupOrThrow(Registries.FLUID);
+        super(recipeOutput, advancementOutput);
+        this.fluids = recipeOutput.lookup(Registries.FLUID);
     }
 
     @Override
@@ -87,26 +108,27 @@ public class ModRecipeProvider extends RecipeProvider
                 .unlockedBy("has_iron", this.has(Items.IRON_INGOT))
                 .save(this.output);
         //  dye
-        this.shapeless(RecipeCategory.MISC, Items.YELLOW_DYE)
+        this.shapeless(RecipeCategory.MISC, Items.DYE.yellow())
+                .group("yellow_dye")
                 .requires(ModItemRegister.HOP_LUPULIN)
                 .unlockedBy("has_houblon_lupulin", this.has(ModItemRegister.HOP_LUPULIN))
-                .save(this.output, "yellow_dye_from_lupulin");
+                .save(this.output, "houblonneux:yellow_dye_from_lupulin");
         //  beer container
         this.shaped(RecipeCategory.MISC, ModItemRegister.EMPTY_POLYMORPHIC_BOTTLE, 7)
-                .define('x', Tags.Items.GLASS_BLOCKS)
+                .define('x', Tags.BlockItems.GLASS_BLOCKS.item())
                 .define('y', Tags.Items.GEMS_LAPIS)
                 .pattern(" x ")
                 .pattern("xyx")
                 .pattern("xxx")
-                .unlockedBy("has_glass", this.has(Tags.Items.GLASS_BLOCKS))
+                .unlockedBy("has_glass", this.has(Tags.BlockItems.GLASS_BLOCKS.item()))
                 .save(this.output);
         this.shaped(RecipeCategory.MISC, ModItemRegister.EMPTY_POLYMORPHIC_GLASS, 6)
-                .define('x', Tags.Items.GLASS_BLOCKS)
+                .define('x', Tags.BlockItems.GLASS_BLOCKS.item())
                 .define('y', Tags.Items.GEMS_LAPIS)
                 .pattern("x x")
                 .pattern("xyx")
                 .pattern("xxx")
-                .unlockedBy("has_glass", this.has(Tags.Items.GLASS_BLOCKS))
+                .unlockedBy("has_glass", this.has(Tags.BlockItems.GLASS_BLOCKS.item()))
                 .save(this.output);
         this.shaped(RecipeCategory.MISC, ModItemRegister.EMPTY_POLYMORPHIC_MUG, 5)
                 .define('x', ItemTags.PLANKS)
@@ -365,25 +387,5 @@ public class ModRecipeProvider extends RecipeProvider
                 this.fluids,
                 new ItemStackTemplate(item.asItem(), amount)
         );
-    }
-
-    public static class Runner extends RecipeProvider.Runner
-    {
-        public Runner(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider)
-        {
-            super(output, lookupProvider);
-        }
-
-        @Override
-        protected RecipeProvider createRecipeProvider(HolderLookup.Provider provider, RecipeOutput output)
-        {
-            return new ModRecipeProvider(provider, output);
-        }
-
-        @Override
-        public String getName()
-        {
-            return "Houblonneux Recipes";
-        }
     }
 }

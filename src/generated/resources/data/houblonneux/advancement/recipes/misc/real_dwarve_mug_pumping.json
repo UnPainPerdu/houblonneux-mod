@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:real_dwarve_mug_pumping"
+        "recipes": "houblonneux:real_dwarve_mug_pumping"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

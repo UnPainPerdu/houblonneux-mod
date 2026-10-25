@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:pain_dieux_brewing"
+        "recipes": "houblonneux:pain_dieux_brewing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

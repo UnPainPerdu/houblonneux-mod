@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "x": "#c:glass_blocks",
     "y": "#c:gems/lapis"

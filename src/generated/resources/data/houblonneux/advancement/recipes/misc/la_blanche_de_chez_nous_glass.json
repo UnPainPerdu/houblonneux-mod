@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:la_blanche_de_chez_nous_glass"
+        "recipes": "houblonneux:la_blanche_de_chez_nous_glass"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

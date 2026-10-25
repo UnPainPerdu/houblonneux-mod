@@ -129,7 +129,7 @@ public class BeerDispenserBlockEntityRenderer implements BlockEntityRenderer<Bee
         ItemDisplayRenderHelper.setItemRenderToCenter(poseStack);
         poseStack.translate(0, 0.85D, 0);
         float angle = -direction.toYRot();
-        poseStack.mulPose(Axis.YP.rotationDegrees(angle));
+        poseStack.rotate(Axis.YP.rotationDegrees(angle));
         poseStack.scale(2.5F, 2.5F, 2.5F);
         itemRender.submit(poseStack, submitNodeCollector, lightCoords, OverlayTexture.NO_OVERLAY, 0);
         poseStack.popPose();

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:emerald_call_glass"
+        "recipes": "houblonneux:emerald_call_glass"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -3,25 +3,23 @@ package com.unpainperdu.houblonneux.level.world.gen.structure.processor;
 import com.mojang.serialization.MapCodec;
 import com.unpainperdu.houblonneux.level.world.block.entity.RandomizableDispenserTrade;
 import com.unpainperdu.houblonneux.register.block.ModBlockRegister;
-import com.unpainperdu.houblonneux.register.gen.structure.ModStructureProcessorRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import org.jspecify.annotations.Nullable;
 
-public class TurnOnImmediateRollTableDataCompProcessor extends StructureProcessor
+public class TurnOnImmediateRollTableDataCompProcessor implements StructureProcessor
 {
     public static final MapCodec<TurnOnImmediateRollTableDataCompProcessor> CODEC = MapCodec.unit(new TurnOnImmediateRollTableDataCompProcessor());
 
     @Override
-    protected StructureProcessorType<?> getType()
+    public MapCodec<TurnOnImmediateRollTableDataCompProcessor> codec()
     {
-        return ModStructureProcessorRegister.TURN_ON_IMMEDIATE_ROLL_TABLE_DATA_COMP_PROCESSOR.get();
+        return CODEC;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.unpainperdu.houblonneux.level.world.block.block;
 
-import com.mojang.serialization.MapCodec;
 import com.unpainperdu.houblonneux.datagen.data.tag.ModItemTags;
 import com.unpainperdu.houblonneux.level.world.block.ModBlockStateProperties;
 import com.unpainperdu.houblonneux.level.world.block.entity.CoasterBlockEntity;
@@ -39,8 +38,6 @@ import java.util.List;
 
 public class CoasterBlock extends BaseEntityBlock
 {
-    public static final MapCodec<CoasterBlock> CODEC = simpleCodec(CoasterBlock::new);
-
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
     public static final IntegerProperty COASTER_NUMBER = ModBlockStateProperties.COASTER_NUMBER;
     private static final VoxelShape COASTER_SHAPE_1 = Block.box(2F, 0F, 2F, 7F, 1F, 7F);
@@ -276,12 +273,6 @@ public class CoasterBlock extends BaseEntityBlock
         {
             level.addFreshEntity(new ItemEntity(level, player.getOnPos().getX(), player.getOnPos().getY(), player.getOnPos().getZ(), itemStack));
         }
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec()
-    {
-        return CODEC;
     }
 
     public @Nullable CoasterBlockEntity getBlockEntity(BlockPos blockPos, Level level)

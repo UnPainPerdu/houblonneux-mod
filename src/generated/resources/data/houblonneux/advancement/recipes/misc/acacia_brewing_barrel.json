@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:acacia_brewing_barrel"
+        "recipes": "houblonneux:acacia_brewing_barrel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

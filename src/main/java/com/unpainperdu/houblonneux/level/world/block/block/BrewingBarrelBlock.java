@@ -1,6 +1,5 @@
 package com.unpainperdu.houblonneux.level.world.block.block;
 
-import com.mojang.serialization.MapCodec;
 import com.unpainperdu.houblonneux.level.world.block.blockstate.ModBlockStateProperties;
 import com.unpainperdu.houblonneux.level.world.block.entity.BrewingBarrelBlockEntity;
 import com.unpainperdu.houblonneux.register.block.ModBlockEntityRegister;
@@ -43,7 +42,6 @@ public class BrewingBarrelBlock extends BaseEntityBlock implements SimpleWaterlo
     public static final IntegerProperty POSITION = ModBlockStateProperties.BREWING_BARREL_POSITION;
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final MapCodec<BrewingBarrelBlock> CODEC = simpleCodec(BrewingBarrelBlock::new);
 
     public BrewingBarrelBlock(Properties properties)
     {
@@ -55,12 +53,6 @@ public class BrewingBarrelBlock extends BaseEntityBlock implements SimpleWaterlo
                         .setValue(POSITION, 0)
                         .setValue(WATERLOGGED, false)
         );
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec()
-    {
-        return CODEC;
     }
 
     @Override

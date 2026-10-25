@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "houblonneux:real_dwarve_brewing"
+        "recipes": "houblonneux:real_dwarve_brewing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

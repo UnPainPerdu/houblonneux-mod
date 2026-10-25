@@ -7,6 +7,8 @@ import com.unpainperdu.houblonneux.level.world.block.block.CoasterBlock;
 import com.unpainperdu.houblonneux.level.world.block.block.crop.HopBlock;
 import com.unpainperdu.houblonneux.register.item.ModItemProperties;
 import com.unpainperdu.houblonneux.register.item.ModItemRegister;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -14,6 +16,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -60,5 +63,10 @@ public class ModBlockRegister
     public static void register(IEventBus event)
     {
         BLOCKS.register(event);
+    }
+
+    public static Optional<ResourceKey<Block>> getResourceKey(Block block)
+    {
+        return BuiltInRegistries.BLOCK.getResourceKey(block);
     }
 }
