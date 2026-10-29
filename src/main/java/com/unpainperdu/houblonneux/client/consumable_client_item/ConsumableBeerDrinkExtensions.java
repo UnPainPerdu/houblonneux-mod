@@ -3,7 +3,9 @@ package com.unpainperdu.houblonneux.client.consumable_client_item;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.unpainperdu.houblonneux.register.extensible_enum.ModItemUseAnimation;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.state.level.PlayerRenderState;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -20,18 +22,54 @@ public class ConsumableBeerDrinkExtensions implements IClientItemExtensions
     //first person
     @Override
     public boolean applyForgeHandTransform(PoseStack poseStack, PlayerRenderState playerRenderState, HumanoidArm arm, ItemStack itemInHand, float partialTick, float equipProcess, float swingProcess)
-    { //TODO Does not work anymore
-        if (playerRenderState.itemActivation != null)
+    {
+        /* boolean condition using PlayerRenderState but impossible to verify if right arm is the using one
+        AvatarRenderState avatarRenderState = playerRenderState.avatarRenderState;
+        if (avatarRenderState != null)
         {
-            boolean isItemUsed = playerRenderState.itemActivation.ticks >= 0;
+            FirstPersonHandsAndItemsRenderState firstPersonHandsAndItemsRenderState = playerRenderState.firstPersonHandsAndItems;
+            System.out.println("---------------------");
+            System.out.println(itemInHand);
+            System.out.println(firstPersonHandsAndItemsRenderState.useItemRemainingTicks);
+            System.out.println(firstPersonHandsAndItemsRenderState.mainHandUseDuration);
+            System.out.println(firstPersonHandsAndItemsRenderState.offHandUseDuration);
+            System.out.println(firstPersonHandsAndItemsRenderState.attackHand);
+            System.out.println(arm);
+            System.out.println(playerRenderState.avatarRenderState.getUseItemStackForArm(arm));
+
             if (
-                    isItemUsed
+                     playerRenderState.avatarRenderState.isUsingItem &&
+                             firstPersonHandsAndItemsRenderState.useItemRemainingTicks > 0
                             && itemInHand.getUseAnimation() == ModItemUseAnimation.BEER_DRINK.get()
             )
             {
-                float currUsageTime = playerRenderState.itemActivation.ticks - partialTick + 1.0F;// time remaining in tick
-                float scaledUsageTime = currUsageTime / playerRenderState.itemActivation.ticks;// time remaining in %
-                float reversScaledUsageTime = 1 - (currUsageTime / playerRenderState.itemActivation.ticks);// time passed in %
+                int useDuration;
+                if (firstPersonHandsAndItemsRenderState.mainHandItem.equals(itemInHand))
+                {
+                    useDuration = firstPersonHandsAndItemsRenderState.mainHandUseDuration;
+                }
+                else
+                {
+                    useDuration = firstPersonHandsAndItemsRenderState.offHandUseDuration;
+                }
+                float currUsageTime = firstPersonHandsAndItemsRenderState.useItemRemainingTicks - partialTick + 1.0F;// time remaining in tick
+                float scaledUsageTime = currUsageTime / useDuration;// time remaining in %
+                float reversScaledUsageTime = 1 - (currUsageTime / useDuration);// time passed in %
+                */
+        LocalPlayer player = Minecraft.getInstance().player;
+        if (player != null)
+        {
+            HumanoidArm usingArm = player.getUsedItemHand() == InteractionHand.MAIN_HAND
+                    ? player.getMainArm()
+                    : player.getMainArm().getOpposite();
+            if (
+                    player.isUsingItem() && player.getUseItemRemainingTicks() > 0
+                            && usingArm == arm && itemInHand.getUseAnimation() == ModItemUseAnimation.BEER_DRINK.get()
+            )
+            {
+                float currUsageTime = player.getUseItemRemainingTicks() - partialTick + 1.0F;// time remaining in tick
+                float scaledUsageTime = currUsageTime / itemInHand.getUseDuration(player);// time remaining in %
+                float reversScaledUsageTime = 1 - (currUsageTime / itemInHand.getUseDuration(player));// time passed in %
                 // base pose
                 poseStack.translate(0.0F, -0.4F, -0.5F);
                 //rotation and translation during drink

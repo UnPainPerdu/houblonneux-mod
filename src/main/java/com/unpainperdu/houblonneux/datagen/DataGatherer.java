@@ -77,14 +77,14 @@ public class DataGatherer
         packGenerator.createWorldRegistryObjects(worldBuilder);
         packGenerator.createReloadableRegistryObjects(reloadableBuilder);
 
-        event.createProvider(ModelProviderDispatcher::new);
-        event.createProvider(EnglishLanguageProvider::new);
-        event.createProvider(FrenchLanguageProvider::new);
-        event.createProvider(ModGlobalLootModifierProvider::new);
-        event.createBlockAndItemTags(ModBlockTagProvider::new, ModItemTagProvider::new);
-        //event.createProvider(ModDispenserTradeTagProvider::new); //TODO whi registry not found for it ?
-        event.createProvider(ModFluidTagsProvider::new);
-        event.createProvider(ModSoundDefinitionsProvider::new);
-        event.createProvider(ModParticleDescriptionProvider::new);
+        packGenerator.createProvider(ModelProviderDispatcher::new);
+        packGenerator.createProvider(EnglishLanguageProvider::new);
+        packGenerator.createProvider(FrenchLanguageProvider::new);
+        packGenerator.createProvider(ModGlobalLootModifierProvider::new);
+        packGenerator.createBlockAndItemTags(ModBlockTagProvider::new, ModItemTagProvider::new);
+        packGenerator.createProvider(ModDispenserTradeTagProvider::new);
+        packGenerator.createProvider(ModFluidTagsProvider::new);
+        packGenerator.createProvider(ModSoundDefinitionsProvider::new);
+        packGenerator.createProvider(ModParticleDescriptionProvider::new);
     }
 }
