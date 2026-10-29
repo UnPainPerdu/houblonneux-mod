@@ -24,6 +24,10 @@ public class ModDispenserTradeTagProvider extends KeyTagProvider<DispenserTrade>
                 .add(ModDispenserTradeProvider.EMERALD_CALL)
                 .add(ModDispenserTradeProvider.WORM_HOLE)
                 .add(ModDispenserTradeProvider.GROS_GUEULETON)
+                .add(ModDispenserTradeProvider.PAIN_DIEUX)
+                .add(ModDispenserTradeProvider.REAL_DWARVE)
+                .add(ModDispenserTradeProvider.PIED_DE_GEANTS)
+                .add(ModDispenserTradeProvider.LA_BLANCHE_DE_CHEZ_NOUS)
         ;
     }
 }
