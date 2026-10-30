@@ -1,22 +1,15 @@
 package com.unpainperdu.houblonneux.datagen.data.loot_table;
 
 import com.unpainperdu.houblonneux.Houblonneux;
-import com.unpainperdu.houblonneux.register.item.ModItemRegister;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.predicates.AllOfCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider;
-import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.neoforged.neoforge.common.loot.AddTableLootModifier;
+import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -32,25 +25,28 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider
     @Override
     protected void start()
     {
-        addToVillagerHouse("lupulin", ModItemRegister.HOP_LUPULIN, ContextIntProviders.between(3, 7), 0.45F);
+        addToVillagerHouse("lupulin", ModEmptyContextLootTableProvider.LUPULINE_FOR_GLM);
     }
 
-    private void addToVillagerHouse(String name, ItemLike itemLike, Holder<ContextIntProvider> numberProvider, float chance)
+    private void addToVillagerHouse(String name, ResourceKey<LootTable> lootTableToAdd)
     {
-        Item item = itemLike.asItem();
         name = name + "_houblonneux_glm";
         String namePlains = name + "_for_plains";
         add(
                 namePlains,
                 new AddTableLootModifier(
-                        Optional.of(Holder.direct(AllOfCondition.allOf(LootItemRandomChanceCondition.randomChance(chance)).build())), 1, this.getKeyFromVanillaPath("chests/village/village_plains_house")
+                        Optional.of(Holder.direct(new LootTableIdCondition.Builder(Identifier.withDefaultNamespace("chests/village/village_plains_house")).build())),
+                        1,
+                        lootTableToAdd
                 )
         );
         String nameSavanna = name + "_for_savanna";
         add(
                 nameSavanna,
                 new AddTableLootModifier(
-                        Optional.of(Holder.direct(AllOfCondition.allOf(LootItemRandomChanceCondition.randomChance(chance)).build())), 1, this.getKeyFromVanillaPath("chests/village/village_savanna_house")
+                        Optional.of(Holder.direct(new LootTableIdCondition.Builder(Identifier.withDefaultNamespace("chests/village/village_savanna_house")).build())),
+                        1,
+                        lootTableToAdd
                 )
         );
 
@@ -58,7 +54,9 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider
         add(
                 nameDesert,
                 new AddTableLootModifier(
-                        Optional.of(Holder.direct(AllOfCondition.allOf(LootItemRandomChanceCondition.randomChance(chance)).build())), 1, this.getKeyFromVanillaPath("chests/village/village_desert_house")
+                        Optional.of(Holder.direct(new LootTableIdCondition.Builder(Identifier.withDefaultNamespace("chests/village/village_desert_house")).build())),
+                        1,
+                        lootTableToAdd
                 )
         );
 
@@ -66,7 +64,9 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider
         add(
                 nameSnowy,
                 new AddTableLootModifier(
-                        Optional.of(Holder.direct(AllOfCondition.allOf(LootItemRandomChanceCondition.randomChance(chance)).build())), 1, this.getKeyFromVanillaPath("chests/village/village_snowy_house")
+                        Optional.of(Holder.direct(new LootTableIdCondition.Builder(Identifier.withDefaultNamespace("chests/village/village_snowy_house")).build())),
+                        1,
+                        lootTableToAdd
                 )
         );
 
@@ -74,18 +74,10 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider
         add(
                 nameTaiga,
                 new AddTableLootModifier(
-                        Optional.of(Holder.direct(AllOfCondition.allOf(LootItemRandomChanceCondition.randomChance(chance)).build())), 1, this.getKeyFromVanillaPath("chests/village/village_taiga_house")
+                        Optional.of(Holder.direct(new LootTableIdCondition.Builder(Identifier.withDefaultNamespace("chests/village/village_taiga_house")).build())),
+                        1,
+                        lootTableToAdd
                 )
         );
-    }
-
-    private ResourceKey<LootTable> getKeyFromVanillaPath(String path)
-    {
-        return getKeyFromPath("minecraft", path);
-    }
-
-    private ResourceKey<LootTable> getKeyFromPath(String nameSpace, String path)
-    {
-        return ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath(nameSpace, path));
     }
 }

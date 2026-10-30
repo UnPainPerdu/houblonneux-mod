@@ -1,12 +1,9 @@
 {
   "type": "neoforge:add_table",
   "condition": {
-    "type": "minecraft:all_of",
-    "terms": {
-      "type": "minecraft:random_chance",
-      "chance": 0.45
-    }
+    "type": "neoforge:loot_table_id",
+    "loot_table_id": "minecraft:chests/village/village_savanna_house"
   },
   "priority": 1,
-  "table": "minecraft:chests/village/village_savanna_house"
+  "table": "houblonneux:glm/lupuline"
 }

@@ -19,13 +19,16 @@ public class ModDataPackRegistriesRegister
     @SubscribeEvent
     public static void registerDatapackRegistries(NewDatapackRegistryEvent event)
     {
-        event.reloadableRegistry(
+        event.worldRegistry(
                 DISPENSER_TRADE,
+                DispenserTrade.CODEC,
                 DispenserTrade.CODEC
         );
 
-        event.reloadableRegistry(
+
+        event.worldRegistry(
                 DISPENSER_TRADE_TABLE,
+                DispenserTradeTable.CODEC,
                 DispenserTradeTable.CODEC
         );
     }

@@ -7,7 +7,7 @@ import com.unpainperdu.houblonneux.datagen.asset.language.EnglishLanguageProvide
 import com.unpainperdu.houblonneux.datagen.asset.language.FrenchLanguageProvider;
 import com.unpainperdu.houblonneux.datagen.asset.model.ModelProviderDispatcher;
 import com.unpainperdu.houblonneux.datagen.data.ModAdvancementSubProvider;
-import com.unpainperdu.houblonneux.datagen.data.loot_table.ModBeerDispenserLootTable;
+import com.unpainperdu.houblonneux.datagen.data.loot_table.ModEmptyContextLootTableProvider;
 import com.unpainperdu.houblonneux.datagen.data.loot_table.ModBlockLootTableSubProvider;
 import com.unpainperdu.houblonneux.datagen.data.loot_table.ModGlobalLootModifierProvider;
 import com.unpainperdu.houblonneux.datagen.data.recipe.ModRecipeProvider;
@@ -48,18 +48,19 @@ public class DataGatherer
                 .add(Registries.PLACED_FEATURE, ModPlacementProvider::bootstrap)
                 .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifierProvider::bootstrap)
                 .add(Registries.TEMPLATE_POOL, ModStructureTemplatePoolRegister::boostrap)
-                .add(Registries.PROCESSOR_LIST, ModProcessorListRegister::boostrap);
-
-        RegistrySetBuilder reloadableBuilder = new RegistrySetBuilder()
+                .add(Registries.PROCESSOR_LIST, ModProcessorListRegister::boostrap)
                 .add(ModDataPackRegistriesRegister.DISPENSER_TRADE, ModDispenserTradeProvider::bootstrap)
                 .add(ModDataPackRegistriesRegister.DISPENSER_TRADE_TABLE, ModDispenserTradeTableProvider::bootstrap)
+                ;
+
+        RegistrySetBuilder reloadableBuilder = new RegistrySetBuilder()
                 .add(
                         Registries.LOOT_TABLE,
                         new LootTableProvider(
                                 Set.of(),
                                 List.of(
                                         new LootTableProvider.SubProviderEntry(ModBlockLootTableSubProvider::new, LootContextParamSets.BLOCK),
-                                        new LootTableProvider.SubProviderEntry(ModBeerDispenserLootTable::new, LootContextParamSets.EMPTY)
+                                        new LootTableProvider.SubProviderEntry(ModEmptyContextLootTableProvider::new, LootContextParamSets.EMPTY)
                                 )
                         )
                 )
